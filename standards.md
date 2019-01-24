@@ -6,7 +6,7 @@
 * Commit issues separately for cleanliness
 ### CODING FORMAT STANDARDS:
 * camelCase & CapitalFirstForClasses
-* Tabbing??? (4 or 5 spaces)
+* Use tabs for Python (4 space) (instead of spaces)
 * //pre:
 * //post:
 ### TESTING:
