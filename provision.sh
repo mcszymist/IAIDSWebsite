@@ -16,7 +16,7 @@ pip3 install django
 sudo apt-get install mysql-server -y
 
 # Creates a database
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS IAIDSSQL"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS IAIDSWebsite"
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'%' IDENTIFIED BY 'Project1!';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'10.0.2.15' IDENTIFIED BY 'Project1!';"
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Project1!';"
