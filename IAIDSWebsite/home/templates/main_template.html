@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UAF HvZ</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'source/css/foundation.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'source/hvzTemp.png' %}">
+    <script src="{% static 'source/js/vendor/foundation.js' %}"></script>
+    <script src="{% static 'source/js/app.js' %}"></script>
+</head>
+
+<body>
+    <script>
+        $(document).foundation();
+    </script>
+
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="menu">
+                <!-- <li class="menu-text">UAF HVZ</li> -->
+                {% block topMenuLeft %}
+                {% endblock %}
+                <li> <a href="/">UAFHvZ</a></li>
+            </ul>
+        </div>
+
+        <div class="top-bar-right">
+            <ul class="dropdown menu" data-dropdown-menu>
+                {% block topMenuRight %}
+                {% endblock %}
+                <li><a href="#">About</a></li>
+                {% block topMenuRightProfile %}
+                {% endblock %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" id="content">
+        <div class="medium-8 columns">
+            {% block middleColumn %}
+
+            {% endblock %}
+        </div>
+        {% block sideBar %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

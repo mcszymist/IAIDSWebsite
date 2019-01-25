@@ -1,0 +1,40 @@
+{% extends "main_template.html" %}
+
+{% block middleColumn %}
+<div class="blog-post">
+    <h2>UAF HvZ</h2>
+    <img class="thumbnail" src="https://placehold.it/850x350">
+    <h4>Dear HvZ Players</h4>
+    <p>We are pleased to welcome you to UAF's HvZ Source.</p>
+    <!-- <div class="callout">
+        <ul class="menu simple">
+            <li><a href="#">Author: Mike Mikers</a></li>
+            <li><a href="#">Comments: 3</a></li>
+        </ul>
+    </div> -->
+</div>
+{% endblock %}
+
+{% block sideBar %}
+<!--<div class="medium-3 columns" data-sticky-container>-->
+    <!--<div class="sticky" data-sticky data-anchor="content">-->
+        <!--<li><button type="submit" class="button">Login</button></li>-->
+        <!--<li><a href="#">Yes</a></li>-->
+        <!--<li><a href="#">Yes</a></li>-->
+        <!--<li><a href="#">Yes</a></li>-->
+        <!--<li><a href="#">Yes</a></li>-->
+    <!--</div>-->
+<!--</div>-->
+{% endblock %}
+
+{% block topMenuRight %}
+
+    {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">logout</a></li>
+        <li><a href="player/account/">account</a></li>
+    {% else %}
+        <li><a href="/accounts/login/">Sign In</a></li>
+        <li><a href="#">Sign Up</a></li>
+    {% endif %}
+
+{% endblock %}
