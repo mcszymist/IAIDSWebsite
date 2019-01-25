@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "provision.sh", :args => "true"
 
   # k-12 platform project files
-  config.vm.synced_folder ".", "/home/vagrant/uafHvZSite"
+  config.vm.synced_folder ".", "/home/vagrant/IAIDSWebsite"
   # Media directory, with write mode given to the vagrant account/group.
   #config.vm.synced_folder "media", "/srv/platform/media", create: true,
     #mount_options: ["dmode=775,fmode=775"]
