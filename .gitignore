@@ -1,0 +1,3 @@
+.vagrant/
+startupScript.sh
+provision.sh
