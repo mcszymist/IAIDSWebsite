@@ -2,10 +2,10 @@
 
 {% block middleColumn %}
 <div class="blog-post">
-    <h2>UAF HvZ</h2>
+    <h2>Volunteer</h2>
     <img class="thumbnail" src="https://placehold.it/850x350">
     <h4>Dear HvZ Players</h4>
-    <p>We are pleased to welcome you to UAF's HvZ Source.</p>
+    <p>We are pleased to welcome you.</p>
     <!-- <div class="callout">
         <ul class="menu simple">
             <li><a href="#">Author: Mike Mikers</a></li>
@@ -17,16 +17,4 @@
 
 {% block sideBar %}
 <!--TODO Add code here-->
-{% endblock %}
-
-{% block topMenuRight %}
-
-    {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">logout</a></li>
-        <li><a href="player/account/">account</a></li>
-    {% else %}
-        <li><a href="/accounts/login/">Sign In</a></li>
-        <li><a href="#">Sign Up</a></li>
-    {% endif %}
-
 {% endblock %}
