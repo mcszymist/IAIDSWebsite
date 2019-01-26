@@ -2382,7 +2382,7 @@ a.button:hover, a.button:focus {
           flex-wrap: wrap; }
   .top-bar,
   .top-bar ul {
-    background-color: #e6e6e6; }
+    background-color: rgb(25, 39, 240); }
   .top-bar input {
     max-width: 200px;
     margin-right: 1rem; }
@@ -5610,3 +5610,13 @@ a.thumbnail {
 .long-delay {
   -webkit-animation-delay: 700ms !important;
           animation-delay: 700ms !important; }
+		  
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgb(25, 39, 240);
+	color: Gray;
+	text-align: center;
+}
