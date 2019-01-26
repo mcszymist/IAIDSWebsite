@@ -1,16 +1,17 @@
 # IAIDSWebsite
 
 ## Just get this running:
-Go into the IAIDSWebsite Directory in your Windows or Linux Terminal and run
+Go into the **IAIDSWebsite Directory** in your Windows or Linux Terminal and run
 ```
 vagrant up
 ```
-This will run vagrant bash script and it would look for a "Vagrantfile", which would find and configure the machine.
+This will run vagrant bash script and it would look for a **"Vagrantfile"**, which would find and configure the machine.
 Once the machine runs, you can go ahead and 
 ```
 vagrant ssh
 ```
- into the machine. Then run the
+into the machine.  
+Then run
 ```
 cd IAIDSWebsite
 ```
@@ -21,7 +22,7 @@ startupScript.sh
  command to run the server.
 
 ## Vagrant GUI Trigger
-Cool tip: If you don't want a gui interface for vagrant, just edit the Vagrantfile and set v.gui = false, or vice versa. It will trigger the gui interface to be on or off. It will be located here: 
+Cool tip: If you don't want a gui interface for vagrant, just edit the **Vagrantfile** and set v.gui = false, or vice versa. It will trigger the gui interface to be on or off. It will be located here: 
 
 ```
 config.vm.provider "virtualbox" do |v|
