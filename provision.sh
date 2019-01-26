@@ -29,7 +29,7 @@ sudo apt-get install libmysqlclient-dev -y
 pip3 install -r /home/vagrant/IAIDSWebsite/requirements.txt
 
 # got to the correct directory
-cd IAIDSWebsite/IAIDSWebsite/
+cd IAIDSWebsite/
 
 # migrate data to mysql server
 python3 manage.py migrate
@@ -37,14 +37,11 @@ python3 manage.py migrate
 # Add firewall rules for django
 sudo ufw allow 8000
 
-# Logs in as root
-sudo su
+# Go back a directory
+cd ..
 
 # Adds mysql configuration
-printf "[mysqld]\nbind-address = 0.0.0.0\n\n" >> /etc/mysql/my.cnf
+printf "[mysqld]\nbind-address = 0.0.0.0\n\n" >> /etc/mysql/my.cnf 
 
 # Restart after applying mysql settings
 sudo service mysql restart
-
-# Exit root privileges
-exit;
