@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UAF HvZ</title>
+    <title>Volunteer</title>
 
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/foundation.css' %}">
@@ -21,10 +21,10 @@
     <div class="top-bar">
         <div class="top-bar-left">
             <ul class="menu">
-                <!-- <li class="menu-text">UAF HVZ</li> -->
+                <!-- <li class="menu-text">Volunteer</li> -->
                 {% block topMenuLeft %}
                 {% endblock %}
-                <li> <a href="/">UAFHvZ</a></li>
+                <li> <a href="/">Volunteer</a></li>
             </ul>
         </div>
 
@@ -32,6 +32,13 @@
             <ul class="dropdown menu" data-dropdown-menu>
                 {% block topMenuRight %}
                 {% endblock %}
+				{% if user.is_authenticated %}
+					<li><a href="{% url 'logout' %}">Logout</a></li>
+					<li><a href="player/account/">Account</a></li>
+				{% else %}
+					<li><a href="/accounts/login/">Sign In</a></li>
+					<li><a href="#">Sign Up</a></li>
+				{% endif %}
                 <li><a href="#">About</a></li>
                 {% block topMenuRightProfile %}
                 {% endblock %}
