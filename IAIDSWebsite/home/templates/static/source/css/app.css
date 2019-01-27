@@ -1,0 +1,13 @@
+@import "foundation";
+
+body,
+.hero {
+    background-color: red;
+    padding: 80px;
+}
+
+footer {
+    height: 300px;
+    background-color: #222;
+}
+

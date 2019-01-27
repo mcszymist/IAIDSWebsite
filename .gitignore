@@ -1,3 +1,4 @@
 .vagrant/
 startupScript.sh
 provision.sh
+*__pycache__*
