@@ -6,14 +6,6 @@
     <img class="thumbnail" src="https://placehold.it/850x350">
     <h4>HELLO</h4>
     <p>This is a webpage for volunteers seeking volunteer work.</p>
-    <!-- <div class="callout">
-        <ul class="menu simple">
-            <li><a href="#">Author: Mike Mikers</a></li>
-            <li><a href="#">Comments: 3</a></li>
-        </ul>
-    </div> -->
-
-
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam nibh ante, pharetra vel dapibus nec, vehicula nec
     mauris. Integer lectus metus, sagittis quis tincidunt placerat, rhoncus et ex. In ultrices augue tellus, et
     efficitur mauris feugiat nec. Nullam accumsan magna ante, non malesuada nisl sollicitudin nec. Cras a pellentesque
@@ -50,81 +42,4 @@
     ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse potenti. Aliquam euismod
     nunc nunc, ut sollicitudin elit convallis non. Quisque sit amet aliquam nisi.
 </div>
-{% endblock %}
-
-{% block alertExamples %}
-<div class="container">
-    <h2>Alerts</h2>
-    <div class="alert alert-success">
-        <strong>Success!</strong> This alert box could indicate a successful or positive action.
-    </div>
-    <div class="alert alert-info">
-        <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
-    </div>
-    <div class="alert alert-warning">
-        <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
-    </div>
-    <div class="alert alert-danger">
-        <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
-    </div>
-</div>
-<div class="container">
-    <h2>Alerts</h2>
-    <div class="alert alert-success">
-        <strong>Success!</strong> This alert box could indicate a successful or positive action.
-    </div>
-    <div class="alert alert-info">
-        <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
-    </div>
-    <div class="alert alert-warning">
-        <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
-    </div>
-    <div class="alert alert-danger">
-        <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
-    </div>
-</div>
-<!--<div class="medium-3 columns" data-sticky-container>-->
-<!--<div class="sticky" data-sticky data-anchor="content">-->
-<!--<li><button type="submit" class="button">Login</button></li>-->
-<!--<li><a href="#">Yes</a></li>-->
-<!--<li><a href="#">Yes</a></li>-->
-<!--<li><a href="#">Yes</a></li>-->
-<!--<li><a href="#">Yes</a></li>-->
-<!--</div>-->
-<!--</div>-->
-{% endblock %}
-
-{% block sideBar %}
-{% endblock %}
-
-{% block topMenuLeft %}
-<ul class="menu">
-    <li class="menu-text">VOLUNTEER.COM</li>
-</ul>
-{% endblock %}
-
-{% block topMenuRight %}
-<ul class="menu">
-    <li class="is-active"><a href="#">Home</a></li>
-
-    {% if user.is_authenticated %}
-
-    <li class="menu-text">Hello, {{ username }}</li>
-    <li><a href="#">Profile</a></li>
-    <li><a href="#">Logout</a></li>
-    {% else %}
-    <li><a href="createAccount/">Create Account</a></li>
-    <li><a href="#">Sign In</a></li>
-    {% endif %}
-    <li><input type="search" placeholder="Search"></li>
-    <li><button type="button" class="button">Search</button></li>
-</ul>
-{% endblock %}
-
-{% block footerMenu %}
-<ul class="menu align-middle">
-    <li><a href="#">Contact</a></li>
-    <li><a href="#">Sitemap</a></li>
-    <li><a href="#">About</a></li>
-</ul>
 {% endblock %}
