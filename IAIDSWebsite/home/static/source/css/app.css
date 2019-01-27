@@ -1,0 +1,23 @@
+.hero {
+    background-color: #d8d8d8;
+    padding: 60px;
+}
+
+.hero .row {
+    background-color: #d8d8d8;
+}
+
+footer {
+    font-size: 20px;
+    color: white;
+    height: 200px;
+    background-color: #222;
+    padding: 40px;
+}
+
+.white-top-bar .top-bar, .white-top-bar .top-bar ul {
+    background-color:#f2f2f2;
+}
+.menu > li > a:hover {
+    background-color: rgba(0,0,0, 0.1);
+}
