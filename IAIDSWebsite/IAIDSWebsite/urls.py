@@ -5,4 +5,5 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('', include('home.urls')),
+    path('profileeditor/', include('profileEditor.urls')),
 ]
