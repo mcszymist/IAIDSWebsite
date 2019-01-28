@@ -1,5 +1,16 @@
 {% extends "main_template.html" %}
 
+{% block topMenuRight %}
+    {% if user.is_authenticated %}
+        <li class="menu-text">Hello, {{ username }}</li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Logout</a></li>
+    {% else %}
+        <li><a href="createAccount/">Create Account</a></li>
+        <li><a href="#">Sign In</a></li>
+    {% endif %}
+{% endblock %}
+
 {% block middleColumn %}
 <div class="blog-post">
     <h2>VOLUNTEER.COM</h2>
