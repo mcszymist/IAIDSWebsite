@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.gui = false
     v.name = "IAIDSVM"
-    v.memory = 2048
+    v.memory = 1024
     v.cpus = 1
     v.customize ["modifyvm",:id,"--natdnshostresolver1","on"]
   end
