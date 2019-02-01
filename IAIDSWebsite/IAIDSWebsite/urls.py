@@ -5,6 +5,13 @@ from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('', include('home.urls')),
+    path('about/', include('about.urls')),
+    path('eventEdit/', include('eventEdit.urls')),
+    path('events/', include('events.urls')),
+    path('orgAdminPanel/', include('orgAdminPanel.urls')),
+    path('orgAdminPeople/', include('orgAdminPeople.urls')),
+    path('profileView/', include('profileView.urls')),
+    path('yourOrganizations/', include('yourOrganizations.urls')),	
     path('createAccount/', include('createAccount.urls')),
     path('profileedit/', include('profileEditor.urls')),
     path('admin/', admin.site.urls),
