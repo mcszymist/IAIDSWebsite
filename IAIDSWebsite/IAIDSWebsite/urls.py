@@ -8,4 +8,5 @@ urlpatterns = [
     path('createAccount/', include('createAccount.urls')),
     path('profileedit/', include('profileEditor.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

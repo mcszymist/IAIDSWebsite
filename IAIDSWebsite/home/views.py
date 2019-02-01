@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 
 
 def index(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('/currentgame/')
-    else:
-        return render(request, 'home_template.html')
+    # if request.user.is_authenticated:
+    #     return HttpResponseRedirect('')
+    # else:
+    return render(request, 'home_template.html')

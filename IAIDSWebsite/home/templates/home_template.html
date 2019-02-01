@@ -2,12 +2,12 @@
 
 {% block topMenuRight %}
     {% if user.is_authenticated %}
-        <li class="menu-text">Hello, {{ username }}</li>
+        <li class="menu-text">Hello, {{ user.username }}!</li>
         <li><a href="#">Profile</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
     {% else %}
         <li><a href="createAccount/">Create Account</a></li>
-        <li><a href="#">Sign In</a></li>
+        <li><a href="{% url 'login' %}">Sign In</a></li>
     {% endif %}
 {% endblock %}
 
