@@ -44,6 +44,13 @@ INSTALLED_APPS = [
     'home',
     'createAccount',
     'profileEditor',
+    'about',
+    'eventEdit',
+    'events',
+    'orgAdminPeople',
+    'orgAdminPanel',
+    'profileView',
+    'yourOrganizations',
 ]
 
 MIDDLEWARE = [
