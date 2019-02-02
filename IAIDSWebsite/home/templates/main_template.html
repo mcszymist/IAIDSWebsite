@@ -26,28 +26,28 @@
                 </div>
                 <div class="top-bar-right">
                     <ul class="menu">
-			<li><a href="{% url 'events' %}">Events</a></li>
-			<li><a href="{% url 'about' %}">About</a></li>
-			{% if user.is_authenticated %}
-				<li class="menu-text">Hello, {{ user.username }}!</li>
-				<ul class="vertical menu accordion-menu" data-accordion-menu>
-				  <li>
-				    <a href="#">Item 1</a>
-				    <ul class="menu vertical nested">
-				      <li><a href="{% url 'profileView' %}">Profile</a></li>
-				      <li><a href="{% url 'yourOrganizations' %}">Your Organizations</a></li>
-				      <li><a href="{% url 'logout' %}">Log Out</a></li>
-				    </ul>
-				  </li>
-				</ul>
-			{% else %}
-				<li><a href="{% url 'signup' %}">Create Account</a></li>
-				<li><a href="{% url 'login' %}">Sign In</a></li>
-				
-			{% endif %}
+                        <li><a href="{% url 'events' %}">Events</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="menu-text">Hello, {{ user.username }}!</li>
+                        <ul class="dropdown menu" data-dropdown-menu>
+                            <li>
+                                <a href="#">Item 1</a>
+                                <ul class="menu vertical nested">
+                                    <li><a href="{% url 'profileView' %}">Your Profile</a></li>
+                                    <li><a href="{% url 'yourOrganizations' %}">Your Organizations</a></li>
+                                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <li><a href="{% url 'signup' %}">Create Account</a></li>
+                        <li><a href="{% url 'login' %}">Sign In</a></li>
+
+                        {% endif %}
                         {% block topMenuRight %}
                         {% endblock %}
-			
+
                     </ul>
                 </div>
             </div>
@@ -57,9 +57,9 @@
     <!-- HERO -->
 
     <!-- CONTENT -->
-    <div class="hero">
-        <div class="row align-center" id="content">
-            <div class="large column">
+    <div class="hero-section">
+        <div class="row align-justify padding-100" id="content">
+            <div class="column large-12">
                 {% block middleColumn %}
                 {% endblock %}
             </div>
@@ -68,10 +68,10 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="row align-right">
-            <div class="column">Contact</div>
-            <div class="column">About</div>
-            <div class="column">Sitemap</div>
+        <div class="row align-middle text-align-middle text-center">
+            <div class="column align-middle"><a href="#">Contact</a></div>
+            <div class="column align-middle"><a href="#">About</a></div>
+            <div class="column align-middle"><a href="#">Sitemap</a></div>
         </div>
     </footer>
 
