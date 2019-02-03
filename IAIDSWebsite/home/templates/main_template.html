@@ -25,25 +25,22 @@
                     {% endblock %}
                 </div>
                 <div class="top-bar-right">
-                    <ul class="menu">
+                    <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
                         <li><a href="{% url 'events' %}">Events</a></li>
                         <li><a href="{% url 'about' %}">About</a></li>
                         {% if user.is_authenticated %}
-                        <li class="menu-text">Hello, {{ user.username }}!</li>
-                        <ul class="dropdown menu" data-dropdown-menu>
-                            <li>
-                                <a href="#">Item 1</a>
-                                <ul class="menu vertical nested">
-                                    <li><a href="{% url 'profileView' %}">Your Profile</a></li>
-                                    <li><a href="{% url 'yourOrganizations' %}">Your Organizations</a></li>
-                                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <li>
+							<a href="#">Icon</a>
+							<ul class="vertical menu">
+								<li><a href="#">Profile</a></li>
+								<li><a href="#">Organization</a></li>
+								<li><a href="#">Logout</a></li>
+							</ul>
+						</li>
                         {% else %}
+						
                         <li><a href="{% url 'signup' %}">Create Account</a></li>
                         <li><a href="{% url 'login' %}">Sign In</a></li>
-
                         {% endif %}
                         {% block topMenuRight %}
                         {% endblock %}
