@@ -12,6 +12,16 @@
 .card hr {
   margin: 0;
 }
+.eventTopPadding {
+  padding-top: 15px;
+}
+.eventBackground{
+  background-color: #d9d9d9;
+}
+.eventList {
+	height: 100px;
+	overflow: auto;
+}
 
 @media screen and (min-width: 64em) {
   .card-product.horizontal {
