@@ -1,0 +1,42 @@
+.card-divider.hollow {
+  background: #fefefe;
+}
+.card-divider .menu a {
+  color: #333;
+  font-size: 1rem;
+}
+.card-divider .menu a:hover {
+  background-color: #e6e6e6;
+}
+
+.card hr {
+  margin: 0;
+}
+
+@media screen and (min-width: 64em) {
+  .card-product.horizontal {
+    flex-direction: row;
+  }
+  .card-product.horizontal .card-section {
+    flex: 1 1 auto;
+  }
+  .card-product.horizontal .card-section.card-product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .card-product.horizontal .card-product-action-popup {
+    right: 0;
+    top: 3rem;
+    flex-direction: column;
+  }
+  .card-product.horizontal .card-product-action-popup button {
+    display: flex;
+  }
+}
+@media screen and (max-width: 63.9375em) {
+  .card-product.horizontal .card-product-details {
+    display: flex;
+    justify-content: space-between;
+  }
+}

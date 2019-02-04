@@ -9,7 +9,10 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
     <link rel="shortcut icon" type="image/png" href="{% static 'source/fasterToothpick.ico' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/foundation.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'source/icons/foundation-icons.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/app.css' %}" />
+	{% block headerInclude%}
+	{% endblock %}
 </head>
 
 <body>
@@ -30,7 +33,7 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         {% if user.is_authenticated %}
                         <li>
-							<a href="#">Icon</a>
+							<a class="fi-list"></a>
 							<ul class="vertical menu">
 								<li><a href="#">Profile</a></li>
 								<li><a href="#">Organization</a></li>
