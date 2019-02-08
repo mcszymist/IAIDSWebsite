@@ -12,14 +12,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'source/icons/foundation-icons.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/app.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/jquery-ui.css' %}" />
-    <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}" >
-    </script> 
-     
-    <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}" >
-    </script> 
-	{% block headerInclude%}
-	{% endblock %}
-    <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}" >
+    <link rel="stylesheet" href="css/foundation-icons.css" />
+    <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}">
+    </script>
+
+    <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
+    </script>
+    {% block headerInclude%}
+    {% endblock %}
+    <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
     </script>
 </head>
 
@@ -30,7 +31,11 @@
             <div class="top-bar" data-sticky data-margin-top="0" data-top-anchor="1" data-btm-anchor="content:bottom">
                 <div class="top-bar-left">
                     <ul class="menu">
-                        <a href="/" class="menu-text">VOLUNTEER</a>
+                        <a href="/" class="menu-text">
+                            <homeFont>
+                                VOLUNTEER FAIRBANKS <i class="fi-home"></i>
+                            </homeFont>
+                        </a>
                     </ul>
                     {% block topMenuLeft %}
                     {% endblock %}
@@ -41,18 +46,18 @@
                         <li><a href="{% url 'about' %}">About</a></li>
                         {% if user.is_authenticated %}
                         <li>
-							<a class="fi-list"></a>
-							<ul class="vertical menu">
-								<li><a href="{% url 'profileManage' %}">Profile</a></li>
-								<li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
-								<li><a href="{% url 'logout' %}">Logout</a></li>
-							</ul>
-						</li>
+                            <a class="fi-list"></a>
+                            <ul class="vertical menu">
+                                <li><a href="{% url 'profileManage' %}">Profile</a></li>
+                                <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </li>
                         {% else %}
-						
                         <li><a href="{% url 'signup' %}">Create Account</a></li>
                         <li><a href="{% url 'login' %}">Sign In</a></li>
                         {% endif %}
+
                         {% block topMenuRight %}
                         {% endblock %}
 
@@ -65,13 +70,13 @@
     <!-- HERO -->
 
     <!-- CONTENT -->
-    <div class="hero-section">
-        <div class="row align-justify padding-100" id="content">
+    <div class="row align-justify padding-100" id="content">
+        <middle>
             <div class="column large-12">
                 {% block middleColumn %}
                 {% endblock %}
             </div>
-        </div>
+        </middle>
     </div>
 
     <!-- FOOTER -->

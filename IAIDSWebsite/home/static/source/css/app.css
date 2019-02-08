@@ -1,23 +1,51 @@
-.hero {
-    background-color: #d8d8d8;
-    padding: 60px;
+body {
+    background-image: url(mountain_with_sun.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.hoverableImg {
+    opacity: 0.75;
+}
+
+.hoverableImg:hover {
+    opacity: 1.0;
+}
+
+.blog-post {
+    margin: 10px;
 }
 
 .hero .row {
     background-color: #d8d8d8;
 }
 
+homeFont {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24px;
+}
+
+middle {
+    padding-top: 100px;
+}
+
 footer {
     font-size: 20px;
     color: white;
     height: 200px;
-    background-color: #222;
+    background-color: rgba(0,0,0,0.5);
     padding: 40px;
 }
 
 .white-top-bar .top-bar, .white-top-bar .top-bar ul {
-    background-color:#f2f2f2;
+    background-color:#8dbec7;
 }
+
 .menu > li > a:hover {
+    background-color: rgba(0,0,0, 0.1);
+}
+
+.menu > a:hover{
     background-color: rgba(0,0,0, 0.1);
 }
