@@ -32,9 +32,9 @@
                 <div class="top-bar-left">
                     <ul class="menu">
                         <a href="/" class="menu-text">
-                            <homeFont>
-                                VOLUNTEER FAIRBANKS <i class="fi-home"></i>
-                            </homeFont>
+                            <div class="homeFont">
+                                Volunteer Fairbanks <i class="fi-home"></i>
+                            </div>
                         </a>
                     </ul>
                     {% block topMenuLeft %}
@@ -57,9 +57,7 @@
                         <li><a href="{% url 'signup' %}">Create Account</a></li>
                         <li><a href="{% url 'login' %}">Sign In</a></li>
                         {% endif %}
-
-                        {% block topMenuRight %}
-                        {% endblock %}
+                        <li><a href="#"><i class="fi-wrench"></i></a></li>
 
                     </ul>
                 </div>
@@ -70,7 +68,7 @@
     <!-- HERO -->
 
     <!-- CONTENT -->
-    <div class="row align-justify padding-100" id="content">
+    <div class="row align-centered padding-100" id="content">
         <middle>
             <div class="column large-12">
                 {% block middleColumn %}

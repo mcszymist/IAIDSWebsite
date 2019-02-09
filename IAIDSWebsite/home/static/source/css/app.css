@@ -17,17 +17,58 @@ body {
     margin: 10px;
 }
 
+.secondary-button {
+    color: red;
+}
+
+.spaced-row .row {
+    padding: 10px;
+}
+
 .hero .row {
     background-color: #d8d8d8;
 }
 
-homeFont {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+.homeFont {
     font-size: 24px;
 }
 
+.forgotPassword a h6 {
+    color: rgb(230, 230, 230);
+}
+
+.forgotPassword a h6:hover {
+    color: rgb(58, 58, 58);
+}
+
+.scrollableEvents {
+    padding-bottom: 20px;
+}
+
+.eventCards {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.eventCards li a {
+    font-weight: bold;
+}
+
+.eventCards li ul {
+    padding: 10px;
+    color: white;
+}
+
 middle {
-    padding-top: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.card {
+    background: rgba(0, 78, 114, 0.7);
+}
+
+.card b {
+    color: white;
 }
 
 footer {
