@@ -348,6 +348,7 @@ temporary rendered events).
 .fc-event:hover {
   color: #fff;
   /* default TEXT color */
+  height:70px !important;
   text-decoration: none;
   /* if <a> has an href */ }
 
