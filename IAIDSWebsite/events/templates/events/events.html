@@ -5,7 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'events/css/calendar.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'events/css/fullcalendar.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'events/css/jquery.qtip.min.css' %}">
-    	<link rel="stylesheet" type="text/css" href="{% static 'events/css/fullcalendar.print.css' %}" />
+    	<link rel="stylesheet" media="print" href="{% static 'events/css/fullcalendar.print.css' %}" />
 	<script src="{% static 'events/js/fullcalendar.js' %}" >
     	</script> 
 	<script src="{% static 'events/js/gcal.js' %}" >
@@ -19,7 +19,6 @@
 </h1>
 
 <div class="edge">
-  <p class="datepicker-wrapper">Datepicker: <input type="text" id="datepicker" placeholder="Search by Date" onfocus=""></p>
   <div id="fullcalendar"></div>
 </div>
 
@@ -91,192 +90,98 @@
 	</table>
 </div>
 <script>
-$("#datepicker").datepicker({
-    changeMonth: true,
-    changeYear: true,
-    showOtherMonths: true,
-    selectOtherMonths: true,
-    showAnim: "drop",
-    inline: true,
-    onSelect: function(a, b) {
-        var c = new Date(a);
-        $("#fullcalendar").fullCalendar("gotoDate", c);
-        $("#fullcalendar").fullCalendar("select", c);
-    }
-});
-
-$("[title]").qtip({
-    style: {
-        classes: "qtip-blue qtip-shadow qtip-rounded qtip-custom"
-    },
-    position: {
-        my: "top center",
-        at: "bottom center",
-        viewport: $(window),
-        adjust: {
-            mouse: false,
-            scroll: true,
-            method: "shift",
-            resize: true
-        }
-    }
-});
 
 !function() {
-    var a = new Date();
-    var b = a.getDate();
-    var c = a.getMonth();
-    var d = a.getFullYear();
-    var e = $("<div/>").qtip({
-        id: "fullcalendar",
-        prerender: true,
-        content: {
-            text: " ",
-            title: " ",
-            button: true
-        },
-        events: {
-            render: function(a, b) {
-                var c = b.elements.bgiframe;
-            }
-        },
-        position: {
-            my: "bottom center",
-            at: "top center",
-            target: "event",
-            viewport: $(window),
-            adjust: {
-                mouse: false,
-                scroll: true,
-                method: "shift",
-                resize: true
-            }
-        },
-        show: {
-            modal: {
-                on: false,
-                blur: true,
-                stealfocus: false
-            }
-        },
-        hide: false,
-        style: {
-            classes: "qtip-bootstrap qtip-shadow qtip-events",
-            border: {
-                radius: 2
-            }
-        }
-    }).qtip("api");
     $("#fullcalendar").fullCalendar({
-        eventSources: [ $.fullCalendar.gcalFeed("https://www.google.com/calendar/feeds/en.usa%23holiday%40group.v.calendar.google.com/public/basic", {
-            className: "bmesevents"
-        }), $.fullCalendar.gcalFeed("https://www.google.com/calendar/feeds/en.german%23holiday%40group.v.calendar.google.com/public/basic", {
-            className: "wsubmesevents"
-        }), $.fullCalendar.gcalFeed("https://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic", {
-            className: "holidaysevents"
-        }) ],
-	events: [
-		{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 6, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-		{
-		    title: 'A really long event title for testing purposes dont worry this is just a test im trying to figure out if the ui breaks',
-		    start: new Date(2019, 1, 6, 1, 0),
-		    end: new Date(2019, 1, 6, 2, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 6, 10, 0),
-		    end: new Date(2019, 1, 6, 11, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 6, 5, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 4, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 8, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 15, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 23, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1,11, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 7, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		},
-{
-		    title: 'Brunch',
-		    start: new Date(2019, 1, 7, 19, 0),
-		    end: new Date(2019, 1, 6, 23, 30),
-		    allDay: false
-		}
-		],
         header: {
-            left: "month,agendaList",
+            left: "month,listMonth",
             center: "title",
             right: "prev,today,next"
         },
+        eventLimit: true, // for all non-agenda views
+        views: {
+            month: {
+              eventLimit: 4 // adjust to 6 only for agendaWeek/agendaDay
+            }
+          },
+        eventBackgroundColor: 'white',
+        eventBorderColor: 'Grey',
+        eventTextColor: 'Black',
+        timeFormat: 'h(:mm)t',
+        displayEventTime: true,
+        displayEventEnd: true,
+        events: [
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 6, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'A really long event title for testing purposes dont worry this is just a test im trying to figure out if the ui breaks',
+                description: 'Hello',
+                start: new Date(2019, 1, 6, 1, 0),
+                end: new Date(2019, 1, 6, 2, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 6, 10, 0),
+                end: new Date(2019, 1, 6, 11, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 6, 5, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 4, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 8, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 15, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 23, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1,11, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 7, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            },
+            {
+                title: 'Brunch',
+                start: new Date(2019, 1, 7, 19, 0),
+                end: new Date(2019, 1, 6, 23, 30),
+                allDay: false
+            }
+        ],
         selectable: true,
-        eventClick: function(a, b, c) {
-            var d = $.fullCalendar.formatDate(a.start, "dddd, MMM yyyy @ HH:mmtt");
-            var f = $.fullCalendar.formatDate(a.end, "dddd, MMM yyyy @ HH:mmtt");
-            var g = '<h5 style="margin:0;padding:0;">' + a.title + "</h5>";
-            var h = '<p style="margin:0;padding:2px;"><b>Start:</b> ' + d + "<br />" + (f && '<p style="margin:0;padding:2px;"><b>End:</b> ' + f + "</p>" || "") + (a.description && '<p style="margin:0;padding:2px;"><b>What:</b> ' + a.description + "</p>" || "") + (a.location && '<p style="margin:0;padding:2px;"><b>Where:</b> ' + a.location + "</p>" || "");
-            e.set({
-                "content.title": g,
-                "content.text": h
-            }).reposition(b).show(b);
-            var i = b.pageX;
-            var j = b.pageY;
-            $("td").each(function(a) {
-                var b = $(this).offset();
-                if (b.left + $(this).outerWidth() > i && b.left < i && b.top + $(this).outerHeight() > j && b.top < j) {
-                    if ($(this).hasClass("fc-cell-overlay")) $(this).addClass("fc-cell-overlay"); else $("td").removeClass("fc-cell-overlay");
-                    $(this).addClass("fc-cell-overlay");
-                }
-            });
-        },
-        dayClick: function() {
-            e.hide();
-            $("td").removeClass("fc-cell-overlay");
-        },
         eventResizeStart: true,
         eventDragStart: false,
-        viewDisplay: function() {
-            e.hide();
-        }
     });
 }();
 

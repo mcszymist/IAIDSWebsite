@@ -636,7 +636,7 @@ a.fc-agendaList-event .fc-event-title {
   border-color: #C11E21;
 }
 
-.fc-event-time {
+.fc-time {
   display: inline-block;
   vertical-align: top;
   width: 15%;
@@ -657,6 +657,18 @@ a.fc-agendaList-event .fc-event-title {
   font-size: 12px;
   line-height: 16px;
   color: #A0A0A0;
+}
+.fc-time, .fc-title {
+padding: 0 1px;
+white-space: normal;
+}
+
+.fc-time {
+    display:inline;
+}
+.fc-time:after {
+    content:"\a";
+    white-space: pre;
 }
 
 .fc-agendaList-eventDetails {
