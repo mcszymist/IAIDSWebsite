@@ -257,6 +257,8 @@ html .fc {
   font-size: .95em;
   cursor: default;
   padding: 2px 0 2px 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a.fc-event {
@@ -591,6 +593,7 @@ a.fc-agendaList-event .fc-event-title {
 }
 .fc-title {
     font-size: 11px;
+    overflow: hidden;
 }
 .fc-time {
   display: inline-block;
@@ -598,6 +601,7 @@ a.fc-agendaList-event .fc-event-title {
   width: 15%;
   margin-right: 8px;
   font-size: 12px;
+
 }
 
 .fc-event-start-time, .fc-event-end-time {
