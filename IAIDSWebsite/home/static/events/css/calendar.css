@@ -44,56 +44,10 @@ html {
   /*background:rgba(236, 236, 236,1)*/
 }
 
-body {
-  position: relative;
-  color: #747474;
-  font: 0.813em / 1.5em "Georgia", sans-serif;
-}
+
 
 ul[class] {
   list-style: none;
-}
-
-a {
-  color: #3f3f3f;
-  transition: color 0.5s;
-  text-decoration: none;
-}
-a:hover {
-  color: #ff8400;
-  text-decoration: none;
-}
-
-h1 {
-  margin: 1em 0 0.5em;
-  color: #3f3f3f;
-  font: 400 2.308em "Signika",sans-serif;
-}
-h1:first-child {
-  margin: 1em 0 0.3em;
-  font-size: 2.615em;
-}
-
-h2 {
-  margin: 1em 0 0.5em;
-  color: #3f3f3f;
-  font: 300 2.154em "Signika",sans-serif;
-}
-h2 span {
-  display: inline-block;
-  margin-bottom: -1px;
-  padding: 8px 0;
-  border-bottom: 2px solid #ff8400;
-}
-
-h3 {
-  margin: 1.5em 0 1em;
-  color: #3f3f3f;
-  font: 300 1.846em "Signika",sans-serif;
-}
-
-p {
-  margin: 1em 0;
 }
 
 ul, ol {
@@ -635,12 +589,15 @@ a.fc-agendaList-event .fc-event-title {
 .fc-apex-events-default01, .fc-apex-events-default02, .fc-apex-events-default03, .fc-apex-events-default04, .fc-apex-events-gcal {
   border-color: #C11E21;
 }
-
+.fc-title {
+    font-size: 11px;
+}
 .fc-time {
   display: inline-block;
   vertical-align: top;
   width: 15%;
   margin-right: 8px;
+  font-size: 12px;
 }
 
 .fc-event-start-time, .fc-event-end-time {
