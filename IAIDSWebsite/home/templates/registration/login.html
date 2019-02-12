@@ -4,10 +4,42 @@
 {% block title %}Login{% endblock %}
 
 {% block middleColumn %}
-<h2>Login</h2>
+<div class="spaced-row">
+  <div class="row">
+    <div class="large-6 large-centered columns">
+      <div class="card">
+        <div class="card-divider">
+          <h3>
+            Returning users
+          </h3>
+        </div>
+        <div class="card-section">
+          <form method="post">
+            {% csrf_token %}
+            <p><label for="id_username"><b>Username:</b></label> <input type="text" name="username" autofocus required
+                id="id_username"></p>
+            <p><label for="id_password"><b>Password:</b></label> <input type="password" name="password" required id="id_password"></p>
+            <p>
+              <div class="forgotPassword">
+                <a href="#">
+                  <h6>Forgot password?</h6>
+                </a>
+              </div>
+            </p>
+            <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label>
+            <button type="submit" class="button large expanded"><b>Sign in</b></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="large-6 columns">
+    </div>
+  </div>
+</div>
+<!-- <h2>Login</h2>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <button type="submit" class="button">Login</button>
-</form>
+</form> -->
 {% endblock %}
