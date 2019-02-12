@@ -38,7 +38,7 @@
     </div>
   </div>
 </div>
-<div class="medium-8 columns eventFilterBackground">
+<div class="medium-9 columns eventFilterBackground">
 	<table id="example" class="display" style="width:100%">
         <thead>
             <tr>
@@ -60,26 +60,26 @@
                 <td>Fairbanks</td>
             </tr>
             <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
+                <td>Gun Show</td>
+                <td>NONE</td>
+                <td>Need greeter</td>
+                <td>2</td>
                 <td>2011/07/25</td>
                 <td>Nome</td>
             </tr>
             <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
+                <td>Adventure</td>
+                <td>Creative</td>
+                <td>Artist needed</td>
+                <td>1</td>
                 <td>2009/01/12</td>
                 <td>Tok</td>
             </tr>
             <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
+                <td>Yearly Cleanup</td>
+                <td>Fairbanks Northstar Bourgh</td>
+                <td>People to pick up trash</td>
+                <td>30</td>
                 <td>2012/03/29</td>
                 <td>Anchorage</td>
             </tr>
@@ -526,7 +526,16 @@ $(document).ready(function() {
     // DataTable
     var table = $('#example').DataTable({
         dom: "rtiplf",
-        bInfo: false
+        bInfo: false,
+        autoWidth: false,
+        columns: [
+            { "width": "35%" },
+            { "width": "10%" },
+            { "width": "40%" },
+            { "width": "5%" },
+            { "width": "5%" },
+            { "width": "5%" }
+  ]
     });
  
     $('#place1').on( 'keyup', function () {
