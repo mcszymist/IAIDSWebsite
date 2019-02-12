@@ -1,9 +1,9 @@
 {% extends "main_template.html" %}
 {% block headerInclude %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
-	<script type= "text/javascript" src="{% static 'events/js/datatables.js' %}" >
+	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
     	</script> 
 {% endblock %}
 {% block middleColumn %}
@@ -41,7 +41,7 @@
           <input type="text" placeholder="Fairbanks" value="location">
         </label>
       </div>
-	  <input type="submit" value="Submit" onkeyup="myFunction()">
+	  <input type="submit" value="Submit">
     </div>
   </div>
 </form>
@@ -528,7 +528,7 @@
         </tfoot>
     </table>
 </div>
-<script>
+<script type= "text/javascript">
 $(document).ready(function() {
     // Setup - add a text input to each footer cell
     $('#example tfoot th').each( function () {

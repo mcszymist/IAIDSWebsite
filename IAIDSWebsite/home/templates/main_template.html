@@ -18,10 +18,11 @@
 
     <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
     </script>
-    {% block headerInclude%}
-    {% endblock %}
+    
     <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
     </script>
+    {% block headerInclude%}
+    {% endblock %}
 </head>
 
 <body>
@@ -90,7 +91,6 @@
     </footer>
 
     {% load static %}
-    <script src="{% static 'source/js/vendor/jquery.js' %}"></script>
     <script src="{% static 'source/js/vendor/foundation.core.min.js' %}"></script>
     <script src="{% static 'source/js/vendor/foundation.min.js' %}"></script>
     <script src="{% static 'source/js/vendor/foundation.sticky.min.js' %}"></script>
