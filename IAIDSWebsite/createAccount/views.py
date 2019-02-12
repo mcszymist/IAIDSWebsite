@@ -8,7 +8,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import CustomAuthForm
 
 
 
@@ -23,5 +23,5 @@ def signup(request):
             login(request, user)
             return redirect('/')
     else:
-        form = SignUpForm()
+        form = CustomAuthForm()
     return render(request, 'createAccount/signup.html', {'form': form})

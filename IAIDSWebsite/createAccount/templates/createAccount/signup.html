@@ -1,13 +1,13 @@
 {% extends 'main_template.html' %} {% block middleColumn %}
-<h2>Create Account</h2>
-<div class="column large-20">
-  <div class="card">
+<form method="post">
+  <div class="card" style="width: 700px;">
     <div class="card-divider">
-      <form method="post">
+      <h4>Account Information</h4>
+    </div>
+    <div class="card-section">
         {% csrf_token %} {{ form.as_p }}
         <button type="submit" class="button">Sign Up</button>
-      </form>
     </div>
   </div>
-</div>
+</form>
 {% endblock %}
