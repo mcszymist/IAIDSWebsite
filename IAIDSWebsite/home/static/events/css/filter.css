@@ -1,5 +1,15 @@
-tfoot input {
+.tfoot input {
         width: 100%;
         padding: 3px;
         box-sizing: border-box;
-    }
+}
+.eventSearchBackground{
+    background-color: rgb(209, 209, 209);
+    padding-left: 17px;
+    padding-right: 17px;
+    padding-bottom: 17px;
+}
+.eventFilterBackground{
+    background-color: rgb(209, 209, 209);
+    padding-top: 17px;
+}

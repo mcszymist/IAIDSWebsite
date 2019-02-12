@@ -13,49 +13,41 @@
 
 <div class="row eventTopPadding">
 <div class="columns">
-<form name="search" action="" method="get">
-  <div class="grid-container eventBackground">
+  <div class="grid-container eventSearchBackground">
     <div class="grid-x grid-padding-x text-center">
       <div>
         <label>By Organization
-          <select value="organization">
-			<option value="husker">Husker</option>
-			<option value="starbuck">Starbuck</option>
-			<option value="hotdog">Hot Dog</option>
-			<option value="apollo">Apollo</option>
-		  </select>
+            <div class="inputCol"><input id="place1" type="text" placeholder="Search Name" /></div>
         </label>
       </div>
       <div>
         <label>By Name
-          <input type="text" placeholder="Name" value="name">
+          <div class="inputCol"><input id="place2" type="text" placeholder="Search " /></div>
         </label>
       </div>
 	  <div>
         <label>By Date
-          <input type="datetime" placeholder="date" value="date">
+          <div class="inputCol"><input id="place3" type="text" placeholder="Search " /></div>
         </label>
       </div>
 	  <div>
         <label>By Location
-          <input type="text" placeholder="Fairbanks" value="location">
+          <div class="inputCol"><input id="place4" type="text" placeholder="Search " /></div>
         </label>
       </div>
-	  <input type="submit" value="Submit">
     </div>
   </div>
-</form>
 </div>
-<div class="medium-8 columns">
+<div class="medium-8 columns eventFilterBackground">
 	<table id="example" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Event Title</th>
+                <th>Organization</th>
+                <th>Desciption</th>
+                <th>Positions Needed</th>
+                <th>Date/Time</th>
+                <th>Location</th>
             </tr>
         </thead>
         <tbody>
@@ -65,7 +57,7 @@
                 <td>Edinburgh</td>
                 <td>61</td>
                 <td>2011/04/25</td>
-                <td>$320,800</td>
+                <td>Fairbanks</td>
             </tr>
             <tr>
                 <td>Garrett Winters</td>
@@ -73,7 +65,7 @@
                 <td>Tokyo</td>
                 <td>63</td>
                 <td>2011/07/25</td>
-                <td>$170,750</td>
+                <td>Nome</td>
             </tr>
             <tr>
                 <td>Ashton Cox</td>
@@ -81,7 +73,7 @@
                 <td>San Francisco</td>
                 <td>66</td>
                 <td>2009/01/12</td>
-                <td>$86,000</td>
+                <td>Tok</td>
             </tr>
             <tr>
                 <td>Cedric Kelly</td>
@@ -89,7 +81,7 @@
                 <td>Edinburgh</td>
                 <td>22</td>
                 <td>2012/03/29</td>
-                <td>$433,060</td>
+                <td>Anchorage</td>
             </tr>
             <tr>
                 <td>Airi Satou</td>
@@ -97,7 +89,7 @@
                 <td>Tokyo</td>
                 <td>33</td>
                 <td>2008/11/28</td>
-                <td>$162,700</td>
+                <td>Fairbanks</td>
             </tr>
             <tr>
                 <td>Brielle Williamson</td>
@@ -105,7 +97,7 @@
                 <td>New York</td>
                 <td>61</td>
                 <td>2012/12/02</td>
-                <td>$372,000</td>
+                <td>Fairbanks</td>
             </tr>
             <tr>
                 <td>Herrod Chandler</td>
@@ -113,7 +105,7 @@
                 <td>San Francisco</td>
                 <td>59</td>
                 <td>2012/08/06</td>
-                <td>$137,500</td>
+                <td>Fairbanks</td>
             </tr>
             <tr>
                 <td>Rhona Davidson</td>
@@ -530,26 +522,36 @@
 </div>
 <script type= "text/javascript">
 $(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#example tfoot th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
- 
+
     // DataTable
-    var table = $('#example').DataTable();
+    var table = $('#example').DataTable({
+        dom: "rtiplf",
+        bInfo: false
+    });
  
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
- 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
+    $('#place1').on( 'keyup', function () {
+        table
+            .columns( 0 )
+            .search( this.value )
+            .draw();
+    } );
+    $('#place2').on( 'keyup', function () {
+        table
+            .columns( 1 )
+            .search( this.value )
+            .draw();
+    } );
+    $('#place3').on( 'keyup', function () {
+        table
+            .columns( 2 )
+            .search( this.value )
+            .draw();
+    } );
+    $('#place4').on( 'keyup', function () {
+        table
+            .columns( 3 )
+            .search( this.value )
+            .draw();
     } );
 } );
 </script>
