@@ -6,17 +6,18 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
 from django import forms
 
-class CustomAuthForm(AuthenticationForm):
-    first_name = forms.CharField(max_length=30, required=True,widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
-    last_name = forms.CharField(max_length=30, required=True,widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
 
-    def __init__(self, *args, **kwargs):
-        super(CustomAuthForm, self).__init__(*args, **kwargs)
-        for field in self.fields.values():
-            field.widget.attrs['placeholder'] = field.label
-    
+
+class SignUpForm(forms.ModelForm):
+    username = forms.CharField(widget=TextInput(attrs={'class':'validate','placeholder': 'Username'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password'}))
+    email = forms.CharField(widget=TextInput(attrs={'placeholder':'Email'}))
     class Meta:
         model = User
-        fields = ("username", "first_name", "last_name", "password1", 'password2')
-
-
+        fields = {
+            'username',
+            'email',
+            'password'   
+        }
+   
+    
