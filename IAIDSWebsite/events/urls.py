@@ -5,4 +5,5 @@ from . import views
 
 urlpatterns = [
     path('', views.events, name='events'),
+    path('search', views.eventsFilter, name='eventsFilter'),
 ]
