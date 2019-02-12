@@ -60,7 +60,6 @@
                         <li><a href="{% url 'login' %}">Sign In</a></li>
                         {% endif %}
                         <li><a href="#"><i class="fi-wrench"></i></a></li>
-
                     </ul>
                 </div>
             </div>
@@ -70,13 +69,9 @@
     <!-- HERO -->
 
     <!-- CONTENT -->
-    <div class="row align-centered padding-100" id="content">
-        <middle>
-            <div class="column large-12">
-                {% block middleColumn %}
-                {% endblock %}
-            </div>
-        </middle>
+    <div class="middle">
+        {% block middleColumn %}
+        {% endblock %}
     </div>
 
     <!-- FOOTER -->
