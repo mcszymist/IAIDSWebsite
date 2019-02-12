@@ -18,7 +18,7 @@
 
     <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
     </script>
-    
+
     <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
     </script>
     {% block headerInclude%}
@@ -38,13 +38,11 @@
                             </div>
                         </a>
                     </ul>
-                    {% block topMenuLeft %}
-                    {% endblock %}
                 </div>
                 <div class="top-bar-right">
                     <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
                         <li><a href="{% url 'events' %}">Events</a></li>
-                        
+
                         {% block navBarRight %}
                         {% endblock %}
 
