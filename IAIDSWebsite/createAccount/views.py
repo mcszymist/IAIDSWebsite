@@ -1,28 +1,21 @@
-# from django.shortcuts import render
-
-# # Create your views here.
-
-# def createAccount(request):
-#     return render(request, 'createAccount/createAccount.html')
-
+from django.shortcuts import render
+from django import forms
+from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .admin import UserCreationForm
 
 
 
 def signup(request):
     title = "Register"
-    form = SignUpForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit = False)
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        user = authenticate(username = user.username, password=password)
-        login(request, user)
-        return redirect('/')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('/')
     else:
-        form = SignUpForm()
+        form = UserCreationForm()
     return render(request, 'createAccount/signup.html', {'form': form})

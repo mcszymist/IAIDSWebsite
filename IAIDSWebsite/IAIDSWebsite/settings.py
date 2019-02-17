@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','10.25.74.182']
 
+AUTH_USER_MODEL = 'createAccount.MyUser'
+
 #Login page code
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
