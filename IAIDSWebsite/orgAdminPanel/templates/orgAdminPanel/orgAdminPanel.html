@@ -152,6 +152,7 @@
 </div>
 </div>
 <script>
+
  var eventsTable = $('#events').DataTable({
         bInfo: false,
         autoWidth: false,
@@ -167,7 +168,7 @@
         "columnDefs": [ {
             "targets": -1,
             "data": null,
-            "defaultContent": "<a class=\"button tiny alert\" href=\"#\"><i class=\"fi-trash\"></i></a>"
+            "defaultContent": "<button class=\"button tiny alert\" id=\"deleteRowEvent\"><i class=\"fi-trash\"></i></button>"
         } ],
         columns: [
             { "width": "35%" },
@@ -177,12 +178,13 @@
             { "width": "5%" }
   ]
     });
+
  var usersTable = $('#users').DataTable({
         bInfo: false,
         "columnDefs": [ {
             "targets": -1,
             "data": null,
-            "defaultContent": "<a class=\"button tiny alert\" href=\"#\"><i class=\"fi-trash\"></i></a>"
+            "defaultContent": "<button class=\"button tiny alert\" id=\"deleteRowUser\"><i class=\"fi-trash\"></i></button>"
         } ],
         autoWidth: false,
         columns: [
@@ -201,6 +203,21 @@
             }
         ]
     });
+
+$( "#deleteRowEvent" ).click(function() {
+    table
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw();
+});
+$( "#deleteRowUser" ).click(function() {
+    table
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw();
+
+});
+
 </script>
 {% endblock %}
 
