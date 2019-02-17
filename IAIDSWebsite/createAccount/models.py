@@ -22,9 +22,13 @@ class MyUserManager(BaseUserManager):
         user.save(using = self._db)
         return user
 
-    def create_superuser(self, email, password):
-        user = self.model(
-            email = self.normalize_email(email),
+    def create_superuser(self, email, password, date_of_birth, first_name, last_name):
+        user = self.create_user(
+            email,
+            password=password,
+            date_of_birth = date_of_birth,
+            first_name = first_name,
+            last_name = last_name
 
         )
         user.is_admin = True
@@ -39,6 +43,8 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField()
  
     is_admin = models.BooleanField(default=False)
+
+    objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['date_of_birth', 'first_name', 'last_name']

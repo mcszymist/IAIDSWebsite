@@ -25,7 +25,7 @@ SECRET_KEY = 'dz(i-c2-6v7)6%becvhm4)y9@bk0ybfq*-yg2&+j$i7)$gr%ax'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','10.25.74.182']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','4ca324a2.ngrok.io']
 
 AUTH_USER_MODEL = 'createAccount.MyUser'
 

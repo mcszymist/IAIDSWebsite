@@ -6,6 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Base box to use
   config.vm.box = "bento/ubuntu-18.04"
+  config.vm.box_check_update = true
 
   config.vm.provider "virtualbox" do |v|
     v.gui = false
@@ -29,4 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Media directory, with write mode given to the vagrant account/group.
   #config.vm.synced_folder "media", "/srv/platform/media", create: true,
     #mount_options: ["dmode=775,fmode=775"]
+
+  # Vagrant Messages
+  config.vm.post_up_message = "To startup server: run ./startupScript.sh"
 end
