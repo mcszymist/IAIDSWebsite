@@ -32,7 +32,7 @@ pip3 install -r /home/vagrant/IAIDSWebsite/requirements.txt
 cd IAIDSWebsite/
 
 # migrate data to mysql server
-python3 IAIDSWebsite/manage.py migrate
+python3 manage.py migrate
 
 # Add firewall rules for django
 sudo ufw allow 8000
