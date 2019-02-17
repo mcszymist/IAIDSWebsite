@@ -31,8 +31,5 @@ pip3 install -r /home/vagrant/IAIDSWebsite/requirements.txt
 # Add firewall rules for django
 sudo ufw allow 8000
 
-# Run root script in background
-./provisionRoot.sh &
-
 # Restart after applying mysql settings
 sudo service mysql restart
