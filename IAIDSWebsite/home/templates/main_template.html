@@ -47,13 +47,17 @@
                         {% endblock %}
 
                         {% if user.is_authenticated %}
-                        <li>
+                        <!-- <li>
                             <a class="fi-list"></a>
                             <ul class="vertical menu">
-                                <li><a href="{% url 'profileManage' %}">Profile</a></li>
-                                <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
-                                <li><a href="{% url 'logout' %}">Logout</a></li>
-                            </ul>
+                            </ul> -->
+                        <li><a href="{% url 'profileManage' %}">Profile</a></li>
+                        <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="#" class="button-badge">
+                                <i class="fi-mail"></i>
+                                <span class="badge alert">5</span>
+                            </a></li>
                         </li>
                         {% else %}
                         <li><a href="{% url 'signup' %}">Create Account</a></li>
