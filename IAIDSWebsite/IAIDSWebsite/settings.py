@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'about',
     'eventEdit',
     'events',
-    'orgAdminPeople',
     'orgAdminPanel',
     'profileView',
     'yourOrganizations',
