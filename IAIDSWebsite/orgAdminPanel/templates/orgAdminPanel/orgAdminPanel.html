@@ -1,7 +1,224 @@
 {% extends "main_template.html" %}
 
-{% block middleColumn %}
+{% block headerInclude %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
+	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
+    	</script> 
+    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
+    	</script> 
+{% endblock %}
 
+{% block middleColumn %}
+<script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+<div class="row">
+<div class="small-centered columns eventFilterBackground">
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1">Events</a></li>
+        <li><a href="#tabs-2">Users</a></li>
+      </ul>
+      <div id="tabs-1">
+        <table id="events" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Event Title</th>
+                    <th>Positions Needed</th>
+                    <th>Date/Time</th>
+                    <th>Location</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Soup Kitchen Chef</td>
+                    <td>61</td>
+                    <td>2011/04/25</td>
+                    <td>Fairbanks</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Gun Show</td>
+                    <td>2</td>
+                    <td>2011/07/25</td>
+                    <td>Nome</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Adventure</td>
+                    <td>1</td>
+                    <td>2009/01/12</td>
+                    <td>Tok</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Yearly Cleanup</td>
+                    <td>30</td>
+                    <td>2012/03/29</td>
+                    <td>Anchorage</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Airi Satou</td>
+                    <td>33</td>
+                    <td>2008/11/28</td>
+                    <td>Fairbanks</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Brielle Williamson</td>
+                    <td>61</td>
+                    <td>2012/12/02</td>
+                    <td>Fairbanks</td>
+                    <td>X</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Event Title</th>
+                    <th>Positions Needed</th>
+                    <th>Date/Time</th>
+                    <th>Location</th>
+                    <th>Delete</th>
+                </tr>
+            </tfoot>
+        </table>
+      </div>
+      <div id="tabs-2">
+      <table id="users" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Privledge</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tyler J Roberts</td>
+                    <td>tjroberts2@alaska.edu</td>
+                    <td>3</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Gordon Freeman</td>
+                    <td>gordon@valve.com</td>
+                    <td>INF</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Someone Else</td>
+                    <td>someone@else.com</td>
+                    <td>3</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Bart Ridly</td>
+                    <td>home2you@buzy.com</td>
+                    <td>1</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Airi Satou</td>
+                    <td>airi@hmmm.com</td>
+                    <td>2</td>
+                    <td>X</td>
+                </tr>
+                <tr>
+                    <td>Brielle Williamson</td>
+                    <td>brielle@wills.org</td>
+                    <td>1</td>
+                    <td>X</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Privledge</th>
+                    <th>Delete</th>
+                </tr>
+            </tfoot>
+        </table>
+      </div>
+    </div>
+</div>
+</div>
+<script>
+
+ var eventsTable = $('#events').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'Add Row',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Button activated' );
+                }
+            }
+        ],
+        "columnDefs": [ {
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<button class=\"button tiny alert\" id=\"deleteRowEvent\"><i class=\"fi-trash\"></i></button>"
+        } ],
+        columns: [
+            { "width": "35%" },
+            { "width": "10%" },
+            { "width": "40%" },
+            { "width": "5%" },
+            { "width": "5%" }
+  ]
+    });
+
+ var usersTable = $('#users').DataTable({
+        bInfo: false,
+        "columnDefs": [ {
+            "targets": -1,
+            "data": null,
+            "defaultContent": "<button class=\"button tiny alert\" id=\"deleteRowUser\"><i class=\"fi-trash\"></i></button>"
+        } ],
+        autoWidth: false,
+        columns: [
+            { "width": "35%" },
+            { "width": "10%" },
+            { "width": "40%" },
+            { "width": "5%"}
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'Add Row',
+                action: function ( e, dt, node, config ) {
+                    alert( 'Button activated' );
+                }
+            }
+        ]
+    });
+
+$( "#deleteRowEvent" ).click(function() {
+    table
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw();
+});
+$( "#deleteRowUser" ).click(function() {
+    table
+        .row( $(this).parents('tr') )
+        .remove()
+        .draw();
+
+});
+
+</script>
 {% endblock %}
 
 {% block sideBar %}
