@@ -1,23 +1,68 @@
 {% extends "main_template.html" %}
+{% load static %}
 
-{% block middleColumn %}
+{% block middleColumnAuthorizedUser %}
 <div class="space-row">
     <div class="row">
-        <div class="columns large-20">
-            <div class="card">
-                <div class="row">
-                    <div class="card-divider">
-                        <h3>Hello {{ request.user.username.title }}</h3>
+        <div class="columns large-8">
+            <div class="card profile-card-action-icons">
+                <div class="card-section">
+                    <div class="profile-card-header">
+                        <div class="profile-card-avatar">
+                            <img class="avatar-image" src="{% static 'profileEditor/images/default_profile.jpg' %}" alt="{request user.first_name}">
+                        </div>
+                        <div class="profile-card-author">
+                            <h5 class="author-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                            <p class="author-description">
+                                <br><i class="fi-home"></i> Things that I like #1 <br><br>
+                                <i class="fi-home"></i> Things that I like #2 <br><br>
+                                <i class="fi-home"></i> Things that I like #3
+                            </p>
+                        </div>
+                    </div>
+                    <div class="profile-card-about">
+                        <h5 class="about-title separator-left">About Me</h5>
+                        <p class="about-content">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem eveniet nulla quae
+                            ullam sit iure voluptatum, nesciunt voluptas perferendis, minus natus in quaerat?
+                        </p>
+                    </div>
+                    <div class="profile-card-action">
+                        <div class="action-area">
+                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                data-disable-hover="false" tabindex="2" title="Like profile">
+                                <i class="fi-like" aria-hidden="true"></i>
+                                <span class="show-for-sr">Like profile</span>
+                            </a>
+                        </div>
+                        <div class="action-area">
+                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                data-disable-hover="false" tabindex="2" title="Comment on profile">
+                                <i class="fi-comment" aria-hidden="true"></i>
+                                <span class="show-for-sr">Comment on profile</span>
+                            </a>
+                        </div>
+                        <div class="action-area">
+                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                data-disable-hover="false" tabindex="2" title="Add as friend">
+                                <i class="fi-plus" aria-hidden="true"></i>
+                                <span class="show-for-sr">Add as friend</span>
+                            </a>
+                        </div>
+                        <div class="action-area">
+                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                data-disable-hover="false" tabindex="2" title="Block!">
+                                <i class="fi-prohibited" aria-hidden="true"></i>
+                                <span class="show-for-sr">Block!</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="card-section">
-                    <p3>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
-
-                            The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p3>
-                </div>
             </div>
+
         </div>
     </div>
+</div>
 </div>
 {% endblock %}
 
