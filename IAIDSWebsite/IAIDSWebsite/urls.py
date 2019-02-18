@@ -11,7 +11,6 @@ urlpatterns = [
     path('eventEdit/', include('eventEdit.urls')),
     path('events/', include('events.urls')),
     path('orgAdminPanel/', include('orgAdminPanel.urls')),
-    path('orgAdminPeople/', include('orgAdminPeople.urls')),
     path('profileView/', include('profileView.urls')),
     path('yourOrganizations/', include('yourOrganizations.urls')),	
     path('createAccount/', include('createAccount.urls')),
