@@ -90,3 +90,21 @@ footer {
 .menu > a:hover{
     background-color: rgba(0,0,0, 0.1);
 }
+
+.eventBrowserTitle {
+    color: white;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.eventBrowserDescription {
+    color:rgb(168, 168, 168);
+}
+
+.eventAttributes {
+    color:white;
+}
+
+.expanded .button-group .button {
+    padding: 100px;
+}

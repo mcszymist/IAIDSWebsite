@@ -70,8 +70,16 @@
 
     <!-- CONTENT -->
     <div class="middle">
+        <!-- if True should be changed to if user.is_authenticated when it is proper -->
+        <!-- This is just for testing the user's homepage (as opposed to stranger landing page) -->
+        {% if True %}
+        {% block middleColumnAuthorizedUser %}
+        {% endblock %}
+
+        {% else %}
         {% block middleColumn %}
         {% endblock %}
+        {% endif %}
     </div>
 
     <!-- FOOTER -->

@@ -3,6 +3,120 @@
 {% block navBarRight %}
 {% endblock %}
 
+{% block middleColumnAuthorizedUser %}
+<div class="spaced-row">
+  <div class="row">
+    <div class="small-2 large-8 columns">
+      <div class="card">
+        <div class="card-divider">
+          <h3>
+            Suggested events
+          </h3>
+        </div>
+        <div class="card-section">
+          <div class="row">
+
+            <div class="large-6 columns">
+              <img class="object-fit_cover" src="static/images/cupcakes.jpg">
+            </div>
+            <div class="large-6 columns">
+              <div class="eventAttributes">
+                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
+                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
+                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
+                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+
+              <div class="eventBrowserTitle">
+                Bake Sale Needing Baked Goods by TONIGHT
+              </div>
+              <div class="eventBrowserDescription">
+                Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod primis
+                cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit ea,
+                cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno convenire.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <a class="button">Add to calendar</a>
+              <a class="button">Share</a>
+              <a class="button">Like</a>
+              <a class="button alert float-right">Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="small-2 large-4 columns">
+      <div class="card">
+        <div class="card-divider">
+          <h3>
+            Upcoming events
+          </h3>
+        </div>
+        <div class="card-section">
+          <div class="scrollableEvents">
+            <ul class="vertical menu" data-accordion-menu data-submenu-toggle="true">
+              <div class="eventCards">
+                <li>
+                  <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
+                  <a>Spaghetti Feed at the Big Church</a>
+                  <ul class="menu vertical nested">
+                    <p>
+                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                      primis
+                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                      ea,
+                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                      convenire.
+                    </p>
+                    <li><a href="">More details</a></li>
+                  </ul>
+                </li>
+                <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
+                <li><a>Bake Sale Needing Baked Goods by TONIGHT</a>
+                  <ul class="menu vertical nested">
+                    <p>
+                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                      primis
+                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                      ea,
+                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                      convenire.
+                    </p>
+                    <li><a href="">More details</a></li>
+                  </ul>
+                </li>
+                <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
+                <li><a>Wall Painters Wanted</a>
+                  <ul class="menu vertical nested">
+                    <p>
+                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                      primis
+                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                      ea,
+                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                      convenire.
+                    </p>
+                    <li><a href="">More details</a></li>
+                  </ul>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <a href="{% url 'events' %}" class="button large expanded"><b>Check calendar</b></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block middleColumn %}
 <div class="spaced-row">
   <div class="row">
