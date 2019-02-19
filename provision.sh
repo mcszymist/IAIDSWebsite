@@ -22,6 +22,9 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'10.0.2.15' IDENTIFIED B
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Project1!';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
+# Makes the images directory
+mkdir IAIDSWebsite/images/
+
 # Add extra mysql client stuff
 sudo apt-get install libmysqlclient-dev -y
 
