@@ -1,5 +1,5 @@
 body {
-    background-image: url(mountain_with_sun.jpg);
+    background-image: url(wavy_woods.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -7,6 +7,7 @@ body {
 
 .hoverableImg {
     opacity: 0.75;
+    border-radius: .3em;
 }
 
 .hoverableImg:hover {
@@ -45,33 +46,13 @@ body {
     padding-bottom: 20px;
 }
 
-.eventCards {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.eventCards li a {
-    font-weight: bold;
-}
-
-.eventCards li ul {
-    padding: 10px;
-    color: white;
-}
 
 .middle {
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
-.card {
-    background: rgba(0, 78, 114, 0.7);
-}
-
-.card b {
-    color: white;
-}
-
-footer {
+.footer {
     font-size: 20px;
     color: white;
     height: 200px;
@@ -79,30 +60,89 @@ footer {
     padding: 40px;
 }
 
-.white-top-bar .top-bar, .white-top-bar .top-bar ul {
-    background-color:#8dbec7;
+.footer .row .align-middle .text-align-middle .text-center .column .align-middle {
+    color:black;
 }
 
-.menu > li > a:hover {
-    background-color: rgba(0,0,0, 0.1);
+.vertical .menu li a {
+    padding: 100px;
 }
 
-.menu > a:hover{
-    background-color: rgba(0,0,0, 0.1);
+.upcomingEventsModalable {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: .3em;
 }
 
-.eventBrowserTitle {
+.upcomingEventsModalable li ul {
+    padding: 10px;
     color: white;
+}
+
+.white-top-bar .top-bar, 
+.white-top-bar .top-bar ul,
+.button {
+    background-color:#41362d;
+}
+
+.card-divider {
+    background-color: #534337;
+}
+
+.top-bar-right ul li a, 
+.homeFont,
+.button,
+.card,
+.card-divider h3,
+.upcomingEventsModalable li a,
+.profile-card-action .action-area a i
+{
+    color:#278a7d;
+    /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.welcomePanel{
+    width:100%;
+    height:100%;
+    background-color:rgba(255, 255, 255, 0.7);
+    padding-left:20px;
+    padding-top:10px;
+    border-radius: .3rem;
+}
+
+.profile-card-action .action-area a i {
+    font-size:1.2rem;
+}
+
+.card {
+    background: rgba(126, 103, 90, 0.7);
+    border-width: 2px;
+}
+
+.card-divider h3 {
+    color:#3ac9b6;    
+}
+
+.menu > li > a:hover, 
+.menu > a:hover,
+.button:hover,
+.upcomingEventsModalable li:hover  {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all ease 0.4s;
+    border-radius: .3rem;
+}
+
+.suggestedEventsTitle {
     font-weight: bold;
     padding-bottom: 10px;
 }
 
-.eventBrowserDescription {
-    color:rgb(168, 168, 168);
-}
 
-.eventAttributes {
-    color:white;
+.suggestedEventsDescription, 
+.suggestedEventsTitle, 
+.suggestedEventsAttributes,
+.profile-card-about {
+    color:rgb(0, 0, 0);
 }
 
 .expanded .button-group .button {
@@ -113,33 +153,122 @@ footer {
     font-size: 1.5rem;
 }
 
+/* source: https://foundation.zurb.com/building-blocks/blocks/card-profile-stats.html */
+/* profile stats css */
+
+.card .profile-card-action-icons .card-section
+ {
+    background-color: #0a0a0a;
+}
+
+.card .profile-card-action-icons {
+    background-color: #0a0a0a;
+}
+  
+.profile-card-about .card-profile-stats-intro {
+text-align: center;
+}
+
+.profile-card-about .card-profile-stats-intro .card-profile-stats-intro-pic {
+border-radius: 50%;
+margin: 0 0 1.25rem;
+}
+
+.profile-card-about .card-profile-stats-intro .card-profile-stats-intro-content p:last-child {
+margin: 0;
+}
+
+.profile-card-about .row .columns {
+text-align: center;
+}
+
+.profile-card-about .card-profile-stats-container .card-profile-stats-statistic {
+margin: 0 0 1.25rem;
+}
+
+.profile-card-about .card-profile-stats-container .card-profile-stats-statistic p:last-child {
+margin: 0;
+}
+
+.card-profile-stats .card-profile-stats-container {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+
 /* source: https://foundation.zurb.com/building-blocks/blocks/button-badge.html */
 /* button-badge */
 .button-badge {
-    background-color: #1779ba;
+    width:100%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    background-color: #278a7d;
     text-decoration: none;
-    padding: 1rem 1.5rem;
     position: relative;
     display: inline-block;
-    border-radius: .2rem;
+    /* rounded corners roundess */
+    border-radius: .3rem;
     transition: all ease 0.4s;
-  }
+    text-align: center;
+}
+
+.button-badge-large {
+    background-color: rgba(50, 50, 50, 0.5);
+    width:100%;
+    padding-top: 20%;
+    padding-bottom: 20%;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    /* rounded corners roundess */
+    border-radius: .3rem;
+    transition: all ease 0.3s;
+    text-align: center;
+}
+
+#edit:hover{
+    background-color:#5dd15d;
+}
+
+#inbox:hover {
+    background-color: #1779ba;    
+}
+
+#calendar:hover {
+    background-color: #a245b9;    
+}
+
+#admin:hover {
+    background-color: #db9a22;    
+}
+
+.button-badge-large i {
+    font-size: 200%;
+}
+
+.button-badge-largeBadge{
+    background-color: rgb(0, 0, 0);
+}
   
-  .button-badge:hover {
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .badge {
-    /* red alert count */
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: .8em;
-  }
-  
-  .button-badge i {
-    color: white;
-  }
+.button-badge:hover {
+box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+/* red alert count */
+position: absolute;
+top: -10px;
+right: -10px;
+font-size: .8em;
+}
+
+.button-badge i, 
+.button-badge-large i {
+color: white;
+}
   
   
 

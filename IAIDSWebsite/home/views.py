@@ -8,4 +8,4 @@ def index(request):
     # if request.user.is_authenticated:
     #     return HttpResponseRedirect('')
     # else:
-    return render(request, 'home_template.html')
+    return render(request, 'home.html')

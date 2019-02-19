@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block middleColumnAuthorizedUser %}
-<div class="space-row">
+<div class="spaced-row">
     <div class="row">
         <div class="columns large-8">
             <div class="card profile-card-action-icons">
@@ -27,6 +27,28 @@
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet autem eveniet nulla quae
                             ullam sit iure voluptatum, nesciunt voluptas perferendis, minus natus in quaerat?
                         </p>
+                    </div>
+                    <div class="profile-card-about">
+                        <div class="row">
+                            <div class="columns large-4">
+                                <div class="card-profile-stats-statistic">
+                                    <span class="stat">25</span>
+                                    <p>attended events</p>
+                                </div> <!-- /.card-profile-stats-statistic -->
+                            </div>
+                            <div class="columns large-4">
+                                <div class="card-profile-stats-statistic">
+                                    <span class="stat">10</span>
+                                    <p>friends</p>
+                                </div> <!-- /.card-profile-stats-statistic -->
+                            </div>
+                            <div class="columns large-4">
+                                <div class="card-profile-stats-statistic">
+                                    <span class="stat">5</span>
+                                    <p>likes</p>
+                                </div> <!-- /.card-profile-stats-statistic -->
+                            </div>
+                        </div>
                     </div>
                     <div class="profile-card-action">
                         <div class="action-area">
@@ -62,7 +84,35 @@
             </div>
 
         </div>
+        <div class="columns large-4">
+            <div class="row">
+                <div class="columns large-6">
+                    <a href="#" class="button-badge-large" id="edit">
+                        <i class="fi-pencil"></i>
+                    </a>
+                </div>
+                <div class="columns large-6">
+                    <a href="#" class="button-badge-large" id="inbox">
+                        <i class="fi-mail"></i>
+                        <span class="badge alert">5</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="columns large-6">
+                    <a href="#" class="button-badge-large" id="calendar">
+                        <i class="fi-calendar"></i>
+                    </a>
+                </div>
+                <div class="columns large-6">
+                    <a href="#" class="button-badge-large" id="admin">
+                        <i class="fi-torsos"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 </div>
 {% endblock %}
