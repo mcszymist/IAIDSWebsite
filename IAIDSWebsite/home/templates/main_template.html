@@ -51,19 +51,18 @@
                             <a class="fi-list"></a>
                             <ul class="vertical menu">
                             </ul> -->
-                        <li><a href="{% url 'profileManage' %}">Profile</a></li>
                         <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="{% url 'profileManage' %}">Profile</a></li>
                         <li><a href="#" class="button-badge">
                                 <i class="fi-mail"></i>
                                 <span class="badge alert">5</span>
                             </a></li>
                         </li>
+                        <li><a href="{% url 'logout' %}"><i class="fi-power"></i></a></li>
                         {% else %}
                         <li><a href="{% url 'signup' %}">Create Account</a></li>
                         <li><a href="{% url 'login' %}">Sign In</a></li>
                         {% endif %}
-                        <li><a href="#"><i class="fi-wrench"></i></a></li>
                     </ul>
                 </div>
             </div>
