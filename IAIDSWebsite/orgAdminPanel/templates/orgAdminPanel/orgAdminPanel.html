@@ -44,42 +44,42 @@
                     <td>5/10</td>
                     <td>2011/04/25</td>
                     <td>Fairbanks</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Gun Show</td>
                     <td>2/2</td>
                     <td>2011/07/25</td>
                     <td>Nome</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Adventure</td>
                     <td>1/2</td>
                     <td>2009/01/12</td>
                     <td>Tok</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Yearly Cleanup</td>
                     <td>3/4</td>
                     <td>2012/03/29</td>
                     <td>Anchorage</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Arts and Crafts</td>
                     <td>3/3</td>
                     <td>2008/11/28</td>
                     <td>Fairbanks</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Training Resources</td>
                     <td>2/4</td>
                     <td>2012/12/02</td>
                     <td>Fairbanks</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
             </tbody>
             <tfoot>
@@ -108,37 +108,37 @@
                     <td>Tyler J Roberts</td>
                     <td>tjroberts2@alaska.edu</td>
                     <td>3</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Gordon Freeman</td>
                     <td>gordon@valve.com</td>
                     <td>INF</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Someone Else</td>
                     <td>someone@else.com</td>
                     <td>3</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Bart Ridly</td>
                     <td>home2you@buzy.com</td>
                     <td>1</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Airi Satou</td>
                     <td>airi@hmmm.com</td>
                     <td>2</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
                 <tr>
                     <td>Brielle Williamson</td>
                     <td>brielle@wills.org</td>
                     <td>1</td>
-                    <td><button class="button tiny alert"><i class="fi-trash"></i></button></td>
+                    <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
                 </tr>
             </tbody>
             <tfoot>
@@ -154,7 +154,11 @@
     </div>
 </div>
 </div>
-
+<div class="row">
+	<div class="small-offset-9 small-3 columns">
+		<button id="deleteOrgButton"class="button alert">Delete Organization <i class="fi-trash"></i></button>
+	</div>
+</div>
 <!-- For events Table -->
 <div class="reveal" id="addRowEvent" data-reveal data-reset-on-close="true">
       <h1>New Event</h1>
@@ -216,7 +220,7 @@ $('#buttonEvent').click(function (e) {
                         position,
                         date,
                         location,
-                        "<td><button class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
                         ] ).draw( false );
 });
 
@@ -242,10 +246,12 @@ $('#buttonEvent').click(function (e) {
     ]
 });
 
-$('#events').on("click", "button", function() {
+$('#events').on("click", "#deleteEvent", function() {
             eventsTable.row($(this).parents('tr')).remove().draw(false);
 });
+$('#events').on("click", "#editEvent", function() {
 
+});
 </script>
 
 <!-- user table reveals -->
@@ -278,7 +284,7 @@ $('#events').on("click", "button", function() {
         </div>
     </form>
     <button class="close-button" data-close aria-label="Close modal" type="button">
-    <span aria-hidden="true">&times;</span>
+    	<span aria-hidden="true">&times;</span>
     </button>
 </div>
 <script>
@@ -290,7 +296,7 @@ $('#buttonUser').click(function (e) {
                         email,
                         username,
                         priv,
-                        "<button class=\"button tiny alert\" id=\"deleteRowUser\"><i class=\"fi-trash\"></i></button>"
+						"<button id=\"editUsers\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
                         ] ).draw( false );
 });
 
@@ -315,8 +321,11 @@ var usersTable = $('#users').DataTable({
     ]
 });
 
-$('#users').on("click", "button", function() {
+$('#users').on("click", "#deleteUsers", function() {
             usersTable.row($(this).parents('tr')).remove().draw(false);
+});
+$('#users').on("click", "#editUsers", function() {
+
 });
 
 </script>
