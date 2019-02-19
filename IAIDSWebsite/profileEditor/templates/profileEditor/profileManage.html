@@ -10,7 +10,8 @@
                     <div class="profile-card-header">
                         <div class="profile-card-avatar">
                             <!-- <img class="avatar-image" src="{% static 'profileEditor/images/default_profile.jpg' %}" alt="{request user.first_name}"> -->
-                            <img class="avatar-image" src="{{ user.profile_pic.url }}" width="10" height="10">
+                            <img class="avatar-image" src="{{ user.profile_pic.url }}" onerror="this.onerror=null;"
+                                this.src="{% static 'profileEditor/images/default_profile.jpg' %}" width="10" height="10">
                         </div>
                         <div class="profile-card-author">
                             <h5 class="author-title">{{ user.first_name }} {{ user.last_name }}</h5>
