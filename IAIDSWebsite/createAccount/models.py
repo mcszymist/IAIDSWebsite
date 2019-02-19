@@ -4,6 +4,10 @@ from django.contrib.auth.models import (
 )
 
 from django.db import models
+from IAIDSWebsite import settings
+from pathlib import Path
+from os import remove
+from datetime import datetime
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, first_name, last_name, password=None):
@@ -37,10 +41,24 @@ class MyUserManager(BaseUserManager):
         return user
 
 class MyUser(AbstractBaseUser):
+    def save_usr_pic(self, filename):
+        #if file name already exists, remove it before adding new one
+        file_name = filename
+        dir_to_file = settings.MEDIA_ROOT + '/profileEditor'
+
+        # creates 'middle_dir' if it doesn't exist:
+        Path(dir_to_file).mkdir(exist_ok=True)
+        file = Path(dir_to_file+'/'+file_name)
+        if file.is_file():
+            remove(file)
+        return '/'.join(['profileEditor',file_name])
+
     email = models.EmailField(max_length= 255, unique = True)
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     date_of_birth = models.DateField()
+    profile_pic = models.ImageField(upload_to=save_usr_pic, default="thispersondoesnotexist.jpg")
+    domain_name = models.CharField(max_length=45, unique=True, default="IAIDS")
  
     is_admin = models.BooleanField(default=False)
 
@@ -48,6 +66,11 @@ class MyUser(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['date_of_birth', 'first_name', 'last_name']
+    
+    class Meta:
+        verbose_name = "Person"
+        verbose_name_plural = "People"
+        ordering = ['domain_name']
 
     def __str__(self):
         return self.email
@@ -67,6 +90,8 @@ class MyUser(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+    def __str__(self):
+        return self.domain_name
 
 
 
