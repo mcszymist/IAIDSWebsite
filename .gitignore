@@ -6,4 +6,4 @@
 
 ~/migrate/*.pyc
 
-*0001_init.py
+*0001_initial.py
