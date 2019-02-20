@@ -14,5 +14,5 @@ def profileImage(request,file_name):
     response['X-Sendfile'] = smart_str(settings.MEDIA_ROOT+'/profileEditor/'+file_name)
     return response
 
-def Edit(request):
+def edit(request):
         return render(request, 'profileEditor/profileEdit.html')
