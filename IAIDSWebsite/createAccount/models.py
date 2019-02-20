@@ -8,6 +8,7 @@ from IAIDSWebsite import settings
 from pathlib import Path
 from os import remove
 from datetime import datetime
+from IAIDSWebsite.validators import validate_file_size
 
 class MyUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, first_name, last_name, password=None):
@@ -46,11 +47,11 @@ class MyUser(AbstractBaseUser):
         file_name = filename
         dir_to_file = settings.MEDIA_ROOT + '/profileEditor'
 
-        # creates 'middle_dir' if it doesn't exist:
         Path(dir_to_file).mkdir(exist_ok=True)
-        file = Path(dir_to_file+'/'+file_name)
-        if file.is_file():
-            remove(file)
+        #file = Path(dir_to_file+'/'+file_name)
+        file = models.FileField(upload_to=dir_to_file + '/', verbose_name=file_name, validators=[validate_file_size])
+        # if file.is_file():
+        #     remove(file)
         return '/'.join(['profileEditor',file_name])
 
     email = models.EmailField(max_length= 255, unique = True)
