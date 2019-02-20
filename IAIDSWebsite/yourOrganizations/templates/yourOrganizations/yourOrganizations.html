@@ -1,11 +1,143 @@
 {% extends "main_template.html" %}
+{% block headerInclude %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
+	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
+    	</script> 
+    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
+    	</script> 
+{% endblock %}
+{% block middleColumn%}
 
-{% block middleColumnAuthorizedUser %}
-<h1>
-    IN PROGRESS
-</h1>
+<div class="rows">
+    <h1 class="small-offset-3 small-6 text-center columns eventFilterBackground"> 
+		your organizations 
+	</h1>
+</div>
+<div class="row">
+	<div class="small-centered columns eventFilterBackground">
+        <table id="table" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Organizations</th>
+                    <th>Events Live</th>
+					<th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href='/orgAdminPanel?org="IAIDS"'>IAIDS</a></td>
+                    <td>5</td>
+<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+
+                </tr>
+                <tr>
+                    <td><a href='/orgAdminPanel?org="BlueCross"'>BlueCross</a></td>
+                    <td>2</td>
+<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                </tr>
+                <tr>
+                    <td><a href='/orgAdminPanel?org="UAF"'>UAF</a></td>
+                    <td>1</td>
+<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                </tr>
+                <tr>
+                    <td><a href='/orgAdminPanel?org="State"'>State</a></td>
+                    <td>3</td>
+<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                </tr>
+                <tr>
+                    <td><a href='/orgAdminPanel?org="BGC"'>BGC</a></td>
+                    <td>3</td>
+<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                </tr>
+                <tr>
+                    <td><a href='/orgAdminPanel?org="IAIDS"'>IAIDS</a></td>
+                    <td>2</td>
+<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Organizations</th>
+                    <th>Events Live</th>
+					<th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+	</div>
+</div>
+<!-- add row reveals -->
+<div class="reveal" id="addRow" data-reveal data-reset-on-close="true">
+    <h1>New Event</h1>
+    <form id="addRowOrg">
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Organization
+                    <input type="text" id="org" placeholder="Food Bank Server" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Desciption
+                    <input type="number" id="des" placeholder="10" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offest-large-8 large-4 columns">
+                <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>
+            </div>
+        </div>
+    </form>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+    	<span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<script>
+$('#buttonUser').click(function (e) {
+    var org = $("#org").val();
+    var des = $("#des").val();
+    table.row.add( [
+                        "<a href='/orgAdminPanel?org=" + org +"'>" + org +"</a>",
+                        des,
+						"<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+                        ] ).draw( false );
+});
+
+var table = $('#table').DataTable({
+    bInfo: false,
+    autoWidth: false,
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            text: 'Add Row',
+            action: function ( e, dt, node, config ) {
+                var popup = new Foundation.Reveal($('#addRow'));
+                popup.open();
+            }
+        }
+    ],
+    columns: [
+        { "width": "35%" },
+        { "width": "10%" },
+        { "width": "40%" }
+    ]
+});
+$('#table').on("click", "#deleteOrg", function() {
+            table.row($(this).parents('tr')).remove().draw(false);
+});
+$('#table').on("click", "#editOrg", function() {
+
+});
+
+</script>
 {% endblock %}
 
 {% block sideBar %}
 <!--TODO Add code here-->
 {% endblock %}
+
