@@ -16,7 +16,7 @@ urlpatterns = [
     path('yourOrganizations/', include('yourOrganizations.urls')),	
     path('createAccount/', include('createAccount.urls')),
     path('images/profileEditor/<file_name>', profileImage, name='profile_image'),
-    path('profileEditor/', include('profileEditor.urls')),
+    path('profile/', include('profileEditor.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

@@ -13,3 +13,6 @@ def profileImage(request,file_name):
         response = HttpResponse(f.read(), content_type="image/jpeg")
     response['X-Sendfile'] = smart_str(settings.MEDIA_ROOT+'/profileEditor/'+file_name)
     return response
+
+def Edit(request):
+        return render(request, 'profileEditor/profileEdit.html')
