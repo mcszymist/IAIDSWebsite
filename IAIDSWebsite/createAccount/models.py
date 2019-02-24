@@ -60,6 +60,7 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField()
     profile_pic = models.ImageField(upload_to=save_usr_pic, default="thispersondoesnotexist.jpg")
     domain_name = models.CharField(max_length=45, unique=True, default="IAIDS")
+    description = models.CharField(max_length=250, default="Hi, I'm a volunteer.")
  
     is_admin = models.BooleanField(default=False)
 
