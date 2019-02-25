@@ -70,7 +70,7 @@
 	</div>
 </div>
 <!-- add row reveals -->
-<div class="reveal" id="addRow" data-reveal data-reset-on-close="true">
+<div class="reveal" id="addRow" data-reveal>
     <h1>New Event</h1>
     <form id="addRowOrg">
         <div class="row">
@@ -106,6 +106,8 @@ $('#buttonUser').click(function (e) {
                         des,
 						"<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
                         ] ).draw( false );
+	$("#org").val("");
+    $("#des").val("");
 });
 
 var table = $('#table').DataTable({

@@ -4,9 +4,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{% load static %}
+	<link rel="shortcut icon" type="image/png" href="{% static 'source/fasterToothpick.ico' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'source/css/foundation.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'source/icons/foundation-icons.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'source/css/app.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'source/css/jquery-ui.css' %}" />
+	<link rel="stylesheet" href="css/foundation-icons.css" />
+	<script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}">
+	</script>
+
+	<script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
+	</script>
+
+	<script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
+	</script>
+	{% block headerInclude%}
+	{% endblock %}
     <title>VOLUNTEER</title>
+<<<<<<< HEAD
     {% block headerInclude %}
     {% endblock %}
+=======
+>>>>>>> 8932415e4c995702c4d6145bcd63d8eb9d15fb03
 </head>
 
 <body>
@@ -25,8 +45,8 @@
                 </div>
                 <div class="top-bar-right">
                     <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
-                        <li><a href="{% url 'events' %}">Events</a></li>
-
+                        <li><a href="{% url 'events' %}">Event Calendar</a></li>
+						<li><a href="{% url 'eventsFilter'%}">Search Opportunities</a></li>
                         {% block navBarRight %}
                         {% endblock %}
 
@@ -65,11 +85,17 @@
         {% endblock %}
 
         {% else %}
+<<<<<<< HEAD
 
         {% block middleColumn %}
+=======
+        {% block middleColumnUnauthorizedUser %}
+>>>>>>> 8932415e4c995702c4d6145bcd63d8eb9d15fb03
         {% endblock %}
 
         {% endif %}
+		{% block middleColumn %}
+        {% endblock %}
     </div>
 
     <!-- FOOTER -->
@@ -87,6 +113,7 @@
     <script src="{% static 'source/js/vendor/foundation.js' %}"></script>
     <script src="{% static 'source/js/app.js' %}"></script>
 </body>
+<<<<<<< HEAD
 {% load static %}
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
 <link rel="shortcut icon" type="image/png" href="{% static 'source/fasterToothpick.ico' %}">
@@ -101,5 +128,7 @@
 
 <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
 </script>
+=======
+>>>>>>> 8932415e4c995702c4d6145bcd63d8eb9d15fb03
 
 </html>
