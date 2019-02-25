@@ -97,7 +97,7 @@ body {
     background-color: #b9b9b9;
 }
 
-.top-bar-right ul li a, 
+.top-bar-right ul li a,
 .homeFont,
 .button,
 .card,
@@ -108,6 +108,11 @@ body {
     color:#278a7d;
     /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.top-bar-right ul li .button-badge
+{
+    color: white;
 }
 
 .welcomePanel{
