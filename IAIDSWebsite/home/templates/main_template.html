@@ -28,7 +28,7 @@
     <!-- DESKTOP STICKY NAVIGATION -->
     <div data-sticky-container>
         <div class="white-top-bar">
-            <div class="top-bar" data-sticky data-margin-top="0" data-top-anchor="1" data-btm-anchor="content:bottom">
+            <div class="top-bar" data-sticky data-options="stickTo:top" data-margin-top="0">
                 <div class="top-bar-left">
                     <ul class="menu">
                         <a href="/" class="menu-text">
@@ -51,10 +51,12 @@
                             <ul class="vertical menu">
                             </ul> -->
                         <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
-                        <li><a href="{% url 'profileManage' %}">Profile</a></li>
-                        <li><a href="#" class="button-badge">
-                                <i class="fi-mail"></i>
+                        <li><a href="{% url 'profileManage' %}" class="button-badge">
+                                {{ user.first_name }}
+                                {% if True %}
                                 <span class="badge alert">5</span>
+                                {% else %}
+                                {% endif %}
                             </a></li>
                         </li>
                         <li><a href="{% url 'logout' %}"><i class="fi-power"></i></a></li>
@@ -99,7 +101,7 @@
 
     {% load static %}
     <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'source/js/vendor/foundation.core.js' %}"></script>
+    <script src="{% static 'source/js/vendor/foundation.core.min.js' %}"></script>
     <script src="{% static 'source/js/vendor/foundation.js' %}"></script>
     <script src="{% static 'source/js/app.js' %}"></script>
 </body>
@@ -107,10 +109,9 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
 <link rel="shortcut icon" type="image/png" href="{% static 'source/fasterToothpick.ico' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'source/css/foundation.css' %}" />
-<link rel="stylesheet" type="text/css" href="{% static 'source/icons/foundation-icons.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'source/css/foundation-icons/foundation-icons.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'source/css/app.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'source/css/jquery-ui.css' %}" />
-<link rel="stylesheet" href="{% static 'source/css/foundation-icons/foundation-icons.css' %}" />
 
 <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
 </script>
