@@ -62,49 +62,68 @@
           <div class="scrollableEvents">
             <ul class="vertical menu">
               <div class="upcomingEventsModalable">
-                <li>
-                  <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                  <a>Spaghetti Feed at the Big Church</a>
-                  <!-- <ul class="menu vertical nested">
-                    <p>
-                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                      primis
-                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                      ea,
-                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                      convenire.
-                    </p>
-                    <li><a href="">More details</a></li>
-                  </ul> -->
-                </li>
+                <!-- Example upcomingEventModal element -->
+                <!-- <div class="reveal" id="event{{ event.eventID }}" data-reveal>
+                      <h2>{{ event.eventID.getName }}</h2>
+                      <p>
+                        {{ event.getDescription }}
+                      </p>
+                      <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <button class="button float-right" type="button">See more >></button>
+                    </div>
+                    <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
+                <div class="reveal" id="event1" data-reveal>
+                  <h3>Spaghetti Feed at the Big Church</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    primis
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    ea,
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    convenire.
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <button class="button float-right" type="button">See more >></button>
+                </div>
+                <li><a href="#" data-open="event1">Spaghetti Feed at the Big Church</a></li>
                 <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <li><a>Bake Sale Needing Baked Goods by TONIGHT</a>
-                  <!-- <ul class="menu vertical nested">
-                    <p>
-                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                      primis
-                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                      ea,
-                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                      convenire.
-                    </p>
-                    <li><a href="">More details</a></li>
-                  </ul> -->
-                </li>
+                <div class="reveal" id="event2" data-reveal>
+                  <h3>Bake Sale Needing Baked Goods by TONIGHT</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    primis
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    ea,
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    convenire.
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <button class="button float-right" type="button">See more >></button>
+                </div>
+                <li><a href="#" data-open="event2">Bake Sale Needing Baked Goods by TONIGHT</a></li>
                 <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <li><a>Wall Painters Wanted</a>
-                  <!-- <ul class="menu vertical nested">
-                    <p>
-                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                      primis
-                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                      ea,
-                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                      convenire.
-                    </p>
-                    <li><a href="">More details</a></li>
-                  </ul> -->
-                </li>
+                <div class="reveal" id="event3" data-reveal>
+                  <h3>Wall Painters Wanted</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    primis
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    ea,
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    convenire.
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <button class="button float-right" type="button">See more >></button>
+                </div>
+                <li><a href="#" data-open="event3">Wall Painters Wanted</a></li>
               </div>
             </ul>
           </div>
@@ -122,9 +141,9 @@
     <div class="small-2 large-6 columns">
       <div class="welcomePanel">
         <h1>Welcome!</h1><br>
-        <h4>Volunteer Fairbanks is helping Fairbanks connect volunteers to organizations. <br> Get started by
+        <h5>Volunteer Fairbanks is helping Fairbanks connect volunteers to organizations. <br><br> Get started by
           creating an account
-          or signing in.</h4>
+          or signing in.</h5>
       </div>
     </div>
     <div class="small-2 large-6 columns">
@@ -184,49 +203,67 @@
           <div class="scrollableEvents">
             <ul class="vertical menu" data-accordion-menu data-submenu-toggle="true">
               <div class="upcomingEventsModalable">
-                <li>
-                  <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                  <a>Spaghetti Feed at the Big Church</a>
-                  <!-- <ul class="menu vertical nested">
-                    <p>
-                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                      primis
-                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                      ea,
-                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                      convenire.
-                    </p>
-                    <li><a href="">More details</a></li>
-                  </ul> -->
-                </li>
+                <!-- Example upcomingEventModal element -->
+                <!-- <div class="reveal" id="event{{ event.eventID }}" data-reveal>
+                  <h2>{{ event.eventID.getName }}</h2>
+                  <p>
+                    {{ event.getDescription }}
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
+                <div class="reveal" id="event1" data-reveal>
+                  <h3>Spaghetti Feed at the Big Church</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    primis
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    ea,
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    convenire.
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <button class="button float-right" type="button">See more >></button>
+                </div>
+                <li><a href="#" data-open="event1">Spaghetti Feed at the Big Church</a></li>
                 <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <li><a>Bake Sale Needing Baked Goods by TONIGHT</a>
-                  <!-- <ul class="menu vertical nested">
-                    <p>
-                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                      primis
-                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                      ea,
-                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                      convenire.
-                    </p>
-                    <li><a href="">More details</a></li>
-                  </ul> -->
-                </li>
+                <div class="reveal" id="event2" data-reveal>
+                  <h3>Bake Sale Needing Baked Goods by TONIGHT</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    primis
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    ea,
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    convenire.
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <button class="button float-right" type="button">See more >></button>
+                </div>
+                <li><a href="#" data-open="event2">Bake Sale Needing Baked Goods by TONIGHT</a></li>
                 <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <li><a>Wall Painters Wanted</a>
-                  <!-- <ul class="menu vertical nested">
-                    <p>
-                      Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                      primis
-                      cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                      ea,
-                      cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                      convenire.
-                    </p>
-                    <li><a href="">More details</a></li>
-                  </ul> -->
-                </li>
+                <div class="reveal" id="event3" data-reveal>
+                  <h3>Wall Painters Wanted</h3>
+                  <p>
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    primis
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    ea,
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    convenire.
+                  </p>
+                  <button class="close-button" data-close aria-label="Close modal" type="button">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <button class="button float-right" type="button">See more >></button>
+                </div>
+                <li><a href="#" data-open="event3">Wall Painters Wanted</a></li>
               </div>
             </ul>
           </div>
