@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VOLUNTEER</title>
-    {% block headerInclude%}
+    {% block headerInclude %}
     {% endblock %}
 </head>
 
@@ -60,12 +60,15 @@
         <!-- if True should be changed to if user.is_authenticated when it is proper -->
         <!-- This is just for testing the user's homepage (as opposed to stranger landing page) -->
         {% if user.is_authenticated %}
+
         {% block middleColumnAuthorizedUser %}
         {% endblock %}
 
         {% else %}
+
         {% block middleColumn %}
         {% endblock %}
+
         {% endif %}
     </div>
 
@@ -79,13 +82,10 @@
     </div>
 
     {% load static %}
-    <script src="{% static 'source/js/vendor/foundation.core.min.js' %}"></script>
-    <script src="{% static 'source/js/vendor/foundation.min.js' %}"></script>
-    <script src="{% static 'source/js/vendor/foundation.sticky.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'source/js/vendor/foundation.core.js' %}"></script>
+    <script src="{% static 'source/js/vendor/foundation.js' %}"></script>
     <script src="{% static 'source/js/app.js' %}"></script>
-    <script>
-        $(document).foundation();
-    </script>
 </body>
 {% load static %}
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
@@ -94,9 +94,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'source/icons/foundation-icons.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'source/css/app.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'source/css/jquery-ui.css' %}" />
-<link rel="stylesheet" href="css/foundation-icons.css" />
-<script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}">
-</script>
+<link rel="stylesheet" href="{% static 'source/css/foundation-icons/foundation-icons.css' %}" />
 
 <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
 </script>
