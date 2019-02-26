@@ -1,9 +1,54 @@
-body {
-    background-image: url(wavy_woods.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+/* 
+Parallax effect for background
+source: https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
+*/
+
+.parallax {
+    -webkit-perspective: 1px;
+    perspective: 1px;
+    height: 500px; /* fallback for older browsers */
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
 }
+
+.parallax__layer--base {
+    /* nonissue */
+    position: relative;    
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 1;
+}
+
+.parallax__layer--back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  /* The image used */
+  background-image: url('wavy_woods.jpg');
+  /* Full height */
+  height: 100%; 
+  /* Create the parallax scrolling effect */
+  background-repeat: repeat-x;
+  background-size: cover;
+
+  transform: translateZ(-1px) scale(2.1);
+}
+
+/* Sticky mods */
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:999;
+}
+
+/* Hoverable image mods */
 
 .hoverableImg {
     opacity: 0.75;
@@ -11,8 +56,11 @@ body {
 }
 
 .hoverableImg:hover {
+    transition: all ease 0.4s;
     opacity: 1.0;
 }
+
+/* base css */
 
 .blog-post {
     margin: 10px;
@@ -55,9 +103,10 @@ body {
 .footer {
     font-size: 20px;
     color: white;
-    height: 200px;
+    height: 250px;
+    bottoM: 0;
     background-color: rgba(0,0,0,0.5);
-    padding: 40px;
+    padding-top: 40px;
 }
 
 .footer .row .align-middle .text-align-middle .text-center .column .align-middle {
@@ -66,6 +115,11 @@ body {
 
 .vertical .menu li a {
     padding: 100px;
+}
+
+.modal-open {
+    padding:0 !important;
+    overflow-y: inherit;
 }
 
 .upcomingEventsModalable {
@@ -115,6 +169,8 @@ body {
     color: white;
 }
 
+/* Welcome panel with blur */
+
 .welcomePanel{
     width:100%;
     height:100%;
@@ -122,7 +178,35 @@ body {
     padding-left:30px;
     padding-right:30px;
     padding-top:30px;
+    padding-bottom:30px;
     border-radius: .3rem;
+}
+
+.blurBack {
+    width: 100%;
+    height: 100%;
+}
+
+.glassContent {
+    border-radius: 3px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    position: relative;
+    top: -275px;
+    margin-left: 20px;
+    margin-right: 20px;
+    z-index: 3;
+    padding: 0 10px;
+}
+
+.glass {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.349);
+    display: block;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
 }
 
 .profile-card-action .action-area a i {
