@@ -3,12 +3,14 @@ from django.utils.encoding import smart_str
 from django.http import HttpResponse
 from IAIDSWebsite import settings
 from createAccount import models
+from django.contrib import messages
 
 from .forms import profileEditForm
 from django.contrib.auth.models import User
 
 # Create your views here.
 def profileManage(request):
+    messages.add_message(request, messages.INFO, 'Hello world.')
     return render(request, 'profileEditor/profileManage.html')
 
 def profileImage(request,file_name):
