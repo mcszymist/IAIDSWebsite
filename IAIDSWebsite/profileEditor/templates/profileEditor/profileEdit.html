@@ -25,7 +25,11 @@
                     <div class="profile-card-about">
                         <h5 class="about-title separator-left">About Me</h5>
                         <p class="about-content">
-                            {{form.description}}
+							<form action="{% url 'profileManage' %}" method="post">
+								{% csrf_token %}
+								{{form}}
+								<input type="submit" value="Submit">
+							</form>
                         </p>
                     </div>
                     <div class="profile-card-about">
