@@ -1,6 +1,57 @@
 {% extends "main_template.html" %}
-
+{% block headerInclude %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.0.1/tinymce.min.js"></script>
+{% endblock %}
+    
 {% block middleColumn %}
+<!DOCTYPE html>
+
+    
+
+<div class="row">
+    <div class="column small-offset-3 large-6">
+        <h1 class="text-center">Event Title</h1>
+    </div>
+    <div class="column large-3">
+        <button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
+    </div>
+</div>
+
+<div class="row" id="textEdit" style="display:none">
+    <div class="column large-12">
+        <form onSubmit="updateHTML(this);">
+            <textarea id="basic-example">Testing the textbox hoping to have save button and other functionality</textarea>
+            <button name="submitbtn"></button>
+        </form>
+    </div>
+</div>
+<div class="row" id="textDisplay">
+    <div class="column large-12">
+        <p id="textArea"> Testing the textbox hoping to have save button and other functionality </p>
+    </div>
+</div>
+<script>
+$('#editEvent').click(function (e) {
+    $('#textEdit').toggle();
+    $('#textDisplay').toggle();
+});
+tinymce.init({
+  selector: 'textarea#basic-example',
+  height: 750,
+      menubar: false,
+      plugins: [
+    'advlist autolink lists link image charmap print preview anchor textcolor save',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table paste code help wordcount'
+  ],
+  toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | save ',
+});
+function updateHTML(element){
+    var temp = tinymce.get('basic-example').getContent();
+    console.log(temp);
+    document.getElementById("textArea").innerHTML = temp;
+}
+</script>
 
 {% endblock %}
 
