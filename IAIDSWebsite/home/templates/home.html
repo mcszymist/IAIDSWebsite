@@ -138,7 +138,7 @@
 {% block middleColumnUnauthorizedUser %}
 <div class="spaced-row">
   <div class="row">
-    <div class="small-2 large-6 columns">
+    <div class="small-12 medium-6 large-6 columns">
       <div class="welcomePanel">
         <h1>Welcome!</h1><br>
         <h5>Volunteer Fairbanks is helping Fairbanks connect volunteers to organizations. <br><br> Get started by
@@ -146,7 +146,7 @@
           or signing in.</h5>
       </div>
     </div>
-    <div class="small-2 large-6 columns">
+    <div class="small-12 medium-6 large-6 columns">
       <div class="hoverableImg">
         <img src="static/images/hands.jpg">
       </div>
@@ -161,8 +161,8 @@
           </h3>
         </div>
         <div class="card-section">
-          <button class="button large expanded"><b>Volunteer account</b></button>
-          <button class="button large expanded"><b>Organization account</b></button>
+          <a href="{% url 'signup' %}" class="button large expanded"><b>Create account</b></a>
+          <button class="button large expanded"><b>Learn more about accounts</b></button>
         </div>
       </div>
     </div>
