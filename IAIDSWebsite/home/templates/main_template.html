@@ -25,80 +25,88 @@
 </head>
 
 <body>
-    <!-- DESKTOP STICKY NAVIGATION -->
-    <div data-sticky-container>
-        <div class="white-top-bar">
-            <div class="top-bar" data-sticky data-options="stickTo:top" data-margin-top="0">
-                <div class="top-bar-left">
-                    <ul class="menu">
-                        <a href="/" class="menu-text">
-                            <div class="homeFont">
-                                Volunteer Fairbanks <i class="fi-home"></i>
-                            </div>
-                        </a>
-                    </ul>
-                </div>
-                <div class="top-bar-right">
-                    <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
-                        <li><a href="{% url 'events' %}">Event Calendar</a></li>
-                        <li><a href="{% url 'eventsFilter'%}">Search Opportunities</a></li>
-                        {% block navBarRight %}
-                        {% endblock %}
+    <div class="parallax">
+        <div data-sticky-container>
 
-                        {% if user.is_authenticated %}
-                        <!-- <li>
+            <div class="parallax__layer--back">
+            </div>
+
+            <div class="parallax__layer--base">
+                <!-- DESKTOP STICKY NAVIGATION -->
+                <div class="white-top-bar">
+                    <div class="top-bar" data-sticky data-options="stickTo:top" data-margin-top="0">
+                        <div class="top-bar-left">
+                            <ul class="menu">
+                                <a href="/" class="menu-text">
+                                    <div class="homeFont">
+                                        Volunteer Fairbanks <i class="fi-home"></i>
+                                    </div>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="top-bar-right">
+                            <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
+                                <li><a href="{% url 'events' %}">Event Calendar</a></li>
+                                <li><a href="{% url 'eventsFilter'%}">Search Opportunities</a></li>
+                                {% block navBarRight %}
+                                {% endblock %}
+
+                                {% if user.is_authenticated %}
+                                <!-- <li>
                             <a class="fi-list"></a>
                             <ul class="vertical menu">
                             </ul> -->
-                        <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
-                        <li><a href="{% url 'profileManage' %}" class="button-badge">
-                                {{ user.first_name }}
-                                {% if True %}
-                                <span class="badge alert">5</span>
+                                <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
+                                <li><a href="{% url 'profileManage' %}" class="button-badge">
+                                        {{ user.first_name }}
+                                        {% if True %}
+                                        <span class="badge alert">5</span>
+                                        {% else %}
+                                        {% endif %}
+                                    </a></li>
+                                </li>
+                                <li><a href="{% url 'logout' %}"><i class="fi-power"></i></a></li>
                                 {% else %}
+                                <li><a href="{% url 'signup' %}">Create Account</a></li>
+                                <li><a href="{% url 'login' %}">Sign In</a></li>
                                 {% endif %}
-                            </a></li>
-                        </li>
-                        <li><a href="{% url 'logout' %}"><i class="fi-power"></i></a></li>
-                        {% else %}
-                        <li><a href="{% url 'signup' %}">Create Account</a></li>
-                        <li><a href="{% url 'login' %}">Sign In</a></li>
-                        {% endif %}
-                    </ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTENT -->
+                <div class="middle">
+                    <!-- if True should be changed to if user.is_authenticated when it is proper -->
+                    <!-- This is just for testing the user's homepage (as opposed to stranger landing page) -->
+                    {% if user.is_authenticated %}
+
+                    {% block middleColumnAuthorizedUser %}
+                    {% endblock %}
+
+                    {% else %}
+                    {% block middleColumnUnauthorizedUser %}
+                    {% endblock %}
+
+                    {% endif %}
+                    {% block middleColumn %}
+                    {% endblock %}
+                </div>
+
+                <!-- FOOTER -->
+                <div class="footer">
+                    <div class="row align-middle text-align-middle text-center">
+                        <div class="column align-middle"><a href="#" style="color:rgb(235, 220, 192)">Contact</a></div>
+                        <div class="column align-middle"><a href="{% url 'about' %}" style="color:rgb(235, 220, 192)">About</a></div>
+                        <div class="column align-middle"><a href="#" style="color:rgb(235, 220, 192)">Sitemap</a></div>
+                    </div>
                 </div>
             </div>
+
         </div>
+        <!-- end parallax base/content -->
+
     </div>
-
-    <!-- HERO -->
-
-    <!-- CONTENT -->
-    <div class="middle">
-        <!-- if True should be changed to if user.is_authenticated when it is proper -->
-        <!-- This is just for testing the user's homepage (as opposed to stranger landing page) -->
-        {% if user.is_authenticated %}
-
-        {% block middleColumnAuthorizedUser %}
-        {% endblock %}
-
-        {% else %}
-        {% block middleColumnUnauthorizedUser %}
-        {% endblock %}
-
-        {% endif %}
-        {% block middleColumn %}
-        {% endblock %}
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        <div class="row align-middle text-align-middle text-center">
-            <div class="column align-middle"><a href="#" style="color:rgb(235, 220, 192)">Contact</a></div>
-            <div class="column align-middle"><a href="{% url 'about' %}" style="color:rgb(235, 220, 192)">About</a></div>
-            <div class="column align-middle"><a href="#" style="color:rgb(235, 220, 192)">Sitemap</a></div>
-        </div>
-    </div>
-
     {% load static %}
     <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'source/js/vendor/foundation.core.min.js' %}"></script>
