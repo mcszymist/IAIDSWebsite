@@ -7,7 +7,7 @@ from profileEditor.views import profileImage
 
 
 urlpatterns = [
-    path('', include('home.urls')),
+    path('', include('home.urls'), name='home'),
     path('about/', include('about.urls')),
     path('eventEdit/', include('eventEdit.urls')),
     path('events/', include('events.urls')),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('profile/', include('profileEditor.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('auth/', include('social_django.urls', namespace='social')),  
 ]
