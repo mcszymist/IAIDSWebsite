@@ -1166,3 +1166,323 @@ CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_
 (0.001) SELECT `createAccount_myuser`.`id`, `createAccount_myuser`.`password`, `createAccount_myuser`.`last_login`, `createAccount_myuser`.`email`, `createAccount_myuser`.`first_name`, `createAccount_myuser`.`last_name`, `createAccount_myuser`.`date_of_birth`, `createAccount_myuser`.`profile_pic`, `createAccount_myuser`.`domain_name`, `createAccount_myuser`.`description`, `createAccount_myuser`.`is_admin` FROM `createAccount_myuser` WHERE `createAccount_myuser`.`email` = 'redhat@gmail.com'; args=('redhat@gmail.com',)
 (0.003) INSERT INTO `createAccount_myuser` (`password`, `last_login`, `email`, `first_name`, `last_name`, `date_of_birth`, `profile_pic`, `domain_name`, `description`, `is_admin`) VALUES ('pbkdf2_sha256$150000$s8GoU7g9DgYG$zdVz7q0Mz6oRzzH1bZ8g2qJHanYxgqjdQgk+//B3XWw=', NULL, 'redhat@gmail.com', 'Sam', 'G', '1989-09-09', 'thispersondoesnotexist.jpg', 'IAIDS', 'Hi, I\'m a volunteer.', 0); args=['pbkdf2_sha256$150000$s8GoU7g9DgYG$zdVz7q0Mz6oRzzH1bZ8g2qJHanYxgqjdQgk+//B3XWw=', None, 'redhat@gmail.com', 'Sam', 'G', '1989-09-09', 'thispersondoesnotexist.jpg', 'IAIDS', "Hi, I'm a volunteer.", False]
 (0.002) UPDATE `createAccount_myuser` SET `password` = 'pbkdf2_sha256$150000$RXiZE8SU8NCK$OHPZklLL/pxiTktIumkMKvRt5seQwMhwofPs0cbXzvQ=', `last_login` = NULL, `email` = 'redhat@gmail.com', `first_name` = 'Sam', `last_name` = 'G', `date_of_birth` = '1989-09-09', `profile_pic` = 'thispersondoesnotexist.jpg', `domain_name` = 'IAIDS', `description` = 'Hi, I\'m a volunteer.', `is_admin` = 1 WHERE `createAccount_myuser`.`id` = 1; args=('pbkdf2_sha256$150000$RXiZE8SU8NCK$OHPZklLL/pxiTktIumkMKvRt5seQwMhwofPs0cbXzvQ=', 'redhat@gmail.com', 'Sam', 'G', '1989-09-09', 'thispersondoesnotexist.jpg', 'IAIDS', "Hi, I'm a volunteer.", True, 1)
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SHOW FULL TABLES; args=None
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SELECT @@sql_mode; args=None
+(0.000) SHOW FULL TABLES; args=None
+(0.000) SHOW FULL TABLES; args=None
+(0.000) SHOW FULL TABLES; args=None
+CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); (params None)
+(0.018) CREATE TABLE `django_migrations` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `app` varchar(255) NOT NULL, `name` varchar(255) NOT NULL, `applied` datetime(6) NOT NULL); args=None
+(0.009) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=['django_migrations']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=['django_migrations']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=['django_migrations']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_migrations'; args=['django_migrations']
+CREATE TABLE `createAccount_myuser` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NULL, `email` varchar(255) NOT NULL UNIQUE, `first_name` varchar(50) NOT NULL, `last_name` varchar(50) NOT NULL, `date_of_birth` date NOT NULL, `profile_pic` varchar(100) NOT NULL, `domain_name` varchar(45) NOT NULL UNIQUE, `description` varchar(250) NOT NULL, `is_admin` bool NOT NULL); (params None)
+(0.055) CREATE TABLE `createAccount_myuser` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `password` varchar(128) NOT NULL, `last_login` datetime(6) NULL, `email` varchar(255) NOT NULL UNIQUE, `first_name` varchar(50) NOT NULL, `last_name` varchar(50) NOT NULL, `date_of_birth` date NOT NULL, `profile_pic` varchar(100) NOT NULL, `domain_name` varchar(45) NOT NULL UNIQUE, `description` varchar(250) NOT NULL, `is_admin` bool NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'createAccount_myuser'; args=['createAccount_myuser']
+(0.000) SHOW FULL TABLES; args=None
+(0.006) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('createAccount', '0001_initial', '2019-02-28 22:31:30.812884'); args=['createAccount', '0001_initial', '2019-02-28 22:31:30.812884']
+CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); (params None)
+(0.045) CREATE TABLE `django_content_type` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(100) NOT NULL, `app_label` varchar(100) NOT NULL, `model` varchar(100) NOT NULL); args=None
+(0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=['django_content_type']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=['django_content_type']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=['django_content_type']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_content_type'; args=['django_content_type']
+ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); (params ())
+(0.030) ALTER TABLE `django_content_type` ADD CONSTRAINT `django_content_type_app_label_model_76bd3d3b_uniq` UNIQUE (`app_label`, `model`); args=()
+(0.000) SHOW FULL TABLES; args=None
+(0.007) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0001_initial', '2019-02-28 22:31:30.906425'); args=['contenttypes', '0001_initial', '2019-02-28 22:31:30.906425']
+CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL); (params None)
+(0.038) CREATE TABLE `django_admin_log` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `action_time` datetime(6) NOT NULL, `object_id` longtext NULL, `object_repr` varchar(200) NOT NULL, `action_flag` smallint UNSIGNED NOT NULL, `change_message` longtext NOT NULL, `content_type_id` integer NULL, `user_id` integer NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_admin_log'; args=['django_admin_log']
+(0.000) SHOW FULL TABLES; args=None
+(0.003) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0001_initial', '2019-02-28 22:31:30.964132'); args=['admin', '0001_initial', '2019-02-28 22:31:30.964132']
+ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())
+(0.115) ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); args=()
+ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_createAccount_myuser_id` FOREIGN KEY (`user_id`) REFERENCES `createAccount_myuser` (`id`); (params ())
+(0.101) ALTER TABLE `django_admin_log` ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_createAccount_myuser_id` FOREIGN KEY (`user_id`) REFERENCES `createAccount_myuser` (`id`); args=()
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0002_logentry_remove_auto_add', '2019-02-28 22:31:31.194018'); args=['admin', '0002_logentry_remove_auto_add', '2019-02-28 22:31:31.194018']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('admin', '0003_logentry_add_action_flag_choices', '2019-02-28 22:31:31.204113'); args=['admin', '0003_logentry_add_action_flag_choices', '2019-02-28 22:31:31.204113']
+ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; (params [])
+(0.067) ALTER TABLE `django_content_type` MODIFY `name` varchar(100) NULL; args=[]
+ALTER TABLE `django_content_type` DROP COLUMN `name`; (params ())
+(0.083) ALTER TABLE `django_content_type` DROP COLUMN `name`; args=()
+(0.000) SHOW FULL TABLES; args=None
+(0.006) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('contenttypes', '0002_remove_content_type_name', '2019-02-28 22:31:31.383843'); args=['contenttypes', '0002_remove_content_type_name', '2019-02-28 22:31:31.383843']
+CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); (params None)
+(0.046) CREATE TABLE `auth_permission` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(50) NOT NULL, `content_type_id` integer NOT NULL, `codename` varchar(100) NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=['auth_permission']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=['auth_permission']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=['auth_permission']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_permission'; args=['auth_permission']
+CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); (params None)
+(0.046) CREATE TABLE `auth_group` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `name` varchar(80) NOT NULL UNIQUE); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'; args=['auth_group']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group'; args=['auth_group']
+CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); (params None)
+(0.050) CREATE TABLE `auth_group_permissions` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `group_id` integer NOT NULL, `permission_id` integer NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'; args=['auth_group_permissions']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'; args=['auth_group_permissions']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'auth_group_permissions'; args=['auth_group_permissions']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0001_initial', '2019-02-28 22:31:31.565512'); args=['auth', '0001_initial', '2019-02-28 22:31:31.565512']
+ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); (params ())
+(0.118) ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`); args=()
+ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); (params ())
+(0.059) ALTER TABLE `auth_permission` ADD CONSTRAINT `auth_permission_content_type_id_codename_01ab375a_uniq` UNIQUE (`content_type_id`, `codename`); args=()
+ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); (params ())
+(0.089) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`); args=()
+ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); (params ())
+(0.103) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`); args=()
+ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); (params ())
+(0.045) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` UNIQUE (`group_id`, `permission_id`); args=()
+ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; (params [])
+(0.010) ALTER TABLE `auth_permission` MODIFY `name` varchar(255) NOT NULL; args=[]
+(0.000) SHOW FULL TABLES; args=None
+(0.007) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0002_alter_permission_name_max_length', '2019-02-28 22:31:32.006252'); args=['auth', '0002_alter_permission_name_max_length', '2019-02-28 22:31:32.006252']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0003_alter_user_email_max_length', '2019-02-28 22:31:32.022719'); args=['auth', '0003_alter_user_email_max_length', '2019-02-28 22:31:32.022719']
+(0.001) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0004_alter_user_username_opts', '2019-02-28 22:31:32.033508'); args=['auth', '0004_alter_user_username_opts', '2019-02-28 22:31:32.033508']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0005_alter_user_last_login_null', '2019-02-28 22:31:32.043672'); args=['auth', '0005_alter_user_last_login_null', '2019-02-28 22:31:32.043672']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0006_require_contenttypes_0002', '2019-02-28 22:31:32.046512'); args=['auth', '0006_require_contenttypes_0002', '2019-02-28 22:31:32.046512']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0007_alter_validators_add_error_messages', '2019-02-28 22:31:32.059272'); args=['auth', '0007_alter_validators_add_error_messages', '2019-02-28 22:31:32.059272']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0008_alter_user_username_max_length', '2019-02-28 22:31:32.069672'); args=['auth', '0008_alter_user_username_max_length', '2019-02-28 22:31:32.069672']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0009_alter_user_last_name_max_length', '2019-02-28 22:31:32.079942'); args=['auth', '0009_alter_user_last_name_max_length', '2019-02-28 22:31:32.079942']
+ALTER TABLE `auth_group` MODIFY `name` varchar(150) NOT NULL; (params [])
+(0.003) ALTER TABLE `auth_group` MODIFY `name` varchar(150) NOT NULL; args=[]
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0010_alter_group_name_max_length', '2019-02-28 22:31:32.092431'); args=['auth', '0010_alter_group_name_max_length', '2019-02-28 22:31:32.092431']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('auth', '0011_update_proxy_permissions', '2019-02-28 22:31:32.110557'); args=['auth', '0011_update_proxy_permissions', '2019-02-28 22:31:32.110557']
+CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); (params None)
+(0.037) CREATE TABLE `django_session` (`session_key` varchar(40) NOT NULL PRIMARY KEY, `session_data` longtext NOT NULL, `expire_date` datetime(6) NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'; args=['django_session']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'; args=['django_session']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'django_session'; args=['django_session']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('sessions', '0001_initial', '2019-02-28 22:31:32.156012'); args=['sessions', '0001_initial', '2019-02-28 22:31:32.156012']
+CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); (params ())
+(0.045) CREATE INDEX `django_session_expire_date_a5c62663` ON `django_session` (`expire_date`); args=()
+CREATE TABLE `social_auth_association` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `server_url` varchar(255) NOT NULL, `handle` varchar(255) NOT NULL, `secret` varchar(255) NOT NULL, `issued` integer NOT NULL, `lifetime` integer NOT NULL, `assoc_type` varchar(64) NOT NULL); (params None)
+(0.049) CREATE TABLE `social_auth_association` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `server_url` varchar(255) NOT NULL, `handle` varchar(255) NOT NULL, `secret` varchar(255) NOT NULL, `issued` integer NOT NULL, `lifetime` integer NOT NULL, `assoc_type` varchar(64) NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_association'; args=['social_auth_association']
+CREATE TABLE `social_auth_code` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `email` varchar(75) NOT NULL, `code` varchar(32) NOT NULL, `verified` bool NOT NULL); (params None)
+(0.045) CREATE TABLE `social_auth_code` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `email` varchar(75) NOT NULL, `code` varchar(32) NOT NULL, `verified` bool NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_code'; args=['social_auth_code']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_code'; args=['social_auth_code']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_code'; args=['social_auth_code']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_code'; args=['social_auth_code']
+CREATE TABLE `social_auth_nonce` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `server_url` varchar(255) NOT NULL, `timestamp` integer NOT NULL, `salt` varchar(65) NOT NULL); (params None)
+(0.045) CREATE TABLE `social_auth_nonce` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `server_url` varchar(255) NOT NULL, `timestamp` integer NOT NULL, `salt` varchar(65) NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_nonce'; args=['social_auth_nonce']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_nonce'; args=['social_auth_nonce']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_nonce'; args=['social_auth_nonce']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_nonce'; args=['social_auth_nonce']
+CREATE TABLE `social_auth_usersocialauth` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `provider` varchar(32) NOT NULL, `uid` varchar(255) NOT NULL, `extra_data` longtext NOT NULL, `user_id` integer NOT NULL); (params None)
+(0.038) CREATE TABLE `social_auth_usersocialauth` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `provider` varchar(32) NOT NULL, `uid` varchar(255) NOT NULL, `extra_data` longtext NOT NULL, `user_id` integer NOT NULL); args=None
+(0.001) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_usersocialauth'; args=['social_auth_usersocialauth']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_usersocialauth'; args=['social_auth_usersocialauth']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_usersocialauth'; args=['social_auth_usersocialauth']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_usersocialauth'; args=['social_auth_usersocialauth']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_usersocialauth'; args=['social_auth_usersocialauth']
+ALTER TABLE `social_auth_usersocialauth` ADD CONSTRAINT `social_auth_usersocialauth_provider_uid_e6b5e668_uniq` UNIQUE (`provider`, `uid`); (params ())
+(0.032) ALTER TABLE `social_auth_usersocialauth` ADD CONSTRAINT `social_auth_usersocialauth_provider_uid_e6b5e668_uniq` UNIQUE (`provider`, `uid`); args=()
+ALTER TABLE `social_auth_code` ADD CONSTRAINT `social_auth_code_email_code_801b2d02_uniq` UNIQUE (`email`, `code`); (params ())
+(0.039) ALTER TABLE `social_auth_code` ADD CONSTRAINT `social_auth_code_email_code_801b2d02_uniq` UNIQUE (`email`, `code`); args=()
+ALTER TABLE `social_auth_nonce` ADD CONSTRAINT `social_auth_nonce_server_url_timestamp_salt_f6284463_uniq` UNIQUE (`server_url`, `timestamp`, `salt`); (params ())
+(0.037) ALTER TABLE `social_auth_nonce` ADD CONSTRAINT `social_auth_nonce_server_url_timestamp_salt_f6284463_uniq` UNIQUE (`server_url`, `timestamp`, `salt`); args=()
+(0.001) SHOW FULL TABLES; args=None
+(0.006) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('default', '0001_initial', '2019-02-28 22:31:32.538737'); args=['default', '0001_initial', '2019-02-28 22:31:32.538737']
+(0.000) SHOW FULL TABLES; args=None
+(0.007) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_auth', '0001_initial', '2019-02-28 22:31:32.546406'); args=['social_auth', '0001_initial', '2019-02-28 22:31:32.546406']
+CREATE INDEX `social_auth_code_code_a2393167` ON `social_auth_code` (`code`); (params ())
+(0.044) CREATE INDEX `social_auth_code_code_a2393167` ON `social_auth_code` (`code`); args=()
+ALTER TABLE `social_auth_usersocialauth` ADD CONSTRAINT `social_auth_usersoci_user_id_17d28448_fk_createAcc` FOREIGN KEY (`user_id`) REFERENCES `createAccount_myuser` (`id`); (params ())
+(0.114) ALTER TABLE `social_auth_usersocialauth` ADD CONSTRAINT `social_auth_usersoci_user_id_17d28448_fk_createAcc` FOREIGN KEY (`user_id`) REFERENCES `createAccount_myuser` (`id`); args=()
+(0.004) 
+            SELECT kc.`constraint_name`, kc.`column_name`,
+                kc.`referenced_table_name`, kc.`referenced_column_name`
+            FROM information_schema.key_column_usage AS kc
+            WHERE
+                kc.table_schema = DATABASE() AND
+                kc.table_name = 'social_auth_usersocialauth'
+            ORDER BY kc.`ordinal_position`
+        ; args=['social_auth_usersocialauth']
+(0.000) 
+            SELECT c.constraint_name, c.constraint_type
+            FROM information_schema.table_constraints AS c
+            WHERE
+                c.table_schema = DATABASE() AND
+                c.table_name = 'social_auth_usersocialauth'
+        ; args=['social_auth_usersocialauth']
+(0.000) SHOW INDEX FROM `social_auth_usersocialauth`; args=None
+ALTER TABLE `social_auth_usersocialauth` DROP FOREIGN KEY `social_auth_usersoci_user_id_17d28448_fk_createAcc`; (params ())
+(0.003) ALTER TABLE `social_auth_usersocialauth` DROP FOREIGN KEY `social_auth_usersoci_user_id_17d28448_fk_createAcc`; args=()
+ALTER TABLE `social_auth_usersocialauth` ADD CONSTRAINT `social_auth_usersoci_user_id_17d28448_fk_createAcc` FOREIGN KEY (`user_id`) REFERENCES `createAccount_myuser` (`id`); (params ())
+(0.123) ALTER TABLE `social_auth_usersocialauth` ADD CONSTRAINT `social_auth_usersoci_user_id_17d28448_fk_createAcc` FOREIGN KEY (`user_id`) REFERENCES `createAccount_myuser` (`id`); args=()
+(0.000) SHOW FULL TABLES; args=None
+(0.005) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('default', '0002_add_related_name', '2019-02-28 22:31:32.860203'); args=['default', '0002_add_related_name', '2019-02-28 22:31:32.860203']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_auth', '0002_add_related_name', '2019-02-28 22:31:32.866272'); args=['social_auth', '0002_add_related_name', '2019-02-28 22:31:32.866272']
+ALTER TABLE `social_auth_code` MODIFY `email` varchar(254) NOT NULL; (params [])
+(0.010) ALTER TABLE `social_auth_code` MODIFY `email` varchar(254) NOT NULL; args=[]
+(0.001) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('default', '0003_alter_email_max_length', '2019-02-28 22:31:32.883815'); args=['default', '0003_alter_email_max_length', '2019-02-28 22:31:32.883815']
+(0.000) SHOW FULL TABLES; args=None
+(0.008) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_auth', '0003_alter_email_max_length', '2019-02-28 22:31:32.886001'); args=['social_auth', '0003_alter_email_max_length', '2019-02-28 22:31:32.886001']
+(0.001) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('default', '0004_auto_20160423_0400', '2019-02-28 22:31:32.902168'); args=['default', '0004_auto_20160423_0400', '2019-02-28 22:31:32.902168']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_auth', '0004_auto_20160423_0400', '2019-02-28 22:31:32.904761'); args=['social_auth', '0004_auto_20160423_0400', '2019-02-28 22:31:32.904761']
+ALTER TABLE `social_auth_association` ADD CONSTRAINT `social_auth_association_server_url_handle_078befa2_uniq` UNIQUE (`server_url`, `handle`); (params ())
+(0.032) ALTER TABLE `social_auth_association` ADD CONSTRAINT `social_auth_association_server_url_handle_078befa2_uniq` UNIQUE (`server_url`, `handle`); args=()
+(0.001) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_auth', '0005_auto_20160727_2333', '2019-02-28 22:31:32.944337'); args=['social_auth', '0005_auto_20160727_2333', '2019-02-28 22:31:32.944337']
+CREATE TABLE `social_auth_partial` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `token` varchar(32) NOT NULL, `next_step` smallint UNSIGNED NOT NULL, `backend` varchar(32) NOT NULL, `data` longtext NOT NULL); (params None)
+(0.047) CREATE TABLE `social_auth_partial` (`id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY, `token` varchar(32) NOT NULL, `next_step` smallint UNSIGNED NOT NULL, `backend` varchar(32) NOT NULL, `data` longtext NOT NULL); args=None
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_partial'; args=['social_auth_partial']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_partial'; args=['social_auth_partial']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_partial'; args=['social_auth_partial']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_partial'; args=['social_auth_partial']
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_partial'; args=['social_auth_partial']
+(0.000) SHOW FULL TABLES; args=None
+(0.004) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0006_partial', '2019-02-28 22:31:33.001036'); args=['social_django', '0006_partial', '2019-02-28 22:31:33.001036']
+CREATE INDEX `social_auth_partial_token_3017fea3` ON `social_auth_partial` (`token`); (params ())
+(0.043) CREATE INDEX `social_auth_partial_token_3017fea3` ON `social_auth_partial` (`token`); args=()
+ALTER TABLE `social_auth_code` ADD COLUMN `timestamp` datetime(6) DEFAULT %s NOT NULL; (params ['2019-02-28 22:31:33.057012'])
+(0.090) ALTER TABLE `social_auth_code` ADD COLUMN `timestamp` datetime(6) DEFAULT '2019-02-28 22:31:33.057012' NOT NULL; args=['2019-02-28 22:31:33.057012']
+ALTER TABLE `social_auth_code` ALTER COLUMN `timestamp` DROP DEFAULT; (params [])
+(0.002) ALTER TABLE `social_auth_code` ALTER COLUMN `timestamp` DROP DEFAULT; args=[]
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_code'; args=['social_auth_code']
+(0.001) SHOW FULL TABLES; args=None
+(0.005) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0007_code_timestamp', '2019-02-28 22:31:33.152447'); args=['social_django', '0007_code_timestamp', '2019-02-28 22:31:33.152447']
+CREATE INDEX `social_auth_code_timestamp_176b341f` ON `social_auth_code` (`timestamp`); (params ())
+(0.044) CREATE INDEX `social_auth_code_timestamp_176b341f` ON `social_auth_code` (`timestamp`); args=()
+ALTER TABLE `social_auth_partial` ADD COLUMN `timestamp` datetime(6) DEFAULT %s NOT NULL; (params ['2019-02-28 22:31:33.206778'])
+(0.089) ALTER TABLE `social_auth_partial` ADD COLUMN `timestamp` datetime(6) DEFAULT '2019-02-28 22:31:33.206778' NOT NULL; args=['2019-02-28 22:31:33.206778']
+ALTER TABLE `social_auth_partial` ALTER COLUMN `timestamp` DROP DEFAULT; (params [])
+(0.007) ALTER TABLE `social_auth_partial` ALTER COLUMN `timestamp` DROP DEFAULT; args=[]
+(0.000) SELECT engine FROM information_schema.tables WHERE table_name = 'social_auth_partial'; args=['social_auth_partial']
+(0.000) SHOW FULL TABLES; args=None
+(0.007) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0008_partial_timestamp', '2019-02-28 22:31:33.306146'); args=['social_django', '0008_partial_timestamp', '2019-02-28 22:31:33.306146']
+CREATE INDEX `social_auth_partial_timestamp_50f2119f` ON `social_auth_partial` (`timestamp`); (params ())
+(0.043) CREATE INDEX `social_auth_partial_timestamp_50f2119f` ON `social_auth_partial` (`timestamp`); args=()
+(0.001) SHOW FULL TABLES; args=None
+(0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.000) SHOW FULL TABLES; args=None
+(0.007) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0002_add_related_name', '2019-02-28 22:31:33.359688'); args=['social_django', '0002_add_related_name', '2019-02-28 22:31:33.359688']
+(0.001) SHOW FULL TABLES; args=None
+(0.006) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0003_alter_email_max_length', '2019-02-28 22:31:33.368149'); args=['social_django', '0003_alter_email_max_length', '2019-02-28 22:31:33.368149']
+(0.001) SHOW FULL TABLES; args=None
+(0.008) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0004_auto_20160423_0400', '2019-02-28 22:31:33.375789'); args=['social_django', '0004_auto_20160423_0400', '2019-02-28 22:31:33.375789']
+(0.000) SHOW FULL TABLES; args=None
+(0.007) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0001_initial', '2019-02-28 22:31:33.385511'); args=['social_django', '0001_initial', '2019-02-28 22:31:33.385511']
+(0.000) SHOW FULL TABLES; args=None
+(0.001) INSERT INTO `django_migrations` (`app`, `name`, `applied`) VALUES ('social_django', '0005_auto_20160727_2333', '2019-02-28 22:31:33.393387'); args=['social_django', '0005_auto_20160727_2333', '2019-02-28 22:31:33.393387']
+(0.001) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'; args=('admin',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('admin', 'logentry'); args=('admin', 'logentry')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'admin' AND `django_content_type`.`model` = 'logentry'); args=('admin', 'logentry')
+(0.001) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (1) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'), ('Can view log entry', 1, 'view_logentry'); args=('Can add log entry', 1, 'add_logentry', 'Can change log entry', 1, 'change_logentry', 'Can delete log entry', 1, 'delete_logentry', 'Can view log entry', 1, 'view_logentry')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'; args=('admin',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'; args=('auth',)
+(0.003) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('auth', 'permission'), ('auth', 'group'); args=('auth', 'permission', 'auth', 'group')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'permission'); args=('auth', 'permission')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'auth' AND `django_content_type`.`model` = 'group'); args=('auth', 'group')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (2, 3) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2, 3)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add permission', 2, 'add_permission'), ('Can change permission', 2, 'change_permission'), ('Can delete permission', 2, 'delete_permission'), ('Can view permission', 2, 'view_permission'), ('Can add group', 3, 'add_group'), ('Can change group', 3, 'change_group'), ('Can delete group', 3, 'delete_group'), ('Can view group', 3, 'view_group'); args=('Can add permission', 2, 'add_permission', 'Can change permission', 2, 'change_permission', 'Can delete permission', 2, 'delete_permission', 'Can view permission', 2, 'view_permission', 'Can add group', 3, 'add_group', 'Can change group', 3, 'change_group', 'Can delete group', 3, 'delete_group', 'Can view group', 3, 'view_group')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'; args=('auth',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'; args=('contenttypes',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('contenttypes', 'contenttype'); args=('contenttypes', 'contenttype')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'contenttypes' AND `django_content_type`.`model` = 'contenttype'); args=('contenttypes', 'contenttype')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (4) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(4,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add content type', 4, 'add_contenttype'), ('Can change content type', 4, 'change_contenttype'), ('Can delete content type', 4, 'delete_contenttype'), ('Can view content type', 4, 'view_contenttype'); args=('Can add content type', 4, 'add_contenttype', 'Can change content type', 4, 'change_contenttype', 'Can delete content type', 4, 'delete_contenttype', 'Can view content type', 4, 'view_contenttype')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'; args=('contenttypes',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'; args=('sessions',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('sessions', 'session'); args=('sessions', 'session')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'sessions' AND `django_content_type`.`model` = 'session'); args=('sessions', 'session')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (5) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add session', 5, 'add_session'), ('Can change session', 5, 'change_session'), ('Can delete session', 5, 'delete_session'), ('Can view session', 5, 'view_session'); args=('Can add session', 5, 'add_session', 'Can change session', 5, 'change_session', 'Can delete session', 5, 'delete_session', 'Can view session', 5, 'view_session')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'; args=('sessions',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'createAccount'; args=('createAccount',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('createAccount', 'myuser'); args=('createAccount', 'myuser')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'createAccount' AND `django_content_type`.`model` = 'myuser'); args=('createAccount', 'myuser')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (6) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(6,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add Person', 6, 'add_myuser'), ('Can change Person', 6, 'change_myuser'), ('Can delete Person', 6, 'delete_myuser'), ('Can view Person', 6, 'view_myuser'); args=('Can add Person', 6, 'add_myuser', 'Can change Person', 6, 'change_myuser', 'Can delete Person', 6, 'delete_myuser', 'Can view Person', 6, 'view_myuser')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'createAccount'; args=('createAccount',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'about'; args=('about',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'about'; args=('about',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'eventEdit'; args=('eventEdit',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('eventEdit', 'event'); args=('eventEdit', 'event')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'eventEdit' AND `django_content_type`.`model` = 'event'); args=('eventEdit', 'event')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (7) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(7,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add event', 7, 'add_event'), ('Can change event', 7, 'change_event'), ('Can delete event', 7, 'delete_event'), ('Can view event', 7, 'view_event'); args=('Can add event', 7, 'add_event', 'Can change event', 7, 'change_event', 'Can delete event', 7, 'delete_event', 'Can view event', 7, 'view_event')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'eventEdit'; args=('eventEdit',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'events'; args=('events',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('events', 'event'); args=('events', 'event')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'events' AND `django_content_type`.`model` = 'event'); args=('events', 'event')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (8) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(8,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add event', 8, 'add_event'), ('Can change event', 8, 'change_event'), ('Can delete event', 8, 'delete_event'), ('Can view event', 8, 'view_event'); args=('Can add event', 8, 'add_event', 'Can change event', 8, 'change_event', 'Can delete event', 8, 'delete_event', 'Can view event', 8, 'view_event')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'events'; args=('events',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'orgAdminPanel'; args=('orgAdminPanel',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('orgAdminPanel', 'event'); args=('orgAdminPanel', 'event')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'orgAdminPanel' AND `django_content_type`.`model` = 'event'); args=('orgAdminPanel', 'event')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (9) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(9,)
+(0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add event', 9, 'add_event'), ('Can change event', 9, 'change_event'), ('Can delete event', 9, 'delete_event'), ('Can view event', 9, 'view_event'); args=('Can add event', 9, 'add_event', 'Can change event', 9, 'change_event', 'Can delete event', 9, 'delete_event', 'Can view event', 9, 'view_event')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'orgAdminPanel'; args=('orgAdminPanel',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'profileView'; args=('profileView',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'profileView'; args=('profileView',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'yourOrganizations'; args=('yourOrganizations',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'yourOrganizations'; args=('yourOrganizations',)
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'social_django'; args=('social_django',)
+(0.000) INSERT INTO `django_content_type` (`app_label`, `model`) VALUES ('social_django', 'association'), ('social_django', 'code'), ('social_django', 'nonce'), ('social_django', 'usersocialauth'), ('social_django', 'partial'); args=('social_django', 'association', 'social_django', 'code', 'social_django', 'nonce', 'social_django', 'usersocialauth', 'social_django', 'partial')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'social_django' AND `django_content_type`.`model` = 'association'); args=('social_django', 'association')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'social_django' AND `django_content_type`.`model` = 'code'); args=('social_django', 'code')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'social_django' AND `django_content_type`.`model` = 'nonce'); args=('social_django', 'nonce')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'social_django' AND `django_content_type`.`model` = 'usersocialauth'); args=('social_django', 'usersocialauth')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`app_label` = 'social_django' AND `django_content_type`.`model` = 'partial'); args=('social_django', 'partial')
+(0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON (`auth_permission`.`content_type_id` = `django_content_type`.`id`) WHERE `auth_permission`.`content_type_id` IN (10, 11, 12, 13, 14) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(10, 11, 12, 13, 14)
+(0.001) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add association', 10, 'add_association'), ('Can change association', 10, 'change_association'), ('Can delete association', 10, 'delete_association'), ('Can view association', 10, 'view_association'), ('Can add code', 11, 'add_code'), ('Can change code', 11, 'change_code'), ('Can delete code', 11, 'delete_code'), ('Can view code', 11, 'view_code'), ('Can add nonce', 12, 'add_nonce'), ('Can change nonce', 12, 'change_nonce'), ('Can delete nonce', 12, 'delete_nonce'), ('Can view nonce', 12, 'view_nonce'), ('Can add user social auth', 13, 'add_usersocialauth'), ('Can change user social auth', 13, 'change_usersocialauth'), ('Can delete user social auth', 13, 'delete_usersocialauth'), ('Can view user social auth', 13, 'view_usersocialauth'), ('Can add partial', 14, 'add_partial'), ('Can change partial', 14, 'change_partial'), ('Can delete partial', 14, 'delete_partial'), ('Can view partial', 14, 'view_partial'); args=('Can add association', 10, 'add_association', 'Can change association', 10, 'change_association', 'Can delete association', 10, 'delete_association', 'Can view association', 10, 'view_association', 'Can add code', 11, 'add_code', 'Can change code', 11, 'change_code', 'Can delete code', 11, 'delete_code', 'Can view code', 11, 'view_code', 'Can add nonce', 12, 'add_nonce', 'Can change nonce', 12, 'change_nonce', 'Can delete nonce', 12, 'delete_nonce', 'Can view nonce', 12, 'view_nonce', 'Can add user social auth', 13, 'add_usersocialauth', 'Can change user social auth', 13, 'change_usersocialauth', 'Can delete user social auth', 13, 'delete_usersocialauth', 'Can view user social auth', 13, 'view_usersocialauth', 'Can add partial', 14, 'add_partial', 'Can change partial', 14, 'change_partial', 'Can delete partial', 14, 'delete_partial', 'Can view partial', 14, 'view_partial')
+(0.000) SELECT `django_content_type`.`id`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'social_django'; args=('social_django',)
+(0.000) SELECT @@SQL_AUTO_IS_NULL; args=None
+(0.000) SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED; args=None
+(0.000) SHOW FULL TABLES; args=None
+(0.000) SELECT `django_migrations`.`app`, `django_migrations`.`name` FROM `django_migrations`; args=()
+(0.001) SELECT `createAccount_myuser`.`id`, `createAccount_myuser`.`password`, `createAccount_myuser`.`last_login`, `createAccount_myuser`.`email`, `createAccount_myuser`.`first_name`, `createAccount_myuser`.`last_name`, `createAccount_myuser`.`date_of_birth`, `createAccount_myuser`.`profile_pic`, `createAccount_myuser`.`domain_name`, `createAccount_myuser`.`description`, `createAccount_myuser`.`is_admin` FROM `createAccount_myuser` WHERE `createAccount_myuser`.`email` = 'the@gmail.com'; args=('the@gmail.com',)
+(0.003) INSERT INTO `createAccount_myuser` (`password`, `last_login`, `email`, `first_name`, `last_name`, `date_of_birth`, `profile_pic`, `domain_name`, `description`, `is_admin`) VALUES ('pbkdf2_sha256$150000$cSH3bwFHavRY$OlHCe4P54Q9M1Q8A9chV4L3bmMWnTs+T0/CyutcmojQ=', NULL, 'the@gmail.com', 'jim', 'samson', '3000-10-10', 'thispersondoesnotexist.jpg', 'IAIDS', 'Hi, I\'m a volunteer.', 0); args=['pbkdf2_sha256$150000$cSH3bwFHavRY$OlHCe4P54Q9M1Q8A9chV4L3bmMWnTs+T0/CyutcmojQ=', None, 'the@gmail.com', 'jim', 'samson', '3000-10-10', 'thispersondoesnotexist.jpg', 'IAIDS', "Hi, I'm a volunteer.", False]
+(0.002) UPDATE `createAccount_myuser` SET `password` = 'pbkdf2_sha256$150000$QkWdD8jhpOL6$LIMKY3Mj3QegkDhmq0LRpQ2QiBuOkj/mjMtn3JqWLWA=', `last_login` = NULL, `email` = 'the@gmail.com', `first_name` = 'jim', `last_name` = 'samson', `date_of_birth` = '3000-10-10', `profile_pic` = 'thispersondoesnotexist.jpg', `domain_name` = 'IAIDS', `description` = 'Hi, I\'m a volunteer.', `is_admin` = 1 WHERE `createAccount_myuser`.`id` = 1; args=('pbkdf2_sha256$150000$QkWdD8jhpOL6$LIMKY3Mj3QegkDhmq0LRpQ2QiBuOkj/mjMtn3JqWLWA=', 'the@gmail.com', 'jim', 'samson', '3000-10-10', 'thispersondoesnotexist.jpg', 'IAIDS', "Hi, I'm a volunteer.", True, 1)

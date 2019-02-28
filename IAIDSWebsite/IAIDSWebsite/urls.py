@@ -7,7 +7,7 @@ from profileEditor.views import profileImage
 
 
 urlpatterns = [
-    path('', include('home.urls'), name='home'),
+    path('', include('home.urls')),
     path('about/', include('about.urls')),
     path('eventEdit/', include('eventEdit.urls')),
     path('events/', include('events.urls')),
