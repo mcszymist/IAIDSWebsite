@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.orgAdminPanel, name='orgAdminPanel'),
+    path('', views.add_event, name='add_event'),
 ]

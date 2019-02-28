@@ -162,33 +162,34 @@
 <!-- For events Table -->
 <div class="reveal" id="addRowEvent" data-reveal>
     <h1>New Event</h1>
-    <form id="addEvent">
+    <form id="addEvent" method = "post"> {% csrf_token %}
         <div class="row">
             <div class="large-8 columns">
-                <label>Event Title
-                    <input type="text" id="event" placeholder="Food Bank Server" />
+                <label>Name
+                    {{form.name}}
                 </label>
             </div>
             <div class="large-4 columns">
                 <label>Location
-                    <input type="text" id="location" placeholder="Fairbanks" />
+                    {{form.location}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-4 columns">
                 <label>Positions Needed
-                    <input type="number" id="position" placeholder="10" />
+                    {{form.personel}}
                 </label>
             </div>
             <div class="large-4 columns">
                 <label>Date
-                    <input type="text" id="date" placeholder="2012-02-18" />
+                    {{form.date}}
                 </label>
             </div>
             <div class="large-4 columns">
-                <label>Time</label>
-                <input type="text" id="time" placeholder="9:00 pm" />
+                <label>Time
+                    {{form.time}}
+                </label>
             </div>
         </div>
         <div class="row">
@@ -207,6 +208,12 @@
     <button class="close-button" data-close aria-label="Close modal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
+
+    <!-- <form method="post">
+        {% csrf_token %}
+        {{form}}
+    <input type="submit" value="Submit">
+    </form> -->
 </div>
 
 <script>
@@ -214,10 +221,10 @@ $('#buttonEvent').click(function (e) {
     var event = $("#event").val();
     var location = $("#location").val();
     var date = $("#date").val();
-    var position = $("#position").val();
+    var position = $("#personel").val();
     eventsTable.row.add( [
                         event,
-                        position,
+                        personel,
                         date,
                         location,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
@@ -225,7 +232,7 @@ $('#buttonEvent').click(function (e) {
     $("#event").val("");
     $("#location").val("");
     $("#date").val("");
-    $("#position").val("");
+    $("#personel").val("");
     $("#time").val("");
     $("#des").val("");
 });

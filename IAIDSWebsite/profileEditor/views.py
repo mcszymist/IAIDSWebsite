@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from IAIDSWebsite import settings
 from createAccount import models
 from django.contrib import messages
+from django.shortcuts import render, redirect
 
 from .forms import profileEditForm
 from django.contrib.auth.models import User
@@ -23,16 +24,17 @@ def profileImage(request,file_name):
 def edit(request):
     curr_email = request.user.email
     curr_user = models.MyUser.objects.get(email=curr_email)
-
     form = profileEditForm(request.POST, request.FILES,
                                  instance=curr_user)
     if request.method == 'POST':
-
-        #form = profileEditForm(instance=current_user)
+        form = profileEditForm(request.POST, request.FILES,
+                                 instance=curr_user)
         if form.is_valid():
-            form.save()
-            #return HttpResponseRedirect('profileManage')
+            curr_user = form.save()
+            return redirect('profileManage')  
+
     else:
-        form = profileEditForm(request.POST)
+        form = profileEditForm(instance = request.user)
+    
     return render(request, 'profileEditor/profileEdit.html', {'form': form})
 
