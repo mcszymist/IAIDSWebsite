@@ -9,9 +9,6 @@ sudo apt-get install dos2unix
 # Install pip3
 sudo apt-get install python3-pip -y
 
-# Install Django
-pip3 install django
-
 # Install mysql server
 sudo apt-get install mysql-server -y
 
@@ -29,7 +26,7 @@ mkdir IAIDSWebsite/images/
 sudo apt-get install libmysqlclient-dev -y
 
 # Instal dependencies for the project
-pip3 install -r /home/vagrant/IAIDSWebsite/requirements.txt
+sudo pip3 install -r /home/vagrant/IAIDSWebsite/requirements.txt
 
 # Add firewall rules for django
 sudo ufw allow 8000
