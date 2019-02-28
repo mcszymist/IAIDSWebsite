@@ -1,7 +1,8 @@
 {% extends "main_template.html" %}
 {% load static %}
-
 {% block middleColumnAuthorizedUser %}
+{% if messages %}
+{% endif %}
 <div class="spaced-row">
     <div class="row">
         <div class="columns large-8">
@@ -25,7 +26,7 @@
                     <div class="profile-card-about">
                         <h5 class="about-title separator-left">About Me</h5>
                         <p class="about-content">
-							<form action="{% url 'profileManage' %}" method="post">
+							<form method="post">
 								{% csrf_token %}
 								{{form}}
 								<input type="submit" value="Submit">

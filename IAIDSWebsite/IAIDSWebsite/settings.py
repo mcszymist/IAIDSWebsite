@@ -26,7 +26,6 @@ SECRET_KEY = 'dz(i-c2-6v7)6%becvhm4)y9@bk0ybfq*-yg2&+j$i7)$gr%ax'
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','4ca324a2.ngrok.io']
-
 AUTH_USER_MODEL = 'createAccount.MyUser'
 
 #Login page code
@@ -118,6 +117,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': './debug.log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
