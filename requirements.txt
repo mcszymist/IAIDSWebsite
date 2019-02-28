@@ -33,6 +33,7 @@ python-debian==0.1.32
 pytz==2018.7
 pyxdg==0.25
 PyYAML==4.2b1
+social-auth-app-django==3.1.0
 # requests==2.20.0
 # requests-unixsocket==0.1.5
 # SecretStorage==2.3.1
