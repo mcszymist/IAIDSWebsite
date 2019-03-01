@@ -7,9 +7,13 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ('name', 'location', 'personel', 'date', 'time')
+        fields = ('name', 'location', 'personelMax', 'startdate','enddate', 'description')
         widgets = {
-            'name' : forms.TextInput(attrs={'placeholder': 'Name'}),
-            # 'date' : forms.DateField(widget=forms.SelectDateWidget(empty_label="Nothing")),
+            'name' : forms.TextInput(attrs={'placeholder': 'Event Title'}),
+			'location' : forms.TextInput(attrs={'placeholder': 'Event Title'}),
+			'personalMax' : forms.NumberInput(),
+            'startdate' : forms.DateTimeInput(),
+			'enddate' : forms.DateTimeInput(),
+			'description' : forms.Textarea(),
         }
 
