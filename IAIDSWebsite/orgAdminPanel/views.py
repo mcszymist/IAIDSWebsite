@@ -1,10 +1,12 @@
 
 from .forms import EventForm
 from django.shortcuts import render, redirect
+from .models import Event
 
 # Create your views here.
 def orgAdminPanel(request):
-    return render(request, 'orgAdminPanel/orgAdminPanel.html')
+    allEvents = Event.objects.all()
+    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'allEvents': allEvents})
 
 def add_event(request):
     if request.method == 'POST':

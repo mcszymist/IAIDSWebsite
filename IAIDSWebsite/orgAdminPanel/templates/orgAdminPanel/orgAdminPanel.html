@@ -178,24 +178,24 @@
         <div class="row">
             <div class="large-4 columns">
                 <label>Positions Needed
-                    {{form.personel}}
+                    {{form.personelMax}}
                 </label>
             </div>
             <div class="large-4 columns">
-                <label>Date
-                    {{form.date}}
+                <label>Start
+                    {{form.startdate}}
                 </label>
             </div>
             <div class="large-4 columns">
-                <label>Time
-                    {{form.time}}
+                <label>End
+                    {{form.enddate}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
                 <label>Description
-                    <textarea id="des" placeholder="Looking for servers to help serve food to the homeless"></textarea>
+                    {{form.description}}
                 </label>
             </div>
         </div>
@@ -217,6 +217,8 @@
 </div>
 
 <script>
+console.log( {{ request.GET.allEvents }})
+console.log("printing Logs")
 $('#buttonEvent').click(function (e) {
     var event = $("#event").val();
     var location = $("#location").val();
