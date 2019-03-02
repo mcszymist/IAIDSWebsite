@@ -13,10 +13,9 @@ def add_event(request):
         form = EventForm(request.POST)
         if form.is_valid():
             event = form.save()
-            return redirect('./')  
 
     else:
         form = EventForm()
     
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'form': form})
+    
 
