@@ -22,19 +22,17 @@ class Event(models.Model):
     def __str__(self):
         return '%s %s' % (self.name,self.id)
 
+
 class EventVol(models.Model):
     eventID = models.ManyToManyField(Event)
     userID = models.ManyToManyField(MyUser)
     status = models.BooleanField(default=False)
-    def __str__(self):
-        return '%s %s' % (self.userID,self.eventID)
 
 class OrganizationUsers(models.Model):
     orgID = models.ManyToManyField(Organization)
     userID = models.ManyToManyField(MyUser)
     privledge = models.PositiveIntegerField(default=0)
-    def __str__(self):
-        return '%s %s' % (self.userID,self.orgID)
+
 
 	
 
