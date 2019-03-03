@@ -2,14 +2,7 @@ from django import forms
 from orgAdminPanel.models import Organization
 from django.forms import ModelForm
 from django.forms import SelectDateWidget
-
-class OrganizationForm(forms.ModelForm):
-
-    class Meta:
-        model = Organization
-        fields = ('name', 'description')
-        widgets = {
-            'name' : forms.TextInput(attrs={'placeholder': 'Event Title'}),
-			'description' : forms.Textarea(),
-        }
-
+    
+class OrganizationForm(forms.Form): # or forms.ModelForm
+    name = forms.CharField(max_length=120)
+    description = forms.CharField()

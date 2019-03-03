@@ -27,37 +27,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td><a href='/orgAdminPanel?org="IAIDS"'>IAIDS</a></td>
-                    <td>5</td>
-<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                {% for org in allOrgs %}
+                    <tr>
+                        <td><a href='/orgAdminPanel?org="'{{org}}'"'>{{org}}</a></td>
+                        <td>0</td>
+                        <td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
-                </tr>
-                <tr>
-                    <td><a href='/orgAdminPanel?org="BlueCross"'>BlueCross</a></td>
-                    <td>2</td>
-<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                </tr>
-                <tr>
-                    <td><a href='/orgAdminPanel?org="UAF"'>UAF</a></td>
-                    <td>1</td>
-<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                </tr>
-                <tr>
-                    <td><a href='/orgAdminPanel?org="State"'>State</a></td>
-                    <td>3</td>
-<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                </tr>
-                <tr>
-                    <td><a href='/orgAdminPanel?org="BGC"'>BGC</a></td>
-                    <td>3</td>
-<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                </tr>
-                <tr>
-                    <td><a href='/orgAdminPanel?org="IAIDS"'>IAIDS</a></td>
-                    <td>2</td>
-<td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                </tr>
+                    </tr>
+                {% endfor %}
             </tbody>
             <tfoot>
                 <tr>
@@ -69,10 +46,11 @@
         </table>
 	</div>
 </div>
+
 <!-- add row reveals -->
 <div class="reveal" id="addRow" data-reveal>
     <h1>New Event</h1>
-    <form id="addRowOrg">
+    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
         <div class="row">
             <div class="large-12 columns">
                 <label>Organization
@@ -83,14 +61,15 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>Desciption
-                    {{form.description}}
+                {{form.description}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="offest-large-8 large-4 columns">
-                <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>
-            </div>
+                <!-- <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>-->
+                <input type="Submit" name="submit" value="Submit" data-close/>
+                </div>
         </div>
     </form>
     <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -98,17 +77,42 @@
     </button>
 </div>
 <script>
-$('#buttonUser').click(function (e) {
-    var org = $("#org").val();
-    var des = $("#des").val();
-    table.row.add( [
-                        "<a href='/orgAdminPanel?org=" + org +"'>" + org +"</a>",
-                        des,
-						"<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
-                        ] ).draw( false );
-	$("#org").val("");
-    $("#des").val("");
-});
+$(document).ready(function(){
+    var $myForm = $('.my-ajax-form')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        var name = $("#id_name").val()
+        table.row.add( [
+            "<a href='/orgAdminPanel?org='" + name + "'>" + name + "</a>",
+            "0",
+            "<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+             ] ).draw( false );
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $myForm[0].reset(); // reset form data
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+})
 
 var table = $('#table').DataTable({
     bInfo: false,
@@ -125,8 +129,8 @@ var table = $('#table').DataTable({
     ],
     columns: [
         { "width": "35%" },
-        { "width": "10%" },
-        { "width": "40%" }
+        { "width": "60%" },
+        { "width": "5%" }
     ]
 });
 $('#table').on("click", "#deleteOrg", function() {
