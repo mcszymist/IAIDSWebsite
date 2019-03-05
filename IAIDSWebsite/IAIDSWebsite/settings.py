@@ -27,11 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','4ca324a2.ngrok.io']
 AUTH_USER_MODEL = 'createAccount.MyUser'
+ACCOUNT_ACTIVATION_DAYS = 7
 
 #Login page code
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'volunteerfairbanks@gmail.com'
+EMAIL_HOST_PASSWORD = 'changeit12'
+EMAIL_PORT = 587
 
 # Application definition
 
@@ -51,7 +57,7 @@ INSTALLED_APPS = [
     'orgAdminPanel',
     'profileView',
     'yourOrganizations',
-    'social_django'
+    'social_django',
 ]
 
 MIDDLEWARE = [

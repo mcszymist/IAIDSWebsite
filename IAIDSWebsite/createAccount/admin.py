@@ -10,12 +10,22 @@ from .models import MyUser
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput)
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    password2 = forms.CharField(label='Password confirmation', widget=forms.PasswordInput(attrs={'placeholder': 'Re-Enter Password'}))
 
     class Meta:
         model = MyUser
-        fields = ('email', 'first_name', 'last_name', 'date_of_birth', 'profile_pic', 'domain_name')
+        fields = ('email', 'first_name', 'last_name', 'password1' ,'password2')
+
+        widgets = {
+
+            'first_name': forms.TextInput(
+                attrs={'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(
+                attrs={'placeholder': 'Last Name'}),
+            'email': forms.TextInput(
+                attrs={'placeholder': 'Email'}),
+        }
 
     
     def clean_password2(self):
@@ -40,7 +50,7 @@ class UserChangeForm(forms.ModelForm):
         
     class Meta:
         model = MyUser
-        fields = 'first_name', 'last_name', 'date_of_birth', 'profile_pic', 'domain_name'
+        fields = 'first_name', 'last_name', 'date_of_birth', 'profile_pic','is_active', 'is_admin'
 
     def clean_password(self):
     # # Regardless of what the user provides, return the initial value.
@@ -57,11 +67,12 @@ class UserAdmin(BaseUserAdmin):
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ('email', 'first_name', 'last_name', 'is_admin', 'profile_pic', 'domain_name','id')
+
+    list_display = ('email', 'first_name', 'last_name', 'is_admin', 'profile_pic')
     list_filter = ('is_admin',)
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'profile_pic', 'domain_name')}),
-        ('Personal info', {'fields': ('first_name', 'last_name', 'date_of_birth',)}),
+        (None, {'fields': ('email', 'password', 'profile_pic',)}),
+        ('Personal info', {'fields': ('first_name', 'last_name', )}),
         ('Permissions', {'fields': ('is_admin',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
@@ -69,7 +80,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'date_of_birth','first_name', 'last_name' 'password1', 'password2')}
+            'fields': ('email', 'first_name', 'last_name' 'password1', 'password2')}
         ),
     )
     search_fields = ('email',)

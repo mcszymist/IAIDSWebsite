@@ -11,7 +11,7 @@ from datetime import datetime
 from IAIDSWebsite.validators import validate_file_size
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, first_name, last_name, password=None):
+    def create_user(self, email,first_name, last_name, password=None):
         if not email:
             raise ValueError('Users must provide an email address')
         
@@ -19,18 +19,16 @@ class MyUserManager(BaseUserManager):
             email = self.normalize_email(email),
             first_name = first_name,
             last_name = last_name,
-            date_of_birth = date_of_birth
-        )
+
 
         user.set_password(password)
         user.save(using = self._db)
         return user
 
-    def create_superuser(self, email, password, date_of_birth, first_name, last_name):
+    def create_superuser(self, email, password, first_name, last_name):
         user = self.create_user(
             email,
             password=password,
-            date_of_birth = date_of_birth,
             first_name = first_name,
             last_name = last_name
 
@@ -54,26 +52,22 @@ class MyUser(AbstractBaseUser):
         return '/'.join(['profileEditor',file_name])
 
     email = models.EmailField(max_length= 255, unique = True)
+    is_active = models.BooleanField(default=True)
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
-    date_of_birth = models.DateField()
-    profile_pic = models.ImageField(upload_to=save_usr_pic, default="thispersondoesntexist.jpg")
-    domain_name = models.CharField(max_length=45, unique=True, default="IAIDS")
-    description = models.CharField(max_length=250, default="Hi, I'm a volunteer.")
-    id = models.AutoField(primary_key=True)
+
+    date_of_birth = models.DateField(null = True)
+    profile_pic = models.ImageField(null = True, upload_to=save_usr_pic, default="thispersondoesnotexist.jpg")
+    description = models.CharField(null = True, max_length=250, default="Hi, I'm a volunteer.")
+
  
     is_admin = models.BooleanField(default=False)
 
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['first_name', 'last_name']
     
-    class Meta:
-        verbose_name = "Person"
-        verbose_name_plural = "People"
-        ordering = ['domain_name']
-
     def __str__(self):
         return self.email
    
@@ -92,8 +86,7 @@ class MyUser(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
-    def __str__(self):
-        return self.domain_name
+    
 
 
 
