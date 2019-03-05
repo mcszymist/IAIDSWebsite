@@ -22,6 +22,9 @@ class EventFormView(FormView):
     
     def get_context_data(self, **kwargs):
         context = super(EventFormView, self).get_context_data(**kwargs)
+        org_name = self.request.GET.get('org')
+        self.request.session["org_name"] = org_name
+        #context['allEvents'] = Event.objects.all().filter(name=org_name)
         context['allEvents'] = Event.objects.all()
         return context
         

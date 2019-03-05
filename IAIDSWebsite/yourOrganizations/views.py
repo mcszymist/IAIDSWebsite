@@ -32,7 +32,8 @@ class OrganizationFormView(FormView):
     template_name  = 'yourOrganizations/yourOrganizations.html'
     success_url = '/yourOrganizations/'
     
-    def get_context_data(self, **kwargs):
+    
+    def get_context_data(self, **kwargs):      
         context = super(OrganizationFormView, self).get_context_data(**kwargs)
         context['allOrgs'] = Organization.objects.all()
         return context
