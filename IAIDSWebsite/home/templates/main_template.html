@@ -58,7 +58,7 @@
                             <a class="fi-list"></a>
                             <ul class="vertical menu">
                             </ul> -->
-                                <li><a href="{% url 'profileManage' %}" class="button-badge">
+                                <li><a href="#" class="button-badge">
                                         {{ user.first_name }}
                                         <!-- if user has messages in the inbox: not yet implemented -->
                                         {% if True %}
@@ -78,7 +78,6 @@
                                     </ul>
                                 </li>
                                 </li>
-                                <li><a href="{% url 'logout' %}"><i class="fi-power"></i></a></li>
                                 {% else %}
                                 <li><a href="{% url 'signup' %}">Create Account</a></li>
                                 <li><a href="{% url 'login' %}">Sign In</a></li>
