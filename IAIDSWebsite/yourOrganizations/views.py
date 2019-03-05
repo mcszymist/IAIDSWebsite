@@ -15,8 +15,18 @@ def DeleteOrg(request):
     return HttpResponse(json.dumps({'name': org_name}), content_type="application/json")
     
     
-    
-    
+def my_view(request): 
+    org_name = request.POST.get('name', '')
+    instance = get_object_or_404(Organization, name=org_name)
+    form = OrganizationForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        data = {
+                'message': "Successfully submitted form data."
+            }
+        return JsonResponse(data)
+    return JsonResponse(form.errors, status=400) 
+     
 class OrganizationFormView(FormView):
     form_class = OrganizationForm
     template_name  = 'yourOrganizations/yourOrganizations.html'
