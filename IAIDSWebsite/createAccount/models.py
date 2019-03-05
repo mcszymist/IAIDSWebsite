@@ -20,7 +20,6 @@ class MyUserManager(BaseUserManager):
             first_name = first_name,
             last_name = last_name,
             date_of_birth = date_of_birth
-
         )
 
         user.set_password(password)
@@ -58,9 +57,10 @@ class MyUser(AbstractBaseUser):
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
     date_of_birth = models.DateField()
-    profile_pic = models.ImageField(upload_to=save_usr_pic, default="thispersondoesnotexist.jpg")
+    profile_pic = models.ImageField(upload_to=save_usr_pic, default="thispersondoesntexist.jpg")
     domain_name = models.CharField(max_length=45, unique=True, default="IAIDS")
     description = models.CharField(max_length=250, default="Hi, I'm a volunteer.")
+    id = models.AutoField(primary_key=True)
  
     is_admin = models.BooleanField(default=False)
 
