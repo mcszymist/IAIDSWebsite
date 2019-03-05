@@ -10,15 +10,10 @@ def orgAdminPanel(request):
     allEvents = Event.objects.all()
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'allEvents': allEvents})
 
-def add_event(request):
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            event = form.save()
-
-    else:
-        form = EventForm()
-    
+def DeleteEvent(request):
+    name = request.POST.get('name', '')
+    instance = Organization.objects.get(name=name)
+    instance.delete()
     
 class EventFormView(FormView):
     form_class = EventForm

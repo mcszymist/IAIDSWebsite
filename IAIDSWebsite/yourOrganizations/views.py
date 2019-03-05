@@ -3,9 +3,20 @@ from orgAdminPanel.models import Organization
 from django.views.generic import FormView
 from .forms import OrganizationForm
 from django.http import JsonResponse
-
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+import json
 # Create your views here.
 
+def DeleteOrg(request):
+    org_name = request.POST.get('name', '')
+    instance = get_object_or_404(Organization, name=org_name)
+    instance.delete()
+    return HttpResponse(json.dumps({'name': org_name}), content_type="application/json")
+    
+    
+    
+    
 class OrganizationFormView(FormView):
     form_class = OrganizationForm
     template_name  = 'yourOrganizations/yourOrganizations.html'
