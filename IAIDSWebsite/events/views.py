@@ -1,8 +1,10 @@
 from django.shortcuts import render
-
+from orgAdminPanel.models import Event
 # Create your views here.
 def events(request):
-    return render(request, 'events/events.html')
+    allEvents = Event.objects.all()
+    return render(request, 'events/events.html', {'allEvents': allEvents})
 
 def eventsFilter(request):
-    return render(request, 'events/eventsFilter.html')
+    allEvents = Event.objects.all()
+    return render(request, 'events/eventsFilter.html', {'allEvents': allEvents})

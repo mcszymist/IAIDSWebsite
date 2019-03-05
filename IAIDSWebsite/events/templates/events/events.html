@@ -24,7 +24,10 @@
 </div>
 
 <script>
-
+{% for event in allEvents %}
+    console.log("{{event.startdate}}")
+{% endfor %}
+    console.log(new Date(2019, 1, 6, 19, 0))
     !function () {
         $("#fullcalendar").fullCalendar({
             header: {
@@ -45,181 +48,14 @@
             displayEventTime: true,
             displayEventEnd: true,
             events: [
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 6, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'A really long event title for testing purposes dont worry this is just a test im trying to figure out if the ui breaks',
-                    description: 'Hello',
-                    start: new Date(2019, 1, 6, 1, 0),
-                    end: new Date(2019, 1, 6, 2, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 6, 10, 0),
-                    end: new Date(2019, 1, 6, 11, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 6, 5, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 4, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 8, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 15, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 23, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 11, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 7, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 7, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                }
-            ],
-            selectable: true,
-            eventResizeStart: true,
-            eventDragStart: false,
-        });
-    }();
-
-</script>
-{% endblock %}
-
-{% block middleColumnAuthorizedUser %}
-<h1 class="text-center">
-    Volunteer Opportunities
-</h1>
-
-<div class="edge">
-    <div id="fullcalendar"></div>
-</div>
-
-<script>
-
-    !function () {
-        $("#fullcalendar").fullCalendar({
-            header: {
-                left: "month,listMonth",
-                center: "title",
-                right: "prev,today,next"
-            },
-            eventLimit: true, // for all non-agenda views
-            views: {
-                month: {
-                    eventLimit: 4 // adjust to 6 only for agendaWeek/agendaDay
-                }
-            },
-            eventBackgroundColor: 'white',
-            eventBorderColor: 'Grey',
-            eventTextColor: 'Black',
-            timeFormat: 'h(:mm)t',
-            displayEventTime: true,
-            displayEventEnd: true,
-            events: [
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 6, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'A really long event title for testing purposes dont worry this is just a test im trying to figure out if the ui breaks',
-                    description: 'Hello',
-                    start: new Date(2019, 1, 6, 1, 0),
-                    end: new Date(2019, 1, 6, 2, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 6, 10, 0),
-                    end: new Date(2019, 1, 6, 11, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 6, 5, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 4, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 8, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 15, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 23, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 11, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 7, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Brunch',
-                    start: new Date(2019, 1, 7, 19, 0),
-                    end: new Date(2019, 1, 6, 23, 30),
-                    allDay: false
-                }
+                {% for event in allEvents %}
+                    {
+                        title: '{{event.name}}',
+                        start: new Date(2019, 1, 6, 19, 0),
+                        end: new Date(2019, 1, 6, 23, 30),
+                        allDay: false
+                    },
+                {% endfor %}
             ],
             selectable: true,
             eventResizeStart: true,
