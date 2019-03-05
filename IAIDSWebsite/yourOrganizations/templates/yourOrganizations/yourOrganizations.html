@@ -28,6 +28,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- looping though all the events making the table -->
                 {% for org in allOrgs %}
                     <tr>
                         <td>{{org}}</td>
@@ -124,7 +125,7 @@ var table = $('#table').DataTable({
     dom: 'Bfrtip',
     buttons: [
         {
-            text: 'Add Row',
+            text: 'Create Organization',
             action: function ( e, dt, node, config ) {
                 var popup = new Foundation.Reveal($('#addRow'));
                 popup.open();
@@ -147,12 +148,12 @@ var table = $('#table').DataTable({
 });
 $('#table').on("click", "#deleteOrg", function() {
     var data = table.row( $(this).parents('tr') ).data();
-    
+    // Ajax request
     $.ajax({
-        method: "POST",
-        url: "/yourOrganizations/delete/",
-        dataType: "json",
-        data: {name: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'}, 
+        method: "POST",                     // Post request
+        url: "/yourOrganizations/delete/",  //url
+        dataType: "json",                   //data being set
+        data: {name: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
         success: function(result){
         },
         error: function(result){},
