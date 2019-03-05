@@ -29,7 +29,7 @@
             <tbody>
                 {% for org in allOrgs %}
                     <tr>
-                        <td><a href='/orgAdminPanel?org="'{{org}}'"'>{{org}}</a></td>
+                        <td><a href="/orgAdminPanel?org={{org}}">{{org}}</a></td>
                         <td>0</td>
                         <td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
@@ -49,7 +49,7 @@
 
 <!-- add row reveals -->
 <div class="reveal" id="addRow" data-reveal>
-    <h1>New Event</h1>
+    <h1>New Organization</h1>
     <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
         <div class="row">
             <div class="large-12 columns">

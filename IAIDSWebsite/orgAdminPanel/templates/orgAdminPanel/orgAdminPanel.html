@@ -39,48 +39,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Soup Kitchen Chef</td>
-                            <td>5/10</td>
-                            <td>2011/04/25</td>
-                            <td>Fairbanks</td>
-                            <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Gun Show</td>
-                            <td>2/2</td>
-                            <td>2011/07/25</td>
-                            <td>Nome</td>
-                            <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Adventure</td>
-                            <td>1/2</td>
-                            <td>2009/01/12</td>
-                            <td>Tok</td>
-                            <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Yearly Cleanup</td>
-                            <td>3/4</td>
-                            <td>2012/03/29</td>
-                            <td>Anchorage</td>
-                            <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Arts and Crafts</td>
-                            <td>3/3</td>
-                            <td>2008/11/28</td>
-                            <td>Fairbanks</td>
-                            <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Training Resources</td>
-                            <td>2/4</td>
-                            <td>2012/12/02</td>
-                            <td>Fairbanks</td>
-                            <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
+                        {% for event in allEvents %}
+                            <tr>
+                                <td>{{event.name}}</td>
+                                <td>{{event.personel}}/{{event.personelMax}}</td>
+                                <td>{{event.startdate}}</td>
+                                <td>{{event.location}}</td>
+                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+
+                            </tr>
+                        {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
@@ -162,7 +130,7 @@
 <!-- For events Table -->
 <div class="reveal" id="addRowEvent" data-reveal>
     <h1>New Event</h1>
-    <form id="addEvent" method = "post"> {% csrf_token %}
+    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
         <div class="row">
             <div class="large-8 columns">
                 <label>Name
@@ -201,7 +169,7 @@
         </div>
         <div class="row">
             <div class="offest-large-8 large-4 columns">
-                <button id="buttonEvent" type="button" class="success button" data-close>Submit</button>
+                <input type="Submit" name="submit" value="Submit" data-close/>            
             </div>
         </div>
     </form>
@@ -217,27 +185,47 @@
 </div>
 
 <script>
-console.log( {{ request.GET.allEvents }})
-console.log("printing Logs")
-$('#buttonEvent').click(function (e) {
-    var event = $("#event").val();
-    var location = $("#location").val();
-    var date = $("#date").val();
-    var position = $("#personel").val();
-    eventsTable.row.add( [
+$(document).ready(function(){
+    var $myForm = $('.my-ajax-form')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        var event = $("#id_name").val();
+        var location = $("#id_location").val();
+        var date = $("#id_startdate").val();
+        var personelMax = $("#id_personelMax").val();
+        eventsTable.row.add( [
                         event,
-                        personel,
+                        personelMax,
                         date,
                         location,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
                         ] ).draw( false );
-    $("#event").val("");
-    $("#location").val("");
-    $("#date").val("");
-    $("#personel").val("");
-    $("#time").val("");
-    $("#des").val("");
-});
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $myForm[0].reset(); // reset form data
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+})
 
  var eventsTable = $('#events').DataTable({
     bInfo: false,
@@ -245,7 +233,7 @@ $('#buttonEvent').click(function (e) {
     dom: 'Bfrtip',
     buttons: [
         {
-            text: 'Add Row',
+            text: 'New Event',
             action: function ( e, dt, node, config ) {
                 var popup = new Foundation.Reveal($('#addRowEvent'));
                 popup.open();
@@ -329,7 +317,7 @@ var usersTable = $('#users').DataTable({
     dom: 'Bfrtip',
     buttons: [
         {
-            text: 'Add Row',
+            text: 'New User',
             action: function ( e, dt, node, config ) {
                 var popup = new Foundation.Reveal($('#addRowUser'));
                 popup.open();

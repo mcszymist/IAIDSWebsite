@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.add_event, name='add_event'),
+    path('', views.EventFormView.as_view(), name='EventFormView'),
 ]
