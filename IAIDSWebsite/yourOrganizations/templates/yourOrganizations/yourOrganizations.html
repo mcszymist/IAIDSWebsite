@@ -21,6 +21,7 @@
         <table id="table" class="display" style="width:100%">
             <thead>
                 <tr>
+                    <th>name</th>
                     <th>Organizations</th>
                     <th>Events Live</th>
 					<th>Action</th>
@@ -29,7 +30,8 @@
             <tbody>
                 {% for org in allOrgs %}
                     <tr>
-                        <td><a href='/orgAdminPanel?org="'{{org}}'"'>{{org}}</a></td>
+                        <td>{{org}}</td>
+                        <td><a href="/orgAdminPanel?org={{org}}">{{org}}</a></td>
                         <td>0</td>
                         <td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
@@ -38,6 +40,7 @@
             </tbody>
             <tfoot>
                 <tr>
+                    <th>name</th>
                     <th>Organizations</th>
                     <th>Events Live</th>
 					<th>Action</th>
@@ -49,7 +52,7 @@
 
 <!-- add row reveals -->
 <div class="reveal" id="addRow" data-reveal>
-    <h1>New Event</h1>
+    <h1>New Organization</h1>
     <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
         <div class="row">
             <div class="large-12 columns">
@@ -97,6 +100,7 @@ $(document).ready(function(){
     function handleFormSuccess(data, textStatus, jqXHR){
         var name = $("#id_name").val()
         table.row.add( [
+            name,
             "<a href='/orgAdminPanel?org='" + name + "'>" + name + "</a>",
             "0",
             "<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
@@ -127,17 +131,39 @@ var table = $('#table').DataTable({
             }
         }
     ],
+    "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
     columns: [
+        { "width": "0%" },
         { "width": "35%" },
         { "width": "60%" },
         { "width": "5%" }
     ]
 });
 $('#table').on("click", "#deleteOrg", function() {
-            table.row($(this).parents('tr')).remove().draw(false);
+    var data = table.row( $(this).parents('tr') ).data();
+    
+    $.ajax({
+        method: "POST",
+        url: "/yourOrganizations/delete/",
+        dataType: "json",
+        data: {name: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'}, 
+        success: function(result){
+        },
+        error: function(result){},
+    })
+    table.row($(this).parents('tr')).remove().draw(false);
+    
+    
+    
 });
 $('#table').on("click", "#editOrg", function() {
-
+    
 });
 
 </script>

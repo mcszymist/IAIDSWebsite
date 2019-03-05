@@ -1,5 +1,5 @@
 <!doctype html>
-<html  lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -46,7 +46,8 @@
                             </ul>
                         </div>
                         <div class="top-bar-right">
-                            <ul class="vertical medium-horizontal menu" data-responsive-menu="accordion medium-dropdown">
+                            <ul class="dropdown menu" data-dropdown-menu>
+                                <!-- <li><a href="/admin/">TEMP: ADMIN PAGE FOR QUICK ACCESS</a></li> -->
                                 <li><a href="{% url 'events' %}">Event Calendar</a></li>
                                 <li><a href="{% url 'eventsFilter'%}">Search Opportunities</a></li>
                                 {% block navBarRight %}
@@ -57,16 +58,26 @@
                             <a class="fi-list"></a>
                             <ul class="vertical menu">
                             </ul> -->
-                                <li><a href="{% url 'yourOrganizations'%}">Organization</a></li>
-                                <li><a href="{% url 'profileManage' %}" class="button-badge">
+                                <li><a href="#" class="button-badge">
                                         {{ user.first_name }}
+                                        <!-- if user has messages in the inbox: not yet implemented -->
                                         {% if True %}
                                         <span class="badge alert">5</span>
                                         {% else %}
                                         {% endif %}
-                                    </a></li>
+                                    </a>
+                                    <ul class="menu">
+                                        <li><a href="#">Your inbox</a></li>
+                                        <li><a href="{% url 'profileManage' %}">Your profile</a></li>
+                                        <li><a href="{% url 'yourOrganizations'%}">Your organizations</a></li>
+                                        <li><a href="#">Your events</a></li>
+                                        <hr>
+                                        <li><a href="#">Help</a></li>
+                                        <li><a href="#">Settings</a></li>
+                                        <li><a href="{% url 'logout' %}">Sign out</a></li>
+                                    </ul>
                                 </li>
-                                <li><a href="{% url 'logout' %}"><i class="fi-power"></i></a></li>
+                                </li>
                                 {% else %}
                                 <li><a href="{% url 'signup' %}">Create Account</a></li>
                                 <li><a href="{% url 'login' %}">Sign In</a></li>
@@ -95,13 +106,13 @@
                 </div>
 
                 <!-- FOOTER -->
-                <div class="footer">
+                <!-- <div class="footer">
                     <div class="row align-middle text-align-middle text-center">
                         <div class="column align-middle"><a href="#" style="color:rgb(235, 220, 192)">Contact</a></div>
                         <div class="column align-middle"><a href="{% url 'about' %}" style="color:rgb(235, 220, 192)">About</a></div>
                         <div class="column align-middle"><a href="#" style="color:rgb(235, 220, 192)">Sitemap</a></div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -113,4 +124,5 @@
     <script src="{% static 'source/js/vendor/foundation.js' %}"></script>
     <script src="{% static 'source/js/app.js' %}"></script>
 </body>
+
 </html>
