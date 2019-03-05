@@ -241,6 +241,10 @@ source: https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
     margin-bottom: 10px;
 }
 
+.top-bar-right > .menu {
+    padding-right: 20px;
+}
+
 .dropdown .menu {
     padding-top: 10px;
     padding-bottom: 10px;
