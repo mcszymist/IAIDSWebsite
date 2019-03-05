@@ -19,6 +19,11 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'10.0.2.15' IDENTIFIED B
 sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Project1!';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 
+# Add IAIDS Django directory inside /var/log/
+sudo mkdir /var/log/IAIDSWebsite
+sudo chown vagrant /var/log/IAIDSWebsite
+mkdir /var/log/IAIDSWebsite/Error
+
 # Makes the images directory
 mkdir IAIDSWebsite/images/
 

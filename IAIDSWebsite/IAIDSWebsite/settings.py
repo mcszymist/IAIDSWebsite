@@ -136,8 +136,9 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': './debug.log',
+            'filename': '/var/log/IAIDSWebsite/debug.log',
         },
+        
     },
     'loggers': {
         'django': {
