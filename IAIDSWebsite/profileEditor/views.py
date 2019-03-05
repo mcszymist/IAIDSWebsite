@@ -23,7 +23,7 @@ def profileImage(request,file_name):
 
 def edit(request):
     curr_email = request.user.email
-    curr_user = models.MyUser.objects.get(email=curr_email)
+    curr_user = models.MyUser.objects.get(pk=curr_email)
     form = profileEditForm(request.POST, request.FILES,
                                  instance=curr_user)
     if request.method == 'POST':
