@@ -3,6 +3,8 @@
 {% block middleColumnAuthorizedUser %}
 {% if messages %}
 {% endif %}
+<form method="post">
+{% csrf_token %}
 <div class="spaced-row">
     <div class="row">
         <div class="columns large-8">
@@ -12,10 +14,11 @@
                         <div class="profile-card-avatar">
                             <!-- <img class="avatar-image" src="{% static 'profileEditor/images/default_profile.jpg' %}" alt="{request user.first_name}"> -->
                             <img class="avatar-image" src="{{ user.profile_pic.url }}" onerror="this.onerror=null;"
-                                this.src="{% static 'profileEditor/images/default_profile.jpg' %}" width="10" height="10">
+                                this.src="{% static 'profileEditor/images/default_profile.jpg' %}" width="10" height="10"><br>
+								{{form.profile_pic}}
                         </div>
                         <div class="profile-card-author">
-                            <h5 class="author-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                            <h5 class="author-title">{{ form.first_name }} {{ form.last_name }}</h5>
                             <p class="author-description">
                                 <br><i class="fi-home"></i> Things that I like #1 <br><br>
                                 <i class="fi-home"></i> Things that I like #2 <br><br>
@@ -26,11 +29,11 @@
                     <div class="profile-card-about">
                         <h5 class="about-title separator-left">About Me</h5>
                         <p class="about-content">
-							<form method="post">
-								{% csrf_token %}
-								{{form}}
-								<input type="submit" value="Submit">
-							</form>
+							<!<form method="post">
+								<!{% csrf_token %}
+								{{form.description}}
+								<!<input type="submit" value="Submit">
+							<!</form>
                         </p>
                     </div>
                     <div class="profile-card-about">
@@ -92,35 +95,26 @@
         <div class="columns large-4">
             <div class="row">
 				<! EDIT BUTTON >
+				<!<input type="submit" value="Submit">
                 <div class="columns large-6">
-                    <a href="#" class="button-badge-large" id="edit">
-                        <i class="fi-pencil"></i>
-                    </a>
+                    <button type="submit" class="button-badge-large" id="edit" >
+                        <i class="fi-check"></i>
+					</input>
                 </div>
                 <div class="columns large-6">
-                    <a href="#" class="button-badge-large" id="inbox">
-                        <i class="fi-mail"></i>
-                        <span class="badge alert">5</span>
+                    <a href="{% url 'profileManage' %}" class="button-badge-large" id="inbox">
+                        <i class="fi-x"></i>
                     </a>
                 </div>
             </div>
-            <div class="row">
-                <div class="columns large-6">
-                    <a href="#" class="button-badge-large" id="calendar">
-                        <i class="fi-calendar"></i>
-                    </a>
-                </div>
-                <div class="columns large-6">
-                    <a href="#" class="button-badge-large" id="admin">
-                        <i class="fi-torsos"></i>
-                    </a>
-                </div>
+    
             </div>
         </div>
     </div>
 </div>
 </div>
 </div>
+</form>
 {% endblock %}
 
 {% block sideBar %}
