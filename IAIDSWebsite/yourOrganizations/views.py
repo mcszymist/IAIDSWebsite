@@ -35,7 +35,11 @@ class OrganizationFormView(FormView):
     
     def get_context_data(self, **kwargs):      
         context = super(OrganizationFormView, self).get_context_data(**kwargs)
-        context['allOrgs'] = Organization.objects.all()
+        users = OrganizationUsers.objects.all().filter(userID=self.request.user)
+        obj = []
+        for user in users:
+            obj.append(user.orgID)
+        context['allOrgs'] = obj
         return context
         
     def form_invalid(self, form):

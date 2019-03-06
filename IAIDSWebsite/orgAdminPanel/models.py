@@ -29,8 +29,8 @@ class EventVol(models.Model):
     status = models.BooleanField(default=False)
 
 class OrganizationUsers(models.Model):
-    orgID = models.ManyToManyField(Organization)
-    userID = models.ManyToManyField(MyUser)
+    orgID = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True)
+    userID = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
     privledge = models.PositiveIntegerField(default=0)
 
 
