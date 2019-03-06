@@ -24,7 +24,8 @@ class EventFormView(FormView):
         context = super(EventFormView, self).get_context_data(**kwargs)
         org_id = self.request.GET.get('org')
         self.request.session["org_id"] = org_id
-        context['allEvents'] = Event.objects.all().filter(name=org_id)
+        obj = Organization.objects.get(id=org_id)
+        context['allEvents'] = Event.objects.all().filter(orgID=obj)
         return context
         
     def form_invalid(self, form):
