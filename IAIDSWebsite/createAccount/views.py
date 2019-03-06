@@ -35,7 +35,7 @@ def signup(request):
             message = render_to_string('createAccount/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
-                'uid':urlsafe_base64_encode(force_bytes(user.pk)).encode(),
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                 'token':account_activation_token.make_token(user),
             })
             to_email = form.cleaned_data.get('email')
@@ -57,10 +57,10 @@ def activate(request, uidb64, token):
         user = MyUser.objects.get(pk=uid)
     except(TypeError, ValueError, OverflowError, MyUser.DoesNotExist):
         user = None
-    if user is not None and account_activation_token.check_token(user, token):
+    if user is not None and account_activation_token.check_token(user, token, ):
         user.is_active = True
         user.save()
-        login(request, user)
+        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         #return redirect('./')
         return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
