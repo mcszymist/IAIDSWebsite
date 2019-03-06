@@ -11,7 +11,7 @@ class Organization(models.Model):
         return '%s' % (self.name)
 
 class Event(models.Model):
-    orgID = models.ManyToManyField(Organization)
+    orgID = models.OneToOneField(Organization, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length = 100)
     description = models.TextField(default='Please Fill')
     personelMax = models.PositiveIntegerField(default=1)

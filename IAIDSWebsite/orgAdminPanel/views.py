@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from .models import Event
+from .models import Event, Organization
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
@@ -22,10 +22,9 @@ class EventFormView(FormView):
     
     def get_context_data(self, **kwargs):
         context = super(EventFormView, self).get_context_data(**kwargs)
-        org_name = self.request.GET.get('org')
-        self.request.session["org_name"] = org_name
-        #context['allEvents'] = Event.objects.all().filter(name=org_name)
-        context['allEvents'] = Event.objects.all()
+        org_id = self.request.GET.get('org')
+        self.request.session["org_id"] = org_id
+        context['allEvents'] = Event.objects.all().filter(name=org_id)
         return context
         
     def form_invalid(self, form):
@@ -38,9 +37,10 @@ class EventFormView(FormView):
     def form_valid(self, form):
         response = super(EventFormView, self).form_valid(form)
         if self.request.is_ajax():
+            obj = Organization.objects.get(id=self.request.session["org_id"])
             info = form.cleaned_data
             #print(info)
-            org = Event(name = info['name'],description=info['description'],location = info['location'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'])
+            org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'])
             org.save()
             
             data = {
