@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from orgAdminPanel.models import Organization
+from orgAdminPanel.models import Organization, OrganizationUsers
 from django.views.generic import FormView
 from .forms import OrganizationForm
 from django.http import JsonResponse
@@ -52,7 +52,8 @@ class OrganizationFormView(FormView):
             #print(info)
             org = Organization(name = info['name'],description=info['description'])
             org.save()
-            
+            newOrgUser = OrganizationUsers(userID = self.request.user, orgID = org, privledge = 3)
+            newOrgUser.save()
             data = {
                 'message': "Successfully submitted form data.",
                 'id': org.id

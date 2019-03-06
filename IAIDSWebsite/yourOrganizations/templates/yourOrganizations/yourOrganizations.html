@@ -102,7 +102,7 @@ $(document).ready(function(){
         var name = $("#id_name").val()
         table.row.add( [
             data['id'],
-            "<a href='/orgAdminPanel?org='" + name + "'>" + name + "</a>",
+            "<a href='/orgAdminPanel?org='" + data['id'] + "'>" + name + "</a>",
             "0",
             "<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
              ] ).draw( false );
