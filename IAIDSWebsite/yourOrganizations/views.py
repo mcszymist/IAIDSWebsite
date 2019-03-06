@@ -9,15 +9,15 @@ import json
 # Create your views here.
 
 def DeleteOrg(request):
-    org_name = request.POST.get('name', '')
-    instance = get_object_or_404(Organization, name=org_name)
+    org_id = request.POST.get('id', '')
+    instance = get_object_or_404(Organization, id=org_id)
     instance.delete()
-    return HttpResponse(json.dumps({'name': org_name}), content_type="application/json")
+    return HttpResponse(json.dumps({'id': org_id}), content_type="application/json")
     
     
 def my_view(request): 
-    org_name = request.POST.get('name', '')
-    instance = get_object_or_404(Organization, name=org_name)
+    org_name = request.POST.get('id', '')
+    instance = get_object_or_404(Organization, id=org_name)
     form = OrganizationForm(request.POST or None, instance=instance)
     if form.is_valid():
         form.save()
@@ -54,7 +54,8 @@ class OrganizationFormView(FormView):
             org.save()
             
             data = {
-                'message': "Successfully submitted form data."
+                'message': "Successfully submitted form data.",
+                'id': org.id
             }
             return JsonResponse(data)
         else:
