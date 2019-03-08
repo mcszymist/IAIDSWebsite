@@ -28,8 +28,8 @@ source: https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
     left: 0;
     right: 0;
     bottom: 0;
+    background-color: #d8d8d8;
   /* The image used */
-  background-image: url('wavy_woods.jpg');
   /* Full height */
   height: 100%; 
   /* Create the parallax scrolling effect */
