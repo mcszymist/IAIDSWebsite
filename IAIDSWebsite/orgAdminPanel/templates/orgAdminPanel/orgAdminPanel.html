@@ -73,42 +73,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tyler J Roberts</td>
-                            <td>tjroberts2@alaska.edu</td>
-                            <td>3</td>
-                            <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Gordon Freeman</td>
-                            <td>gordon@valve.com</td>
-                            <td>INF</td>
-                            <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Someone Else</td>
-                            <td>someone@else.com</td>
-                            <td>3</td>
-                            <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Bart Ridly</td>
-                            <td>home2you@buzy.com</td>
-                            <td>1</td>
-                            <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Airi Satou</td>
-                            <td>airi@hmmm.com</td>
-                            <td>2</td>
-                            <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td>Brielle Williamson</td>
-                            <td>brielle@wills.org</td>
-                            <td>1</td>
-                            <td><button id="editUsers" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteUsers" class="button tiny alert"><i class="fi-trash"></i></button></td>
-                        </tr>
+                        {% for user in allUsers %}
+                            <tr>
+                                <td>{{user.orgID}}</td>
+                                <td>{{user.userID}}</td>
+                                <td>{{user.privledge}}</td>
+                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+
+                            </tr>
+                        {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
