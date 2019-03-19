@@ -1,119 +1,120 @@
 {% extends "main_template.html" %}
 {% load static %}
-{% block middleColumnAuthorizedUser %}
+{% block middleColumn %}
 {% if messages %}
 {% endif %}
 <form method="post">
-{% csrf_token %}
-<div class="spaced-row">
-    <div class="row">
-        <div class="columns large-8">
-            <div class="card profile-card-action-icons">
-                <div class="card-section">
-                    <div class="profile-card-header">
-                        <div class="profile-card-avatar">
-                            <!-- <img class="avatar-image" src="{% static 'profileEditor/images/default_profile.jpg' %}" alt="{request user.first_name}"> -->
-                            <img class="avatar-image" src="{{ user.profile_pic.url }}" onerror="this.onerror=null;"
-                                this.src="{% static 'profileEditor/images/default_profile.jpg' %}" width="10" height="10"><br>
-								{{form.profile_pic}}
+    {% csrf_token %}
+    <div class="spaced-row">
+        <div class="row">
+            <div class="columns large-8">
+                <div class="card profile-card-action-icons">
+                    <div class="card-section">
+                        <div class="profile-card-header">
+                            <div class="profile-card-avatar">
+                                <!-- <img class="avatar-image" src="{% static 'profileEditor/images/default_profile.jpg' %}" alt="{request user.first_name}"> -->
+                                <img class="avatar-image" src="{{ user.profile_pic.url }}" onerror="this.onerror=null;"
+                                    this.src="{% static 'profileEditor/images/default_profile.jpg' %}" width="10"
+                                    height="10"><br>
+                                {{form.profile_pic}}
+                            </div>
+                            <div class="profile-card-author">
+                                <h5 class="author-title">{{ form.first_name }} {{ form.last_name }}</h5>
+                                <p class="author-description">
+                                    <br><i class="fi-home"></i> Things that I like #1 <br><br>
+                                    <i class="fi-home"></i> Things that I like #2 <br><br>
+                                    <i class="fi-home"></i> Things that I like #3
+                                </p>
+                            </div>
                         </div>
-                        <div class="profile-card-author">
-                            <h5 class="author-title">{{ form.first_name }} {{ form.last_name }}</h5>
-                            <p class="author-description">
-                                <br><i class="fi-home"></i> Things that I like #1 <br><br>
-                                <i class="fi-home"></i> Things that I like #2 <br><br>
-                                <i class="fi-home"></i> Things that I like #3
-                            </p>
-                        </div>
-                    </div>
-                    <div class="profile-card-about">
-                        <h5 class="about-title separator-left">About Me</h5>
-                        <p class="about-content">
-							<!<form method="post">
-								<!{% csrf_token %}
+                        <div class="profile-card-about">
+                            <h5 class="about-title separator-left">About Me</h5>
+                            <p class="about-content">
+                                <!<form method="post">
+                                <!{% csrf_token %}
 								{{form.description}}
 								<!<input type="submit" value="Submit">
-							<!</form>
-                        </p>
-                    </div>
-                    <div class="profile-card-about">
-                        <div class="row">
-                            <div class="columns large-4">
-                                <div class="card-profile-stats-statistic">
-                                    <span class="stat">25</span>
-                                    <p>attended events</p>
-                                </div> <!-- /.card-profile-stats-statistic -->
+                                <!</form>
+                            </p>
+                        </div>
+                        <div class="profile-card-about">
+                            <div class="row">
+                                <div class="columns large-4">
+                                    <div class="card-profile-stats-statistic">
+                                        <span class="stat">25</span>
+                                        <p>attended events</p>
+                                    </div> <!-- /.card-profile-stats-statistic -->
+                                </div>
+                                <div class="columns large-4">
+                                    <div class="card-profile-stats-statistic">
+                                        <span class="stat">10</span>
+                                        <p>friends</p>
+                                    </div> <!-- /.card-profile-stats-statistic -->
+                                </div>
+                                <div class="columns large-4">
+                                    <div class="card-profile-stats-statistic">
+                                        <span class="stat">5</span>
+                                        <p>likes</p>
+                                    </div> <!-- /.card-profile-stats-statistic -->
+                                </div>
                             </div>
-                            <div class="columns large-4">
-                                <div class="card-profile-stats-statistic">
-                                    <span class="stat">10</span>
-                                    <p>friends</p>
-                                </div> <!-- /.card-profile-stats-statistic -->
+                        </div>
+                        <div class="profile-card-action">
+                            <div class="action-area">
+                                <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                    data-disable-hover="false" tabindex="2" title="Like profile">
+                                    <i class="fi-like" aria-hidden="true"></i>
+                                    <span class="show-for-sr">Like profile</span>
+                                </a>
                             </div>
-                            <div class="columns large-4">
-                                <div class="card-profile-stats-statistic">
-                                    <span class="stat">5</span>
-                                    <p>likes</p>
-                                </div> <!-- /.card-profile-stats-statistic -->
+                            <div class="action-area">
+                                <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                    data-disable-hover="false" tabindex="2" title="Comment on profile">
+                                    <i class="fi-comment" aria-hidden="true"></i>
+                                    <span class="show-for-sr">Comment on profile</span>
+                                </a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="profile-card-action">
-                        <div class="action-area">
-                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
-                                data-disable-hover="false" tabindex="2" title="Like profile">
-                                <i class="fi-like" aria-hidden="true"></i>
-                                <span class="show-for-sr">Like profile</span>
-                            </a>
-                        </div>
-                        <div class="action-area">
-                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
-                                data-disable-hover="false" tabindex="2" title="Comment on profile">
-                                <i class="fi-comment" aria-hidden="true"></i>
-                                <span class="show-for-sr">Comment on profile</span>
-                            </a>
-                        </div>
-                        <div class="action-area">
-                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
-                                data-disable-hover="false" tabindex="2" title="Add as friend">
-                                <i class="fi-plus" aria-hidden="true"></i>
-                                <span class="show-for-sr">Add as friend</span>
-                            </a>
-                        </div>
-                        <div class="action-area">
-                            <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
-                                data-disable-hover="false" tabindex="2" title="Block!">
-                                <i class="fi-prohibited" aria-hidden="true"></i>
-                                <span class="show-for-sr">Block!</span>
-                            </a>
+                            <div class="action-area">
+                                <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                    data-disable-hover="false" tabindex="2" title="Add as friend">
+                                    <i class="fi-plus" aria-hidden="true"></i>
+                                    <span class="show-for-sr">Add as friend</span>
+                                </a>
+                            </div>
+                            <div class="action-area">
+                                <a href="#" class="action-anchor has-tip bottom" data-tooltip aria-haspopup="true"
+                                    data-disable-hover="false" tabindex="2" title="Block!">
+                                    <i class="fi-prohibited" aria-hidden="true"></i>
+                                    <span class="show-for-sr">Block!</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="columns large-4">
-            <div class="row">
-				<! EDIT BUTTON >
-				<!<input type="submit" value="Submit">
-                <div class="columns large-6">
-                    <button type="submit" class="button-badge-large" id="edit" >
-                        <i class="fi-check"></i>
-					</input>
-                </div>
-                <div class="columns large-6">
-                    <a href="{% url 'profileManage' %}" class="button-badge-large" id="inbox">
-                        <i class="fi-x"></i>
-                    </a>
-                </div>
             </div>
-    
+            <div class="columns large-4">
+                <div class="row">
+                    <! EDIT BUTTON >
+                    <!<input type="submit" value="Submit">
+                    <div class="columns large-6">
+                        <button type="submit" class="button-badge-large" id="edit">
+                            <i class="fi-check"></i>
+                            </input>
+                    </div>
+                    <div class="columns large-6">
+                        <a href="{% url 'profileManage' %}" class="button-badge-large" id="inbox">
+                            <i class="fi-x"></i>
+                        </a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
+    </div>
+    </div>
+    </div>
 </form>
 {% endblock %}
 

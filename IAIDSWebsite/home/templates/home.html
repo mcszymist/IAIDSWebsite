@@ -3,15 +3,37 @@
 {% block navBarRight %}
 {% endblock %}
 
-{% block middleColumnAuthorizedUser %}
+{% block middleColumn %}
 <div class="spaced-row">
+
+  {% if not user.is_authenticated %}
   <div class="row">
+    <div class="small-12 medium-6 large-6 columns">
+      <div class="welcomePanel">
+        <h1>Welcome!</h1><br>
+        <h5>Volunteer Fairbanks is helping Fairbanks connect volunteers to organizations. <br><br> Get started by
+          creating an account
+          or signing in.</h5>
+      </div>
+    </div>
+    <div class="small-12 medium-6 large-6 columns">
+      <div class="hoverableImg">
+        <img src="static/images/hands.jpg">
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="row">
+    {% if user.is_authenticated %}
     <div class="small-2 large-8 columns">
       <div class="card">
-        <div class="card-divider">
-          <h3>
+        <div class="card-divider-jason">
+          <div class="large-12 columns">
             Suggested events
-          </h3>
+            <a class="button float-right">3</a>
+            <a class="button float-right">2</a>
+            <a class="button float-right">1</a>
+          </div>
         </div>
         <div class="card-section">
           <div class="row">
@@ -34,9 +56,12 @@
                 Bake Sale Needing Baked Goods by TONIGHT
               </div>
               <div class="suggestedEventsDescription">
-                Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod primis
-                cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit ea,
-                cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno convenire.
+                Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri
+                quod primis
+                cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam
+                assueverit ea,
+                cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl
+                aeterno convenire.
               </div>
             </div>
           </div>
@@ -50,112 +75,60 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="small-2 large-4 columns">
-      <div class="card">
-        <div class="card-divider">
+      <div class="card" id="card2">
+        <div class="card-divider-jason">
           <h3>
-            Upcoming events
+            Suggested events
           </h3>
-        </div>
-        <div class="card-section">
-          <div class="scrollableEvents">
-            <ul class="vertical menu">
-              <div class="upcomingEventsModalable">
-                <!-- Example upcomingEventModal element -->
-                <!-- <div class="reveal" id="event{{ event.eventID }}" data-reveal>
-                      <h2>{{ event.eventID.getName }}</h2>
-                      <p>
-                        {{ event.getDescription }}
-                      </p>
-                      <button class="close-button" data-close aria-label="Close modal" type="button">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      <button class="button float-right" type="button">See more >></button>
-                    </div>
-                    <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
-                <div class="reveal" id="event1" data-reveal>
-                  <h3>Spaghetti Feed at the Big Church</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                    primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                    ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                    convenire.
-                  </p>
-                  <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <button class="button float-right" type="button">See more >></button>
-                </div>
-                <li><a href="#" data-open="event1">Spaghetti Feed at the Big Church</a></li>
-                <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <div class="reveal" id="event2" data-reveal>
-                  <h3>Bake Sale Needing Baked Goods by TONIGHT</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                    primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                    ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                    convenire.
-                  </p>
-                  <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <button class="button float-right" type="button">See more >></button>
-                </div>
-                <li><a href="#" data-open="event2">Bake Sale Needing Baked Goods by TONIGHT</a></li>
-                <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <div class="reveal" id="event3" data-reveal>
-                  <h3>Wall Painters Wanted</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
-                    primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
-                    ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
-                    convenire.
-                  </p>
-                  <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <button class="button float-right" type="button">See more >></button>
-                </div>
-                <li><a href="#" data-open="event3">Wall Painters Wanted</a></li>
+        </div> {% for event in allEvents %} <div class="card-section">
+          <div class="row">
+            <div class="large-6 columns">
+              <img class="thumbnail" src="static/images/cupcakes.jpg">
+            </div>
+            <div class="large-6 columns">
+              <div class="suggestedEventsAttributes">
+                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
+                <i class="fi-clock"></i> ALL DAY <br><br>
+                <i class="fi-torso"></i> IN PERSON<br><br>
+                <i class="fi-torsos-all"></i> BRING YOUR FRIENDS <br><br>
               </div>
-            </ul>
+            </div>
           </div>
-          <a href="{% url 'events' %}" class="button large expanded">Check calendar</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
+          <div class="row">
+            <div class="large-12 columns">
 
-{% block middleColumnUnauthorizedUser %}
-<div class="spaced-row">
-  <div class="row">
-    <div class="small-12 medium-6 large-6 columns">
-      <div class="welcomePanel">
-        <h1>Welcome!</h1><br>
-        <h5>Volunteer Fairbanks is helping Fairbanks connect volunteers to organizations. <br><br> Get started by
-          creating an account
-          or signing in.</h5>
+              <div class="suggestedEventsTitle">
+                {{ event.name }}
+              </div>
+              <div class="suggestedEventsDescription">
+                Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri
+                quod primis
+                cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam
+                assueverit ea,
+                cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl
+                aeterno convenire.
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <a class="button">Add to calendar</a>
+              <a class="button">Share</a>
+              <a class="button">Like</a>
+              <a class="button alert float-right">Report</a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
       </div>
+
     </div>
-    <div class="small-12 medium-6 large-6 columns">
-      <div class="hoverableImg">
-        <img src="static/images/hands.jpg">
-      </div>
-    </div>
-  </div>
-  <div class="row">
+
+    {% else %}
+
     <div class="column large-4">
       <div class="card">
-        <div class="card-divider">
+        <div class="card-divider-jason">
           <h3>
             New users
           </h3>
@@ -168,7 +141,7 @@
     </div>
     <div class="column large-4">
       <div class="card">
-        <div class="card-divider">
+        <div class="card-divider-jason">
           <h3>
             Returning users
           </h3>
@@ -192,9 +165,12 @@
         </div>
       </div>
     </div>
-    <div class="column large-4">
+
+    {% endif %}
+
+    <div class="large-4 columns">
       <div class="card">
-        <div class="card-divider">
+        <div class="card-divider-jason">
           <h3>
             Upcoming events
           </h3>
@@ -205,23 +181,26 @@
               <div class="upcomingEventsModalable">
                 <!-- Example upcomingEventModal element -->
                 <!-- <div class="reveal" id="event{{ event.eventID }}" data-reveal>
-                  <h2>{{ event.eventID.getName }}</h2>
-                  <p>
-                    {{ event.getDescription }}
-                  </p>
-                  <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
+                    <h2>{{ event.eventID.getName }}</h2>
+                    <p>
+                      {{ event.getDescription }}
+                    </p>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
                 <div class="reveal" id="event1" data-reveal>
                   <h3>Spaghetti Feed at the Big Church</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
+                    ancillae. Pri quod
                     primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
+                    utinam assueverit
                     ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
+                    nisl aeterno
                     convenire.
                   </p>
                   <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -234,11 +213,14 @@
                 <div class="reveal" id="event2" data-reveal>
                   <h3>Bake Sale Needing Baked Goods by TONIGHT</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
+                    ancillae. Pri quod
                     primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
+                    utinam assueverit
                     ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
+                    nisl aeterno
                     convenire.
                   </p>
                   <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -251,11 +233,14 @@
                 <div class="reveal" id="event3" data-reveal>
                   <h3>Wall Painters Wanted</h3>
                   <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri quod
+                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
+                    ancillae. Pri quod
                     primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam assueverit
+                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
+                    utinam assueverit
                     ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl aeterno
+                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
+                    nisl aeterno
                     convenire.
                   </p>
                   <button class="close-button" data-close aria-label="Close modal" type="button">

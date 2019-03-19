@@ -17,7 +17,6 @@
     </script>
     <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
     </script>
-
     <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
     </script>
     {% block headerInclude%}
@@ -25,13 +24,9 @@
     <title>VOLUNTEER</title>
 </head>
 
-<body style=" background-color: #d8d8d8">
+<body>
     <div>
         <div data-sticky-container>
-
-            <div>
-            </div>
-
             <div>
                 <!-- DESKTOP STICKY NAVIGATION -->
                 <div class="white-top-bar">
@@ -91,16 +86,6 @@
                 <div class="middle">
                     <!-- if True should be changed to if user.is_authenticated when it is proper -->
                     <!-- This is just for testing the user's homepage (as opposed to stranger landing page) -->
-                    {% if user.is_authenticated %}
-
-                    {% block middleColumnAuthorizedUser %}
-                    {% endblock %}
-
-                    {% else %}
-                    {% block middleColumnUnauthorizedUser %}
-                    {% endblock %}
-
-                    {% endif %}
                     {% block middleColumn %}
                     {% endblock %}
                 </div>

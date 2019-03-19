@@ -1,7 +1,7 @@
 {% extends "main_template.html" %}
 {% load static %}
 
-{% block middleColumnAuthorizedUser %}
+{% block middleColumn %}
 <div class="spaced-row">
     <div class="row">
         <div class="columns large-8">
@@ -86,7 +86,7 @@
         </div>
         <div class="columns large-4">
             <div class="row">
-				<! EDIT BUTTON >
+                <! EDIT BUTTON >
                 <div class="columns large-6">
                     <a href="{% url 'edit' %}" class="button-badge-large" id="edit">
                         <i class="fi-pencil"></i>
