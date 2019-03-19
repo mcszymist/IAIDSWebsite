@@ -27,13 +27,8 @@
     {% if user.is_authenticated %}
     <div class="small-2 large-8 columns">
       <div class="card">
-        <div class="card-divider-jason">
-          <div class="large-12 columns">
-            Suggested events
-            <a class="button float-right">3</a>
-            <a class="button float-right">2</a>
-            <a class="button float-right">1</a>
-          </div>
+        <div class="card-divider">
+          <h3>Suggested events</h3>
         </div>
         <div class="card-section">
           <div class="row">
@@ -75,60 +70,13 @@
           </div>
         </div>
       </div>
-      <div class="card" id="card2">
-        <div class="card-divider-jason">
-          <h3>
-            Suggested events
-          </h3>
-        </div> {% for event in allEvents %} <div class="card-section">
-          <div class="row">
-            <div class="large-6 columns">
-              <img class="thumbnail" src="static/images/cupcakes.jpg">
-            </div>
-            <div class="large-6 columns">
-              <div class="suggestedEventsAttributes">
-                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
-                <i class="fi-clock"></i> ALL DAY <br><br>
-                <i class="fi-torso"></i> IN PERSON<br><br>
-                <i class="fi-torsos-all"></i> BRING YOUR FRIENDS <br><br>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="large-12 columns">
-
-              <div class="suggestedEventsTitle">
-                {{ event.name }}
-              </div>
-              <div class="suggestedEventsDescription">
-                Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri
-                quod primis
-                cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam
-                assueverit ea,
-                cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl
-                aeterno convenire.
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="large-12 columns">
-              <a class="button">Add to calendar</a>
-              <a class="button">Share</a>
-              <a class="button">Like</a>
-              <a class="button alert float-right">Report</a>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-
     </div>
 
     {% else %}
 
     <div class="column large-4">
       <div class="card">
-        <div class="card-divider-jason">
+        <div class="card-divider">
           <h3>
             New users
           </h3>
@@ -141,7 +89,7 @@
     </div>
     <div class="column large-4">
       <div class="card">
-        <div class="card-divider-jason">
+        <div class="card-divider">
           <h3>
             Returning users
           </h3>
@@ -170,7 +118,7 @@
 
     <div class="large-4 columns">
       <div class="card">
-        <div class="card-divider-jason">
+        <div class="card-divider">
           <h3>
             Upcoming events
           </h3>

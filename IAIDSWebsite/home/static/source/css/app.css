@@ -154,7 +154,7 @@ source: https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
     background-color: #0088bc;
 }
 
-.card-divider-jason {
+.card-divider {
     background-color: #00adef;
 }
 
@@ -182,7 +182,7 @@ source: https://keithclark.co.uk/articles/pure-css-parallax-websites/demo3/
 .homeFont,
 .button,
 .card,
-.card-divider-jason h3,
+.card-divider h3,
 .upcomingEventsModalable li a,
 .profile-card-action .action-area a i
 {
