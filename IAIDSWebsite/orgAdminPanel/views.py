@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from .models import Event, Organization
+from .models import Event, Organization, OrganizationUsers
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
@@ -26,6 +26,7 @@ class EventFormView(FormView):
         self.request.session["org_id"] = org_id
         obj = Organization.objects.get(id=org_id)
         context['allEvents'] = Event.objects.all().filter(orgID=obj)
+        context['allUsers'] = OrganizationUsers.objects.all().filter(orgID=obj)
         return context
         
     def form_invalid(self, form):

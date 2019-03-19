@@ -100,9 +100,13 @@ $(document).ready(function(){
 
     function handleFormSuccess(data, textStatus, jqXHR){
         var name = $("#id_name").val()
+        var id = data['id']
+        console.log(data['id'])
+        str = "<a href='/orgAdminPanel?org=" + data['id']
+        str = str + "'>"
         table.row.add( [
-            data['id'],
-            "<a href='/orgAdminPanel?org='" + data['id'] + "'>" + name + "</a>",
+            id,
+            str + name + "</a>",
             "0",
             "<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
              ] ).draw( false );
