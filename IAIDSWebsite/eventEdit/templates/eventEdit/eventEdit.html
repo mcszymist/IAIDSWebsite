@@ -3,6 +3,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.0.1/tinymce.min.js"></script>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'events/css/eventEdit.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
+	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
+    	</script> 
+    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
+    	</script> 
 {% endblock %}
     
 {% block middleColumn %}
@@ -12,7 +19,7 @@
 
 <div class="row">
     <div class="column small-offset-3 large-6">
-        <h1 class="text-center">Event Title</h1>
+        <h1 class="text-center">{{event}}</h1>
     </div>
     <div class="column large-3">
         <button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
@@ -22,63 +29,133 @@
 <div class="row" id="textEdit" style="display:none">
     <div class="column large-12">
         <form onSubmit="updateHTML(this);">
-            <textarea id="basic-example">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.
-
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. 
-
-Consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-</textarea>
+            <textarea id="basic-example">
+                {{event.description}}
+            </textarea>
             <button name="submitbtn"></button>
         </form>
     </div>
 </div>
 <div class="row eventFilterBackground" id="textDisplay">
     <div class="column large-12">
-        <p id="textArea"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        <div id="textArea">
+            {{event.description}}
+        </div>
+    </div>
+</div>
+<div class = "row">
+    <div class="column large-12">
+        <table id="jobs" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Job Title</th>
+                    <th>Positions Needed</th>
+                    <th>Date/Time</th>
+                    <th>Signup</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in allJobs %}
+                    <tr>
+                        <td>{{job.id}}</td>
+                        <td>{{job.name}}</td>
+                        <td>{{job.personel}}/{{job.personelMax}}</td>
+                        <td>{{job.startdate}} - {{job.enddate}}</td>
+                        <td><button id="signupJob" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
-
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.
-
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. 
-
-Consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
- </p>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>id</th>
+                    <th>Job Title</th>
+                    <th>Positions Needed</th>
+                    <th>Date/Time</th>
+                    <th>Signup</th>
+                </tr>
+            </tfoot>
+        </table>
     </div>
 </div>
 <script>
+
+$('#jobs').on("click", "#signupJob", function() {
+    var data = table.row( $(this).parents('tr') ).data();
+    // Ajax request
+    $.ajax({
+        method: "POST",                     // Post request
+        url: "/eventEdit/signUpJobs/",  //url
+        dataType: "json",                   //data being set
+        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+        success: function(result){
+        },
+        error: function(result){},
+    })
+});
+
 $('#editEvent').click(function (e) {
     $('#textEdit').toggle();
     $('#textDisplay').toggle();
 });
-tinymce.init({
-  selector: 'textarea#basic-example',
-  height: 750,
-      menubar: false,
-      plugins: [
+
+$(document).ready(function(){
+    tinymce.init({
+          selector: 'textarea#basic-example',
+          height: 750,
+          menubar: false,
+          plugins: [
     'advlist autolink lists link image charmap print preview anchor textcolor save',
     'searchreplace visualblocks code fullscreen',
     'insertdatetime media table paste code help wordcount'
   ],
   toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | save ',
 });
+});
 function updateHTML(element){
     var temp = tinymce.get('basic-example').getContent();
     console.log(temp);
     document.getElementById("textArea").innerHTML = temp;
+    
+    $.ajax({
+        method: "POST",                     // Post request
+        url: "/eventEdit/updateDes/",  //url
+        dataType: "json",                   //data being set
+        data: {id: "{{event.id}}",des:temp, csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+        success: function(result){
+        },
+        error: function(result){},
+    })
 }
+var table = $('#jobs').DataTable({
+    bInfo: false,
+    autoWidth: false,
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            text: 'Create Jobs',
+            action: function ( e, dt, node, config ) {
+                var popup = new Foundation.Reveal($('#addRow'));
+                popup.open();
+            }
+        }
+    ],
+    "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+    columns: [
+        { "width": "0%" },
+        { "width": "35%" },
+        { "width": "60%" },
+        { "width": "5%" },
+        { "width": "5%" }
+    ]
+});
 </script>
 
 {% endblock %}

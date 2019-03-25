@@ -32,6 +32,7 @@
                 <table id="events" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>id</th>
                             <th>Event Title</th>
                             <th>Positions Needed</th>
                             <th>Date/Time</th>
@@ -42,7 +43,8 @@
                     <tbody>
                         {% for event in allEvents %}
                             <tr>
-                                <td>{{event.name}}</td>
+                                <td>{{event.id}}</td>
+                                <td><a href="/eventEdit/">{{event.name}}</a></td>
                                 <td>{{event.personel}}/{{event.personelMax}}</td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
@@ -53,6 +55,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>id</th>
                             <th>Event Title</th>
                             <th>Positions Needed</th>
                             <th>Date/Time</th>
@@ -75,7 +78,7 @@
                     <tbody>
                         {% for user in allUsers %}
                             <tr>
-                                <td>{{user.orgID}}</td>
+                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
                                 <td>{{user.userID}}</td>
                                 <td>{{user.privledge}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
@@ -208,7 +211,15 @@ $(document).ready(function(){
             }
         }
     ],
+    "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
     columns: [
+        { "width": "0%" },
         { "width": "55%" },
         { "width": "5%" },
         { "width": "20%" },
@@ -230,19 +241,12 @@ $('#events').on("click", "#editEvent", function() {
     <h1>New Event</h1>
     <form id="addUser">
         <div class="row">
-            <div class="large-12 columns">
+            <div class="large-8 columns">
                 <label>Email
                     <input type="text" id="email" placeholder="Food Bank Server" />
                 </label>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Username
-                    <input type="number" id="username" placeholder="10" />
-                </label>
-            </div>
-            <div class="large-6 columns">
+            <div class="large-4 columns">
                 <label>Privledge
                     <input type="text" id="priv" placeholder="2012-02-18" />
                 </label>
@@ -267,7 +271,7 @@ $('#buttonUser').click(function (e) {
                         email,
                         username,
                         priv,
-						"<button id=\"editUsers\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+						"<button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
                         ] ).draw( false );
     $("#email").val("");
     $("#username").val("");

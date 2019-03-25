@@ -33,7 +33,13 @@ class OrganizationUsers(models.Model):
     userID = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
     privledge = models.PositiveIntegerField(default=0)
 
-
-	
-
+class Job(models.Model):
+    eventID = models.ForeignKey(Event, on_delete=models.CASCADE, null=False)
+    userID = models.ManyToManyField(MyUser)
+    name = models.CharField(max_length = 100)
+    personelMax = models.PositiveIntegerField(default=1)
+    personel = models.PositiveIntegerField(default=0)
+    startdate = models.DateTimeField(default=datetime.now)
+    enddate = models.DateTimeField(default=datetime.now)
+    description = models.TextField(default='Please Fill')
 
