@@ -44,7 +44,7 @@
                         {% for event in allEvents %}
                             <tr>
                                 <td>{{event.id}}</td>
-                                <td><a href="/eventEdit/">{{event.name}}</a></td>
+                                <td><a href="/eventEdit/?event={{event.id}}">{{event.name}}</a></td>
                                 <td>{{event.personel}}/{{event.personelMax}}</td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>

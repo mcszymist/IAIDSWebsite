@@ -79,8 +79,95 @@
         </table>
     </div>
 </div>
-<script>
+<!-- For Jobs Table -->
+<div class="reveal" id="addJobEvent" data-reveal>
+    <h1>New Job</h1>
+    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
+        <div class="row">
+            <div class="large-8 columns">
+                <label>Name
+                    {{form.name}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 columns">
+                <label>Positions Needed
+                    {{form.personelMax}}
+                </label>
+            </div>
+            <div class="large-4 columns">
+                <label>Start
+                    {{form.startdate}}
+                </label>
+            </div>
+            <div class="large-4 columns">
+                <label>End
+                    {{form.enddate}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Description
+                    {{form.description}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offest-large-8 large-4 columns">
+                <input type="Submit" name="submit" value="Submit" data-close/>            
+            </div>
+        </div>
+    </form>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
+<script>
+$(document).ready(function(){
+    var $myForm = $('.my-ajax-form')
+    $myForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        let id = data['id']
+        var job = $("#id_name").val();
+        var date = $("#id_startdate").val();
+        var enddate = $("#id_enddate").val();
+        var personelMax = $("#id_personelMax").val();
+        table.row.add( [
+                        id,
+                        job,
+                        "0/" + personelMax,
+                        date + " - " + enddate,
+                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                        ] ).draw( false );
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $myForm[0].reset(); // reset form data
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+});
 $('#jobs').on("click", "#signupJob", function() {
     var data = table.row( $(this).parents('tr') ).data();
     // Ajax request
@@ -136,7 +223,7 @@ var table = $('#jobs').DataTable({
         {
             text: 'Create Jobs',
             action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addRow'));
+                var popup = new Foundation.Reveal($('#addJobEvent'));
                 popup.open();
             }
         }
@@ -151,8 +238,8 @@ var table = $('#jobs').DataTable({
     columns: [
         { "width": "0%" },
         { "width": "35%" },
-        { "width": "60%" },
         { "width": "5%" },
+        { "width": "60%" },
         { "width": "5%" }
     ]
 });

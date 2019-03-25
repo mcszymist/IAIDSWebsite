@@ -4,7 +4,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.eventEdit, name='eventEdit'),
+    path('', views.JobFormView.as_view(), name='JobFormView'),
     path('signUpJobs/', views.signupJob,name='signUpJobs'),
     path('updateDes/', views.updateDes,name='updateDes')
 ]
