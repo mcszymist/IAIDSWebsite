@@ -25,12 +25,17 @@
         <button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
     </div>
 </div>
-
+<div class="row">
+    <div class="column small-3">
+    </div>
+    <div class="column small-9 eventFilterBackground">
+    </div>
+</div>
 <div class="row" id="textEdit" style="display:none">
     <div class="column large-12">
         <form onSubmit="updateHTML(this);">
             <textarea id="basic-example">
-                {{event.description}}
+                {{event.page}}
             </textarea>
             <button name="submitbtn"></button>
         </form>
@@ -39,7 +44,7 @@
 <div class="row eventFilterBackground" id="textDisplay">
     <div class="column large-12">
         <div id="textArea">
-            {{event.description}}
+            {{event.page}}
         </div>
     </div>
 </div>
@@ -62,7 +67,7 @@
                         <td>{{job.name}}</td>
                         <td>{{job.personel}}/{{job.personelMax}}</td>
                         <td>{{job.startdate}} - {{job.enddate}}</td>
-                        <td><button id="signupJob" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                        <td><button id="signUpJob" class="button tiny"><i class="fi-plus"></i> <b>SignUp</b></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
                     </tr>
                 {% endfor %}
@@ -154,7 +159,7 @@ $(document).ready(function(){
                         job,
                         "0/" + personelMax,
                         date + " - " + enddate,
-                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                        "<td><button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
                         ] ).draw( false );
         console.log(data)
         console.log(textStatus)
@@ -168,7 +173,7 @@ $(document).ready(function(){
         console.log(errorThrown)
     }
 });
-$('#jobs').on("click", "#signupJob", function() {
+$('#jobs').on("click", "#signUpJob", function() {
     var data = table.row( $(this).parents('tr') ).data();
     // Ajax request
     $.ajax({
@@ -239,8 +244,8 @@ var table = $('#jobs').DataTable({
         { "width": "0%" },
         { "width": "35%" },
         { "width": "5%" },
-        { "width": "60%" },
-        { "width": "5%" }
+        { "width": "55%" },
+        { "width": "10%" }
     ]
 });
 </script>

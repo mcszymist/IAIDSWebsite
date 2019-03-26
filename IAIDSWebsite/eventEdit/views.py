@@ -14,7 +14,7 @@ def eventEdit(request):
         jobs = Job.objects.all().filter(eventID=eventInt)
         return render(request, 'eventEdit/eventEdit.html', { 'event': eventInt, 'allJobs':jobs })
     
-def signupJob(request):
+def signUpJob(request):
     id = request.POST.get('id', '')
     instance = Job.objects.get(id=id)
     instance.userID = self.request.user
@@ -25,7 +25,7 @@ def updateDes(request):
     id = request.POST.get('id', '')
     des = request.POST.get('des', '')
     instance = Event.objects.get(id=id)
-    instance.description = des
+    instance.page = des
     instance.save()
     return HttpResponse(json.dumps({'id': id}), content_type="application/json")
     
@@ -38,7 +38,7 @@ class JobFormView(FormView):
         context = super(JobFormView, self).get_context_data(**kwargs)
         id = self.request.GET.get('event', '')
         if id == '':
-            return redirect('/yourOrganizations/') 
+            return redirect('/') 
         else:
             self.request.session["event_id"] = id
             context['event'] = Event.objects.get(id=id)  # Getting all the events from database

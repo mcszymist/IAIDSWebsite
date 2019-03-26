@@ -13,6 +13,7 @@ class Organization(models.Model):
 class Event(models.Model):
     orgID = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length = 100)
+    page = models.TextField(default='Please Fill')
     description = models.TextField(default='Please Fill')
     personelMax = models.PositiveIntegerField(default=1)
     personel = models.PositiveIntegerField(default=0)
