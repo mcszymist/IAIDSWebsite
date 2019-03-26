@@ -61,13 +61,23 @@
                 </tr>
             </thead>
             <tbody>
-                {% for job in allJobs %}
+                {% for job in allSignUpJobs %}
                     <tr>
                         <td>{{job.id}}</td>
                         <td>{{job.name}}</td>
                         <td>{{job.personel}}/{{job.personelMax}}</td>
                         <td>{{job.startdate}} - {{job.enddate}}</td>
-                        <td><button id="signUpJob" class="button tiny"><i class="fi-plus"></i> <b>SignUp</b></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                        <td><button id="signUpJob" class="button tiny"><i class="fi-plus"></i> <b>SignUp</b></button><button id="deleteJob" class="button tiny alert"><i class="fi-trash"></i></button></td>
+
+                    </tr>
+                {% endfor %}
+                {% for job in allSignOutJobs %}
+                    <tr>
+                        <td>{{job.id}}</td>
+                        <td>{{job.name}}</td>
+                        <td>{{job.userID.all.count}}/{{job.personelMax}}</td>
+                        <td>{{job.startdate}} - {{job.enddate}}</td>
+                        <td><button id="signOutJob" class="button alert tiny"><i class="fi-minus"></i> <b>SignOut</b></button><button id="deleteJob" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
                     </tr>
                 {% endfor %}
@@ -159,7 +169,7 @@ $(document).ready(function(){
                         job,
                         "0/" + personelMax,
                         date + " - " + enddate,
-                        "<td><button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                        "<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
                         ] ).draw( false );
         console.log(data)
         console.log(textStatus)
@@ -178,13 +188,46 @@ $('#jobs').on("click", "#signUpJob", function() {
     // Ajax request
     $.ajax({
         method: "POST",                     // Post request
-        url: "/eventEdit/signUpJobs/",  //url
+        url: "/eventEdit/signUpJob/",  //url
+        dataType: "json",                   //data being set
+        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+        success: function(result){
+        },
+        error: function(result){},
+        
+    })
+    let ind = table.row( $(this).parents('tr') ).index();
+    table.cell(ind,4).data("<button id=\"signOutJob\" class=\"button alert tiny\"><i class=\"fi-minus\"></i> <b>SignOut</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>" ).draw();
+});
+$('#jobs').on("click", "#signOutJob", function() {
+    var data = table.row( $(this).parents('tr') ).data();
+    // Ajax request
+    $.ajax({
+        method: "POST",                     // Post request
+        url: "/eventEdit/signOutJob/",  //url
+        dataType: "json",                   //data being set
+        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+        success: function(result){
+        },
+        error: function(result){},
+        
+    })
+    let ind = table.row( $(this).parents('tr') ).index();
+    table.cell(ind,4).data("<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>" ).draw();
+});
+$('#jobs').on("click", "#deleteJob", function() {
+    var data = table.row( $(this).parents('tr') ).data();
+    // Ajax request
+    $.ajax({
+        method: "POST",                     // Post request
+        url: "/eventEdit/deleteJob/",  //url
         dataType: "json",                   //data being set
         data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
         success: function(result){
         },
         error: function(result){},
     })
+    table.row($(this).parents('tr')).remove().draw(false);
 });
 
 $('#editEvent').click(function (e) {
@@ -219,6 +262,7 @@ function updateHTML(element){
         },
         error: function(result){},
     })
+    
 }
 var table = $('#jobs').DataTable({
     bInfo: false,
