@@ -6,12 +6,14 @@ from django.forms import SelectDateWidget
 class JobForm(forms.ModelForm):
 
     class Meta:
-        model = Event
+        model = Job
         fields = ('name', 'personelMax', 'startdate','enddate', 'description')
         widgets = {
             'name' : forms.TextInput(attrs={'placeholder': 'Job Title'}),
 			'personelMax' : forms.NumberInput(),
-            'startdate' : forms.DateTimeInput(),
-			'enddate' : forms.DateTimeInput(),
+            'startdate' : forms.DateInput(),
+			'enddate' : forms.DateInput(),
+            'starttime' : forms.TimeInput(),
+			'endtime' : forms.TimeInput(),
 			'description' : forms.Textarea(),
         }
