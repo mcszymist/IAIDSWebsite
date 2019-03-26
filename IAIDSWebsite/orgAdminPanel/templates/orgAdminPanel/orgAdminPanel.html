@@ -78,7 +78,7 @@
                     <tbody>
                         {% for user in allUsers %}
                             <tr>
-                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
+                                <td><a href="/profile/?user={{user.userID.id}}">{{user.userID.first_name}} {{user.userID.last_name}}</a></td>
                                 <td>{{user.userID}}</td>
                                 <td>{{user.privledge}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
@@ -100,7 +100,10 @@
     </div>
 </div>
 <div class="row">
-	<div class="small-offset-9 small-3 columns">
+    <div class="small-3 columns">
+		<button id="backButton"class="button">Back<i class=""></i></button>
+	</div>
+	<div class="small-offset-6 small-3 columns">
 		<button id="deleteOrgButton"class="button alert">Delete Organization <i class="fi-trash"></i></button>
 	</div>
 </div>
@@ -179,8 +182,9 @@ $(document).ready(function(){
         var date = $("#id_startdate").val();
         var personelMax = $("#id_personelMax").val();
         eventsTable.row.add( [
+                        data['id'],
                         event,
-                        personelMax,
+                        "0/"+ personelMax,
                         date,
                         location,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
