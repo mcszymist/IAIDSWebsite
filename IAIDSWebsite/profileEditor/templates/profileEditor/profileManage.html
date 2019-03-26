@@ -10,11 +10,11 @@
                     <div class="profile-card-header">
                         <div class="profile-card-avatar">
                             <!-- <img class="avatar-image" src="{% static 'profileEditor/images/default_profile.jpg' %}" alt="{request user.first_name}"> -->
-                            <img class="avatar-image" src="{{ user.profile_pic.url }}" onerror="this.onerror=null;"
+                            <img class="avatar-image" src="{{ profile.profile_pic.url }}" onerror="this.onerror=null;"
                                 this.src="{% static 'profileEditor/images/default_profile.jpg' %}" width="10" height="10">
                         </div>
                         <div class="profile-card-author">
-                            <h5 class="author-title">{{ user.first_name }} {{ user.last_name }}</h5>
+                            <h5 class="author-title">{{ profile.first_name }} {{ profile.last_name }}</h5>
                             <p class="author-description">
                                 <br><i class="fi-home"></i> Things that I like #1 <br><br>
                                 <i class="fi-home"></i> Things that I like #2 <br><br>
@@ -25,7 +25,7 @@
                     <div class="profile-card-about">
                         <h5 class="about-title separator-left">About Me</h5>
                         <p class="about-content">
-                            {{user.description}}
+                            {{profile.description}}
                         </p>
                     </div>
                     <div class="profile-card-about">
@@ -84,6 +84,7 @@
             </div>
 
         </div>
+        {% if user == profile %}
         <div class="columns large-4">
             <div class="row">
                 <! EDIT BUTTON >
@@ -112,10 +113,15 @@
                 </div>
             </div>
         </div>
+        {%endif%}
     </div>
 </div>
 </div>
 </div>
+<script>
+console.log("test");
+console.log("{{ profile.first_name }}");
+</script>
 {% endblock %}
 
 {% block sideBar %}
