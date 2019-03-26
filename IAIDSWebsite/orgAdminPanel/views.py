@@ -46,6 +46,7 @@ class EventFormView(FormView):
             org.save()
             
             data = {
+                'id':org.id,
                 'message': "Successfully submitted form data."
             }
             return JsonResponse(data)

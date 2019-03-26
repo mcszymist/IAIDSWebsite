@@ -5,14 +5,6 @@ from .forms import JobForm
 import json
 from django.views.generic import FormView
 # Create your views here.
-def eventEdit(request):
-    id = request.GET.get('event', '')
-    if id == '':
-        return redirect('/yourOrganizations/') 
-    else:
-        eventInt = Event.objects.get(id=id)  # Getting all the events from database
-        jobs = Job.objects.all().filter(eventID=eventInt)
-        return render(request, 'eventEdit/eventEdit.html', { 'event': eventInt, 'allJobs':jobs })
     
 def signUpJob(request):
     id = request.POST.get('id', '')
