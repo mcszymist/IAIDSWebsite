@@ -24,10 +24,6 @@
 </div>
 
 <script>
-{% for event in allEvents %}
-    console.log("{{event.startdate}}")
-{% endfor %}
-    console.log(new Date(2019, 1, 6, 19, 0))
     !function () {
         $("#fullcalendar").fullCalendar({
             header: {
@@ -47,19 +43,33 @@
             timeFormat: 'h(:mm)t',
             displayEventTime: true,
             displayEventEnd: true,
+            eventRender: function(event, element) {
+                element.qtip({
+                    content: event.shortDes,
+                    position: {
+                        my: 'bottom left',  // Position my top left...
+                        at: 'top left', // at the bottom right of...
+                    }
+                });
+            },
             events: [
                 {% for event in allEvents %}
                     {
                         title: '{{event.name}}',
+                        shortDes: '{{event.description}}',
                         start: new Date(2019, 1, 6, 19, 0),
                         end: new Date(2019, 1, 6, 23, 30),
-                        allDay: false
+                        allDay: false,
+                        id: '{{event.id}}'
                     },
                 {% endfor %}
             ],
             selectable: true,
             eventResizeStart: true,
             eventDragStart: false,
+            eventClick: function(info){
+                $(location).attr('href', '/eventEdit/?event=' + info.id);
+            }
         });
     }();
 
