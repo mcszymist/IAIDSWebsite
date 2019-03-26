@@ -1,0 +1,39 @@
+@import '_variables';
+
+body {
+    background-color: tint($theme-color-light,100);
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:999;
+}
+
+.spaced-row .row {
+    padding: 10px;
+}
+
+.middle {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.modal-open {
+    padding:0 !important;
+    overflow-y: inherit;
+}
+
+// .footer {
+//     font-size: 20px;
+//     color: white;
+//     height: 250px;
+//     bottoM: 0;
+//     background-color: rgba(0,0,0,0.5);
+//     padding-top: 40px;
+// }
+
+// .footer .row .align-middle .text-align-middle .text-center .column .align-middle {
+//     color:black;
+// }

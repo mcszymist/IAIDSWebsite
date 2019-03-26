@@ -1,0 +1,11 @@
+@import '_functions';
+
+$font-stack: ('Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif);
+$selectable-transition: all ease-out 0.3s;
+$global-border-radius: 0.3em;
+$theme-color-dark: #003056;
+$theme-color-darkmed: #05518b;
+$theme-color-med: #00a1d8;
+$theme-color-medlight: #46d9bf;
+$theme-color-light: #f2d03b;
+$theme-gradient-to-bottom-right: linear-gradient(to bottom right, $theme-color-darkmed, $theme-color-med,  $theme-color-medlight,  $theme-color-light);

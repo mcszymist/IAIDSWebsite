@@ -1,0 +1,21 @@
+@import '../_variables';
+@import '../functions';
+
+$font-color: #ffffff;
+$danger-color: red;
+
+.button {
+    background-color: $theme-color-med;
+    color: $font-color;
+    font-family: $font-stack;
+    transition: $selectable-transition;
+    border-radius: $global-border-radius;
+    &:hover {
+        color: tint($font-color, 100);
+        background-color: $theme-color-medlight;
+    }
+}
+
+.secondary-button {
+    color: $danger-color;
+}
