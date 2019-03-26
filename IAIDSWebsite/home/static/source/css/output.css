@@ -96,8 +96,8 @@ body {
   border-radius: 0.3em;
 }
 .button:hover {
-  color: white;
-  background-color: #46d9bf;
+  color: #003056;
+  background-color: #3fc3ac;
 }
 
 .secondary-button {
@@ -107,21 +107,21 @@ body {
 .card {
   color: #ffffff;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  background: #cccccc;
+  background: #d9f1f9;
   border-width: 2px;
 }
 
 .card-divider {
-  background-color: #05518b;
+  background-color: #0056a7;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 2em;
 }
 
 .top-bar {
-  background-color: #003056;
+  background: #003056;
 }
 .top-bar ul {
-  background-color: #003056;
+  background: #003056;
 }
 .top-bar-right ul li a {
   color: #ffffff;
@@ -132,9 +132,35 @@ body {
 }
 .top-bar-right ul li .button-badge:hover {
   color: white;
+  background-color: #f04e31;
 }
 .top-bar-right > .menu {
   padding-right: 20px;
+}
+.top-bar-right .menu hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.top-bar-right .menu li > a {
+  transition: all ease-out 0.3s;
+}
+.top-bar-right .menu li > a:hover {
+  color: white;
+  background-color: #f04e31;
+}
+.top-bar-left ul a {
+  transition: all ease-out 0.3s;
+}
+.top-bar-left ul a:hover {
+  background-color: #f04e31;
+}
+.top-bar-left ul a .homeFont {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.top-bar-left ul a .homeFont:hover {
+  color: white;
 }
 
 .dropdown.menu > li.is-dropdown-submenu-parent > a::after {
@@ -149,31 +175,6 @@ body {
 .dropdown .menu {
   padding-top: 10px;
   padding-bottom: 10px;
-}
-
-.menu hr {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.menu li > a {
-  transition: all ease-out 0.3s;
-}
-.menu li > a:hover {
-  color: white;
-  background-color: rgba(255, 255, 255, 0.534);
-  border-radius: 0.3em;
-}
-
-.homeFont {
-  font-size: 24px;
-  color: #ffffff;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-.homeFont:hover {
-  color: black;
-}
-.homeFont i {
-  font-size: 1.5rem;
 }
 
 .hoverableImg {
@@ -215,16 +216,23 @@ body {
 .upcomingEventsModalable li {
   transition: all ease-out 0.3s;
 }
+.upcomingEventsModalable li:hover {
+  background-color: #f04e31;
+}
+.upcomingEventsModalable li:hover:first-child {
+  border-top-right-radius: 0.3em;
+  border-top-left-radius: 0.3em;
+}
+.upcomingEventsModalable li:hover:last-child {
+  border-bottom-right-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
 .upcomingEventsModalable li ul {
   padding: 10px;
 }
 .upcomingEventsModalable li a {
   color: white;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-.upcomingEventsModalable li a:hover {
-  color: white;
-  border-radius: 0.3em;
 }
 
 .welcomePanel {
@@ -236,7 +244,7 @@ body {
   padding-top: 30px;
   padding-bottom: 30px;
   border-radius: 0.3rem;
-  background-image: linear-gradient(to bottom right, #05518b, #00a1d8, #46d9bf, #f2d03b);
+  background-image: linear-gradient(160deg, #0056a7, #00a1d8, #46d9bf, #fcb239, #f04e31);
   border-width: 2px;
 }
 

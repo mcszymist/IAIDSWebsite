@@ -11,8 +11,8 @@ $danger-color: red;
     transition: $selectable-transition;
     border-radius: $global-border-radius;
     &:hover {
-        color: tint($font-color, 100);
-        background-color: $theme-color-medlight;
+        color: $theme-color-dark;
+        background-color: shade($theme-color-medlight,10);
     }
 }
 
