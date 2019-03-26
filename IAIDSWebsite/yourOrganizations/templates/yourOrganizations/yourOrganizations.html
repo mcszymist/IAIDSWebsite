@@ -31,9 +31,9 @@
                 <!-- looping though all the events making the table -->
                 {% for org in allOrgs %}
                     <tr>
-                        <td>{{org.id}}</td>
-                        <td><a href="/orgAdminPanel?org={{org.id}}">{{org}}</a></td>
-                        <td>0</td>
+                        <td>{{org.0.id}}</td>
+                        <td><a href="/orgAdminPanel?org={{org.0.id}}">{{org.0}}</a></td>
+                        <td>{{org.1}}</td>
                         <td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
                     </tr>

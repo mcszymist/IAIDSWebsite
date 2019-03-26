@@ -12,7 +12,13 @@ def orgAdminPanel(request):
 
 def DeleteEvent(request):
     name = request.POST.get('name', '')
-    instance = Organization.objects.get(name=name)
+    instance = Event.objects.get(name=name)
+    instance.delete()
+    return redirect("/yourOrganizations/")
+
+def DeleteEvent(request):
+    name = request.POST.get('name', '')
+    instance = Event.objects.get(name=name)
     instance.delete()
     
 class EventFormView(FormView):
