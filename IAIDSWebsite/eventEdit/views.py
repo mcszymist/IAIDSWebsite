@@ -9,10 +9,23 @@ from django.views.generic import FormView
 def signUpJob(request):
     id = request.POST.get('id', '')
     instance = Job.objects.get(id=id)
-    instance.userID = self.request.user
+    instance.userID.add(request.user)
     instance.save()
     return HttpResponse(json.dumps({'id': id}), content_type="application/json")
-    
+
+def signOutJob(request):
+    id = request.POST.get('id', '')
+    instance = Job.objects.get(id=id)
+    instance.userID.remove(request.user)
+    instance.save()
+    return HttpResponse(json.dumps({'id': id}), content_type="application/json")
+
+def deleteJob(request):
+    id = request.POST.get('id', '')
+    instance = Job.objects.get(id=id)
+    instance.delete()
+    return HttpResponse(json.dumps({'id': id}), content_type="application/json")
+
 def updateDes(request):
     id = request.POST.get('id', '')
     des = request.POST.get('des', '')
@@ -34,7 +47,10 @@ class JobFormView(FormView):
         else:
             self.request.session["event_id"] = id
             context['event'] = Event.objects.get(id=id)  # Getting all the events from database
-            context['allJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"])
+            context['allSignUpJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"]).exclude(userID = self.request.user)
+            context['allSignOutJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"],userID = self.request.user)
+
+            
             return context
         
     def form_invalid(self, form):
