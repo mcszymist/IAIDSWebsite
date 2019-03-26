@@ -11,15 +11,18 @@ def orgAdminPanel(request):
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'allEvents': allEvents})
 
 def DeleteEvent(request):
-    name = request.POST.get('name', '')
-    instance = Event.objects.get(name=name)
+    id = request.POST.get('id', '')
+    instance = Event.objects.get(id=id)
     instance.delete()
+    
+def Back(request):
     return redirect("/yourOrganizations/")
 
-def DeleteEvent(request):
-    name = request.POST.get('name', '')
-    instance = Event.objects.get(name=name)
+def DeleteOrganization(request):
+    id = request.GET.get('id', '')
+    instance = Organization.objects.get(id=id)
     instance.delete()
+    return redirect("/yourOrganizations/")
     
 class EventFormView(FormView):
     form_class = EventForm

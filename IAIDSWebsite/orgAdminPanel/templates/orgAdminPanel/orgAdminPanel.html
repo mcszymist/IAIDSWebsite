@@ -233,8 +233,20 @@ $(document).ready(function(){
 });
 
 $('#events').on("click", "#deleteEvent", function() {
-            eventsTable.row($(this).parents('tr')).remove().draw(false);
+    var data = table.row( $(this).parents('tr') ).data();
+    // Ajax request
+    $.ajax({
+        method: "POST",                     // Post request
+        url: "/orgAdminPanel/delete/",  //url
+        dataType: "json",                   //data being set
+        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+        success: function(result){
+        },
+        error: function(result){},
+    })
+    eventsTable.row($(this).parents('tr')).remove().draw(false);
 });
+
 $('#events').on("click", "#editEvent", function() {
 
 });
@@ -307,7 +319,12 @@ $('#users').on("click", "#deleteUsers", function() {
 });
 $('#users').on("click", "#editUsers", function() {
 });
-
+$('#backButton').click(function (e) {
+    $(location).attr('href', '/yourOrganizations/')
+});
+$('#deleteOrgButton').click(function (e) {
+    $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
+});
 </script>
 {% endblock %}
 
