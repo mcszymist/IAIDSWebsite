@@ -23,6 +23,11 @@ class Event(models.Model):
     def __str__(self):
         return '%s %s' % (self.name,self.id)
 
+    def fullCallendarStartFormat(self):
+        return self.startdate.strftime('%Y-%m-%dT%H:%M:%S')
+
+    def fullCallendarEndFormat(self):
+        return self.enddate.strftime('%Y-%m-%dT%H:%M:%S')
 
 class EventVol(models.Model):
     eventID = models.ManyToManyField(Event)
