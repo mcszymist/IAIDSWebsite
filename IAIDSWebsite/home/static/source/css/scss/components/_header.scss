@@ -3,9 +3,9 @@
 $dropdown-menu-padding: 10px;
 
 .top-bar {
-    background-color: $theme-color-dark;
+    background: $theme-color-dark;
     ul {
-        background-color: $theme-color-dark;
+        background: $theme-color-dark;
     }
     &-right {
         ul {
@@ -19,6 +19,7 @@ $dropdown-menu-padding: 10px;
                     color: white;
                     &:hover {
                         color: white;
+                        background-color: $house-provided-red-orange;
                     }
                 }
             }
@@ -26,8 +27,40 @@ $dropdown-menu-padding: 10px;
         > .menu {
             padding-right: 20px;
         }
+        .menu {
+            hr {
+                margin-top: $dropdown-menu-padding;
+                margin-bottom: $dropdown-menu-padding;
+            }
+            li > {
+                a {
+                    transition: $selectable-transition;
+                    &:hover {
+                        color: white;
+                        background-color: $house-provided-red-orange;
+                    }
+                }
+            }
+        }
+    }
+    &-left ul {
+        a {
+            transition: $selectable-transition;
+            &:hover {
+                background-color: $house-provided-red-orange;
+            }
+            .homeFont {
+                font-size:1.5rem;
+                color:#ffffff;
+                font-family: $font-stack;
+                &:hover {
+                    color: white;
+                }
+            }
+        }
     }
 }
+
 
 .dropdown {
     &.menu > li {
@@ -46,34 +79,5 @@ $dropdown-menu-padding: 10px;
     .menu {
         padding-top: $dropdown-menu-padding;
         padding-bottom: $dropdown-menu-padding;
-    }
-}
-
-.menu {
-    hr {
-        margin-top: $dropdown-menu-padding;
-        margin-bottom: $dropdown-menu-padding;
-    }
-    li > {
-        a {
-            transition: $selectable-transition;
-            &:hover {
-                color: white;
-                background-color: rgba(255, 255, 255, 0.534);
-                border-radius: $global-border-radius;
-            }
-        }
-    }
-}
-
-.homeFont {
-    font-size: 24px;
-    color:#ffffff;
-    font-family: $font-stack;
-    &:hover {
-        color:black;
-    }
-    i {
-        font-size: 1.5rem;
     }
 }
