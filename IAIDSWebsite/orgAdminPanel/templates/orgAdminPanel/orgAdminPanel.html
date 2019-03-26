@@ -19,7 +19,6 @@
     $( function() {
         $( "#tabs" ).tabs();
     } );
-    console.log("{{ request.session.org_name }}")
 </script>
 <div class="row">
     <div class="small-centered columns eventFilterBackground">
@@ -44,7 +43,7 @@
                         {% for event in allEvents %}
                             <tr>
                                 <td>{{event.id}}</td>
-                                <td><a href="/eventEdit/?event={{event.id}}">{{event.name}}</a></td>
+                                <td>{{event.name}}</td>
                                 <td>{{event.personel}}/{{event.personelMax}}</td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
@@ -69,6 +68,7 @@
                 <table id="users" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Privledge</th>
@@ -78,7 +78,8 @@
                     <tbody>
                         {% for user in allUsers %}
                             <tr>
-                                <td><a href="/profile/?user={{user.userID.id}}">{{user.userID.first_name}} {{user.userID.last_name}}</a></td>
+                                <td>{{user.userID.id}}</td>
+                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
                                 <td>{{user.userID}}</td>
                                 <td>{{user.privledge}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
@@ -88,6 +89,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Privledge</th>
@@ -233,7 +235,7 @@ $(document).ready(function(){
 });
 
 $('#events').on("click", "#deleteEvent", function() {
-    var data = table.row( $(this).parents('tr') ).data();
+    var data = eventsTable.row( $(this).parents('tr') ).data();
     // Ajax request
     $.ajax({
         method: "POST",                     // Post request
@@ -296,7 +298,15 @@ $('#buttonUser').click(function (e) {
 var usersTable = $('#users').DataTable({
     bInfo: false,
     autoWidth: false,
+    "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
     columns: [
+        { "width": "0%" },
         { "width": "40%" },
         { "width": "40%" },
         { "width": "10%" },
@@ -325,6 +335,25 @@ $('#backButton').click(function (e) {
 $('#deleteOrgButton').click(function (e) {
     $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
 });
+$('#events tbody').on('click', 'tr', function (e) {
+    var data = eventsTable.row( this ).data();
+    if($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 5){
+        return
+    }
+    else{
+        $(location).attr('href', '/eventEdit/?event=' + data[0]);
+    }
+} );
+$('#users tbody').on('click', 'tr', function (e) {
+    var data = usersTable.row( this ).data();
+    if($("#users").dataTable().api().cell($(e.target).closest('td')).index().column == 5){
+        return
+    }
+    else{
+        $(location).attr('href', '/profile/?user=' + data[0]);
+    }
+    
+} );
 </script>
 {% endblock %}
 

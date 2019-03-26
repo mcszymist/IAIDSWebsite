@@ -17,4 +17,16 @@
 table#example.dataTable tbody tr:hover {
     background-color: #ffa;
     cursor: pointer;
-  }
+}
+table#events.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}
+table#users.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}
+table#table.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}
