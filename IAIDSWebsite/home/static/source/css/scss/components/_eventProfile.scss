@@ -1,0 +1,31 @@
+@import '../_variables';
+
+.profileTemplate {
+    .spaced-row {
+        .row {
+            .profileImage {
+                width: 100%;
+                height: 200%;
+            }
+            .profileAdditionalInfo {
+                .profileTitle p {
+                    text-align: center;
+                    font-size: 1.2em;
+                }
+                .profileAttributes {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+.progress {
+    &.success .progress-meter{
+        background: $theme-gradient-to-bottom-right;
+    }
+    .progress-meter {
+        background: rgb(150, 150, 150);
+        margin-top: 4px;
+    }
+}

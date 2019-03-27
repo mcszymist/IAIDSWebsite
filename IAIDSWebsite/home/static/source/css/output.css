@@ -9,7 +9,7 @@ body {
   z-index: 999;
 }
 
-.spaced-row .row {
+.spaced-row > .row {
   padding: 10px;
 }
 
@@ -27,13 +27,10 @@ body {
   width: 100%;
   padding-top: 20%;
   padding-bottom: 20%;
-  background-color: #4abdeb;
-  text-decoration: none;
+  background-color: #46d9bf;
   position: relative;
   display: inline-block;
-  /* rounded corners roundess */
-  border-radius: 0.3rem;
-  transition: all ease 0.3s;
+  transition: all ease-out 0.3s;
   text-align: center;
 }
 
@@ -246,6 +243,26 @@ body {
   border-radius: 0.3rem;
   background-image: linear-gradient(160deg, #0056a7, #00a1d8, #46d9bf, #fcb239, #f04e31);
   border-width: 2px;
+}
+
+.profileTemplate .spaced-row .row .profileImage {
+  width: 100%;
+  height: 200%;
+}
+.profileTemplate .spaced-row .row .profileAdditionalInfo .profileTitle p {
+  text-align: center;
+  font-size: 1.2em;
+}
+.profileTemplate .spaced-row .row .profileAdditionalInfo .profileAttributes {
+  text-align: center;
+}
+
+.progress.success .progress-meter {
+  background: linear-gradient(160deg, #0056a7, #00a1d8, #46d9bf, #fcb239, #f04e31);
+}
+.progress .progress-meter {
+  background: #969696;
+  margin-top: 4px;
 }
 
 /*# sourceMappingURL=output.css.map */
