@@ -33,7 +33,6 @@
                         <tr>
                             <th>id</th>
                             <th>Event Title</th>
-                            <th>Positions Needed</th>
                             <th>Date/Time</th>
                             <th>Location</th>
                             <th>Delete</th>
@@ -44,7 +43,6 @@
                             <tr>
                                 <td>{{event.id}}</td>
                                 <td>{{event.name}}</td>
-                                <td>{{event.personel}}/{{event.personelMax}}</td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
@@ -56,7 +54,6 @@
                         <tr>
                             <th>id</th>
                             <th>Event Title</th>
-                            <th>Positions Needed</th>
                             <th>Date/Time</th>
                             <th>Location</th>
                             <th>Delete</th>
@@ -126,19 +123,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="large-4 columns">
-                <label>Positions Needed
-                    {{form.personelMax}}
+            <div class="large-6 columns">
+                <label>Start Date
+                    {{form.startdate}} {{form.starttime}}
                 </label>
             </div>
-            <div class="large-4 columns">
-                <label>Start
-                    {{form.startdate}}
-                </label>
-            </div>
-            <div class="large-4 columns">
-                <label>End
-                    {{form.enddate}}
+            <div class="large-6 columns">
+                <label>End Date
+                    {{form.enddate}} {{form.endtime}}
                 </label>
             </div>
         </div>
@@ -182,11 +174,9 @@ $(document).ready(function(){
         var event = $("#id_name").val();
         var location = $("#id_location").val();
         var date = $("#id_startdate").val();
-        var personelMax = $("#id_personelMax").val();
         eventsTable.row.add( [
                         data['id'],
                         event,
-                        "0/"+ personelMax,
                         date,
                         location,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
@@ -227,7 +217,6 @@ $(document).ready(function(){
     columns: [
         { "width": "0%" },
         { "width": "55%" },
-        { "width": "5%" },
         { "width": "20%" },
         { "width": "10%" },
         { "width": "10%" }
@@ -252,6 +241,10 @@ $('#events').on("click", "#deleteEvent", function() {
 $('#events').on("click", "#editEvent", function() {
 
 });
+$(function() {
+  $( ".datepicker" ).datepicker();
+}); 
+
 </script>
 
 <!-- user table reveals -->
@@ -337,7 +330,7 @@ $('#deleteOrgButton').click(function (e) {
 });
 $('#events tbody').on('click', 'tr', function (e) {
     var data = eventsTable.row( this ).data();
-    if($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 5){
+    if($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 4){
         return
     }
     else{

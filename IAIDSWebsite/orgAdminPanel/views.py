@@ -51,9 +51,8 @@ class EventFormView(FormView):
             obj = Organization.objects.get(id=self.request.session["org_id"])
             info = form.cleaned_data
             #print(info)
-            org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'])
+            org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             org.save()
-            
             data = {
                 'id':org.id,
                 'message': "Successfully submitted form data."

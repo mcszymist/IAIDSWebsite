@@ -57,8 +57,8 @@
                     {
                         title: '{{event.name}}',
                         shortDes: '{{event.description}}',
-                        start: new Date(2019, 1, 6, 19, 0),
-                        end: new Date(2019, 1, 6, 23, 30),
+                        start: '{{event.fullCallendarStartFormat}}',
+                        end: '{{event.fullCallendarEndFormat}}',
                         allDay: false,
                         id: '{{event.id}}'
                     },
@@ -72,7 +72,6 @@
             }
         });
     }();
-
 </script>
 {% endblock %}
 
