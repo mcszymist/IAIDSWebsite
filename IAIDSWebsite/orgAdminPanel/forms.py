@@ -11,8 +11,8 @@ class EventForm(forms.ModelForm):
         widgets = {
             'name' : forms.TextInput(attrs={'placeholder': 'Event Title'}),
 			'location' : forms.TextInput(attrs={'placeholder': 'Location'}),
-            'startdate' : forms.DateInput(),
-			'enddate' : forms.DateInput(),
+            'startdate' : forms.DateInput(attrs={'class': 'datepicker'}),
+			'enddate' : forms.DateInput(attrs={'class': 'datepicker'}),
             'starttime' : forms.TimeInput(),
 			'endtime' : forms.TimeInput(),
 			'description' : forms.Textarea(),
