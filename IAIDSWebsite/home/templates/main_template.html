@@ -12,14 +12,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/output.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'source/css/jquery-ui.css' %}" />
     <link rel="stylesheet" href="css/foundation-icons.css" />
-    <script type="text/javascript" src="{% static 'source/js/ajax.js' %}">
-    </script>
-    <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}">
-    </script>
-    <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}">
-    </script>
-    <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}">
-    </script>
+    <script type="text/javascript" src="{% static 'source/js/ajax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'source/js/jquery-3.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'source/js/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'source/js/jquery-ui.js' %}"></script>
     {% block headerInclude%}
     {% endblock %}
     <title>VOLUNTEER</title>
@@ -65,7 +61,9 @@
                                     <ul class="menu">
                                         <li><a href="#">Your inbox</a></li>
                                         <li><a href="{% url 'profileManage' %}">Your profile</a></li>
+                                        <!-- if organization count != 0 -->
                                         <li><a href="{% url 'yourOrganizations'%}">Your organizations</a></li>
+                                        <!-- endif -->
                                         <li><a href="#">Your events</a></li>
                                         <hr>
                                         <li><a href="#">Help</a></li>
@@ -109,6 +107,7 @@
     <script src="{% static 'source/js/vendor/foundation.core.min.js' %}"></script>
     <script src="{% static 'source/js/vendor/foundation.js' %}"></script>
     <script src="{% static 'source/js/app.js' %}"></script>
+    <script src="{% static 'source/js/script.js' %}"></script>
 </body>
 
 </html>
