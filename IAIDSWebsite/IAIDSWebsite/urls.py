@@ -18,6 +18,6 @@ urlpatterns = [
     path('images/profileEditor/<file_name>', profileImage, name='profile_image'),
     path('profile/', include('profileEditor.urls')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('allauth.urls')),
     path('auth/', include('social_django.urls', namespace='social')),  
 ]
