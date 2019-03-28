@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from orgAdminPanel.models import Organization, OrganizationUsers
+from orgAdminPanel.models import Organization, OrganizationUsers, Event
 from django.views.generic import FormView
 from .forms import OrganizationForm
 from django.http import JsonResponse
@@ -36,9 +36,10 @@ class OrganizationFormView(FormView):
     def get_context_data(self, **kwargs):      
         context = super(OrganizationFormView, self).get_context_data(**kwargs)
         users = OrganizationUsers.objects.all().filter(userID=self.request.user)
+        objLen = []
         obj = []
         for user in users:
-            obj.append(user.orgID)
+            obj.append((user.orgID,Event.objects.all().filter(orgID=user.orgID).count()))
         context['allOrgs'] = obj
         return context
         

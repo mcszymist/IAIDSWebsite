@@ -1,0 +1,83 @@
+@import '../variables';
+
+$dropdown-menu-padding: 10px;
+
+.top-bar {
+    background: $theme-color-dark;
+    ul {
+        background: $theme-color-dark;
+    }
+    &-right {
+        ul {
+            li {
+                a {
+                    color:#ffffff;
+                    font-family: $font-stack;
+                }
+
+                .button-badge {
+                    color: white;
+                    &:hover {
+                        color: white;
+                        background-color: $house-provided-red-orange;
+                    }
+                }
+            }
+        }
+        > .menu {
+            padding-right: 20px;
+        }
+        .menu {
+            hr {
+                margin-top: $dropdown-menu-padding;
+                margin-bottom: $dropdown-menu-padding;
+            }
+            li > {
+                a {
+                    transition: $selectable-transition;
+                    &:hover {
+                        color: white;
+                        background-color: $house-provided-red-orange;
+                    }
+                }
+            }
+        }
+    }
+    &-left ul {
+        a {
+            transition: $selectable-transition;
+            &:hover {
+                background-color: $house-provided-red-orange;
+            }
+            .homeFont {
+                font-size:1.5rem;
+                color:#ffffff;
+                font-family: $font-stack;
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+
+.dropdown {
+    &.menu > li {
+        &.is-dropdown-submenu-parent > a {
+            &::after {
+                border-color: white rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+                margin-top: 0px;
+                margin-right: 3px;
+            }
+        }
+        &.is-active > a {
+            color:white;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+    .menu {
+        padding-top: $dropdown-menu-padding;
+        padding-bottom: $dropdown-menu-padding;
+    }
+}

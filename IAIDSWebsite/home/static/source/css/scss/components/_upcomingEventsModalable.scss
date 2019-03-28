@@ -1,0 +1,33 @@
+@import '../_variables';
+
+// this module needs to be renamed/revamped--is only the middle chunk (see "inspect elemtent")
+.upcomingEventsModalable {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: $global-border-radius;
+    li {
+        &:hover{
+            background-color: $house-provided-red-orange;
+            &:first-child {
+                border-top-right-radius: $global-border-radius;
+                border-top-left-radius: $global-border-radius;
+            }
+            &:last-child {
+                border-bottom-right-radius: $global-border-radius;
+                border-bottom-left-radius: $global-border-radius;
+            }
+        }
+        transition: $selectable-transition; // so that transition will happen *after* hover as well
+        ul {
+            padding: 10px;
+        }
+        a {
+            color: white;
+            font-family: $font-stack;
+            // &:hover {
+            //     background-color: red;
+            //     color: white;
+            // }
+        }
+    }
+    margin-bottom: 20px;
+}

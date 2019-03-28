@@ -11,9 +11,18 @@ def orgAdminPanel(request):
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'allEvents': allEvents})
 
 def DeleteEvent(request):
-    name = request.POST.get('name', '')
-    instance = Organization.objects.get(name=name)
+    id = request.POST.get('id', '')
+    instance = Event.objects.get(id=id)
     instance.delete()
+    
+def Back(request):
+    return redirect("/yourOrganizations/")
+
+def DeleteOrganization(request):
+    id = request.GET.get('id', '')
+    instance = Organization.objects.get(id=id)
+    instance.delete()
+    return redirect("/yourOrganizations/")
     
 class EventFormView(FormView):
     form_class = EventForm
@@ -42,10 +51,10 @@ class EventFormView(FormView):
             obj = Organization.objects.get(id=self.request.session["org_id"])
             info = form.cleaned_data
             #print(info)
-            org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'])
+            org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             org.save()
-            
             data = {
+                'id':org.id,
                 'message': "Successfully submitted form data."
             }
             return JsonResponse(data)

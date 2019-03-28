@@ -1,0 +1,16 @@
+@import '../variables';
+
+$card-background-color: tint($theme-color-med,85);
+
+.card {
+    color:#ffffff;
+    font-family: $font-stack;
+    background: $card-background-color;
+    border-width: 2px;
+}
+
+.card-divider {
+    background-color: $theme-color-darkmed;
+    font-family: $font-stack;
+    font-size: 2em;
+}

@@ -5,7 +5,6 @@
 
 {% block middleColumn %}
 <div class="spaced-row">
-
   {% if not user.is_authenticated %}
   <div class="row">
     <div class="small-12 medium-6 large-6 columns">
@@ -28,7 +27,7 @@
     <div class="small-2 large-8 columns">
       <div class="card">
         <div class="card-divider">
-          <h3>Suggested events</h3>
+          Suggested events
         </div>
         <div class="card-section">
           <div class="row">
@@ -77,9 +76,7 @@
     <div class="column large-4">
       <div class="card">
         <div class="card-divider">
-          <h3>
-            New users
-          </h3>
+          New users
         </div>
         <div class="card-section">
           <a href="{% url 'signup' %}" class="button large expanded"><b>Create account</b></a>
@@ -90,9 +87,7 @@
     <div class="column large-4">
       <div class="card">
         <div class="card-divider">
-          <h3>
-            Returning users
-          </h3>
+          Returning users
         </div>
         <div class="card-section">
           <form method="post">
@@ -103,7 +98,7 @@
             <p>
               <div class="forgotPassword">
                 <a href="#">
-                  <h6>Forgot password?</h6>
+                  Forgot password or username?
                 </a>
               </div>
             </p>
@@ -117,11 +112,9 @@
     {% endif %}
 
     <div class="large-4 columns">
-      <div class="card">
+      <div class="card text-center">
         <div class="card-divider">
-          <h3>
-            Upcoming events
-          </h3>
+          Upcoming events
         </div>
         <div class="card-section">
           <div class="scrollableEvents">
@@ -139,22 +132,100 @@
                   </div>
                   <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
                 <div class="reveal" id="event1" data-reveal>
-                  <h3>Spaghetti Feed at the Big Church</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
-                    ancillae. Pri quod
-                    primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
-                    utinam assueverit
-                    ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
-                    nisl aeterno
-                    convenire.
-                  </p>
+
+                  <div class="profileTemplate">
+                    <div class="spaced-row">
+                      <div class="row">
+                        <div class="large-4 columns profileImage">
+                          <img src="static/images/28469.png">
+                        </div>
+                        <div class="large-8 columns profileAdditionalInfo">
+                          <div class="profileTitle">
+                            <p>Spaghetti Feed at the Big Church</p>
+                          </div>
+                          <div class="profileAttributes">
+                            Location St 12345<br>
+                            3/27/2019<br>
+                            3:00 AM ~ 5:00 AM<br>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="large-12 columns profileDescription">
+                          Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
+                          ancillae. Pri quod
+                          primis
+                          cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
+                          utinam assueverit
+                          ea,
+                          cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
+                          nisl aeterno
+                          convenire.
+                        </div>
+                      </div>
+                      <!-- {% for jobType in jobTypes %}
+                      <div class="progress" role="progressbar" tabindex="0" aria-valuenow="0" aria-valuemin="0"
+                        aria-valuemax="100">
+                        <div class="progress-meter"></div>
+                      </div>
+                      {% endfor %} -->
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <div class="row">
+                            <div class="large-2 columns" id="jobname">
+                              chef/prep
+                            </div>
+                            <div class="large-9 columns">
+                              <div class="progress" role="progressbar" tabindex="0" aria-valuenow="75" aria-valuemin="0"
+                                aria-valuemax="100">
+                                <div class="progress-meter" style="width:75%">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="large-1 columns">
+                              join
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="large-2 columns">
+                              server
+                            </div>
+                            <div class="large-9 columns">
+                              <div class="progress" role="progressbar" tabindex="0" aria-valuenow="25" aria-valuemin="0"
+                                aria-valuemax="100">
+                                <div class="progress-meter" style="width:25%">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="large-1 columns">
+                              join
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="large-2 columns">
+                              cleanup
+                            </div>
+                            <div class="large-9 columns">
+                              <div class="success progress" role="progressbar" tabindex="0" aria-valuenow="100"
+                                aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-meter" style="width:100% ">
+                                </div>
+                              </div>
+                            </div>
+                            <div class="large-1 columns">
+                              join
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
                   <button class="close-button" data-close aria-label="Close modal" type="button">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <button class="button float-right" type="button">See more >></button>
+                  <!-- <button class="button float-right" type="button">See more >></button> -->
                 </div>
                 <li><a href="#" data-open="event1">Spaghetti Feed at the Big Church</a></li>
                 <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->

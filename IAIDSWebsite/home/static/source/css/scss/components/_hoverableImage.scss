@@ -1,0 +1,7 @@
+.hoverableImg {
+    opacity: 0.75;
+    transition: all ease 0.3s;
+    &:hover {
+        opacity: 1.0;
+    }
+}

@@ -1,0 +1,12 @@
+@import '../_variables';
+
+.forgotPassword a {
+    font-size: 1em;
+    color: rgb(0, 0, 0);
+    text-decoration: underline;
+    transition: $selectable-transition;
+
+    &:hover {
+        color: rgb(105, 105, 105);
+    }
+}

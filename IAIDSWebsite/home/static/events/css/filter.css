@@ -13,3 +13,20 @@
     background-color: rgb(209, 209, 209);
     padding-top: 17px;
 }
+
+table#example.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}
+table#events.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}
+table#users.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}
+table#table.dataTable tbody tr:hover {
+    background-color: #ffa;
+    cursor: pointer;
+}

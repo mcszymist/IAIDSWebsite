@@ -11,8 +11,13 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def profileManage(request):
+    user_id = request.GET.get('user','')
+    if user_id == '':
+        instance = request.user
+    else:
+        instance = models.MyUser.objects.get(id=user_id)
     messages.add_message(request, messages.INFO, 'Hello world.')
-    return render(request, 'profileEditor/profileManage.html')
+    return render(request, 'profileEditor/profileManage.html', {'profile':instance})
 
 def profileImage(request,file_name):
     image = settings.MEDIA_ROOT+'/profileEditor/'+file_name

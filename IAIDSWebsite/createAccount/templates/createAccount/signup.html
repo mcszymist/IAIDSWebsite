@@ -5,19 +5,19 @@
       <div class="columns large-6">
         <div class="card">
           <div class="card-divider">
-            <h3>Create account</h3>
+            Create account
           </div>
           <form method="post"></form>
           <div class="card-section">
             <form method="post">
-            {% csrf_token %} {{ form.as_p }}
-            <input id="checkbox1" type="checkbox">
-            <label for="checkbox1">
-              <b>Don't send me e-mails</b>
-            </label>
-            <button type="submit" class="button large expanded">
-              <b>Sign me up!</b>
-            </button>
+              {% csrf_token %} {{ form.as_p }}
+              <input id="checkbox1" type="checkbox">
+              <label for="checkbox1">
+                E-mail me notifications from Volunteer Fairbanks
+              </label>
+              <button type="submit" class="button large expanded">
+                <b>Sign me up!</b>
+              </button>
             </form>
           </div>
         </div>

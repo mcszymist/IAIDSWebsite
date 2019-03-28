@@ -19,7 +19,6 @@
     $( function() {
         $( "#tabs" ).tabs();
     } );
-    console.log("{{ request.session.org_name }}")
 </script>
 <div class="row">
     <div class="small-centered columns eventFilterBackground">
@@ -32,8 +31,8 @@
                 <table id="events" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>id</th>
                             <th>Event Title</th>
-                            <th>Positions Needed</th>
                             <th>Date/Time</th>
                             <th>Location</th>
                             <th>Delete</th>
@@ -42,8 +41,8 @@
                     <tbody>
                         {% for event in allEvents %}
                             <tr>
+                                <td>{{event.id}}</td>
                                 <td>{{event.name}}</td>
-                                <td>{{event.personel}}/{{event.personelMax}}</td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
@@ -53,8 +52,8 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>id</th>
                             <th>Event Title</th>
-                            <th>Positions Needed</th>
                             <th>Date/Time</th>
                             <th>Location</th>
                             <th>Delete</th>
@@ -66,6 +65,7 @@
                 <table id="users" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Privledge</th>
@@ -75,7 +75,8 @@
                     <tbody>
                         {% for user in allUsers %}
                             <tr>
-                                <td>{{user.orgID}}</td>
+                                <td>{{user.userID.id}}</td>
+                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
                                 <td>{{user.userID}}</td>
                                 <td>{{user.privledge}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
@@ -85,6 +86,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>id</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Privledge</th>
@@ -97,7 +99,10 @@
     </div>
 </div>
 <div class="row">
-	<div class="small-offset-9 small-3 columns">
+    <div class="small-3 columns">
+		<button id="backButton"class="button">Back<i class=""></i></button>
+	</div>
+	<div class="small-offset-6 small-3 columns">
 		<button id="deleteOrgButton"class="button alert">Delete Organization <i class="fi-trash"></i></button>
 	</div>
 </div>
@@ -118,19 +123,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="large-4 columns">
-                <label>Positions Needed
-                    {{form.personelMax}}
+            <div class="large-6 columns">
+                <label>Start Date
+                    {{form.startdate}} {{form.starttime}}
                 </label>
             </div>
-            <div class="large-4 columns">
-                <label>Start
-                    {{form.startdate}}
-                </label>
-            </div>
-            <div class="large-4 columns">
-                <label>End
-                    {{form.enddate}}
+            <div class="large-6 columns">
+                <label>End Date
+                    {{form.enddate}} {{form.endtime}}
                 </label>
             </div>
         </div>
@@ -174,10 +174,9 @@ $(document).ready(function(){
         var event = $("#id_name").val();
         var location = $("#id_location").val();
         var date = $("#id_startdate").val();
-        var personelMax = $("#id_personelMax").val();
         eventsTable.row.add( [
+                        data['id'],
                         event,
-                        personelMax,
                         date,
                         location,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
@@ -208,9 +207,16 @@ $(document).ready(function(){
             }
         }
     ],
+    "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
     columns: [
+        { "width": "0%" },
         { "width": "55%" },
-        { "width": "5%" },
         { "width": "20%" },
         { "width": "10%" },
         { "width": "10%" }
@@ -218,11 +224,27 @@ $(document).ready(function(){
 });
 
 $('#events').on("click", "#deleteEvent", function() {
-            eventsTable.row($(this).parents('tr')).remove().draw(false);
+    var data = eventsTable.row( $(this).parents('tr') ).data();
+    // Ajax request
+    $.ajax({
+        method: "POST",                     // Post request
+        url: "/orgAdminPanel/delete/",  //url
+        dataType: "json",                   //data being set
+        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+        success: function(result){
+        },
+        error: function(result){},
+    })
+    eventsTable.row($(this).parents('tr')).remove().draw(false);
 });
+
 $('#events').on("click", "#editEvent", function() {
 
 });
+$(function() {
+  $( ".datepicker" ).datepicker();
+}); 
+
 </script>
 
 <!-- user table reveals -->
@@ -230,19 +252,12 @@ $('#events').on("click", "#editEvent", function() {
     <h1>New Event</h1>
     <form id="addUser">
         <div class="row">
-            <div class="large-12 columns">
+            <div class="large-8 columns">
                 <label>Email
                     <input type="text" id="email" placeholder="Food Bank Server" />
                 </label>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Username
-                    <input type="number" id="username" placeholder="10" />
-                </label>
-            </div>
-            <div class="large-6 columns">
+            <div class="large-4 columns">
                 <label>Privledge
                     <input type="text" id="priv" placeholder="2012-02-18" />
                 </label>
@@ -267,7 +282,7 @@ $('#buttonUser').click(function (e) {
                         email,
                         username,
                         priv,
-						"<button id=\"editUsers\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+						"<button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
                         ] ).draw( false );
     $("#email").val("");
     $("#username").val("");
@@ -276,7 +291,15 @@ $('#buttonUser').click(function (e) {
 var usersTable = $('#users').DataTable({
     bInfo: false,
     autoWidth: false,
+    "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
     columns: [
+        { "width": "0%" },
         { "width": "40%" },
         { "width": "40%" },
         { "width": "10%" },
@@ -299,7 +322,31 @@ $('#users').on("click", "#deleteUsers", function() {
 });
 $('#users').on("click", "#editUsers", function() {
 });
-
+$('#backButton').click(function (e) {
+    $(location).attr('href', '/yourOrganizations/')
+});
+$('#deleteOrgButton').click(function (e) {
+    $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
+});
+$('#events tbody').on('click', 'tr', function (e) {
+    var data = eventsTable.row( this ).data();
+    if($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 4){
+        return
+    }
+    else{
+        $(location).attr('href', '/eventEdit/?event=' + data[0]);
+    }
+} );
+$('#users tbody').on('click', 'tr', function (e) {
+    var data = usersTable.row( this ).data();
+    if($("#users").dataTable().api().cell($(e.target).closest('td')).index().column == 5){
+        return
+    }
+    else{
+        $(location).attr('href', '/profile/?user=' + data[0]);
+    }
+    
+} );
 </script>
 {% endblock %}
 

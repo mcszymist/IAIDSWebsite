@@ -17,12 +17,12 @@
     <div class="grid-x grid-padding-x text-center">
     <div class="row">
       <div class="medium-3 columns">
-        <label>By Organization
+        <label>By Name
             <div class="inputCol"><input id="place1" type="text" placeholder="Search Name" /></div>
         </label>
       </div>
       <div class="medium-3 columns">
-        <label>By Name
+        <label>By Organization
           <div class="inputCol"><input id="place2" type="text" placeholder="Search " /></div>
         </label>
       </div>
@@ -44,6 +44,7 @@
 	<table id="example" class="display" style="width:100%">
         <thead>
             <tr>
+                <th>id</th>
                 <th>Event Title</th>
                 <th>Organization</th>
                 <th>Desciption</th>
@@ -55,7 +56,8 @@
         <tbody>
             
             {% for event in allEvents %}
-                    <tr>
+                    <tr> 
+                        <td>{{event.id}}</td>
                         <td>{{event.name}}</td>
                         <td>{{event.orgID}}</td>
                         <td>{{event.description}}</td>
@@ -67,6 +69,7 @@
         </tbody>
         <tfoot>
             <tr>
+                <th>id</th>
                 <th>Event Title</th>
                 <th>Organization</th>
                 <th>Desciption</th>
@@ -85,14 +88,22 @@ $(document).ready(function() {
         dom: "rtiplf",
         bInfo: false,
         autoWidth: false,
+        "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "visible": false,
+                "searchable": false
+            }
+        ],
         columns: [
+            { "width": "0%"},
             { "width": "35%" },
             { "width": "10%" },
             { "width": "40%" },
             { "width": "5%" },
             { "width": "5%" },
             { "width": "5%" }
-  ]
+        ]
     });
  
     $('#place1').on( 'keyup', function () {
@@ -103,21 +114,26 @@ $(document).ready(function() {
     } );
     $('#place2').on( 'keyup', function () {
         table
-            .columns( 0 )
+            .columns( 2 )
             .search( this.value )
             .draw();
     } );
     $('#place3').on( 'keyup', function () {
         table
-            .columns( 4 )
+            .columns( 5 )
             .search( this.value )
             .draw();
     } );
     $('#place4').on( 'keyup', function () {
         table
-            .columns( 5 )
+            .columns( 6 )
             .search( this.value )
             .draw();
+    } );
+    
+    $('#example tbody').on('click', 'tr', function () {
+        var data = table.row( this ).data();
+        $(location).attr('href', '/eventEdit/?event=' + data[0]);
     } );
 } );
 </script>
