@@ -19,5 +19,4 @@ urlpatterns = [
     path('profile/', include('profileEditor.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('auth/', include('social_django.urls', namespace='social')),  
 ]
