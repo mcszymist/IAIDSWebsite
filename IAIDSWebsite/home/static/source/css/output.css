@@ -23,6 +23,10 @@ body {
   overflow-y: inherit;
 }
 
+#red-text {
+  color: red;
+}
+
 .button-badge {
   width: 100%;
   padding-top: 20%;
@@ -99,6 +103,10 @@ body {
 
 .secondary-button {
   color: red;
+}
+
+.jobjoin {
+  padding: 5px;
 }
 
 .card {
@@ -291,19 +299,15 @@ body {
   width: 100%;
   align-items: center;
 }
-.row .userProfileAboutMe .card .card-section .aboutMeTitle h4::after {
+.row .userProfileAboutMe .card .card-section .aboutMeTitle h4::before, .row .userProfileAboutMe .card .card-section .aboutMeTitle h4::after {
   content: "";
-  background-color: gray;
+  background: linear-gradient(to left, #0056a7, #00a1d8, #46d9bf, #eeeeee);
   height: 0.1em;
   margin: 0.2em;
   flex: 1;
 }
-.row .userProfileAboutMe .card .card-section .aboutMeTitle h4::before {
-  content: "";
-  background-color: gray;
-  height: 0.1em;
-  margin: 0.2em;
-  flex: 1;
+.row .userProfileAboutMe .card .card-section .aboutMeTitle h4::after {
+  background: linear-gradient(to right, #0056a7, #00a1d8, #46d9bf, #eeeeee);
 }
 
 .cover {
@@ -318,7 +322,10 @@ span.has-tip {
 }
 
 .userProfileCertificate .card {
-  height: 300px;
+  height: 150px;
+}
+.userProfileCertificate .card .card-divider {
+  background-color: #00a1d8;
 }
 
 /*# sourceMappingURL=output.css.map */
