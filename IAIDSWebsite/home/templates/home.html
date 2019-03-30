@@ -5,14 +5,19 @@
 
 {% block middleColumn %}
 <div class="spaced-row">
-  {% if not user.is_authenticated %}
   <div class="row">
     <div class="small-12 medium-6 large-6 columns">
       <div class="welcomePanel">
+        {% if not user.is_authenticated %}
         <h1>Welcome!</h1><br>
         <h5>Volunteer Fairbanks is helping Fairbanks connect volunteers to organizations. <br><br> Get started by
           creating an account
           or signing in.</h5>
+        {% else %}
+        <h1>Hi, {{ user.first_name }}!</h1><br>
+        <h5>Get started by browsing upcoming events and joining as a volunteer. <br><br> Feel free to
+          <a href="{% url 'yourOrganizations'%}">manage your organzations</a> and begin hosting events! </h5>
+        {% endif %}
       </div>
     </div>
     <div class="small-12 medium-6 large-6 columns">
@@ -21,7 +26,6 @@
       </div>
     </div>
   </div>
-  {% endif %}
   <div class="row">
     {% if user.is_authenticated %}
     <div class="small-2 large-8 columns">
@@ -79,9 +83,8 @@
           New users
         </div>
         <div class="card-section">
-          <a href="{% url 'signup' %}" class="button large expanded"><b>Create account</b></a>
-          <button class="button large expanded"><b>Learn more about accounts</b></button>
-        </div>
+          <a href="{% url 'signup' %}" class="button large expanded">Create account</a> <button class="button large expanded">Learn
+            more about accounts</button> </div>
       </div>
     </div>
     <div class="column large-4">
@@ -103,7 +106,7 @@
               </div>
             </p>
             <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
-            <button type="submit" class="button large expanded"><b>Sign in</b></button>
+            <button type="submit" class="button large expanded">Sign in</button>
           </form>
         </div>
       </div>
@@ -271,7 +274,7 @@
               </div>
             </ul>
           </div>
-          <a href="{% url 'events' %}" class="button large expanded"><b>Check calendar</b></a>
+          <a href="{% url 'events' %}" class="button large expanded">Check calendar</a>
         </div>
       </div>
     </div>
