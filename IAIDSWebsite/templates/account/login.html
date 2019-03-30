@@ -16,10 +16,7 @@
         <div class="card-section">
           <form method="post">
             {% csrf_token %}
-            <p><label for="id_username"><b>Username or e-mail:</b></label> <input type="text" name="username" autofocus
-                required id="id_username"></p>
-            <p><label for="id_password"><b>Password:</b></label> <input type="password" name="password" required id="id_password"></p>
-            <p>
+            {{ form.as_p }}
               <div class="forgotPassword">
                 <a href="#">
                   Forgot password or username?
