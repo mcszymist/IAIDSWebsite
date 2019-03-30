@@ -93,21 +93,10 @@
           Returning users
         </div>
         <div class="card-section">
-          <form method="post">
-            {% csrf_token %}
-            <p><label for="id_username"><b>Username:</b></label> <input type="text" name="username" autofocus required
-                id="id_username"></p>
-            <p><label for="id_password"><b>Password:</b></label> <input type="password" name="password" required id="id_password"></p>
-            <p>
-              <div class="forgotPassword">
-                <a href="#">
-                  Forgot password or username?
-                </a>
-              </div>
-            </p>
-            <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
-            <button type="submit" class="button large expanded">Sign in</button>
-          </form>
+
+
+          <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
+          <a href="{% url 'login' %}" class="button large expanded">Sign in</a>
         </div>
       </div>
     </div>
@@ -139,6 +128,13 @@
                   <div class="profileTemplate">
                     <div class="spaced-row">
                       <div class="row">
+                        <div class="columns large-12">
+                          <a href="{% url 'events' %}">Show in calendar</a> / <a href="#">Message organization</a> / <a
+                            href="#" id="red-text">Report
+                            event</a>
+                        </div>
+                      </div>
+                      <div class="row">
                         <div class="large-4 columns profileImage">
                           <img src="static/images/28469.png">
                         </div>
@@ -150,6 +146,7 @@
                             Location St 12345<br>
                             3/27/2019<br>
                             3:00 AM ~ 5:00 AM<br>
+                            Host: Spaghetti Eaters
                           </div>
                         </div>
                       </div>
@@ -186,7 +183,7 @@
                               </div>
                             </div>
                             <div class="large-1 columns">
-                              join
+                              <button class="button jobjoin">Join</button>
                             </div>
                           </div>
                           <div class="row">
@@ -201,7 +198,7 @@
                               </div>
                             </div>
                             <div class="large-1 columns">
-                              join
+                              <button class="button jobjoin">Join</button>
                             </div>
                           </div>
                           <div class="row">
@@ -216,7 +213,7 @@
                               </div>
                             </div>
                             <div class="large-1 columns">
-                              join
+                              <button class="button jobjoin">Join</button>
                             </div>
                           </div>
                         </div>
