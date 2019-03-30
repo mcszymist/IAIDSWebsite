@@ -109,6 +109,11 @@ body {
   padding: 5px;
 }
 
+#blocked-button {
+  background-color: gray;
+  color: #b9b9b9;
+}
+
 .card {
   color: #ffffff;
   font-family: Roboto, Arial, sans-serif;
