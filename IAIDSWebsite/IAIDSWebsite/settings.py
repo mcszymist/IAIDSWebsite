@@ -39,7 +39,7 @@ EMAIL_HOST_USER = 'volunteerfairbanks@gmail.com'
 EMAIL_HOST_PASSWORD = 'changeit12'
 EMAIL_PORT = 587
 
-ACCOUNT_LOGOUT_ON_GET = True
+
 
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
