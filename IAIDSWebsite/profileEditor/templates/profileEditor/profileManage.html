@@ -3,16 +3,16 @@
 
 {% block middleColumn %}
 <div class="spaced-row">
-    {% if user == profile %}
     <div class="row">
-        <div class="columns large-9">
+        <div class="columns large-12">
+            {% if user == profile %}
             <a href="{% url 'events' %}">Calendar</a> / <a href="#">Inbox</a> / <a href="{% url 'edit' %}">Edit
                 Profile</a>
-        </div>
-        <div class="columns large-3">
+            {% else %}
+            <a href="#">Message user</a> / <a href="#" id="red-text">Report user</a>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
     <div class="row">
         <div class="columns large-8 userProfileAboutMe">
             <div class="card">
@@ -28,7 +28,7 @@
                                 aria-valuemax="100">
                                 <div class="progress-meter" style="width:75%">
                                 </div>
-                                <span data-tooltip tabindex="1" title="This user's event show-up rate: 75%"
+                                <span data-tooltip tabindex="1" title="{{profile.first_name}}'s event attendence rate: 75%"
                                     data-position="bottom">What's
                                     this?</span>
                             </div>
@@ -66,41 +66,65 @@
             </script>
         </div>
     </div>
-    <div class=row>
-        <div class="columns large-2 userProfileCertificate">
-            <div class="card">
-                <div class="card-divider" style="font-size: 1em;">Certificate #0</div>
-                <div class="card-section">This is a good certificate!</div>
+    <div class="row">
+        <div class="columns large-4 userProfileCertificate">
+            <div class="row">
+                <div class="column large-12">
+                    <div class="card">
+                        <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
+                        <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
+                                to certificate website</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column large-12">
+                    <div class="card">
+                        <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
+                        <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
+                                to certificate website</a></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="columns large-2 userProfileCertificate">
-            <div class="card">
-                <div class="card-divider" style="font-size: 1em;">Certificate #1</div>
-                <div class="card-section">This is a good certificate!</div>
+        <div class="columns large-4 userProfileCertificate">
+            <div class="row">
+                <div class="column large-12">
+                    <div class="card">
+                        <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
+                        <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
+                                to certificate website</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column large-12">
+                    <div class="card">
+                        <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
+                        <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
+                                to certificate website</a></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="columns large-2 userProfileCertificate">
-            <div class="card">
-                <div class="card-divider" style="font-size: 1em;">Certificate #2</div>
-                <div class="card-section">This is a good certificate!</div>
+        <div class="columns large-4 userProfileCertificate">
+            <div class="row">
+                <div class="column large-12">
+                    <div class="card">
+                        <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
+                        <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
+                                to certificate website</a></div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="columns large-2 userProfileCertificate">
-            <div class="card">
-                <div class="card-divider" style="font-size: 1em;">Certificate #3</div>
-                <div class="card-section">This is a good certificate!</div>
-            </div>
-        </div>
-        <div class="columns large-2 userProfileCertificate">
-            <div class="card">
-                <div class="card-divider" style="font-size: 1em;">Certificate #4</div>
-                <div class="card-section">This is a good certificate!</div>
-            </div>
-        </div>
-        <div class="columns large-2 userProfileCertificate">
-            <div class="card">
-                <div class="card-divider" style="font-size: 1em;">Certificate #5</div>
-                <div class="card-section">This is a good certificate!</div>
+            <div class="row">
+                <div class="column large-12">
+                    <div class="card">
+                        <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
+                        <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
+                                to certificate website</a></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
