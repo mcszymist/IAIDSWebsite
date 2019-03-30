@@ -47,6 +47,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
+ACCOUNT_FORMS = {'signup': 'createAccount.forms.MyCustomSignupForm'}
+
 # Application definition
 
 INSTALLED_APPS = [

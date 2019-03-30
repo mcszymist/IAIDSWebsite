@@ -13,11 +13,8 @@ from django.template.loader import render_to_string
 from .tokens import account_activation_token
 from django.utils.encoding import force_bytes, force_text
 from .admin import UserCreationForm
-from .forms import SignUpForm
 from .models import MyUser
-
-
-
+from allauth.account.forms import SignupForm
 
 
 def signup(request):
@@ -50,18 +47,4 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'createAccount/signup.html', {'form': form})
 
-#From a tutorial will post link if it works.
-def activate(request, uidb64, token):
-    try:
-        uid = force_text(urlsafe_base64_decode(uidb64))
-        user = MyUser.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, MyUser.DoesNotExist):
-        user = None
-    if user is not None and account_activation_token.check_token(user, token, ):
-        user.is_active = True
-        user.save()
-        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        #return redirect('./')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
-    else:
-        return HttpResponse('Activation link is invalid!')
+

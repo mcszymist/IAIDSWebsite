@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import MyUser
 
-class SignUpForm(UserCreationForm):
+class MyCustomSignupForm(UserCreationForm):
     class Meta:
         password1 = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
         model = MyUser
