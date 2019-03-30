@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.views.generic.base import TemplateView
 
 # Create your views here.
 
 
-def index(request):
-    # if request.user.is_authenticated:
-    #     return HttpResponseRedirect('')
-    # else:
-    return render(request, 'home.html')
+class HomeView(TemplateView):
+    template_name = "home.html"
+  

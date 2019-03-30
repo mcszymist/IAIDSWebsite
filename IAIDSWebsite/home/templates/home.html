@@ -90,21 +90,12 @@
           Returning users
         </div>
         <div class="card-section">
-          <form method="post">
-            {% csrf_token %}
-            <p><label for="id_username"><b>Username:</b></label> <input type="text" name="username" autofocus required
-                id="id_username"></p>
-            <p><label for="id_password"><b>Password:</b></label> <input type="password" name="password" required id="id_password"></p>
-            <p>
-              <div class="forgotPassword">
-                <a href="#">
-                  Forgot password or username?
-                </a>
-              </div>
-            </p>
-            <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
-            <button type="submit" class="button large expanded"><b>Sign in</b></button>
+            <form method='post' action='/accounts/login/' id='login'>
+              {% csrf_token %}
+              {{ login_form.as_p }}
+              <input type='submit' value='Log In'>
           </form>
+            <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
         </div>
       </div>
     </div>
