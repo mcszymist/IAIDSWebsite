@@ -1,9 +1,9 @@
 from django.urls import path, include
 from django.contrib import admin
-from django.views.generic import TemplateView
+from allauth.account.forms import LoginForm
 from . import views
 
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="home.html")),
+    path('', views.MyCustomLoginView.as_view(), name='home'),
 ]

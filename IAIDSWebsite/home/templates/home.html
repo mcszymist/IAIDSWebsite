@@ -90,7 +90,7 @@
           Returning users
         </div>
         <div class="card-section">
-            <form method='post' action='/accounts/login/' id='login'>
+            <form method='post'>
               {% csrf_token %}
               {{ login_form.as_p }}
               <input type='submit' value='Log In'>
