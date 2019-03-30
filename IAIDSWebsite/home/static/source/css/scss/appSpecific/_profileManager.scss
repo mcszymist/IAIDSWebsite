@@ -1,0 +1,65 @@
+@import '../_variables';
+@import '../_functions';
+
+.row {
+    .userProfileImage {
+        img {
+            border-radius: 50%;
+        }
+        .progress {
+            .progress-meter {
+                background-color: shade($theme-color-medlight, 20);
+            }
+        }
+    }
+    .userProfileAboutMe {
+        .card {
+            .certTitle {
+                font-size: 1em;
+            }
+            .card-section {
+                color: black;
+                overflow-y: auto;
+                .aboutMeTitle {
+                    font-size: 2em;
+                    h4 {
+                        display: flex;
+                        width: 100%;
+                        align-items: center;
+                        &::after {
+                            content: "";
+                            background-color: gray;
+                            height: 0.1em;
+                            margin: 0.2em;
+                            flex: 1;
+                        }
+                        &::before {
+                            content: "";
+                            background-color: gray;
+                            height: 0.1em;
+                            margin: 0.2em;
+                            flex: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.cover {
+    object-fit: cover;
+    width:175px;
+    height:175px;
+}
+
+span.has-tip {
+    font-weight: normal;
+    font-size: 0.75em;
+}
+
+.userProfileCertificate {
+    .card {
+        height: 300px;
+    }
+}
