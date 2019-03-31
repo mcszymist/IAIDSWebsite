@@ -79,23 +79,8 @@
           New users
         </div>
         <div class="card-section">
-          <a href="{% url 'signup' %}" class="button large expanded"><b>Create account</b></a>
+          <a href="{% url 'account_signup' %}" class="button large expanded"><b>Create account</b></a>
           <button class="button large expanded"><b>Learn more about accounts</b></button>
-        </div>
-      </div>
-    </div>
-    <div class="column large-4">
-      <div class="card">
-        <div class="card-divider">
-          Returning users
-        </div>
-        <div class="card-section">
-            <form method='post'>
-              {% csrf_token %}
-              {{ login_form.as_p }}
-              <input type='submit' value='Log In'>
-          </form>
-            <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
         </div>
       </div>
     </div>
