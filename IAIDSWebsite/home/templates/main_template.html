@@ -22,6 +22,12 @@
     <title>VOLUNTEER</title>
 </head>
 
+<!-- This is used in the menu to sign out. Using a post to logout prevents malacious users.-->
+<form name = "logout" id = "logout" method = "post" action = "{% url 'account_logout' %}">
+        {% csrf_token %}       
+</form>
+
+
 <body>
     <div>
         <div data-sticky-container>
@@ -69,19 +75,22 @@
                                         <hr>
                                         <li><a href="#">Help</a></li>
                                         <li><a href="#">Settings</a></li>
-                                        <li><a href="{% url 'logout' %}">Sign out</a></li>
+                                        <li>      
+                                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout').submit()" />Sign Out</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 </li>
                                 {% else %}
-                                <li><a href="{% url 'signup' %}">Create Account</a></li>
-                                <li><a href="{% url 'login' %}">Sign In</a></li>
+                                <li><a href="{% url 'account_signup' %}">Create Account</a></li>
+                                <li><a href="{% url 'account_login' %}">Sign In</a></li>
                                 {% endif %}
                             </ul>
                         </div>
                     </div>
                 </div>
 
+                
                 <!-- CONTENT -->
                 <div class="middle">
                     <!-- if True should be changed to if user.is_authenticated when it is proper -->
