@@ -29,6 +29,32 @@
     <div class="column small-3">
     </div>
     <div class="column small-9 eventFilterBackground">
+        <div class="row">
+            <div class="column small-6">
+            <p>
+                Host: {{event.orgID}}
+            </p>
+            </div>
+            <div class="column small-3">
+                {{event.startdate}}
+                {% if event.startdate != event.enddate %}
+                    <br> {{event.enddate}}
+                {% endif %}
+            </div>
+            <div class="column small-1">
+                From:  <br> To:
+            </div>
+            <div class="column small-2">
+                {{event.starttime}} <br> {{event.endtime}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="column small-3">
+                <p>
+                    {{event.description}}
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row" id="textEdit" style="display:none">
