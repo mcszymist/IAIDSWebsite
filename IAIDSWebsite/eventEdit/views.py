@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse , JsonResponse
-from orgAdminPanel.models import Job, Event
+from orgAdminPanel.models import Job, Event, OrganizationUsers
 from .forms import JobForm
 import json
 from django.views.generic import FormView
@@ -47,9 +47,12 @@ class JobFormView(FormView):
         else:
             self.request.session["event_id"] = id
             context['event'] = Event.objects.get(id=id)  # Getting all the events from database
-            context['allSignUpJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"]).exclude(userID = self.request.user)
-            context['allSignOutJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"],userID = self.request.user)
-
+            if self.request.user.is_anonymous == True:
+                context['allSignUpJobs'] = Job.objects.all()
+            else:
+                context['allUsers'] = OrganizationUsers.objects.get(orgID=context['event'].orgID,userID=self.request.user).userID
+                context['allSignUpJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"]).exclude(userID = self.request.user)
+                context['allSignOutJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"],userID = self.request.user)
             
             return context
         
