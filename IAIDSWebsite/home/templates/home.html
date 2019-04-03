@@ -15,8 +15,7 @@
           or signing in.</h5>
         {% else %}
         <h1>Hi, {{ user.first_name }}!</h1><br>
-        <h5>Get started by browsing upcoming events and joining as a volunteer. <br><br> Feel free to
-          <a href="{% url 'yourOrganizations'%}">manage your organzations</a> and begin hosting events! </h5>
+        <h5>Get started by browsing upcoming events and joining as a volunteer.</h5>
         {% endif %}
       </div>
     </div>
@@ -28,7 +27,7 @@
   </div>
   <div class="row">
     {% if user.is_authenticated %}
-    <div class="small-2 large-8 columns">
+    <div class="large-8 columns">
       <div class="card">
         <div class="card-divider">
           Suggested events
@@ -93,8 +92,6 @@
           Returning users
         </div>
         <div class="card-section">
-
-
           <!-- <input id="checkbox1" type="checkbox"><label for="checkbox1"><b>Remeber login info</b></label> -->
           <a href="{% url 'account_login' %}" class="button large expanded">Sign in</a>
         </div>
@@ -112,19 +109,9 @@
           <div class="scrollableEvents">
             <ul class="vertical menu" data-accordion-menu data-submenu-toggle="true">
               <div class="upcomingEventsModalable">
-                <!-- Example upcomingEventModal element -->
-                <!-- <div class="reveal" id="event{{ event.eventID }}" data-reveal>
-                    <h2>{{ event.eventID.getName }}</h2>
-                    <p>
-                      {{ event.getDescription }}
-                    </p>
-                    <button class="close-button" data-close aria-label="Close modal" type="button">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <li><a href="#" data-open="event{{ event.eventID }}">{{ event.eventID.getName }}</a></li> -->
+                {% if upcomingEvents|length > 0 %}
+                {% for event in upcomingEvents %}
                 <div class="reveal" id="event1" data-reveal>
-
                   <div class="profileTemplate">
                     <div class="spaced-row">
                       <div class="row">
@@ -140,27 +127,33 @@
                         </div>
                         <div class="large-8 columns profileAdditionalInfo">
                           <div class="profileTitle">
-                            <p>Spaghetti Feed at the Big Church</p>
+                            <p>{{event.name}}</p>
                           </div>
                           <div class="profileAttributes">
-                            Location St 12345<br>
-                            3/27/2019<br>
-                            3:00 AM ~ 5:00 AM<br>
-                            Host: Spaghetti Eaters
+                            {{event.location}}
+                            <br>
+
+                            {% if startdate is enddate %}
+                            {{event.startdate}}
+                            {% else %}
+                            {{event.startdate}} ~ {{event.enddate}}
+                            {% endif %}
+                            <br>
+
+                            {{event.starttime}} ~ {{event.endtime}}
+                            <br>
+                            Host: {{event.orgID}}
                           </div>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="large-12 columns profileDescription">
-                          Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
-                          ancillae. Pri quod
-                          primis
-                          cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
-                          utinam assueverit
-                          ea,
-                          cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
-                          nisl aeterno
-                          convenire.
+                        <div class="large-12 columns profileDescriptionTitle">
+                          <p>About this event</p>
+                        </div>
+                        <div class="row">
+                          <div class="large-12 columns profileDescription">
+                            {{event.description}}
+                          </div>
                         </div>
                       </div>
                       <!-- {% for jobType in jobTypes %}
@@ -220,54 +213,19 @@
                       </div>
                     </div>
                   </div>
-
-
                   <button class="close-button" data-close aria-label="Close modal" type="button">
                     <span aria-hidden="true">&times;</span>
                   </button>
                   <!-- <button class="button float-right" type="button">See more >></button> -->
                 </div>
-                <li><a href="#" data-open="event1">Spaghetti Feed at the Big Church</a></li>
-                <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <div class="reveal" id="event2" data-reveal>
-                  <h3>Bake Sale Needing Baked Goods by TONIGHT</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
-                    ancillae. Pri quod
-                    primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
-                    utinam assueverit
-                    ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
-                    nisl aeterno
-                    convenire.
-                  </p>
-                  <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <button class="button float-right" type="button">See more >></button>
+                <li><a href="#" data-open="event1">{{event.name}}</a></li>
+                {% endfor %}
+                {% else %}
+                <div class="noUpcomingEvents">
+
+                  No upcoming events! :(
                 </div>
-                <li><a href="#" data-open="event2">Bake Sale Needing Baked Goods by TONIGHT</a></li>
-                <!-- NEEDS TO DO A FUNCTION CALL TO RELEVENT EVENTS -->
-                <div class="reveal" id="event3" data-reveal>
-                  <h3>Wall Painters Wanted</h3>
-                  <p>
-                    Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit
-                    ancillae. Pri quod
-                    primis
-                    cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae
-                    utinam assueverit
-                    ea,
-                    cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu
-                    nisl aeterno
-                    convenire.
-                  </p>
-                  <button class="close-button" data-close aria-label="Close modal" type="button">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <button class="button float-right" type="button">See more >></button>
-                </div>
-                <li><a href="#" data-open="event3">Wall Painters Wanted</a></li>
+                {% endif %}
               </div>
             </ul>
           </div>
