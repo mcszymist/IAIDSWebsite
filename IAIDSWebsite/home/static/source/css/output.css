@@ -249,6 +249,11 @@ body {
   color: white;
   font-family: Roboto, Arial, sans-serif;
 }
+.upcomingEventsModalable .noUpcomingEvents {
+  color: white;
+  font-family: Roboto, Arial, sans-serif;
+  padding: 10px;
+}
 
 .welcomePanel {
   color: white;
@@ -269,10 +274,26 @@ body {
 }
 .profileTemplate .spaced-row .row .profileAdditionalInfo .profileTitle p {
   text-align: center;
-  font-size: 1.2em;
+  font-size: 1.5em;
 }
 .profileTemplate .spaced-row .row .profileAdditionalInfo .profileAttributes {
   text-align: center;
+}
+.profileTemplate .spaced-row .row .profileDescriptionTitle p {
+  font-size: 1.25em;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.profileTemplate .spaced-row .row .profileDescriptionTitle p::before, .profileTemplate .spaced-row .row .profileDescriptionTitle p::after {
+  content: "";
+  background: linear-gradient(to left, #0056a7, #00a1d8, #46d9bf, white);
+  height: 0.1em;
+  margin: 0.2em;
+  flex: 1;
+}
+.profileTemplate .spaced-row .row .profileDescriptionTitle p::after {
+  background: linear-gradient(to right, #0056a7, #00a1d8, #46d9bf, white);
 }
 
 .progress.success .progress-meter {
