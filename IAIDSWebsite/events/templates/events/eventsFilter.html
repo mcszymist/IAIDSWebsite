@@ -1,144 +1,144 @@
 {% extends "main_template.html" %}
 {% block headerInclude %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
-	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
-    	</script> 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
+<script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
+</script>
 {% endblock %}
 {% block middleColumn %}
 <h1 class="text-center">
-	Volunteer Opportunities
+    Volunteer Opportunities
 </h1>
 
 <div class="row eventTopPadding">
-<div class="columns">
-  <div class="grid-container eventSearchBackground">
-    <div class="grid-x grid-padding-x text-center">
-    <div class="row">
-      <div class="medium-3 columns">
-        <label>By Name
-            <div class="inputCol"><input id="place1" type="text" placeholder="Search Name" /></div>
-        </label>
-      </div>
-      <div class="medium-3 columns">
-        <label>By Organization
-          <div class="inputCol"><input id="place2" type="text" placeholder="Search " /></div>
-        </label>
-      </div>
-	  <div class="medium-3 columns">
-        <label>By Date
-          <div class="inputCol"><input id="place3" type="text" placeholder="Search " /></div>
-        </label>
-      </div>
-	  <div class="medium-3 columns">
-        <label>By Location
-          <div class="inputCol"><input id="place4" type="text" placeholder="Search " /></div>
-        </label>
-      </div>
-      </div>
+    <div class="columns">
+        <div class="grid-container eventSearchBackground">
+            <div class="grid-x grid-padding-x text-center">
+                <div class="row">
+                    <div class="large-3 columns">
+                        <label>By Name
+                            <div class="inputCol"><input id="place1" type="text" placeholder="Search Name" /></div>
+                        </label>
+                    </div>
+                    <div class="large-3 columns">
+                        <label>By Organization
+                            <div class="inputCol"><input id="place2" type="text" placeholder="Search " /></div>
+                        </label>
+                    </div>
+                    <div class="large-3 columns">
+                        <label>By Date
+                            <div class="inputCol"><input id="place3" type="text" placeholder="Search " /></div>
+                        </label>
+                    </div>
+                    <div class="large-3 columns">
+                        <label>By Location
+                            <div class="inputCol"><input id="place4" type="text" placeholder="Search " /></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-<div class="medium-12 columns eventFilterBackground">
-	<table id="example" class="display" style="width:100%">
-        <thead>
-            <tr>
-                <th>id</th>
-                <th>Event Title</th>
-                <th>Organization</th>
-                <th>Desciption</th>
-                <th>Positions Needed</th>
-                <th>Date/Time</th>
-                <th>Location</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            {% for event in allEvents %}
-                    <tr> 
-                        <td>{{event.id}}</td>
-                        <td>{{event.name}}</td>
-                        <td>{{event.orgID}}</td>
-                        <td>{{event.description}}</td>
-                        <td>{{event.personelMax}}</td>
-                        <td>{{event.startdate}}</td>
-                        <td>{{event.location}}</td>
-                    </tr>
-            {% endfor %}
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>id</th>
-                <th>Event Title</th>
-                <th>Organization</th>
-                <th>Desciption</th>
-                <th>Positions Needed</th>
-                <th>Date/Time</th>
-                <th>Location</th>
-            </tr>
-        </tfoot>
-    </table>
-</div>
-<script type= "text/javascript">
-$(document).ready(function() {
+    <div class="large-12 columns eventFilterBackground">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Event Title</th>
+                    <th>Organization</th>
+                    <th>Desciption</th>
+                    <th>Positions Needed</th>
+                    <th>Date/Time</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
 
-    // DataTable
-    var table = $('#example').DataTable({
-        dom: "rtiplf",
-        bInfo: false,
-        autoWidth: false,
-        "columnDefs": [
-            {
-                "targets": [ 0 ],
-                "visible": false,
-                "searchable": false
-            }
-        ],
-        columns: [
-            { "width": "0%"},
-            { "width": "35%" },
-            { "width": "10%" },
-            { "width": "40%" },
-            { "width": "5%" },
-            { "width": "5%" },
-            { "width": "5%" }
-        ]
-    });
- 
-    $('#place1').on( 'keyup', function () {
-        table
-            .columns( 1 )
-            .search( this.value )
-            .draw();
-    } );
-    $('#place2').on( 'keyup', function () {
-        table
-            .columns( 2 )
-            .search( this.value )
-            .draw();
-    } );
-    $('#place3').on( 'keyup', function () {
-        table
-            .columns( 5 )
-            .search( this.value )
-            .draw();
-    } );
-    $('#place4').on( 'keyup', function () {
-        table
-            .columns( 6 )
-            .search( this.value )
-            .draw();
-    } );
-    
-    $('#example tbody').on('click', 'tr', function () {
-        var data = table.row( this ).data();
-        $(location).attr('href', '/eventEdit/?event=' + data[0]);
-    } );
-} );
-</script>
-{% endblock %}
+                {% for event in allEvents %}
+                <tr>
+                    <td>{{event.id}}</td>
+                    <td>{{event.name}}</td>
+                    <td>{{event.orgID}}</td>
+                    <td>{{event.description}}</td>
+                    <td>{{event.personelMax}}</td>
+                    <td>{{event.startdate}}</td>
+                    <td>{{event.location}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>id</th>
+                    <th>Event Title</th>
+                    <th>Organization</th>
+                    <th>Desciption</th>
+                    <th>Positions Needed</th>
+                    <th>Date/Time</th>
+                    <th>Location</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-{% block sideBar %}
-<!--TODO Add code here-->
-{% endblock %}
+            // DataTable
+            var table = $('#example').DataTable({
+                dom: "rtiplf",
+                bInfo: false,
+                autoWidth: false,
+                "columnDefs": [
+                    {
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ],
+                columns: [
+                    { "width": "0%" },
+                    { "width": "35%" },
+                    { "width": "10%" },
+                    { "width": "40%" },
+                    { "width": "5%" },
+                    { "width": "5%" },
+                    { "width": "5%" }
+                ]
+            });
+
+            $('#place1').on('keyup', function () {
+                table
+                    .columns(1)
+                    .search(this.value)
+                    .draw();
+            });
+            $('#place2').on('keyup', function () {
+                table
+                    .columns(2)
+                    .search(this.value)
+                    .draw();
+            });
+            $('#place3').on('keyup', function () {
+                table
+                    .columns(5)
+                    .search(this.value)
+                    .draw();
+            });
+            $('#place4').on('keyup', function () {
+                table
+                    .columns(6)
+                    .search(this.value)
+                    .draw();
+            });
+
+            $('#example tbody').on('click', 'tr', function () {
+                var data = table.row(this).data();
+                $(location).attr('href', '/eventEdit/?event=' + data[0]);
+            });
+        });
+    </script>
+    {% endblock %}
+
+    {% block sideBar %}
+    <!--TODO Add code here-->
+    {% endblock %}
