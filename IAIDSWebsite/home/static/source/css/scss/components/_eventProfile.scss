@@ -10,10 +10,27 @@
             .profileAdditionalInfo {
                 .profileTitle p {
                     text-align: center;
-                    font-size: 1.2em;
+                    font-size: 1.5em;
                 }
                 .profileAttributes {
                     text-align: center;
+                }
+            }
+            .profileDescriptionTitle p{
+                font-size: 1.25em;
+                display: flex;
+                width: 100%;
+                align-items: center;
+                &::before {
+                    content: "";
+                    background: linear-gradient(to left, $theme-color-darkmed, $theme-color-med, $theme-color-medlight, white);
+                    height: 0.1em;
+                    margin: 0.2em;
+                    flex: 1;
+                }
+                &::after {
+                    @extend ::before;
+                    background: linear-gradient(to right, $theme-color-darkmed, $theme-color-med, $theme-color-medlight, white);
                 }
             }
         }
