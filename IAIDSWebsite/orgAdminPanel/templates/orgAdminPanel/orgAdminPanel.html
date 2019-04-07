@@ -109,7 +109,7 @@
 <!-- For events Table -->
 <div class="reveal" id="addRowEvent" data-reveal>
     <h1>New Event</h1>
-    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
+    <form class="my-ajax-form" method='POST' action='.' data-url=''> {% csrf_token %}
         <div class="row">
             <div class="large-8 columns">
                 <label>Name
@@ -192,6 +192,42 @@ $(document).ready(function(){
         console.log(textStatus)
         console.log(errorThrown)
     }
+    var $myUserForm = $('.my-ajax-userform')
+    $myUserForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myUserForm.attr('data-url') || window.location.href // or set your own url
+        
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleFormSuccess,
+            error: handleFormError,
+        })
+
+    })
+
+    function handleFormSuccess(data, textStatus, jqXHR){
+        var userID = $("#id_userID").val();
+        var privledge = $("#id_privledge").val();
+        var date = $("#id_startdate").val();
+        eventsTable.row.add( [
+                        userID,
+                        privledge,
+                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                        ] ).draw( false );
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $myUserForm[0].reset(); // reset form data
+    }
+
+    function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
 })
 
  var eventsTable = $('#events').DataTable({
@@ -249,45 +285,32 @@ $(function() {
 
 <!-- user table reveals -->
 <div class="reveal" id="addRowUser" data-reveal>
-    <h1>New Event</h1>
-    <form id="addUser">
+    <h1>New Administrator</h1>
+    <form class="my-ajax-userform" method='POST' action='.' data-url='test/'> {% csrf_token %}
         <div class="row">
-            <div class="large-8 columns">
+            <div class="large-6 columns">
                 <label>Email
-                    <input type="text" id="email" placeholder="Food Bank Server" />
+                    {{userForm.userID}}
                 </label>
             </div>
-            <div class="large-4 columns">
+            <div class="large-6 columns">
                 <label>Privledge
-                    <input type="text" id="priv" placeholder="2012-02-18" />
+                    {{userForm.privledge}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="offest-large-8 large-4 columns">
-                <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>
+                <input type="Submit" name="submit" value="Submit" data-close/>            
             </div>
         </div>
     </form>
     <button class="close-button" data-close aria-label="Close modal" type="button">
-    	<span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <script>
-$('#buttonUser').click(function (e) {
-    var email = $("#email").val();
-    var username = $("#username").val();
-    var priv = $("#priv").val();
-    usersTable.row.add( [
-                        email,
-                        username,
-                        priv,
-						"<button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
-                        ] ).draw( false );
-    $("#email").val("");
-    $("#username").val("");
-    $("#priv").val("");
-});
+
 var usersTable = $('#users').DataTable({
     bInfo: false,
     autoWidth: false,

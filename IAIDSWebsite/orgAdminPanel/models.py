@@ -54,4 +54,6 @@ class Job(models.Model):
     starttime = models.TimeField(default=datetime.time(datetime.now()))
     endtime = models.TimeField(default=datetime.time(datetime.now()))
     description = models.TextField(default='Please Fill')
+    def amountPersonalNeeded(self):
+        return self.personelMax - self.personel
 

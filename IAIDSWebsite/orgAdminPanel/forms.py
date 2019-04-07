@@ -16,6 +16,7 @@ class EventForm(forms.ModelForm):
             'starttime' : forms.TimeInput(),
 			'endtime' : forms.TimeInput(),
 			'description' : forms.Textarea(),
+            'type' : forms.Textarea(),
         }
 
 class UserForm(forms.ModelForm):
@@ -24,7 +25,7 @@ class UserForm(forms.ModelForm):
         model = OrganizationUsers
         fields = ('userID', 'privledge')
         widgets = {
-            'userID' : forms.TextInput(attrs={'placeholder': 'Event Title'}),
+            'userID' : forms.TextInput(attrs={'placeholder': 'Users Email'}),
             'privledge' : forms.NumberInput(),
         }
 
