@@ -4,9 +4,20 @@ from .models import Event, Organization, OrganizationUsers, MyUser
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
+def start(request):
+    org_id = request.GET.get('org')
+    obj = Organization.objects.get(id=org_id)
+    request.session["org_id"] = org_id
+    allEvents = Event.objects.all().filter(orgID=obj)
+    allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
+    eventForm = EventForm()
+    eventEditForm = EventForm(auto_id="edit_%s")
+    userForm = UserForm(auto_id="user_%s")
 
+    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
+    
 def eventFoamPost(request):
-
+    
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -15,29 +26,16 @@ def eventFoamPost(request):
         if form.is_valid():
             obj = Organization.objects.get(id=request.session["org_id"])
             info = form.cleaned_data
-            print(info)
             org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             org.save()
             data = {
                 'id':org.id,
-                'message': "Successfully submitted form data."
+                'message': "Successfully submitted form data.",
             }
             return JsonResponse(data)
         else:
             return JsonResponse(form.errors, status=400)
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        org_id = request.GET.get('org')
-        obj = Organization.objects.get(id=org_id)
-        request.session["org_id"] = org_id
-        allEvents = Event.objects.all().filter(orgID=obj)
-        allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
-        eventForm = EventForm()
-        eventEditForm = EventForm(auto_id="edit_%s")
-        userForm = UserForm()
-
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
+    return JsonResponse(status=404)
     
 def userFoamPost(request):
 
@@ -64,18 +62,7 @@ def userFoamPost(request):
             return JsonResponse(data)
         else:
             return JsonResponse(form.errors, status=400)
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        org_id = request.GET.get('org')
-        request.session["org_id"] = org_id
-        obj = Organization.objects.get(id=org_id)
-        allEvents = Event.objects.all().filter(orgID=obj)
-        allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
-        eventForm = EventForm()
-        eventEditForm = EventForm(auto_id="edit_%s")
-        userForm = UserForm()
-
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
+    return JsonResponse(status=404)
     
 def eventEditFormPost(request):
 
@@ -101,29 +88,25 @@ def eventEditFormPost(request):
             event.save()
             data = {
                 'id':event.id,
-                'tableRow':request.POST['edit_tableRow']
+                'tableRow':request.POST['edit_tableRow'],
                 'message': "Successfully submitted form data."
             }
             return JsonResponse(data)
         else:
             return JsonResponse(form.errors, status=400)
     # if a GET (or any other method) we'll create a blank form
-    else:
-        org_id = request.GET.get('org')
-        request.session["org_id"] = org_id
-        obj = Organization.objects.get(id=org_id)
-        allEvents = Event.objects.all().filter(orgID=obj)
-        allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
-        eventForm = EventForm()
-        userForm = UserForm()
-
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
+    return JsonResponse(status=404)
     
 def DeleteEvent(request):
     id = request.POST.get('id', '')
     instance = Event.objects.get(id=id)
     instance.delete()
-    
+    data = {
+                'id':id,
+                'message': "Deleted Successfully.",
+            }
+    return JsonResponse(data,status=200)
+            
 def Back(request):
     return redirect("/yourOrganizations/")
 

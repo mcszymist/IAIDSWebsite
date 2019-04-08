@@ -4,7 +4,8 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.eventFoamPost, name='EventFormSave'),
+    path('', views.start, name='start'),
+    path('eventSave/', views.eventFoamPost, name='eventFoamPost'),
     path('userSave/', views.userFoamPost, name='UserFormView'),
     path('eventEdit/', views.eventEditFormPost, name='eventEditFormPost'),
     path('delete/', views.DeleteEvent, name='DeleteEvent'),
