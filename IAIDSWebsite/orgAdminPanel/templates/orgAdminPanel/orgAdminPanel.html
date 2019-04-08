@@ -184,6 +184,7 @@
                 <label>Description
                     {{eventEditForm.description}}
                     <input type="hidden" value="0" name="edit_id" id="edit_id" >
+                     <input type="hidden" value="0" name="edit_tableRow" id="edit_tableRow" >
                 </label>
             </div>
         </div>
@@ -265,13 +266,12 @@ $(document).ready(function(){
         var event = $("#edit_name").val();
         var location = $("#edit_location").val();
         var date = $("#edit_startdate").val();
-        eventsTable.row.add( [
-                        data['id'],
-                        event,
-                        date,
-                        location,
-                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
-                        ] ).draw( false );
+        var temp = eventsTable.row(data['tableRow']).data();
+        temp[0] = data['id'];
+        temp[1] = event;
+        temp[2] = date;
+        temp[3] = location;
+        eventsTable.row(data['tableRow']).data(temp);
         $myEventEditForm[0].reset(); // reset form data
     }
 
@@ -372,6 +372,8 @@ $('#events').on("click", "#editEvent", function() {
     $("#edit_location").val(data[3]);
     $("#edit_startdate").val(data[2]);
     $("#edit_id").val(data[0]);
+    var index = eventsTable.row( $(this).parents('tr') ).index();
+    $("#edit_tableRow").val(index);
     var popup2 = new Foundation.Reveal($('#editRowEvent'));
     popup2.open();
 });
@@ -380,7 +382,6 @@ $(function() {
 }); 
 
 $(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function() {
-    console.log("reset");
     $('#editRowEvent').foundation('_destroy');
 });
 </script>

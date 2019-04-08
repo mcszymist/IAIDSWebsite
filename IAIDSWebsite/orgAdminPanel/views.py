@@ -101,6 +101,7 @@ def eventEditFormPost(request):
             event.save()
             data = {
                 'id':event.id,
+                'tableRow':request.POST['edit_tableRow']
                 'message': "Successfully submitted form data."
             }
             return JsonResponse(data)
