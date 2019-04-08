@@ -3,6 +3,10 @@ from .models import Event, OrganizationUsers
 from django.forms import ModelForm
 from django.forms import SelectDateWidget
 
+
+
+
+        
 class EventForm(forms.ModelForm):
 
     class Meta:
@@ -16,7 +20,6 @@ class EventForm(forms.ModelForm):
             'starttime' : forms.TimeInput(),
 			'endtime' : forms.TimeInput(),
 			'description' : forms.Textarea(),
-            'type' : forms.Textarea(),
         }
 
 class UserForm(forms.ModelForm):
@@ -29,3 +32,4 @@ class UserForm(forms.ModelForm):
             'privledge' : forms.NumberInput(),
         }
 
+ 

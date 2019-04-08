@@ -15,7 +15,7 @@ def eventFoamPost(request):
         if form.is_valid():
             obj = Organization.objects.get(id=request.session["org_id"])
             info = form.cleaned_data
-            #print(info)
+            print(info)
             org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             org.save()
             data = {
@@ -34,9 +34,10 @@ def eventFoamPost(request):
         allEvents = Event.objects.all().filter(orgID=obj)
         allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
         eventForm = EventForm()
+        eventEditForm = EventForm(auto_id="edit_%s")
         userForm = UserForm()
 
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
+    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
     
 def userFoamPost(request):
 
@@ -71,10 +72,52 @@ def userFoamPost(request):
         allEvents = Event.objects.all().filter(orgID=obj)
         allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
         eventForm = EventForm()
+        eventEditForm = EventForm(auto_id="edit_%s")
+        userForm = UserForm()
+
+    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
+    
+def eventEditFormPost(request):
+
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = EventForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            
+            info = form.cleaned_data
+            event = Event.objects.get(id=request.POST['edit_id'])
+            event.name = info['name']
+            event.description=info['description']
+            event.location = info['location']
+            event.startdate = info['startdate']
+            event.enddate = info['enddate']
+            event.starttime = info['starttime']
+            event.endtime = info['endtime']
+            event.save()
+            data = {
+                'id':event.id,
+                'message': "Successfully submitted form data."
+            }
+            return JsonResponse(data)
+        else:
+            return JsonResponse(form.errors, status=400)
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        org_id = request.GET.get('org')
+        request.session["org_id"] = org_id
+        obj = Organization.objects.get(id=org_id)
+        allEvents = Event.objects.all().filter(orgID=obj)
+        allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
+        eventForm = EventForm()
         userForm = UserForm()
 
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
-
+    
 def DeleteEvent(request):
     id = request.POST.get('id', '')
     instance = Event.objects.get(id=id)

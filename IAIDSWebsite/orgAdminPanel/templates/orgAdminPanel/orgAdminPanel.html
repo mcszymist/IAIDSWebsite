@@ -151,12 +151,62 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+<!-- For eventEdit -->
+<div class="reveal" id="editRowEvent" data-reveal>
+    <h1>New Event</h1>
+    <form class="my-eventEdit-form" method='POST' action='.' data-url='eventEdit/'> {% csrf_token %}
+        <div class="row">
+            <div class="large-8 columns">
+                <label>Name
+                    {{eventEditForm.name}}
+                </label>
+            </div>
+            <div class="large-4 columns">
+                <label>Location
+                    {{eventEditForm.location}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <label>Start Date
+                    {{eventEditForm.startdate}} {{eventEditForm.starttime}}
+                </label>
+            </div>
+            <div class="large-6 columns">
+                <label>End Date
+                    {{eventEditForm.enddate}} {{eventEditForm.endtime}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Description
+                    {{eventEditForm.description}}
+                    <input type="hidden" value="0" name="edit_id" id="edit_id" >
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offest-large-8 large-4 columns">
+                <input type="Submit" name="submit" value="Submit" data-close/>            
+            </div>
+        </div>
+    </form>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 
 <script>
+/*
+    Event Table Forms
+    
+    - Add Event Form
+*/
 $(document).ready(function(){
     var $myForm = $('.my-ajax-form')
     $myForm.submit(function(event){
-        event.preventDefault()
         var $formData = $(this).serialize()
         var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
         
@@ -174,6 +224,7 @@ $(document).ready(function(){
         var event = $("#id_name").val();
         var location = $("#id_location").val();
         var date = $("#id_startdate").val();
+        console.log(date);
         eventsTable.row.add( [
                         data['id'],
                         event,
@@ -181,9 +232,6 @@ $(document).ready(function(){
                         location,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
                         ] ).draw( false );
-        console.log(data)
-        console.log(textStatus)
-        console.log(jqXHR)
         $myForm[0].reset(); // reset form data
     }
 
@@ -192,9 +240,54 @@ $(document).ready(function(){
         console.log(textStatus)
         console.log(errorThrown)
     }
+/*
+    - End Event Add
+    
+    - Edit Event Form
+*/
+    var $myEventEditForm = $('.my-eventEdit-form')
+    $myEventEditForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myEventEditForm.attr('data-url') || window.location.href // or set your own url
+        
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleEventEditFormSuccess,
+            error: handleEventEditFormError,
+        })
+
+    })
+
+    function handleEventEditFormSuccess(data, textStatus, jqXHR){
+        var event = $("#edit_name").val();
+        var location = $("#edit_location").val();
+        var date = $("#edit_startdate").val();
+        eventsTable.row.add( [
+                        data['id'],
+                        event,
+                        date,
+                        location,
+                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                        ] ).draw( false );
+        $myEventEditForm[0].reset(); // reset form data
+    }
+
+    function handleEventEditFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+   
+   
+// User Ajax Request 
     var $myUserForm = $('.my-ajax-userform')
     $myUserForm.submit(function(event){
         event.preventDefault()
+        $("#id_type").val() = "1";
+        document.getElementById("id_type").value = "1";
         var $formData = $(this).serialize()
         var $thisURL = $myUserForm.attr('data-url') || window.location.href // or set your own url
         
@@ -202,13 +295,13 @@ $(document).ready(function(){
             method: "POST",
             url: $thisURL,
             data: $formData,
-            success: handleFormSuccess,
-            error: handleFormError,
+            success: handleUserFormSuccess,
+            error: handleUserFormError,
         })
 
     })
 
-    function handleFormSuccess(data, textStatus, jqXHR){
+    function handleUserFormSuccess(data, textStatus, jqXHR){
         var userID = $("#id_userID").val();
         var privledge = $("#id_privledge").val();
         var date = $("#id_startdate").val();
@@ -217,13 +310,10 @@ $(document).ready(function(){
                         privledge,
                         "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
                         ] ).draw( false );
-        console.log(data)
-        console.log(textStatus)
-        console.log(jqXHR)
         $myUserForm[0].reset(); // reset form data
     }
 
-    function handleFormError(jqXHR, textStatus, errorThrown){
+    function handleUserFormError(jqXHR, textStatus, errorThrown){
         console.log(jqXHR)
         console.log(textStatus)
         console.log(errorThrown)
@@ -258,7 +348,7 @@ $(document).ready(function(){
         { "width": "10%" }
     ]
 });
-
+// Detele Event
 $('#events').on("click", "#deleteEvent", function() {
     var data = eventsTable.row( $(this).parents('tr') ).data();
     // Ajax request
@@ -273,14 +363,26 @@ $('#events').on("click", "#deleteEvent", function() {
     })
     eventsTable.row($(this).parents('tr')).remove().draw(false);
 });
+// Edit Event 
 
 $('#events').on("click", "#editEvent", function() {
 
+    var data = eventsTable.row( $(this).parents('tr') ).data();
+    $("#edit_name").val(data[1]);
+    $("#edit_location").val(data[3]);
+    $("#edit_startdate").val(data[2]);
+    $("#edit_id").val(data[0]);
+    var popup2 = new Foundation.Reveal($('#editRowEvent'));
+    popup2.open();
 });
 $(function() {
   $( ".datepicker" ).datepicker();
 }); 
 
+$(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function() {
+    console.log("reset");
+    $('#editRowEvent').foundation('_destroy');
+});
 </script>
 
 <!-- user table reveals -->
