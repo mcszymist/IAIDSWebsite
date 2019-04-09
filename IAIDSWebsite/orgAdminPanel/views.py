@@ -4,6 +4,7 @@ from .models import Event, Organization, OrganizationUsers, MyUser
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
+
 def start(request):
     org_id = request.GET.get('org')
     obj = Organization.objects.get(id=org_id)
@@ -106,7 +107,17 @@ def DeleteEvent(request):
                 'message': "Deleted Successfully.",
             }
     return JsonResponse(data,status=200)
-            
+
+def DeleteUser(request):
+    id = request.POST.get('id', '')
+    instance = OrganizationUsers.objects.get(orgID=id)
+    instance.delete()
+    data = {
+                'id':id,
+                'message': "Deleted Successfully.",
+            }
+    return JsonResponse(data,status=200)
+    
 def Back(request):
     return redirect("/yourOrganizations/")
 

@@ -54,7 +54,7 @@
 <!-- add row reveals -->
 <div class="reveal" id="addRow" data-reveal>
     <h1>New Organization</h1>
-    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
+    <form class="my-ajax-form" method='POST' action='.' data-url='orgSave/'> {% csrf_token %}
         <div class="row">
             <div class="large-12 columns">
                 <label>Organization
@@ -65,7 +65,38 @@
         <div class="row">
             <div class="large-12 columns">
                 <label>Desciption
-                {{form.description}}
+                    {{form.description}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offest-large-8 large-4 columns">
+                <!-- <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>-->
+                <input type="Submit" name="submit" value="Submit" data-close/>
+                </div>
+        </div>
+    </form>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+    	<span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="reveal" id="editRow" data-reveal>
+    <h1>New Organization</h1>
+    <form class="my-ajax-EditForm" method='POST' action='.' data-url='orgEdit/'> {% csrf_token %}
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Organization
+                    {{editForm.name}}
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Desciption
+                    {{editForm.description}}
+                    <input type="hidden" value="0" name="edit_id" id="edit_id" >
+                    <input type="hidden" value="0" name="edit_tableRow" id="edit_tableRow" >
                 </label>
             </div>
         </div>
@@ -86,7 +117,7 @@ $(document).ready(function(){
     $myForm.submit(function(event){
         event.preventDefault()
         var $formData = $(this).serialize()
-        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+        var $thisURL = $myForm.attr('data-url')
         
         $.ajax({
             method: "POST",
@@ -114,6 +145,40 @@ $(document).ready(function(){
     }
 
     function handleFormError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
+    
+    var $myEditForm = $('.my-ajax-EditForm')
+    $myEditForm.submit(function(event){
+        event.preventDefault()
+        var $formData = $(this).serialize()
+        var $thisURL = $myEditForm.attr('data-url')
+        
+        $.ajax({
+            method: "POST",
+            url: $thisURL,
+            data: $formData,
+            success: handleEditFormSuccess,
+            error: handleEditFormError,
+        })
+
+    })
+
+    function handleEditFormSuccess(data, textStatus, jqXHR){
+        var name = $("#edit_name").val();
+        var temp = table.row(data['tableRow']).data();
+        temp[0] = data['id'];
+        temp[1] = name;
+        table.row(data['tableRow']).data(temp);
+        console.log(data)
+        console.log(textStatus)
+        console.log(jqXHR)
+        $myEditForm[0].reset(); // reset form data
+    }
+
+    function handleEditFormError(jqXHR, textStatus, errorThrown){
         console.log(jqXHR)
         console.log(textStatus)
         console.log(errorThrown)
@@ -175,7 +240,13 @@ $('#table tbody').on('click', 'tr', function (e) {
     
 } );
 $('#table').on("click", "#editOrg", function() {
-    
+    var data = table.row( $(this).parents('tr') ).data();
+    $("#edit_name").val(data[1]);
+    $("#edit_id").val(data[0]);
+    var index = table.row( $(this).parents('tr') ).index();
+    $("#edit_tableRow").val(index);
+    var popup2 = new Foundation.Reveal($('#editRow'));
+    popup2.open();
 });
 
 </script>

@@ -9,5 +9,6 @@ urlpatterns = [
     path('userSave/', views.userFoamPost, name='UserFormView'),
     path('eventEdit/', views.eventEditFormPost, name='eventEditFormPost'),
     path('delete/', views.DeleteEvent, name='DeleteEvent'),
-    path('deleteOrg/', views.DeleteOrganization, name='DeleteOrganization')
+    path('deleteOrg/', views.DeleteOrganization, name='DeleteOrganization'),
+    path('deleteUser/', views.DeleteUser, name='DeleteUser')
 ]

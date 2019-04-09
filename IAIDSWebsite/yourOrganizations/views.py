@@ -26,44 +26,57 @@ def my_view(request):
             }
         return JsonResponse(data)
     return JsonResponse(form.errors, status=400) 
-     
-class OrganizationFormView(FormView):
-    form_class = OrganizationForm
-    template_name  = 'yourOrganizations/yourOrganizations.html'
-    success_url = '/yourOrganizations/'
     
-    
-    def get_context_data(self, **kwargs):      
-        context = super(OrganizationFormView, self).get_context_data(**kwargs)
-        users = OrganizationUsers.objects.all().filter(userID=self.request.user)
-        objLen = []
-        obj = []
-        for user in users:
-            obj.append((user.orgID,Event.objects.all().filter(orgID=user.orgID).count()))
-        context['allOrgs'] = obj
-        return context
-        
-    def form_invalid(self, form):
-        response = super(OrganizationFormView, self).form_invalid(form)
-        if self.request.is_ajax():
-            return JsonResponse(form.errors, status=400)
-        else:
-            return response
+def start(request):
+    form = OrganizationForm()
+    editForm = OrganizationForm(auto_id="edit_%s")
+    users = OrganizationUsers.objects.all().filter(userID=request.user)
+    obj = []
+    for user in users:
+        obj.append((user.orgID,Event.objects.all().filter(orgID=user.orgID).count()))
+    allOrgs = obj
+    return render(request, 'yourOrganizations/yourOrganizations.html', {'allOrgs': allOrgs,'form':form,'editForm':editForm})
 
-    def form_valid(self, form):
-        response = super(OrganizationFormView, self).form_valid(form)
-        if self.request.is_ajax():
+def OrganizationFormView(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = OrganizationForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
             info = form.cleaned_data
             #print(info)
             org = Organization(name = info['name'],description=info['description'])
             org.save()
-            newOrgUser = OrganizationUsers(userID = self.request.user, orgID = org, privledge = 3)
+            newOrgUser = OrganizationUsers(userID = request.user, orgID = org, privledge = 3)
             newOrgUser.save()
             data = {
+                'id': org.id,
                 'message': "Successfully submitted form data.",
-                'id': org.id
+                
             }
             return JsonResponse(data)
         else:
-            return response
-     
+            return JsonResponse(form.errors, status=400)
+    return JsonResponse(status=404)
+
+def OrganizationEditFormView(request):
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = OrganizationForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            info = form.cleaned_data
+            org = Organization.objects.get(id=request.POST['edit_id'])
+            org.name = info['name']
+            org.description=info['description']
+            org.save()
+            data = {
+                'id': org.id,
+                'tableRow':request.POST['edit_tableRow'],
+                'message': "Successfully edited organization.",
+            }
+            return JsonResponse(data)
+        else:
+            return JsonResponse(form.errors, status=400)
+    return JsonResponse(status=404)
+    

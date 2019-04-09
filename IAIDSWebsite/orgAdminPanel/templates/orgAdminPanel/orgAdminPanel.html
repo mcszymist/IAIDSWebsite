@@ -286,8 +286,6 @@ $(document).ready(function(){
     var $myUserForm = $('.my-ajax-userform')
     $myUserForm.submit(function(event){
         event.preventDefault()
-        $("#id_type").val() = "1";
-        document.getElementById("id_type").value = "1";
         var $formData = $(this).serialize()
         var $thisURL = $myUserForm.attr('data-url') || window.location.href // or set your own url
         
@@ -302,9 +300,8 @@ $(document).ready(function(){
     })
 
     function handleUserFormSuccess(data, textStatus, jqXHR){
-        var userID = $("#id_userID").val();
-        var privledge = $("#id_privledge").val();
-        var date = $("#id_startdate").val();
+        var userID = $("#user_userID").val();
+        var privledge = $("#user_privledge").val();
         eventsTable.row.add( [
                         userID,
                         privledge,
@@ -389,7 +386,7 @@ $(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function() {
 <!-- user table reveals -->
 <div class="reveal" id="addRowUser" data-reveal>
     <h1>New Administrator</h1>
-    <form class="my-ajax-userform" method='POST' action='.' data-url='test/'> {% csrf_token %}
+    <form class="my-ajax-userform" method='POST' action='.' data-url='userSave/'> {% csrf_token %}
         <div class="row">
             <div class="large-6 columns">
                 <label>Email
