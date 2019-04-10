@@ -114,17 +114,15 @@
                 <table id="reports" class="display" style="width:100%">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Location</th>
-                            <th>CSV</th>
-                            <th>Delete</th>
+                            <th>Volunteer</th>
+                            <th>Event</th>
+                            <th>Hours</th>
+                            <th>Edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for user in allUsers %}
                         <tr>
-                            <td>{{user.userID.id}}</td>
                             <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
                             <td>{{user.userID}}</td>
                             <td>{{user.privledge}}</td>
