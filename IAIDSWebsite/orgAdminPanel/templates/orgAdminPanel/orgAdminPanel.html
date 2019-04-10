@@ -96,6 +96,37 @@
                     </tfoot>
                 </table>
             </div>
+            <div id="tabs-3">
+                <table id="report" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Volunteer</th>
+                            <th>Event</th>
+                            <th>Hours</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in allUsers %}
+                            <tr>
+                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
+                                <td>{{user.userID}}</td>
+                                <td>{{user.privledge}}</td>
+                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Volunteer</th>
+                            <th>Event</th>
+                            <th>Hours</th>
+                            <th>Edit</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
