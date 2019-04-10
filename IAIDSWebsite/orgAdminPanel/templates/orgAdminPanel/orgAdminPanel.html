@@ -1,32 +1,32 @@
-{% extends "main_template.html" %}
-
-{% block headerInclude %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
-	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
-    	</script> 
-    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
-    	</script> 
-{% endblock %}
-
-{% block middleColumn %}
+{% extends "main_template.html" %} {% block headerInclude %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
+</script> {% endblock %} {% block middleColumn %}
 <div class="rows">
     <h1 class="small-offset-3 small-6 text-center columns eventFilterBackground"> Organization Template </h1>
 </div>
 <script>
-    $( function() {
-        $( "#tabs" ).tabs();
-    } );
+    $(function () {
+        $("#tabs").tabs();
+    });
 </script>
 <div class="row">
     <div class="small-centered columns eventFilterBackground">
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1">Events</a></li>
-                <li><a href="#tabs-2">Users</a></li>
-                <li><a href="#tabs-2">Reports</a></li> 
+                <li>
+                    <a href="#tabs-1">Events</a>
+                </li>
+                <li>
+                    <a href="#tabs-2">Users</a>
+                </li>
+                <li>
+                    <a href="#tabs-3">Reports</a>
+                </li>
             </ul>
             <div id="tabs-1">
                 <table id="events" class="display" style="width:100%">
@@ -41,14 +41,21 @@
                     </thead>
                     <tbody>
                         {% for event in allEvents %}
-                            <tr>
-                                <td>{{event.id}}</td>
-                                <td>{{event.name}}</td>
-                                <td>{{event.startdate}}</td>
-                                <td>{{event.location}}</td>
-                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                        <tr>
+                            <td>{{event.id}}</td>
+                            <td>{{event.name}}</td>
+                            <td>{{event.startdate}}</td>
+                            <td>{{event.location}}</td>
+                            <td>
+                                <button id="editEvent" class="button tiny">
+                                    <i class="fi-pencil"></i>
+                                </button>
+                                <button id="deleteEvent" class="button tiny alert">
+                                    <i class="fi-trash"></i>
+                                </button>
+                            </td>
 
-                            </tr>
+                        </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
@@ -75,14 +82,21 @@
                     </thead>
                     <tbody>
                         {% for user in allUsers %}
-                            <tr>
-                                <td>{{user.userID.id}}</td>
-                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
-                                <td>{{user.userID}}</td>
-                                <td>{{user.privledge}}</td>
-                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                        <tr>
+                            <td>{{user.userID.id}}</td>
+                            <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
+                            <td>{{user.userID}}</td>
+                            <td>{{user.privledge}}</td>
+                            <td>
+                                <button id="editEvent" class="button tiny">
+                                    <i class="fi-pencil"></i>
+                                </button>
+                                <button id="deleteEvent" class="button tiny alert">
+                                    <i class="fi-trash"></i>
+                                </button>
+                            </td>
 
-                            </tr>
+                        </tr>
                         {% endfor %}
                     </tbody>
                     <tfoot>
@@ -96,17 +110,60 @@
                     </tfoot>
                 </table>
             </div>
-            <div id = "tab-3"> </div>
+            <div id="tabs-3">
+                <table id="reports" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Location</th>
+                            <th>CSV</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in allUsers %}
+                        <tr>
+                            <td>{{user.userID.id}}</td>
+                            <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
+                            <td>{{user.userID}}</td>
+                            <td>{{user.privledge}}</td>
+                            <td>
+                                <button id="editEvent" class="button tiny">
+                                    <i class="fi-pencil"></i>
+                                </button>
+                                <button id="deleteEvent" class="button tiny alert">
+                                    <i class="fi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Privledge</th>
+                            <th>Delete</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="small-3 columns">
-		<button id="backButton"class="button">Back<i class=""></i></button>
-	</div>
-	<div class="small-offset-6 small-3 columns">
-		<button id="deleteOrgButton"class="button alert">Delete Organization <i class="fi-trash"></i></button>
-	</div>
+        <button id="backButton" class="button">Back
+            <i class=""></i>
+        </button>
+    </div>
+    <div class="small-offset-6 small-3 columns">
+        <button id="deleteOrgButton" class="button alert">Delete Organization
+            <i class="fi-trash"></i>
+        </button>
+    </div>
 </div>
 <!-- For events Table -->
 <div class="reveal" id="addRowEvent" data-reveal>
@@ -114,38 +171,33 @@
     <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
         <div class="row">
             <div class="large-8 columns">
-                <label>Name
-                    {{form.name}}
+                <label>Name {{form.name}}
                 </label>
             </div>
             <div class="large-4 columns">
-                <label>Location
-                    {{form.location}}
+                <label>Location {{form.location}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-6 columns">
-                <label>Start Date
-                    {{form.startdate}} {{form.starttime}}
+                <label>Start Date {{form.startdate}} {{form.starttime}}
                 </label>
             </div>
             <div class="large-6 columns">
-                <label>End Date
-                    {{form.enddate}} {{form.endtime}}
+                <label>End Date {{form.enddate}} {{form.endtime}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-12 columns">
-                <label>Description
-                    {{form.description}}
+                <label>Description {{form.description}}
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="offest-large-8 large-4 columns">
-                <input type="Submit" name="submit" value="Submit" data-close/>            
+                <input type="Submit" name="submit" value="Submit" data-close/>
             </div>
         </div>
     </form>
@@ -155,97 +207,97 @@
 </div>
 
 <script>
-$(document).ready(function(){
-    var $myForm = $('.my-ajax-form')
-    $myForm.submit(function(event){
-        event.preventDefault()
-        var $formData = $(this).serialize()
-        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
-        
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleFormSuccess,
-            error: handleFormError,
+    $(document).ready(function () {
+        var $myForm = $('.my-ajax-form')
+        $myForm.submit(function (event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+            })
+
         })
 
+        function handleFormSuccess(data, textStatus, jqXHR) {
+            var event = $("#id_name").val();
+            var location = $("#id_location").val();
+            var date = $("#id_startdate").val();
+            eventsTable.row.add([
+                data['id'],
+                event,
+                date,
+                location,
+                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+            ]).draw(false);
+            console.log(data)
+            console.log(textStatus)
+            console.log(jqXHR)
+            $myForm[0].reset(); // reset form data
+        }
+
+        function handleFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
     })
 
-    function handleFormSuccess(data, textStatus, jqXHR){
-        var event = $("#id_name").val();
-        var location = $("#id_location").val();
-        var date = $("#id_startdate").val();
-        eventsTable.row.add( [
-                        data['id'],
-                        event,
-                        date,
-                        location,
-                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
-                        ] ).draw( false );
-        console.log(data)
-        console.log(textStatus)
-        console.log(jqXHR)
-        $myForm[0].reset(); // reset form data
-    }
-
-    function handleFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-})
-
- var eventsTable = $('#events').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'New Event',
-            action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addRowEvent'));
-                popup.open();
-            }
-        }
-    ],
-    "columnDefs": [
+    var eventsTable = $('#events').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'Bfrtip',
+        buttons: [
             {
-                "targets": [ 0 ],
+                text: 'New Event',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addRowEvent'));
+                    popup.open();
+                }
+            }
+        ],
+        "columnDefs": [
+            {
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "55%" },
-        { "width": "20%" },
-        { "width": "10%" },
-        { "width": "10%" }
-    ]
-});
+        columns: [
+            { "width": "0%" },
+            { "width": "55%" },
+            { "width": "20%" },
+            { "width": "10%" },
+            { "width": "10%" }
+        ]
+    });
 
-$('#events').on("click", "#deleteEvent", function() {
-    var data = eventsTable.row( $(this).parents('tr') ).data();
-    // Ajax request
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/orgAdminPanel/delete/",  //url
-        dataType: "json",                   //data being set
-        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-    })
-    eventsTable.row($(this).parents('tr')).remove().draw(false);
-});
+    $('#events').on("click", "#deleteEvent", function () {
+        var data = eventsTable.row($(this).parents('tr')).data();
+        // Ajax request
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/orgAdminPanel/delete/",  //url
+            dataType: "json",                   //data being set
+            data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+        })
+        eventsTable.row($(this).parents('tr')).remove().draw(false);
+    });
 
-$('#events').on("click", "#editEvent", function() {
+    $('#events').on("click", "#editEvent", function () {
 
-});
-$(function() {
-  $( ".datepicker" ).datepicker();
-}); 
+    });
+    $(function () {
+        $(".datepicker").datepicker();
+    });
 
 </script>
 
@@ -272,86 +324,83 @@ $(function() {
         </div>
     </form>
     <button class="close-button" data-close aria-label="Close modal" type="button">
-    	<span aria-hidden="true">&times;</span>
+        <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <script>
-$('#buttonUser').click(function (e) {
-    var email = $("#email").val();
-    var username = $("#username").val();
-    var priv = $("#priv").val();
-    usersTable.row.add( [
-                        email,
-                        username,
-                        priv,
-						"<button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
-                        ] ).draw( false );
-    $("#email").val("");
-    $("#username").val("");
-    $("#priv").val("");
-});
-var usersTable = $('#users').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    "columnDefs": [
+    $('#buttonUser').click(function (e) {
+        var email = $("#email").val();
+        var username = $("#username").val();
+        var priv = $("#priv").val();
+        usersTable.row.add([
+            email,
+            username,
+            priv,
+            "<button id=\"deleteUsers\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+        ]).draw(false);
+        $("#email").val("");
+        $("#username").val("");
+        $("#priv").val("");
+    });
+    var usersTable = $('#users').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        "columnDefs": [
             {
-                "targets": [ 0 ],
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "40%" },
-        { "width": "40%" },
-        { "width": "10%" },
-        { "width": "10%"}
-    ],
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'New User',
-            action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addRowUser'));
-                popup.open();
+        columns: [
+            { "width": "0%" },
+            { "width": "40%" },
+            { "width": "40%" },
+            { "width": "10%" },
+            { "width": "10%" }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'New User',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addRowUser'));
+                    popup.open();
+                }
             }
+        ]
+    });
+
+    $('#users').on("click", "#deleteUsers", function () {
+        usersTable.row($(this).parents('tr')).remove().draw(false);
+    });
+    $('#users').on("click", "#editUsers", function () {
+    });
+    $('#backButton').click(function (e) {
+        $(location).attr('href', '/yourOrganizations/')
+    });
+    $('#deleteOrgButton').click(function (e) {
+        $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
+    });
+    $('#events tbody').on('click', 'tr', function (e) {
+        var data = eventsTable.row(this).data();
+        if ($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 4) {
+            return
         }
-    ]
-});
+        else {
+            $(location).attr('href', '/eventEdit/?event=' + data[0]);
+        }
+    });
+    $('#users tbody').on('click', 'tr', function (e) {
+        var data = usersTable.row(this).data();
+        if ($("#users").dataTable().api().cell($(e.target).closest('td')).index().column == 5) {
+            return
+        }
+        else {
+            $(location).attr('href', '/profile/?user=' + data[0]);
+        }
 
-$('#users').on("click", "#deleteUsers", function() {
-            usersTable.row($(this).parents('tr')).remove().draw(false);
-});
-$('#users').on("click", "#editUsers", function() {
-});
-$('#backButton').click(function (e) {
-    $(location).attr('href', '/yourOrganizations/')
-});
-$('#deleteOrgButton').click(function (e) {
-    $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
-});
-$('#events tbody').on('click', 'tr', function (e) {
-    var data = eventsTable.row( this ).data();
-    if($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 4){
-        return
-    }
-    else{
-        $(location).attr('href', '/eventEdit/?event=' + data[0]);
-    }
-} );
-$('#users tbody').on('click', 'tr', function (e) {
-    var data = usersTable.row( this ).data();
-    if($("#users").dataTable().api().cell($(e.target).closest('td')).index().column == 5){
-        return
-    }
-    else{
-        $(location).attr('href', '/profile/?user=' + data[0]);
-    }
-    
-} );
-</script>
-{% endblock %}
-
-{% block sideBar %}
+    });
+</script> {% endblock %} {% block sideBar %}
 <!--TODO Add code here-->
 {% endblock %}
