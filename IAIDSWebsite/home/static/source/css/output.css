@@ -279,22 +279,6 @@ body {
 .profileTemplate .spaced-row .row .profileAdditionalInfo .profileAttributes {
   text-align: center;
 }
-.profileTemplate .spaced-row .row .profileDescriptionTitle p {
-  font-size: 1.25em;
-  display: flex;
-  width: 100%;
-  align-items: center;
-}
-.profileTemplate .spaced-row .row .profileDescriptionTitle p::before, .profileTemplate .spaced-row .row .profileDescriptionTitle p::after {
-  content: "";
-  background: linear-gradient(to left, #0056a7, #00a1d8, #46d9bf, white);
-  height: 0.1em;
-  margin: 0.2em;
-  flex: 1;
-}
-.profileTemplate .spaced-row .row .profileDescriptionTitle p::after {
-  background: linear-gradient(to right, #0056a7, #00a1d8, #46d9bf, white);
-}
 
 .progress.success .progress-meter {
   background: linear-gradient(160deg, #0056a7, #00a1d8, #46d9bf, #fcb239, #f04e31);
@@ -302,6 +286,22 @@ body {
 .progress .progress-meter {
   background: #969696;
   margin-top: 4px;
+}
+
+.textWithBar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.textWithBar::before, .row .userProfileAboutMe .card .card-section .aboutMeTitle h4.textWithBar::after, .textWithBar::after {
+  content: "";
+  background: linear-gradient(to left, #0056a7, #00a1d8, #46d9bf, #eeeeee);
+  height: 0.1em;
+  margin: 0.2em;
+  flex: 1;
+}
+.textWithBar::after {
+  background: linear-gradient(to right, #0056a7, #00a1d8, #46d9bf, #eeeeee);
 }
 
 .row .userProfileImage img {
@@ -352,6 +352,53 @@ span.has-tip {
 }
 .userProfileCertificate .card .card-divider {
   background-color: #00a1d8;
+}
+
+.dataTables_wrapper .dataTables_length {
+  padding-top: 40px;
+  width: 25%;
+}
+.dataTables_wrapper .dataTables_length label select {
+  width: 30%;
+}
+.dataTables_wrapper .dataTables_filter {
+  padding-top: 20px;
+  width: 50%;
+}
+.dataTables_wrapper .dataTables_filter label {
+  text-align: center;
+}
+.dataTables_wrapper .dataTables_filter label input {
+  width: 100%;
+  margin-left: 0;
+}
+.dataTables_wrapper .dataTables_paginate {
+  padding-top: 40px;
+  width: 25%;
+}
+
+tbody tr {
+  transition: all ease-out 0.3s;
+}
+
+table#example.dataTable tbody tr:hover {
+  background-color: #fdd188;
+  cursor: pointer;
+}
+
+table#events.dataTable tbody tr:hover {
+  background-color: #fdd188;
+  cursor: pointer;
+}
+
+table#users.dataTable tbody tr:hover {
+  background-color: #fdd188;
+  cursor: pointer;
+}
+
+table#table.dataTable tbody tr:hover {
+  background-color: #fdd188;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=output.css.map */
