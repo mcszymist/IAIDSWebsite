@@ -1,386 +1,430 @@
 {% extends "main_template.html" %}
 
 {% block headerInclude %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
-	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
-    	</script> 
-    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
-    	</script> 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" /> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="{% static 'source/css/output.css' %}" />
+<script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
+</script>
 {% endblock %}
 
 {% block middleColumn %}
-<div class="rows">
-    <h1 class="small-offset-3 small-6 text-center columns eventFilterBackground"> Organization Template </h1>
-</div>
-<script>
-    $( function() {
-        $( "#tabs" ).tabs();
-    } );
-</script>
-<div class="row">
-    <div class="small-centered columns eventFilterBackground">
-        <div id="tabs">
-            <ul>
-                <li><a href="#tabs-1">Events</a></li>
-                <li><a href="#tabs-2">Users</a></li>
-            </ul>
-            <div id="tabs-1">
-                <table id="events" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Event Title</th>
-                            <th>Date/Time</th>
-                            <th>Location</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for event in allEvents %}
+<div class="spaced-row">
+
+    <div class="row">
+        <div class="large-12 columns text-center eventFilterBackground">
+            <h1 class="textWithBar">Organization Profile</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-centered columns eventFilterBackground">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Events</a></li>
+                    <li><a href="#tabs-2">Users</a></li>
+                    <li><a href="#tabs-3">Reports</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <table id="events" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Event Title</th>
+                                <th>Date/Time</th>
+                                <th>Location</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for event in allEvents %}
                             <tr>
                                 <td>{{event.id}}</td>
                                 <td>{{event.name}}</td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
-                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button
+                                        id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>id</th>
-                            <th>Event Title</th>
-                            <th>Date/Time</th>
-                            <th>Location</th>
-                            <th>Delete</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-            <div id="tabs-2">
-                <table id="users" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Privledge</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for user in allUsers %}
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>id</th>
+                                <th>Event Title</th>
+                                <th>Date/Time</th>
+                                <th>Location</th>
+                                <th>Delete</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div id="tabs-2">
+                    <table id="users" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Privledge</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in allUsers %}
                             <tr>
                                 <td>{{user.userID.id}}</td>
                                 <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
                                 <td>{{user.userID}}</td>
                                 <td>{{user.privledge}}</td>
-                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button
+                                        id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
                             </tr>
-                        {% endfor %}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Privledge</th>
-                            <th>Delete</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>id</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Privledge</th>
+                                <th>Delete</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div id="tabs-3">
+                    <table id="report" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Volunteer</th>
+                                <th>Event</th>
+                                <th>Hours</th>
+                                <th>Edit/Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in allUsers %}
+                            <tr>
+                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
+                                <td>{{user.userID}}</td>
+                                <td>{{user.privledge}}</td>
+                                <td><button id="editEvent" class="button tiny" style="padding-top: 30px;"><i class="fi-pencil"></i></button><button
+                                        id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Volunteer</th>
+                                <th>Event</th>
+                                <th>Hours</th>
+                                <th>Edit</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="large-3 column">
+            <button id="backButton" class="button">Back<i class=""></i></button>
+        </div>
+        <div class="large-6 column">
+        </div>
+        <div class="large-3 columns">
+            <button id="deleteOrgButton" class="button alert" style="float: right;">Delete Organization <i class="fi-trash"></i></button>
+        </div>
+    </div>
+    <!-- For events Table -->
+    <div class="reveal" id="addRowEvent" data-reveal>
+        <h1>New Event</h1>
+        <form class="my-ajax-form" method='POST' action='.' data-url='eventSave/'> {% csrf_token %}
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Name
+                        {{form.name}}
+                    </label>
+                </div>
+                <div class="large-4 columns">
+                    <label>Location
+                        {{form.location}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>Start Date
+                        {{form.startdate}} {{form.starttime}}
+                    </label>
+                </div>
+                <div class="large-6 columns">
+                    <label>End Date
+                        {{form.enddate}} {{form.endtime}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Description
+                        {{form.description}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offest-large-8 large-4 columns">
+                    <input type="Submit" name="submit" value="Submit" data-close />
+                </div>
+            </div>
+        </form>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <!-- For eventEdit -->
+    <div class="reveal" id="editRowEvent" data-reveal>
+        <h1>New Event</h1>
+        <form class="my-eventEdit-form" method='POST' action='.' data-url='eventEdit/'> {% csrf_token %}
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Name
+                        {{eventEditForm.name}}
+                    </label>
+                </div>
+                <div class="large-4 columns">
+                    <label>Location
+                        {{eventEditForm.location}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-6 columns">
+                    <label>Start Date
+                        {{eventEditForm.startdate}} {{eventEditForm.starttime}}
+                    </label>
+                </div>
+                <div class="large-6 columns">
+                    <label>End Date
+                        {{eventEditForm.enddate}} {{eventEditForm.endtime}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Description
+                        {{eventEditForm.description}}
+                        <input type="hidden" value="0" name="edit_id" id="edit_id">
+                        <input type="hidden" value="0" name="edit_tableRow" id="edit_tableRow">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offest-large-8 large-4 columns">
+                    <input type="Submit" name="submit" value="Submit" data-close />
+                </div>
+            </div>
+        </form>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 </div>
-<div class="row">
-    <div class="small-3 columns">
-		<button id="backButton"class="button">Back<i class=""></i></button>
-	</div>
-	<div class="small-offset-6 small-3 columns">
-		<button id="deleteOrgButton"class="button alert">Delete Organization <i class="fi-trash"></i></button>
-	</div>
-</div>
-<!-- For events Table -->
-<div class="reveal" id="addRowEvent" data-reveal>
-    <h1>New Event</h1>
-    <form class="my-ajax-form" method='POST' action='.' data-url='eventSave/'> {% csrf_token %}
-        <div class="row">
-            <div class="large-8 columns">
-                <label>Name
-                    {{form.name}}
-                </label>
-            </div>
-            <div class="large-4 columns">
-                <label>Location
-                    {{form.location}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Start Date
-                    {{form.startdate}} {{form.starttime}}
-                </label>
-            </div>
-            <div class="large-6 columns">
-                <label>End Date
-                    {{form.enddate}} {{form.endtime}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Description
-                    {{form.description}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="offest-large-8 large-4 columns">
-                <input type="Submit" name="submit" value="Submit" data-close/>            
-            </div>
-        </div>
-    </form>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
-<!-- For eventEdit -->
-<div class="reveal" id="editRowEvent" data-reveal>
-    <h1>New Event</h1>
-    <form class="my-eventEdit-form" method='POST' action='.' data-url='eventEdit/'> {% csrf_token %}
-        <div class="row">
-            <div class="large-8 columns">
-                <label>Name
-                    {{eventEditForm.name}}
-                </label>
-            </div>
-            <div class="large-4 columns">
-                <label>Location
-                    {{eventEditForm.location}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-6 columns">
-                <label>Start Date
-                    {{eventEditForm.startdate}} {{eventEditForm.starttime}}
-                </label>
-            </div>
-            <div class="large-6 columns">
-                <label>End Date
-                    {{eventEditForm.enddate}} {{eventEditForm.endtime}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Description
-                    {{eventEditForm.description}}
-                    <input type="hidden" value="0" name="edit_id" id="edit_id" >
-                     <input type="hidden" value="0" name="edit_tableRow" id="edit_tableRow" >
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="offest-large-8 large-4 columns">
-                <input type="Submit" name="submit" value="Submit" data-close/>            
-            </div>
-        </div>
-    </form>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+<script>
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
 
 <script>
-/*
-    Event Table Forms
-    
-    - Add Event Form
-*/
-$(document).ready(function(){
-    var $myForm = $('.my-ajax-form')
-    $myForm.submit(function(event){
-        event.preventDefault();
-        var $formData = $(this).serialize()
-        var $thisURL = $myForm.attr('data-url')
+    /*
+        Event Table Forms
         
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleFormSuccess,
-            error: handleFormError,
+        - Add Event Form
+    */
+    $(document).ready(function () {
+        var $myForm = $('.my-ajax-form')
+        $myForm.submit(function (event) {
+            event.preventDefault();
+            var $formData = $(this).serialize()
+            var $thisURL = $myForm.attr('data-url')
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+            })
+
         })
 
-    })
-
-    function handleFormSuccess(data, textStatus, jqXHR){
-        var event = $("#id_name").val();
-        var location = $("#id_location").val();
-        var date = $("#id_startdate").val();
-        eventsTable.row.add( [
-                        data['id'],
-                        event,
-                        date,
-                        location,
-                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
-                        ] ).draw( false );
-        $myForm[0].reset(); // reset form data
-    }
-
-    function handleFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-/*
-    - End Event Add
-    
-    - Edit Event Form
-*/
-    var $myEventEditForm = $('.my-eventEdit-form')
-    $myEventEditForm.submit(function(event){
-        event.preventDefault()
-        var $formData = $(this).serialize()
-        var $thisURL = $myEventEditForm.attr('data-url')
-        
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleEventEditFormSuccess,
-            error: handleEventEditFormError,
-        })
-
-    })
-
-    function handleEventEditFormSuccess(data, textStatus, jqXHR){
-        var event = $("#edit_name").val();
-        var location = $("#edit_location").val();
-        var date = $("#edit_startdate").val();
-        var temp = eventsTable.row(data['tableRow']).data();
-        temp[0] = data['id'];
-        temp[1] = event;
-        temp[2] = date;
-        temp[3] = location;
-        eventsTable.row(data['tableRow']).data(temp);
-        $myEventEditForm[0].reset(); // reset form data
-    }
-
-    function handleEventEditFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-   
-   
-// User Ajax Request 
-    var $myUserForm = $('.my-ajax-userform')
-    $myUserForm.submit(function(event){
-        event.preventDefault()
-        var $formData = $(this).serialize()
-        var $thisURL = $myUserForm.attr('data-url') || window.location.href // or set your own url
-        
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleUserFormSuccess,
-            error: handleUserFormError,
-        })
-
-    })
-
-    function handleUserFormSuccess(data, textStatus, jqXHR){
-        var userID = $("#user_userID").val();
-        var privledge = $("#user_privledge").val();
-        eventsTable.row.add( [
-                        userID,
-                        privledge,
-                        "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
-                        ] ).draw( false );
-        $myUserForm[0].reset(); // reset form data
-    }
-
-    function handleUserFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-})
-
- var eventsTable = $('#events').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'New Event',
-            action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addRowEvent'));
-                popup.open();
-            }
+        function handleFormSuccess(data, textStatus, jqXHR) {
+            var event = $("#id_name").val();
+            var location = $("#id_location").val();
+            var date = $("#id_startdate").val();
+            eventsTable.row.add([
+                data['id'],
+                event,
+                date,
+                location,
+                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+            ]).draw(false);
+            $myForm[0].reset(); // reset form data
         }
-    ],
-    "columnDefs": [
+
+        function handleFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+        /*
+            - End Event Add
+            
+            - Edit Event Form
+        */
+        var $myEventEditForm = $('.my-eventEdit-form')
+        $myEventEditForm.submit(function (event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myEventEditForm.attr('data-url')
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleEventEditFormSuccess,
+                error: handleEventEditFormError,
+            })
+
+        })
+
+        function handleEventEditFormSuccess(data, textStatus, jqXHR) {
+            var event = $("#edit_name").val();
+            var location = $("#edit_location").val();
+            var date = $("#edit_startdate").val();
+            var temp = eventsTable.row(data['tableRow']).data();
+            temp[0] = data['id'];
+            temp[1] = event;
+            temp[2] = date;
+            temp[3] = location;
+            eventsTable.row(data['tableRow']).data(temp);
+            $myEventEditForm[0].reset(); // reset form data
+        }
+
+        function handleEventEditFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+
+
+        // User Ajax Request 
+        var $myUserForm = $('.my-ajax-userform')
+        $myUserForm.submit(function (event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myUserForm.attr('data-url') || window.location.href // or set your own url
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleUserFormSuccess,
+                error: handleUserFormError,
+            })
+
+        })
+
+        function handleUserFormSuccess(data, textStatus, jqXHR) {
+            var userID = $("#user_userID").val();
+            var privledge = $("#user_privledge").val();
+            eventsTable.row.add([
+                userID,
+                privledge,
+                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+            ]).draw(false);
+            $myUserForm[0].reset(); // reset form data
+        }
+
+        function handleUserFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+    })
+
+    var eventsTable = $('#events').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'Bfrtip',
+        buttons: [
             {
-                "targets": [ 0 ],
+                text: 'New Event',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addRowEvent'));
+                    popup.open();
+                }
+            }
+        ],
+        "columnDefs": [
+            {
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "55%" },
-        { "width": "20%" },
-        { "width": "10%" },
-        { "width": "10%" }
-    ]
-});
-// Detele Event
-$('#events').on("click", "#deleteEvent", function() {
-    var data = eventsTable.row( $(this).parents('tr') ).data();
-    // Ajax request
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/orgAdminPanel/delete/",  //url
-        dataType: "json",                   //data being set
-        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-    })
-    eventsTable.row($(this).parents('tr')).remove().draw(false);
-});
-// Edit Event 
+        columns: [
+            { "width": "0%" },
+            { "width": "55%" },
+            { "width": "20%" },
+            { "width": "10%" },
+            { "width": "10%" }
+        ]
+    });
+    // Detele Event
+    $('#events').on("click", "#deleteEvent", function () {
+        var data = eventsTable.row($(this).parents('tr')).data();
+        // Ajax request
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/orgAdminPanel/delete/",  //url
+            dataType: "json",                   //data being set
+            data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+        })
+        eventsTable.row($(this).parents('tr')).remove().draw(false);
+    });
+    // Edit Event 
 
-$('#events').on("click", "#editEvent", function() {
+    $('#events').on("click", "#editEvent", function () {
 
-    var data = eventsTable.row( $(this).parents('tr') ).data();
-    $("#edit_name").val(data[1]);
-    $("#edit_location").val(data[3]);
-    $("#edit_startdate").val(data[2]);
-    $("#edit_id").val(data[0]);
-    var index = eventsTable.row( $(this).parents('tr') ).index();
-    $("#edit_tableRow").val(index);
-    var popup2 = new Foundation.Reveal($('#editRowEvent'));
-    popup2.open();
-});
-$(function() {
-  $( ".datepicker" ).datepicker();
-}); 
+        var data = eventsTable.row($(this).parents('tr')).data();
+        $("#edit_name").val(data[1]);
+        $("#edit_location").val(data[3]);
+        $("#edit_startdate").val(data[2]);
+        $("#edit_id").val(data[0]);
+        var index = eventsTable.row($(this).parents('tr')).index();
+        $("#edit_tableRow").val(index);
+        var popup2 = new Foundation.Reveal($('#editRowEvent'));
+        popup2.open();
+    });
+    $(function () {
+        $(".datepicker").datepicker();
+    });
 
-$(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function() {
-    $('#editRowEvent').foundation('_destroy');
-});
+    $(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function () {
+        $('#editRowEvent').foundation('_destroy');
+    });
 </script>
 
 <!-- user table reveals -->
@@ -401,7 +445,7 @@ $(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function() {
         </div>
         <div class="row">
             <div class="offest-large-8 large-4 columns">
-                <input type="Submit" name="submit" value="Submit" data-close/>            
+                <input type="Submit" name="submit" value="Submit" data-close />
             </div>
         </div>
     </form>
@@ -411,65 +455,65 @@ $(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function() {
 </div>
 <script>
 
-var usersTable = $('#users').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    "columnDefs": [
+    var usersTable = $('#users').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        "columnDefs": [
             {
-                "targets": [ 0 ],
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "40%" },
-        { "width": "40%" },
-        { "width": "10%" },
-        { "width": "10%"}
-    ],
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'New User',
-            action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addRowUser'));
-                popup.open();
+        columns: [
+            { "width": "0%" },
+            { "width": "40%" },
+            { "width": "40%" },
+            { "width": "10%" },
+            { "width": "10%" }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'New User',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addRowUser'));
+                    popup.open();
+                }
             }
-        }
-    ]
-});
+        ]
+    });
 
-$('#users').on("click", "#deleteUsers", function() {
-            usersTable.row($(this).parents('tr')).remove().draw(false);
-});
-$('#users').on("click", "#editUsers", function() {
-});
-$('#backButton').click(function (e) {
-    $(location).attr('href', '/yourOrganizations/')
-});
-$('#deleteOrgButton').click(function (e) {
-    $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
-});
-$('#events tbody').on('click', 'tr', function (e) {
-    var data = eventsTable.row( this ).data();
-    if($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 4){
-        return
-    }
-    else{
-        $(location).attr('href', '/eventEdit/?event=' + data[0]);
-    }
-} );
-$('#users tbody').on('click', 'tr', function (e) {
-    var data = usersTable.row( this ).data();
-    if($("#users").dataTable().api().cell($(e.target).closest('td')).index().column == 5){
-        return
-    }
-    else{
-        $(location).attr('href', '/profile/?user=' + data[0]);
-    }
-    
-} );
+    $('#users').on("click", "#deleteUsers", function () {
+        usersTable.row($(this).parents('tr')).remove().draw(false);
+    });
+    $('#users').on("click", "#editUsers", function () {
+    });
+    $('#backButton').click(function (e) {
+        $(location).attr('href', '/yourOrganizations/')
+    });
+    $('#deleteOrgButton').click(function (e) {
+        $(location).attr('href', '/orgAdminPanel/deleteOrg/?id={{ request.session.org_id }}')
+    });
+    $('#events tbody').on('click', 'tr', function (e) {
+        var data = eventsTable.row(this).data();
+        if ($("#events").dataTable().api().cell($(e.target).closest('td')).index().column == 4) {
+            return
+        }
+        else {
+            $(location).attr('href', '/eventEdit/?event=' + data[0]);
+        }
+    });
+    $('#users tbody').on('click', 'tr', function (e) {
+        var data = usersTable.row(this).data();
+        if ($("#users").dataTable().api().cell($(e.target).closest('td')).index().column == 5) {
+            return
+        }
+        else {
+            $(location).attr('href', '/profile/?user=' + data[0]);
+        }
+
+    });
 </script>
 {% endblock %}
 

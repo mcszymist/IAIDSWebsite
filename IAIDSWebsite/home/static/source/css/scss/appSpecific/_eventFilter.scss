@@ -1,0 +1,47 @@
+.dataTables_wrapper {
+    .dataTables_length {
+        padding-top: 40px;
+        width: 25%;
+        label {
+            select {
+                width: 30%;
+            }
+        }
+    }
+    .dataTables_filter {
+        padding-top: 20px;
+        width: 50%;
+        label {
+            text-align: center;
+            input {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+    }
+    .dataTables_paginate {
+        padding-top: 40px;
+        width: 25%;
+    }
+}
+
+tbody tr {
+    transition: $selectable-transition;
+}
+
+table#example.dataTable tbody tr:hover {
+    background-color: tint($theme-color-light, 40);
+    cursor: pointer;
+}
+table#events.dataTable tbody tr:hover {
+    background-color: tint($theme-color-light, 40);
+    cursor: pointer;
+}
+table#users.dataTable tbody tr:hover {
+    background-color: tint($theme-color-light, 40);
+    cursor: pointer;
+}
+table#table.dataTable tbody tr:hover {
+    background-color: tint($theme-color-light, 40);
+    cursor: pointer;
+}

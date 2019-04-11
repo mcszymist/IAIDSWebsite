@@ -1,253 +1,259 @@
 {% extends "main_template.html" %}
 {% block headerInclude %}
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
-	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
-    	</script> 
-    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
-    	</script> 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'source/css/output.css' %}" />
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" /> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
+</script>
 {% endblock %}
 {% block middleColumn%}
 
-<div class="rows">
-    <h1 class="small-offset-3 small-6 text-center columns eventFilterBackground"> 
-		your organizations 
-	</h1>
-</div>
-<div class="row">
-	<div class="small-centered columns eventFilterBackground">
-        <table id="table" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>name</th>
-                    <th>Organizations</th>
-                    <th>Events Live</th>
-					<th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- looping though all the events making the table -->
-                {% for org in allOrgs %}
+<div class="spaced-row">
+
+    <div class="row">
+        <div class="large-12 column text-center eventFilterBackground">
+            <h1 class="textWithBar">Your Organizations</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-centered columns eventFilterBackground">
+            <table id="table" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>name</th>
+                        <th>Organizations</th>
+                        <th>Events Live</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- looping though all the events making the table -->
+                    {% for org in allOrgs %}
                     <tr>
                         <td>{{org.0.id}}</td>
                         <td>{{org.0}}</td>
                         <td>{{org.1}}</td>
-                        <td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                        <td><button id="editOrg" class="button tiny"><i class="fi-pencil"></i></button><button id="deleteOrg"
+                                class="button tiny alert"><i class="fi-trash"></i></button></td>
 
                     </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>name</th>
-                    <th>Organizations</th>
-                    <th>Events Live</th>
-					<th>Action</th>
-                </tr>
-            </tfoot>
-        </table>
-	</div>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>name</th>
+                        <th>Organizations</th>
+                        <th>Events Live</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!-- add row reveals -->
+    <div class="reveal" id="addRow" data-reveal>
+        <h1>New Organization</h1>
+        <form class="my-ajax-form" method='POST' action='.' data-url='orgSave/'> {% csrf_token %}
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Organization
+                        {{form.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Desciption
+                        {{form.description}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offest-large-8 large-4 columns">
+                    <!-- <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>-->
+                    <input type="Submit" name="submit" value="Submit" data-close />
+                </div>
+            </div>
+        </form>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="reveal" id="editRow" data-reveal>
+        <h1>New Organization</h1>
+        <form class="my-ajax-EditForm" method='POST' action='.' data-url='orgEdit/'> {% csrf_token %}
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Organization
+                        {{editForm.name}}
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Desciption
+                        {{editForm.description}}
+                        <input type="hidden" value="0" name="edit_id" id="edit_id">
+                        <input type="hidden" value="0" name="edit_tableRow" id="edit_tableRow">
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offest-large-8 large-4 columns">
+                    <!-- <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>-->
+                    <input type="Submit" name="submit" value="Submit" data-close />
+                </div>
+            </div>
+        </form>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 </div>
 
-<!-- add row reveals -->
-<div class="reveal" id="addRow" data-reveal>
-    <h1>New Organization</h1>
-    <form class="my-ajax-form" method='POST' action='.' data-url='orgSave/'> {% csrf_token %}
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Organization
-                    {{form.name}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Desciption
-                    {{form.description}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="offest-large-8 large-4 columns">
-                <!-- <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>-->
-                <input type="Submit" name="submit" value="Submit" data-close/>
-                </div>
-        </div>
-    </form>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-    	<span aria-hidden="true">&times;</span>
-    </button>
-</div>
-
-<div class="reveal" id="editRow" data-reveal>
-    <h1>New Organization</h1>
-    <form class="my-ajax-EditForm" method='POST' action='.' data-url='orgEdit/'> {% csrf_token %}
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Organization
-                    {{editForm.name}}
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Desciption
-                    {{editForm.description}}
-                    <input type="hidden" value="0" name="edit_id" id="edit_id" >
-                    <input type="hidden" value="0" name="edit_tableRow" id="edit_tableRow" >
-                </label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="offest-large-8 large-4 columns">
-                <!-- <button id="buttonUser" type="button" value="send" class="success button" data-close>Submit</button>-->
-                <input type="Submit" name="submit" value="Submit" data-close/>
-                </div>
-        </div>
-    </form>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-    	<span aria-hidden="true">&times;</span>
-    </button>
-</div>
 <script>
-$(document).ready(function(){
-    var $myForm = $('.my-ajax-form')
-    $myForm.submit(function(event){
-        event.preventDefault()
-        var $formData = $(this).serialize()
-        var $thisURL = $myForm.attr('data-url')
-        
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleFormSuccess,
-            error: handleFormError,
+    $(document).ready(function () {
+        var $myForm = $('.my-ajax-form')
+        $myForm.submit(function (event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myForm.attr('data-url')
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+            })
+
         })
 
-    })
-
-    function handleFormSuccess(data, textStatus, jqXHR){
-        var name = $("#id_name").val()
-        var id = data['id']
-        table.row.add( [
-            id,
-            name,
-            "0",
-            "<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
-             ] ).draw( false );
-        console.log(data)
-        console.log(textStatus)
-        console.log(jqXHR)
-        $myForm[0].reset(); // reset form data
-    }
-
-    function handleFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-    
-    var $myEditForm = $('.my-ajax-EditForm')
-    $myEditForm.submit(function(event){
-        event.preventDefault()
-        var $formData = $(this).serialize()
-        var $thisURL = $myEditForm.attr('data-url')
-        
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleEditFormSuccess,
-            error: handleEditFormError,
-        })
-
-    })
-
-    function handleEditFormSuccess(data, textStatus, jqXHR){
-        var name = $("#edit_name").val();
-        var temp = table.row(data['tableRow']).data();
-        temp[0] = data['id'];
-        temp[1] = name;
-        table.row(data['tableRow']).data(temp);
-        console.log(data)
-        console.log(textStatus)
-        console.log(jqXHR)
-        $myEditForm[0].reset(); // reset form data
-    }
-
-    function handleEditFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-})
-
-var table = $('#table').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'Create Organization',
-            action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addRow'));
-                popup.open();
-            }
+        function handleFormSuccess(data, textStatus, jqXHR) {
+            var name = $("#id_name").val()
+            var id = data['id']
+            table.row.add([
+                id,
+                name,
+                "0",
+                "<button id=\"editOrg\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteOrg\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+            ]).draw(false);
+            console.log(data)
+            console.log(textStatus)
+            console.log(jqXHR)
+            $myForm[0].reset(); // reset form data
         }
-    ],
-    "columnDefs": [
+
+        function handleFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+
+        var $myEditForm = $('.my-ajax-EditForm')
+        $myEditForm.submit(function (event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myEditForm.attr('data-url')
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleEditFormSuccess,
+                error: handleEditFormError,
+            })
+
+        })
+
+        function handleEditFormSuccess(data, textStatus, jqXHR) {
+            var name = $("#edit_name").val();
+            var temp = table.row(data['tableRow']).data();
+            temp[0] = data['id'];
+            temp[1] = name;
+            table.row(data['tableRow']).data(temp);
+            console.log(data)
+            console.log(textStatus)
+            console.log(jqXHR)
+            $myEditForm[0].reset(); // reset form data
+        }
+
+        function handleEditFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+    })
+
+    var table = $('#table').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'Bfrtip',
+        buttons: [
             {
-                "targets": [ 0 ],
+                text: 'Create Organization',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addRow'));
+                    popup.open();
+                }
+            }
+        ],
+        "columnDefs": [
+            {
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "35%" },
-        { "width": "60%" },
-        { "width": "5%" }
-    ]
-});
-$('#table').on("click", "#deleteOrg", function() {
-    var data = table.row( $(this).parents('tr') ).data();
-    // Ajax request
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/yourOrganizations/delete/",  //url
-        dataType: "json",                   //data being set
-        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-    })
-    table.row($(this).parents('tr')).remove().draw(false);
-    
-    
-    
-});
-$('#table tbody').on('click', 'tr', function (e) {
-    var data = table.row( this ).data();
-    if($("#table").dataTable().api().cell($(e.target).closest('td')).index().column == 3){
-        return
-    }
-    else{
-        $(location).attr('href', "/orgAdminPanel/?org=" + data[0]);
-    }
-    
-} );
-$('#table').on("click", "#editOrg", function() {
-    var data = table.row( $(this).parents('tr') ).data();
-    $("#edit_name").val(data[1]);
-    $("#edit_id").val(data[0]);
-    var index = table.row( $(this).parents('tr') ).index();
-    $("#edit_tableRow").val(index);
-    var popup2 = new Foundation.Reveal($('#editRow'));
-    popup2.open();
-});
+        columns: [
+            { "width": "0%" },
+            { "width": "35%" },
+            { "width": "60%" },
+            { "width": "5%" }
+        ]
+    });
+    $('#table').on("click", "#deleteOrg", function () {
+        var data = table.row($(this).parents('tr')).data();
+        // Ajax request
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/yourOrganizations/delete/",  //url
+            dataType: "json",                   //data being set
+            data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+        })
+        table.row($(this).parents('tr')).remove().draw(false);
+
+
+
+    });
+    $('#table tbody').on('click', 'tr', function (e) {
+        var data = table.row(this).data();
+        if ($("#table").dataTable().api().cell($(e.target).closest('td')).index().column == 3) {
+            return
+        }
+        else {
+            $(location).attr('href', "/orgAdminPanel/?org=" + data[0]);
+        }
+
+    });
+    $('#table').on("click", "#editOrg", function () {
+        var data = table.row($(this).parents('tr')).data();
+        $("#edit_name").val(data[1]);
+        $("#edit_id").val(data[0]);
+        var index = table.row($(this).parents('tr')).index();
+        $("#edit_tableRow").val(index);
+        var popup2 = new Foundation.Reveal($('#editRow'));
+        popup2.open();
+    });
 
 </script>
 {% endblock %}
@@ -255,4 +261,3 @@ $('#table').on("click", "#editOrg", function() {
 {% block sideBar %}
 <!--TODO Add code here-->
 {% endblock %}
-
