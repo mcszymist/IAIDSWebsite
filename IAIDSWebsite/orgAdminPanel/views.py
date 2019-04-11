@@ -127,3 +127,20 @@ def DeleteOrganization(request):
     instance.delete()
     return redirect("/yourOrganizations/")
     
+def getEvent(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        event = Event.objects.get(id=request.POST["id"])
+        data = {
+            'org': event.orgID.name,
+            'name': event.name,
+            'description': event.description,
+            'location': event.location,
+            'startdate': event.startdate,
+            'enddate': event.enddate,
+            'starttime': event.starttime,
+            'endtime': event.endtime,
+            'message': "Successfully submitted form data.",
+        }
+        return JsonResponse(data)
+    return JsonResponse(status=404)

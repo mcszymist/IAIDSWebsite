@@ -86,6 +86,13 @@ class MyUser(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
     
+class ReportedUsers(models.Model):
+    userID = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
+    reason = models.TextField(default='What is the reason for the report?')
+    
+class ReportedOrganizations(models.Model):
+    orgID = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
+    reason = models.TextField(default='What is the reason for the report?')
 
 
 

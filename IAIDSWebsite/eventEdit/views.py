@@ -53,7 +53,7 @@ class JobFormView(FormView):
                 context['allUsers'] = OrganizationUsers.objects.get(orgID=context['event'].orgID,userID=self.request.user).userID
                 context['allSignUpJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"]).exclude(userID = self.request.user)
                 context['allSignOutJobs'] = Job.objects.all().filter(eventID=self.request.session["event_id"],userID = self.request.user)
-            
+                
             return context
         
     def form_invalid(self, form):

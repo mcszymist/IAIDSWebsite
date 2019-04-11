@@ -10,5 +10,6 @@ urlpatterns = [
     path('eventEdit/', views.eventEditFormPost, name='eventEditFormPost'),
     path('delete/', views.DeleteEvent, name='DeleteEvent'),
     path('deleteOrg/', views.DeleteOrganization, name='DeleteOrganization'),
-    path('deleteUser/', views.DeleteUser, name='DeleteUser')
+    path('deleteUser/', views.DeleteUser, name='DeleteUser'),
+    path('getEvent/',views.getEvent, name='getEvent'),
 ]
