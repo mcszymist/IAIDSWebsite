@@ -401,4 +401,13 @@ table#table.dataTable tbody tr:hover {
   cursor: pointer;
 }
 
+.dataTables_wrapper .dt-buttons {
+  padding-top: 25px;
+  justify-content: center;
+}
+.dataTables_wrapper .dataTables_filter {
+  width: 75%;
+  padding-top: 0px;
+}
+
 /*# sourceMappingURL=output.css.map */
