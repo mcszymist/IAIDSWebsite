@@ -132,14 +132,12 @@
                           <div class="profileAttributes">
                             {{event.location}}
                             <br>
-
                             {% if startdate is enddate %}
                             {{event.startdate}}
                             {% else %}
                             {{event.startdate}} ~ {{event.enddate}}
                             {% endif %}
                             <br>
-
                             {{event.starttime}} ~ {{event.endtime}}
                             <br>
                             Host: {{event.orgID}}
@@ -148,7 +146,7 @@
                       </div>
                       <div class="row">
                         <div class="large-12 columns profileDescriptionTitle">
-                          <p>About this event</p>
+                          <h4 class="textWithBar">About this event</h4>
                         </div>
                         <div class="row">
                           <div class="large-12 columns profileDescription">
@@ -222,7 +220,6 @@
                 {% endfor %}
                 {% else %}
                 <div class="noUpcomingEvents">
-
                   No upcoming events! :(
                 </div>
                 {% endif %}
