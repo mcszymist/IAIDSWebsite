@@ -1,10 +1,11 @@
-
+from django.views.decorators.cache import never_cache
 from django.shortcuts import render, redirect
 from .models import Event, Organization, OrganizationUsers, MyUser
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
 
+@never_cache
 def start(request):
     org_id = request.GET.get('org')
     obj = Organization.objects.get(id=org_id)

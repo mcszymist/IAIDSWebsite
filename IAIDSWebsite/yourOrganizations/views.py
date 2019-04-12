@@ -1,3 +1,4 @@
+from django.views.decorators.cache import never_cache
 from django.shortcuts import render
 from orgAdminPanel.models import Organization, OrganizationUsers, Event
 from django.views.generic import FormView
@@ -26,7 +27,8 @@ def my_view(request):
             }
         return JsonResponse(data)
     return JsonResponse(form.errors, status=400) 
-    
+
+@never_cache
 def start(request):
     form = OrganizationForm()
     editForm = OrganizationForm(auto_id="edit_%s")
