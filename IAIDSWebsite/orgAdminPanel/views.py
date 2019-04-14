@@ -141,6 +141,7 @@ def getEvent(request):
             'enddate': event.enddate,
             'starttime': event.starttime,
             'endtime': event.endtime,
+            'id': event.id,
             'message': "Successfully submitted form data.",
         }
         return JsonResponse(data)

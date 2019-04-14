@@ -27,54 +27,52 @@
         <div class="spaced-row">
             <div class="row">
                 <div class="columns large-12">
-                    <a href="{% url 'events' %}">Show in calendar</a> / <a href="#">Message organization</a> / <a
-                    href="#" id="red-text">Report
-                    event</a>
+                    <a href="#" id="red-text"><span> Report event </span></a>
                 </div>
             </div>
             <div class="row">
                 <div class="large-4 columns profileImage">
                     <img src="static/images/28469.png">
                 </div>
-            <div class="large-8 columns profileAdditionalInfo">
-                <div class="profileTitle">
-                    <span id="eventName"></span>
-                </div>
-                <div class="profileAttributes">
-                    <span id="eventLocation"></span>
-                    <br>
-                    <span id="eventStartDate"></span> ~ <span id="eventEndDate"></span>
-                    <br>
+                <div class="large-8 columns profileAdditionalInfo">
+                    <div class="profileTitle">
+                        <span id="eventName"></span>
+                    </div>
+                    <div class="profileAttributes">
+                        <span id="eventLocation"></span>
+                        <br>
+                        <span id="eventStartDate"></span> ~ <span id="eventEndDate"></span>
+                        <br>
 
-                    <span id="eventStartTime"></span> ~ <span id="eventEndTime"></span>
-                    <br>
-                    Host: <span id="eventOrgName"></span>
+                        <span id="eventStartTime"></span> ~ <span id="eventEndTime"></span>
+                        <br>
+                        Host: <span id="eventOrgName"></span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns profileDescriptionTitle">
-                <p>About this event</p>
             </div>
             <div class="row">
-                <div class="large-12 columns profileDescription">
-                    <span id="eventDescription"></span>
+                <div class="large-12 columns profileDescriptionTitle">
+                    <p>About this event</p>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns profileDescription">
+                        <span id="eventDescription"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-offset-10 large-2 columns">
+                    <button class="button jobjoin" id="toEvent" onclick="window.location.href='/eventEdit/'">More Details</button>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="large-1 columns">
-                <button class="button jobjoin" id="blocked-button">Join</button>
-            </div>
-        </div>
+
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+          <!-- <button class="button float-right" type="button">See more >></button> -->
     </div>
-
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-        <span aria-hidden="true">&times;</span>
-    </button>
-      <!-- <button class="button float-right" type="button">See more >></button> -->
 </div>
-
 <script>
     !function () {
         $("#fullcalendar").fullCalendar({
@@ -135,7 +133,6 @@
     function getEventSuccess(data, textStatus, jqXHR){
 
         $("#eventName").html(data['name']);
-        console.log($("#eventName").val());
         $("#eventLocation").html(data['location']);
         $("#eventStartDate").html(data['startdate']);
         $("#eventEndDate").html(data['enddate']);
@@ -143,6 +140,7 @@
         $("#eventEndTime").html(data['endtime']);
         $("#eventOrgName").html(data['org']);
         $("#eventDescription").html(data['description']);
+        $("#toEvent").attr('onclick', "window.location.href='/eventEdit/?event=" + data['id'] + "'");
         var popup2 = new Foundation.Reveal($('#event1'));
         popup2.open();
     }
