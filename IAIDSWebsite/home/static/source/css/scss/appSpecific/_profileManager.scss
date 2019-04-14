@@ -39,6 +39,18 @@
                         }
                     }
                 }
+                .aboutMeContent {
+                    height: 150px;
+                }
+                .switch {
+                    display: flex;
+                    align-self: center;
+                    margin-bottom: 0px;
+                    .switch-text {
+                        padding-right: 10px;
+                        color: #cacaca;
+                    }
+                }
             }
         }
     }
