@@ -111,9 +111,9 @@
                         <tbody>
                             {% for key, values in report.items %}
                             <tr>
-                                <td>{{values}}</td>
-                                <td>{{key}}</td>
-                                <td>{{key}}</td>
+                                {% for val in values %}
+                                <td>{{val}}</td>
+                                {% endfor %}
                                 <td><button id="editEvent" class="button tiny" style="padding-top: 30px;"><i class="fi-pencil"></i></button><button
                                         id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
 
