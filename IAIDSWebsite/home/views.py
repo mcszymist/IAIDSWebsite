@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 
-from orgAdminPanel.models import Event
+from orgAdminPanel.models import Organization, OrganizationUsers, Event
 
 from allauth.account.views import LoginView
 from allauth.account.forms import LoginForm
@@ -21,8 +21,16 @@ def index(request):
 
     testArray = [startdateBegin, startdateEnd]
     upcomingEvents = Event.objects.all().order_by(
-        'startdate', 'starttime', 'name').filter(startdate__range=[startdateBegin, startdateEnd],
-                                                 starttime__gte=starttimeBegin)
+        'startdate', 'starttime', 'name').filter(startdate__range=[startdateBegin, startdateEnd])
+
+    # if False:
+    #     users = OrganizationUsers.objects.all().filter(userID=request.user)
+    #     obj = []
+    #     for user in users:
+    #         obj.append(
+    #             (user.orgID, Event.objects.all().filter(orgID=user.orgID).count()))
+    #     allOrgs = obj
+
     return render(request, 'home.html',
                   {'testArray': testArray,
                    'upcomingEvents': upcomingEvents})
