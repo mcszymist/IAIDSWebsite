@@ -18,7 +18,7 @@ def start(request):
     userForm = UserForm(auto_id="user_%s")
     #report = getReport(obj) #Returns a dictionary
 
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers, 'report': report})
+    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers)
     
 def eventFoamPost(request):
     
@@ -149,29 +149,29 @@ def getEvent(request):
         return JsonResponse(data)
     return JsonResponse(status=404)
 
-def getReport(obj):
-    #set the date and time format
-    date_format = "%H:%M:%S"
-    data = {}
-    all_event = Event.objects.all().filter(orgID=obj)
-    for event in all_event:
-        all_jobs = Job.objects.all().filter(eventID=event)
-        for job in all_jobs:
-            time1 = job.starttime
-            time2 = job.endtime
-            #calculate hours
-            date_format = "%H:%M:%S"
-            dtTime1 = datetime.strptime(str(time1), date_format)
-            dtTime2 = datetime.strptime(str(time2), date_format)
-            #diff = (dtTime2 - dtTime1).seconds
+# def getReport(obj):
+#     #set the date and time format
+#     date_format = "%H:%M:%S"
+#     data = {}
+#     all_event = Event.objects.all().filter(orgID=obj)
+#     for event in all_event:
+#         all_jobs = Job.objects.all().filter(eventID=event)
+#         for job in all_jobs:
+#             time1 = job.starttime
+#             time2 = job.endtime
+#             #calculate hours
+#             date_format = "%H:%M:%S"
+#             dtTime1 = datetime.strptime(str(time1), date_format)
+#             dtTime2 = datetime.strptime(str(time2), date_format)
+#             #diff = (dtTime2 - dtTime1).seconds
 
-            for user in job.userID.all():
-                values = []
-                values.append(str(user.first_name) + " " + str(user.last_name))
-                values.append(str(user))
-                #values.append(diff)
-                data[str(user)] = 3
-    return data
+#             for user in job.userID.all():
+#                 values = []
+#                 values.append(str(user.first_name) + " " + str(user.last_name))
+#                 values.append(str(user))
+#                 #values.append(diff)
+#                 data[str(user)] = 3
+#     return data
 
                 
                 
