@@ -10,6 +10,9 @@ from os import remove
 from datetime import datetime
 from IAIDSWebsite.validators import validate_file_size
 
+class Certs(models.Model):
+    name = models.CharField(max_length = 50)
+    
 class MyUserManager(BaseUserManager):
     def create_user(self, email,first_name, last_name, password=None):
         if not email:
@@ -58,7 +61,7 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField(null = True)
     profile_pic = models.ImageField(null = True, upload_to=save_usr_pic, default="thispersondoesnotexist.jpg")
     description = models.CharField(null = True, max_length=250, default="Hi, I'm a volunteer.")
-
+    certs = models.ManyToManyField(Certs)
  
     is_admin = models.BooleanField(default=False)
 
@@ -93,6 +96,7 @@ class ReportedUsers(models.Model):
 class ReportedOrganizations(models.Model):
     orgID = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
     reason = models.TextField(default='What is the reason for the report?')
+
 
 
 

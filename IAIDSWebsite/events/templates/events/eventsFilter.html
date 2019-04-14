@@ -131,12 +131,92 @@
 
                 $('#example tbody').on('click', 'tr', function () {
                     var data = table.row(this).data();
-                    $(location).attr('href', '/eventEdit/?event=' + data[0]);
+                    $.ajax({
+                        method: "POST",
+                        url: '/orgAdminPanel/getEvent/',
+                        data: { 'id': data['0'], csrfmiddlewaretoken: '{{ csrf_token }}'},
+                        success: getEventSuccess,
+                        error: getEventError,
+                    })
                 });
             });
         </script>
     </div>
 </div>
+<div class="reveal" id="event1" data-reveal>
+    <div class="profileTemplate">
+        <div class="spaced-row">
+            <div class="row">
+                <div class="columns large-12">
+                    <a href="#" id="red-text"><span> Report event </span></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-4 columns profileImage">
+                    <img src="static/images/28469.png">
+                </div>
+                <div class="large-8 columns profileAdditionalInfo">
+                    <div class="profileTitle">
+                        <span id="eventName"></span>
+                    </div>
+                    <div class="profileAttributes">
+                        <span id="eventLocation"></span>
+                        <br>
+                        <span id="eventStartDate"></span> ~ <span id="eventEndDate"></span>
+                        <br>
+
+                        <span id="eventStartTime"></span> ~ <span id="eventEndTime"></span>
+                        <br>
+                        Host: <span id="eventOrgName"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns profileDescriptionTitle">
+                    <p>About this event</p>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns profileDescription">
+                        <span id="eventDescription"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-offset-10 large-2 columns">
+                    <button class="button jobjoin" id="toEvent" onclick="window.location.href='/eventEdit/'">More Details</button>
+                </div>
+            </div>
+        </div>
+
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+            <span aria-hidden="true">&times;</span>
+        </button>
+          <!-- <button class="button float-right" type="button">See more >></button> -->
+    </div>
+</div>
+<script>
+
+function getEventSuccess(data, textStatus, jqXHR){
+
+    $("#eventName").html(data['name']);
+    $("#eventLocation").html(data['location']);
+    $("#eventStartDate").html(data['startdate']);
+    $("#eventEndDate").html(data['enddate']);
+    $("#eventStartTime").html(data['starttime']);
+    $("#eventEndTime").html(data['endtime']);
+    $("#eventOrgName").html(data['org']);
+    $("#eventDescription").html(data['description']);
+    $("#toEvent").attr('onclick', "window.location.href='/eventEdit/?event=" + data['id'] + "'");
+    var popup2 = new Foundation.Reveal($('#event1'));
+    popup2.open();
+}
+
+function getEventError(jqXHR, textStatus, errorThrown){
+    console.log(jqXHR)
+    console.log(textStatus)
+    console.log(errorThrown)
+}
+</script>
 {% endblock %}
 
 {% block sideBar %}
