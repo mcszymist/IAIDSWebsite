@@ -4,6 +4,7 @@ from .models import Event, Organization, OrganizationUsers, MyUser, Job
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
+from datetime import datetime
 
 @never_cache
 def start(request):
@@ -149,16 +150,22 @@ def getEvent(request):
     return JsonResponse(status=404)
 
 def getReport(obj):
-   
+    #set the date and time format
+    date_format = "%H:%M:%S"
     data = {}
     all_event = Event.objects.all().filter(orgID=obj)
     for event in all_event:
         all_jobs = Job.objects.all().filter(eventID=event)
         for job in all_jobs:
+            time1 = job.starttime
+            time2 = job.endtime
+            #calculate hours
+            dtTime1 = datetime.strptime(str(time1), date_format)
+            dtTime2 = datetime.strptime(str(time2), date_format)
+            diff = (dtTime2 - dtTime1).seconds
+
             for user in job.userID.all():
-                #calculate hours
-                data[str(user)] = 3
-    data["test"] = 3
+                data[str(user)]=diff
     return data
 
                 
