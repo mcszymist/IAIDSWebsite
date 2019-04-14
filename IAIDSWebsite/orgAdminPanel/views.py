@@ -16,9 +16,8 @@ def start(request):
     eventForm = EventForm()
     eventEditForm = EventForm(auto_id="edit_%s")
     userForm = UserForm(auto_id="user_%s")
-    #report = getReport(obj) #Returns a dictionary
 
-    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers)
+    return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
     
 def eventFoamPost(request):
     
