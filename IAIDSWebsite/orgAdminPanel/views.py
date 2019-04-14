@@ -16,7 +16,7 @@ def start(request):
     eventForm = EventForm()
     eventEditForm = EventForm(auto_id="edit_%s")
     userForm = UserForm(auto_id="user_%s")
-    report = getReport(obj) #Returns a dictionary
+    #report = getReport(obj) #Returns a dictionary
 
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers, 'report': report})
     
@@ -160,20 +160,17 @@ def getReport(obj):
             time1 = job.starttime
             time2 = job.endtime
             #calculate hours
+            date_format = "%H:%M:%S"
             dtTime1 = datetime.strptime(str(time1), date_format)
             dtTime2 = datetime.strptime(str(time2), date_format)
-            diff = (dtTime2 - dtTime1).seconds
+            #diff = (dtTime2 - dtTime1).seconds
 
             for user in job.userID.all():
                 values = []
                 values.append(str(user.first_name) + " " + str(user.last_name))
                 values.append(str(user))
-                values.append(diff)
-                if(str(user) in data.keys()):
-                    #data[str(user)][2]+=diff
-                    data[str(user)] = values
-                else:
-                    data[str(user)] = values
+                #values.append(diff)
+                data[str(user)] = 3
     return data
 
                 
