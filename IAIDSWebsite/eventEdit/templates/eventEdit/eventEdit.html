@@ -1,139 +1,148 @@
 {% extends "main_template.html" %}
 {% block headerInclude %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.0.1/tinymce.min.js"></script>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/eventEdit.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" /> 
-	<script type= "text/javascript" src="{% static 'events/js/datatables.min.js' %}" >
-    	</script> 
-    <script type= "text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js" >
-    	</script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.0.1/tinymce.min.js"></script>
+{% load static %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'events/css/eventEdit.css' %}" /> -->
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" /> -->
+<link rel="stylesheet" type="text/css" href="{% static 'source/css/output.css' %}" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
+</script>
 {% endblock %}
-    
+
 {% block middleColumn %}
 <!DOCTYPE html>
 
-    
 
-<div class="row">
-    <div class="column small-offset-3 large-6">
-        <h1 class="text-center">{{event}}</h1>
-    </div>
-    {% if allUsers == user %}
-    <div class="column large-3">
-        <button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
-    </div>
-    {% endif %}
-</div>
-<div class="row">
-    <div class="column small-3">
-    </div>
-    <div class="column small-9 eventFilterBackground">
-        <div class="row">
-            <div class="column small-6">
-            <p>
-                Host: {{event.orgID}}
-            </p>
-            </div>
-            <div class="column small-3">
-                {{event.startdate}}
-                {% if event.startdate != event.enddate %}
-                    <br> {{event.enddate}}
-                {% endif %}
-            </div>
-            <div class="column small-1">
-                From:  <br> To:
-            </div>
-            <div class="column small-2">
-                {{event.starttime}} <br> {{event.endtime}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="column small-3">
-                <p>
-                    {{event.description}}
-                </p>
-            </div>
+<div class="spaced-row">
+    <div class="row">
+        <div class="column large-12">
+            <h1 class="textWithBar">{{event.name}}</h1>
         </div>
     </div>
-</div>
-<div class="row" id="textEdit" style="display:none">
-    <div class="column large-12">
-        <form onSubmit="updateHTML(this);">
-            <textarea id="basic-example">
-                {{event.page}}
-            </textarea>
-            <button name="submitbtn"></button>
-        </form>
-    </div>
-</div>
-<div class="row eventFilterBackground" id="textDisplay">
-    <div class="column large-12">
-        <div id="textArea">
-            {{event.page}}
+    <div class="row">
+        <div class="column small-4">
+            <div class="verticallyAlignedLargeIconSmallText">
+                <i class="fi-marker"></i>
+                <span>
+                    {{event.location}}
+                </span>
+            </div>
+            <div class="verticallyAlignedLargeIconSmallText">
+                <i class="fi-calendar"></i>
+                <span>
+                    {{event.startdate}}
+                    {% if event.startdate != event.enddate %}
+                    ~ {{event.enddate}}
+                    {% endif %}
+                </span>
+            </div>
+            <div class="verticallyAlignedLargeIconSmallText">
+                <i class="fi-clock"></i>
+                <span>
+                    {{event.starttime}} ~ {{event.endtime}}
+                </span>
+            </div>
+            Host: {{event.orgID}}
+        </div>
+        {% if allUsers == user %}
+        <div class="column large-1">
+            <button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
+        </div>
+        {% endif %}
+        <div class="column large-7">
+
+            <div class="row" id="textEdit" style="display:none">
+                <div class="column large-12">
+                    <form onSubmit="updateHTML(this);">
+                        <textarea id="basic-example">
+                            {{event.page}}???
+                        </textarea>
+                        <button name="submitbtn"></button>
+                    </form>
+                </div>
+            </div>
+            <div class="row eventFilterBackground" id="textDisplay">
+                <div class="column large-12">
+                    <div id="textArea">
+                        {{event.page}}????
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="textEdit" style="display:none">
+                <div class="column large-12">
+                    <form onSubmit="updateHTML(this);">
+                        <textarea id="basic-example">
+                                {{event.page}}???
+                            </textarea>
+                        <button name="submitbtn"></button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class = "row">
-    <div class="column large-12">
-        <table id="jobs" class="display" style="width:100%">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Job Title</th>
-                    <th>Positions Needed</th>
-                    <th>Date/Time</th>
-                    <th>Signup</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for job in allSignUpJobs %}
+    <div class="row">
+        <div class="column large-12">
+            <table id="jobs" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Job Title</th>
+                        <th>Positions Needed</th>
+                        <th>Date/Time</th>
+                        <th>Signup</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in allSignUpJobs %}
                     <tr>
                         <td>{{job.id}}</td>
                         <td>{{job.name}}</td>
                         <td>{{job.personel}}/{{job.personelMax}}</td>
                         <td>{{job.startdate}} - {{job.enddate}}</td>
                         <td><button id="signUpJob" class="button tiny"><i class="fi-plus"></i> <b>SignUp</b>
-                        
-                        {% if allUsers ==  user %}
+                                {% if allUsers == user %}
                             </button><button id="deleteJob" class="button tiny alert"><i class="fi-trash"></i></button>
-                        {% endif %}
+                            {% endif %}
                         </td>
                     </tr>
-                {% endfor %}
-                {% for job in allSignOutJobs %}
+                    {% endfor %}
+                    {% for job in allSignOutJobs %}
                     <tr>
                         <td>{{job.id}}</td>
                         <td>{{job.name}}</td>
                         <td>{{job.userID.all.count}}/{{job.personelMax}}</td>
                         <td>{{job.startdate}} - {{job.enddate}}</td>
                         <td><button id="signOutJob" class="button alert tiny"><i class="fi-minus"></i> <b>SignOut</b>
-                        {% if allUsers ==  user %}
+                                {% if allUsers == user %}
                             </button><button id="deleteJob" class="button tiny alert"><i class="fi-trash"></i></button>
-                        {% endif %}
+                            {% endif %}
                         </td>
                     </tr>
-                {% endfor %}
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>id</th>
-                    <th>Job Title</th>
-                    <th>Positions Needed</th>
-                    <th>Date/Time</th>
-                    <th>Signup</th>
-                </tr>
-            </tfoot>
-        </table>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>id</th>
+                        <th>Job Title</th>
+                        <th>Positions Needed</th>
+                        <th>Date/Time</th>
+                        <th>Signup</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
 </div>
 {% if allUsers == user %}
 <!-- For Jobs Table -->
 <div class="reveal" id="addJobEvent" data-reveal>
     <h1>New Job</h1>
-    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token %}
+    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token
+        %}
         <div class="row">
             <div class="large-8 columns">
                 <label>Name
@@ -147,7 +156,7 @@
             </div>
         </div>
         <div class="row">
-            
+
             <div class="large-6 columns">
                 <label>Start
                     {{form.startdate}} {{form.starttime}}
@@ -168,7 +177,7 @@
         </div>
         <div class="row">
             <div class="offest-large-8 large-4 columns">
-                <input type="Submit" name="submit" value="Submit" data-close/>            
+                <input type="Submit" name="submit" value="Submit" data-close />
             </div>
         </div>
     </form>
@@ -176,187 +185,188 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
+
 <script>
-$(document).ready(function(){
-    var $myForm = $('.my-ajax-form')
-    $myForm.submit(function(event){
-        event.preventDefault()
-        var $formData = $(this).serialize()
-        var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
-        
-        $.ajax({
-            method: "POST",
-            url: $thisURL,
-            data: $formData,
-            success: handleFormSuccess,
-            error: handleFormError,
+    $(document).ready(function () {
+        var $myForm = $('.my-ajax-form')
+        $myForm.submit(function (event) {
+            event.preventDefault()
+            var $formData = $(this).serialize()
+            var $thisURL = $myForm.attr('data-url') || window.location.href // or set your own url
+
+            $.ajax({
+                method: "POST",
+                url: $thisURL,
+                data: $formData,
+                success: handleFormSuccess,
+                error: handleFormError,
+            })
+
         })
 
-    })
+        function handleFormSuccess(data, textStatus, jqXHR) {
+            let id = data['id']
+            var job = $("#id_name").val();
+            var date = $("#id_startdate").val();
+            var enddate = $("#id_enddate").val();
+            var personelMax = $("#id_personelMax").val();
+            table.row.add([
+                id,
+                job,
+                "0/" + personelMax,
+                date + " - " + enddate,
+                "<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
+            ]).draw(false);
+            console.log(data)
+            console.log(textStatus)
+            console.log(jqXHR)
+            $myForm[0].reset(); // reset form data
+        }
 
-    function handleFormSuccess(data, textStatus, jqXHR){
-        let id = data['id']
-        var job = $("#id_name").val();
-        var date = $("#id_startdate").val();
-        var enddate = $("#id_enddate").val();
-        var personelMax = $("#id_personelMax").val();
-        table.row.add( [
-                        id,
-                        job,
-                        "0/" + personelMax,
-                        date + " - " + enddate,
-                        "<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>"
-                        ] ).draw( false );
-        console.log(data)
-        console.log(textStatus)
-        console.log(jqXHR)
-        $myForm[0].reset(); // reset form data
+        function handleFormError(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR)
+            console.log(textStatus)
+            console.log(errorThrown)
+        }
+    });
+    $('#jobs').on("click", "#deleteJob", function () {
+        var data = table.row($(this).parents('tr')).data();
+        // Ajax request
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/eventEdit/deleteJob/",  //url
+            dataType: "json",                   //data being set
+            data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+        })
+        table.row($(this).parents('tr')).remove().draw(false);
+    });
+
+    $('#editEvent').click(function (e) {
+        $('#textEdit').toggle();
+        $('#textDisplay').toggle();
+    });
+
+    $(document).ready(function () {
+        tinymce.init({
+            selector: 'textarea#basic-example',
+            height: 750,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor textcolor save',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | save ',
+        });
+    });
+    function updateHTML(element) {
+        var temp = tinymce.get('basic-example').getContent();
+        console.log(temp);
+        document.getElementById("textArea").innerHTML = temp;
+
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/eventEdit/updateDes/",  //url
+            dataType: "json",                   //data being set
+            data: { id: "{{event.id}}", des: temp, csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+        })
+
     }
-
-    function handleFormError(jqXHR, textStatus, errorThrown){
-        console.log(jqXHR)
-        console.log(textStatus)
-        console.log(errorThrown)
-    }
-});
-$('#jobs').on("click", "#deleteJob", function() {
-    var data = table.row( $(this).parents('tr') ).data();
-    // Ajax request
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/eventEdit/deleteJob/",  //url
-        dataType: "json",                   //data being set
-        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-    })
-    table.row($(this).parents('tr')).remove().draw(false);
-});
-
-$('#editEvent').click(function (e) {
-    $('#textEdit').toggle();
-    $('#textDisplay').toggle();
-});
-
-$(document).ready(function(){
-    tinymce.init({
-          selector: 'textarea#basic-example',
-          height: 750,
-          menubar: false,
-          plugins: [
-    'advlist autolink lists link image charmap print preview anchor textcolor save',
-    'searchreplace visualblocks code fullscreen',
-    'insertdatetime media table paste code help wordcount'
-  ],
-  toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | save ',
-});
-});
-function updateHTML(element){
-    var temp = tinymce.get('basic-example').getContent();
-    console.log(temp);
-    document.getElementById("textArea").innerHTML = temp;
-    
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/eventEdit/updateDes/",  //url
-        dataType: "json",                   //data being set
-        data: {id: "{{event.id}}",des:temp, csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-    })
-    
-}
-$(function() {
-  $( ".datepicker" ).datepicker();
-}); 
+    $(function () {
+        $(".datepicker").datepicker();
+    });
 
 </script>
 {% endif %}
 <script>
-$('#jobs').on("click", "#signUpJob", function() {
-    var data = table.row( $(this).parents('tr') ).data();
-    // Ajax request
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/eventEdit/signUpJob/",  //url
-        dataType: "json",                   //data being set
-        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-        
-    })
-    let ind = table.row( $(this).parents('tr') ).index();
-    table.cell(ind,4).data("<button id=\"signOutJob\" class=\"button alert tiny\"><i class=\"fi-minus\"></i> <b>SignOut</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>" ).draw();
-});
-$('#jobs').on("click", "#signOutJob", function() {
-    var data = table.row( $(this).parents('tr') ).data();
-    // Ajax request
-    $.ajax({
-        method: "POST",                     // Post request
-        url: "/eventEdit/signOutJob/",  //url
-        dataType: "json",                   //data being set
-        data: {id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}'},  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
-        success: function(result){
-        },
-        error: function(result){},
-        
-    })
-    let ind = table.row( $(this).parents('tr') ).index();
-    table.cell(ind,4).data("<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>" ).draw();
-});
-{% if allUsers == user %}
-var table = $('#jobs').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    dom: 'Bfrtip',
-    buttons: [
-        {
-            text: 'Create Jobs',
-            action: function ( e, dt, node, config ) {
-                var popup = new Foundation.Reveal($('#addJobEvent'));
-                popup.open();
-            }
-        }
-    ],
-    "columnDefs": [
+    $('#jobs').on("click", "#signUpJob", function () {
+        var data = table.row($(this).parents('tr')).data();
+        // Ajax request
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/eventEdit/signUpJob/",  //url
+            dataType: "json",                   //data being set
+            data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+
+        })
+        let ind = table.row($(this).parents('tr')).index();
+        table.cell(ind, 4).data("<button id=\"signOutJob\" class=\"button alert tiny\"><i class=\"fi-minus\"></i> <b>SignOut</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>").draw();
+    });
+    $('#jobs').on("click", "#signOutJob", function () {
+        var data = table.row($(this).parents('tr')).data();
+        // Ajax request
+        $.ajax({
+            method: "POST",                     // Post request
+            url: "/eventEdit/signOutJob/",  //url
+            dataType: "json",                   //data being set
+            data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+            success: function (result) {
+            },
+            error: function (result) { },
+
+        })
+        let ind = table.row($(this).parents('tr')).index();
+        table.cell(ind, 4).data("<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>").draw();
+    });
+    {% if allUsers == user %}
+    var table = $('#jobs').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'Bfrtilp',
+        buttons: [
             {
-                "targets": [ 0 ],
+                text: 'Create Jobs',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addJobEvent'));
+                    popup.open();
+                }
+            }
+        ],
+        "columnDefs": [
+            {
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "35%" },
-        { "width": "5%" },
-        { "width": "55%" },
-        { "width": "10%" }
-    ]
-});
-{%else%}
-var table = $('#jobs').DataTable({
-    bInfo: false,
-    autoWidth: false,
-    dom: 'frtip',
-    "columnDefs": [
+        columns: [
+            { "width": "0%" },
+            { "width": "35%" },
+            { "width": "5%" },
+            { "width": "55%" },
+            { "width": "10%" }
+        ]
+    });
+    {%else%}
+    var table = $('#jobs').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'frtilp',
+        "columnDefs": [
             {
-                "targets": [ 0 ],
+                "targets": [0],
                 "visible": false,
                 "searchable": false
             }
         ],
-    columns: [
-        { "width": "0%" },
-        { "width": "35%" },
-        { "width": "5%" },
-        { "width": "55%" },
-        { "width": "10%" }
-    ]
-});
-{% endif %}
+        columns: [
+            { "width": "0%" },
+            { "width": "35%" },
+            { "width": "5%" },
+            { "width": "55%" },
+            { "width": "10%" }
+        ]
+    });
+    {% endif %}
 </script>
 
 {% endblock %}

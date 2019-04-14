@@ -277,7 +277,8 @@ body {
   font-size: 1.5em;
 }
 .profileTemplate .spaced-row .row .profileAdditionalInfo .profileAttributes {
-  text-align: center;
+  padding-left: 60px;
+  text-align: left;
 }
 
 .progress.success .progress-meter {
@@ -302,6 +303,55 @@ body {
 }
 .textWithBar::after {
   background: linear-gradient(to right, #0056a7, #00a1d8, #46d9bf, #eeeeee);
+}
+
+.verticallyAlignedLargeIconSmallText {
+  height: 2em;
+  line-height: 2em;
+}
+.verticallyAlignedLargeIconSmallText i {
+  font-size: 1.5em;
+  width: 100px;
+  color: #bababa;
+  vertical-align: middle;
+}
+.verticallyAlignedLargeIconSmallText span {
+  vertical-align: middle;
+}
+
+html .spinner, body .spinner {
+  animation: rotate 2s linear infinite;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  width: 50px;
+  height: 50px;
+}
+html .spinner .path, body .spinner .path {
+  stroke: #93bfec;
+  stroke-linecap: round;
+  animation: dash 1.5s ease-in-out infinite;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -124;
+  }
 }
 
 .row .userProfileImage img {
@@ -334,6 +384,18 @@ body {
 }
 .row .userProfileAboutMe .card .card-section .aboutMeTitle h4::after {
   background: linear-gradient(to right, #0056a7, #00a1d8, #46d9bf, #eeeeee);
+}
+.row .userProfileAboutMe .card .card-section .aboutMeContent {
+  height: 150px;
+}
+.row .userProfileAboutMe .card .card-section .switch {
+  display: flex;
+  align-self: center;
+  margin-bottom: 0px;
+}
+.row .userProfileAboutMe .card .card-section .switch .switch-text {
+  padding-right: 10px;
+  color: #cacaca;
 }
 
 .cover {

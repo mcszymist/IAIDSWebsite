@@ -15,7 +15,8 @@
           or signing in.</h5>
         {% else %}
         <h1>Hi, {{ user.first_name }}!</h1><br>
-        <h5>Get started by browsing upcoming events and joining as a volunteer.</h5>
+        <h5>Get started by browsing upcoming events and joining as a volunteer. <br><br> Feel free to visit the <a href="#">FAQ
+            page</a>.</h5>
         {% endif %}
       </div>
     </div>
@@ -99,7 +100,6 @@
     </div>
 
     {% endif %}
-
     <div class="large-4 columns">
       <div class="card text-center">
         <div class="card-divider">
@@ -117,8 +117,7 @@
                       <div class="row">
                         <div class="columns large-12">
                           <a href="{% url 'events' %}">Show in calendar</a> / <a href="#">Message organization</a> / <a
-                            href="#" id="red-text">Report
-                            event</a>
+                            href="#" id="red-text">Report event</a>
                         </div>
                       </div>
                       <div class="row">
@@ -127,19 +126,31 @@
                         </div>
                         <div class="large-8 columns profileAdditionalInfo">
                           <div class="profileTitle">
-                            <p>{{event.name}}</p>
+                            <p>{{event.id}}{{event.name}}</p>
                           </div>
                           <div class="profileAttributes">
-                            {{event.location}}
-                            <br>
-                            {% if startdate is enddate %}
-                            {{event.startdate}}
-                            {% else %}
-                            {{event.startdate}} ~ {{event.enddate}}
-                            {% endif %}
-                            <br>
-                            {{event.starttime}} ~ {{event.endtime}}
-                            <br>
+                            <div class="verticallyAlignedLargeIconSmallText">
+                              <i class="fi-marker"></i>
+                              <span>
+                                {{event.location}}
+                              </span>
+                            </div>
+                            <div class="verticallyAlignedLargeIconSmallText">
+                              <i class="fi-calendar"></i>
+                              <span>
+                                {% if startdate is enddate %}
+                                {{event.startdate}}
+                                {% else %}
+                                {{event.startdate}} ~ {{event.enddate}}
+                                {% endif %}
+                              </span>
+                            </div>
+                            <div class="verticallyAlignedLargeIconSmallText">
+                              <i class="fi-clock"></i>
+                              <span>
+                                {{event.starttime}} ~ {{event.endtime}}
+                              </span>
+                            </div>
                             Host: {{event.orgID}}
                           </div>
                         </div>
@@ -216,7 +227,7 @@
                   </button>
                   <!-- <button class="button float-right" type="button">See more >></button> -->
                 </div>
-                <li><a href="#" data-open="event1">{{event.name}}</a></li>
+                <li><a href="#" data-open="event1">{{event.id}}{{event.name}}</a></li>
                 {% endfor %}
                 {% else %}
                 <div class="noUpcomingEvents">
