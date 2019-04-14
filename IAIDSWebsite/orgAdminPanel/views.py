@@ -158,7 +158,8 @@ def getReport(obj):
             for user in job.userID.all():
                 #calculate hours
                 data[str(user)] = 3
-    return JsonResponse(data)
+    data["test"] = 3
+    return data
 
                 
                 
