@@ -1,6 +1,6 @@
 from django.views.decorators.cache import never_cache
 from django.shortcuts import render, redirect
-from .models import Event, Organization, OrganizationUsers, MyUser
+from .models import Event, Organization, OrganizationUsers, MyUser, Job
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
@@ -15,6 +15,7 @@ def start(request):
     eventForm = EventForm()
     eventEditForm = EventForm(auto_id="edit_%s")
     userForm = UserForm(auto_id="user_%s")
+    report = getReport(obj) #Returns a dictionary
 
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers})
     
@@ -146,3 +147,30 @@ def getEvent(request):
         }
         return JsonResponse(data)
     return JsonResponse(status=404)
+
+def getReport(obj):
+   
+    data = {}
+    all_event = Event.objects.all().filter(orgID=obj)
+    for event in all_event:
+        all_jobs = Job.objects.all().filter(eventID=event)
+        for job in all_jobs:
+            for user in job.userID.all():
+                #calculate hours
+                data[str(user)] = 3
+    return JsonResponse(data)
+
+                
+                
+
+        
+            
+
+        
+            
+
+        
+        
+
+         
+
