@@ -165,7 +165,14 @@ def getReport(obj):
             diff = (dtTime2 - dtTime1).seconds
 
             for user in job.userID.all():
-                data[str(user)]=diff
+                values = []
+                values.append(user.first_name)
+                values.append(user.last_name)
+                values.append(diff)
+                if(str(user) in data.keys()):
+                    data[str(user)][2]+=diff
+                else:
+                    data[str(user)] = values
     return data
 
                 
