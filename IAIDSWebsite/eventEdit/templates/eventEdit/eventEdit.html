@@ -141,8 +141,8 @@
 <!-- For Jobs Table -->
 <div class="reveal" id="addJobEvent" data-reveal>
     <h1>New Job</h1>
-    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'> {% csrf_token
-        %}
+    <form class="my-ajax-form" method='POST' action='.' data-url='{{ request.build_absolute_uri|safe }}'>
+        {% csrf_token %}
         <div class="row">
             <div class="large-8 columns">
                 <label>Name
