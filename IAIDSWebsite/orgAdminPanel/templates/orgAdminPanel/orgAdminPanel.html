@@ -38,10 +38,9 @@
                             <tr>
                                 <th>id</th>
                                 <th>Event Title</th>
-                                <th>Signup CSV</th>
                                 <th>Date/Time</th>
                                 <th>Location</th>
-                                <th>Delete</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,11 +48,12 @@
                             <tr>
                                 <td>{{event.id}}</td>
                                 <td>{{event.name}}</td>
-                                <td><a href="eventCSV/{{event.id}}" style = "color:blue">DOWNLOAD CSV</a></td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
-                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button
-                                        id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                                <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
+                                <button id="signEvent" class="button tiny"><i class="fi-list"></i></button>
+                                <button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button>
+                                </td>
 
                             </tr>
                             {% endfor %}
@@ -62,10 +62,9 @@
                             <tr>
                                 <th>id</th>
                                 <th>Event Title</th>
-                                <th>Signup CSV</th>
                                 <th>Date/Time</th>
                                 <th>Location</th>
-                                <th>Delete</th>
+                                <th>Actions</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -530,7 +529,9 @@
     $('#users').on("click", "#deleteUsers", function () {
         usersTable.row($(this).parents('tr')).remove().draw(false);
     });
-    $('#users').on("click", "#editUsers", function () {
+    $('#events').on("click", "#signEvent", function () {
+        var data = eventsTable.row($(this).parents('tr')).data();
+        $(location).attr('href', 'eventCSV/' + data[0]);
     });
     $('#backButton').click(function (e) {
         $(location).attr('href', '/yourOrganizations/')
