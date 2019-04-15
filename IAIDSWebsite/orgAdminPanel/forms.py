@@ -17,8 +17,8 @@ class EventForm(forms.ModelForm):
 			'location' : forms.TextInput(attrs={'placeholder': 'Location'}),
             'startdate' : forms.DateInput(attrs={'class': 'datepicker'}),
 			'enddate' : forms.DateInput(attrs={'class': 'datepicker'}),
-            'starttime' : forms.TimeInput(),
-			'endtime' : forms.TimeInput(),
+            'starttime' : forms.TimeInput(attrs={'class': 'timepicker'}),
+			'endtime' : forms.TimeInput(attrs={'class': 'timepicker'}),
 			'description' : forms.Textarea(),
         }
 
