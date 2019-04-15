@@ -69,7 +69,7 @@ class JobFormView(FormView):
             obj = Event.objects.get(id=self.request.session["event_id"])
             info = form.cleaned_data
             #print(info)
-            job = Job(eventID = obj, name = info['name'],description=info['description'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'])
+            job = Job(eventID = obj, name = info['name'],description=info['description'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             job.save()
             
             data = {
