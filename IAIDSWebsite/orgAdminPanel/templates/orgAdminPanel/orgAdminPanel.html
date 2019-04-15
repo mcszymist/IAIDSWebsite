@@ -118,8 +118,7 @@
                                 {% for val in values %}
                                 <td>{{val}}</td>
                                 {% endfor %}
-                                <td><button id="editEvent" class="button tiny" style="padding-top: 30px;"><i class="fi-pencil"></i></button><button
-                                        id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                                <td><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -555,13 +554,10 @@
         }
 
     });
-
-<<<<<<< HEAD
     var reportsTable = $('#report').DataTable({
         bInfo: false,
-        autoWidth: true,
+        autoWidth: false,
         columns: [
-            { "width": "0%" },
             { "width": "40%" },
             { "width": "40%" },
             { "width": "10%" },
@@ -578,9 +574,6 @@
             }
         ]
     });
-
-=======
->>>>>>> 62bfbb7f4040c53d13b78d228ebb94d6e113abfd
 </script>
 {% endblock %}
 
