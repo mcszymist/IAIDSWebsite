@@ -113,14 +113,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for user in allUsers %}
+                            {% for key, values in report.items %}
                             <tr>
-                                <td>{{user.userID.first_name}} {{user.userID.last_name}}</td>
-                                <td>{{user.userID}}</td>
-                                <td>{{user.privledge}}</td>
+                                {% for val in values %}
+                                <td>{{val}}</td>
+                                {% endfor %}
                                 <td><button id="editEvent" class="button tiny" style="padding-top: 30px;"><i class="fi-pencil"></i></button><button
                                         id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
-
                             </tr>
                             {% endfor %}
                         </tbody>

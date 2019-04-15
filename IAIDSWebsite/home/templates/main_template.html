@@ -23,8 +23,8 @@
 </head>
 
 <!-- This is used in the menu to sign out. Using a post to logout prevents malacious users.-->
-<form name = "logout" id = "logout" method = "post" action = "{% url 'account_logout' %}">
-        {% csrf_token %}       
+<form name="logout" id="logout" method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}
 </form>
 
 
@@ -65,18 +65,28 @@
                                         {% else %}
                                         {% endif %}
                                     </a>
-                                    <ul class="menu">
+                                    <ul class="vertical menu" data-accordion-menu>
                                         <li><a href="#">Your inbox</a></li>
                                         <li><a href="{% url 'profileManage' %}">Your profile</a></li>
                                         <!-- if organization count != 0 -->
-                                        <li><a href="{% url 'yourOrganizations'%}">Your organizations</a></li>
+                                        <li><a href="{% url 'yourOrganizations'%}">Your organizations</a>
+                                            <!-- {% if allOrgs|length > 0 %}
+                                            <ul class="menu vertical nested">
+                                                <li><a href="{% url 'yourOrganizations'%}">View all</a></li>
+                                                {% for org in allOrgs %}
+                                                <li><a href="#">{{ org.0 }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                            {% endif %} -->
+                                        </li>
                                         <!-- endif -->
                                         <li><a href="#">Your events</a></li>
                                         <hr>
-                                        <li><a href="#">Help</a></li>
+                                        <li><a href="#">FAQ</a></li>
                                         <li><a href="#">Settings</a></li>
-                                        <li>      
-                                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout').submit()" />Sign Out</a>
+                                        <li>
+                                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout').submit()" />Sign
+                                            Out</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -90,7 +100,7 @@
                     </div>
                 </div>
 
-                
+
                 <!-- CONTENT -->
                 <div class="middle">
                     <!-- if True should be changed to if user.is_authenticated when it is proper -->
