@@ -6,10 +6,14 @@
 <!-- <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" /> -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
 <link rel="stylesheet" type="text/css" href="{% static 'source/css/output.css' %}" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
 <script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
 </script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
 </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
 {% endblock %}
 
 {% block middleColumn %}
@@ -425,6 +429,24 @@
     $(document).on('closed.zf.reveal', '#editRowEvent[data-reveal]', function () {
         $('#editRowEvent').foundation('_destroy');
     });
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 15,
+        minTime: '0',
+        maxTime: '11:45 pm',
+        defaultTime: '11',
+        startTime: '12:00 am',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true,
+        change: function(time) {
+            // the input field
+            var element = $(this);
+            // get access to this Timepicker instance
+            var timepicker = element.timepicker();
+            $(this).val(moment(time).format("HH:mm"));
+        }
+    });
 </script>
 
 <!-- user table reveals -->
@@ -514,6 +536,7 @@
         }
 
     });
+
 </script>
 {% endblock %}
 
