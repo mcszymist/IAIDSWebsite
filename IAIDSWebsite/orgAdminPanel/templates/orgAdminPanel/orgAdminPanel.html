@@ -38,6 +38,7 @@
                             <tr>
                                 <th>id</th>
                                 <th>Event Title</th>
+                                <th>Signup CSV</th>
                                 <th>Date/Time</th>
                                 <th>Location</th>
                                 <th>Delete</th>
@@ -48,6 +49,7 @@
                             <tr>
                                 <td>{{event.id}}</td>
                                 <td>{{event.name}}</td>
+                                <td><a href="eventCSV/{{event.id}}" style = "color:blue">DOWNLOAD CSV</a></td>
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button
@@ -60,6 +62,7 @@
                             <tr>
                                 <th>id</th>
                                 <th>Event Title</th>
+                                <th>Signup CSV</th>
                                 <th>Date/Time</th>
                                 <th>Location</th>
                                 <th>Delete</th>

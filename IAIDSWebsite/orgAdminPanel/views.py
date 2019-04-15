@@ -181,20 +181,24 @@ def getReport(obj):
                     data[str(user)] = values
     return data
 
-def event_csv(request):
+def event_csv(request, eventId):
+    eventId = eventId
+    data = {} ## Will precent multiple users for showing up
+    all_jobs = Job.objects.all().filter(eventID=eventId)
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
-
+    response['Content-Disposition'] = 'attachment; filename="event.csv"'
     writer = csv.writer(response)
-    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
-    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
-
+    writer.writerow(['FIRST_NAME', 'LAST_NAME', 'EMAIL', '', "DID SHOW?"])
+    for job in all_jobs:
+        for user in job.userID.all():
+            if(str(user) not in data.keys()):
+                writer.writerow([user.first_name, user.last_name, user])
+                data[str(user)] = user
     return response
 
 
-
-                
+          
                 
 
         
