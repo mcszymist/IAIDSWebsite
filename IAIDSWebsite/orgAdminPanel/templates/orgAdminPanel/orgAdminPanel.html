@@ -359,6 +359,7 @@
             console.log(errorThrown)
         }
     })
+    
 
     var eventsTable = $('#events').DataTable({
         bInfo: false,
@@ -388,6 +389,8 @@
             { "width": "10%" }
         ]
     });
+
+
     // Detele Event
     $('#events').on("click", "#deleteEvent", function () {
         var data = eventsTable.row($(this).parents('tr')).data();
@@ -513,6 +516,29 @@
         }
 
     });
+
+    var reportsTable = $('#report').DataTable({
+        bInfo: false,
+        autoWidth: true,
+        columns: [
+            { "width": "0%" },
+            { "width": "40%" },
+            { "width": "40%" },
+            { "width": "10%" },
+            { "width": "10%" }
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                text: 'Download CSV',
+                action: function (e, dt, node, config) {
+                    var popup = new Foundation.Reveal($('#addRowUser'));
+                    popup.open();
+                }
+            }
+        ]
+    });
+
 </script>
 {% endblock %}
 
