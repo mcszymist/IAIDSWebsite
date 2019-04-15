@@ -4,7 +4,9 @@ from .models import Event, Organization, OrganizationUsers, MyUser, Job
 from django.views.generic import FormView
 from .forms import EventForm, UserForm
 from django.http import JsonResponse
+from django.http import HttpResponse
 from datetime import datetime
+import csv
 
 @never_cache
 def start(request):
@@ -178,6 +180,19 @@ def getReport(obj):
                 else:
                     data[str(user)] = values
     return data
+
+def event_csv(request):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['First row', 'Foo', 'Bar', 'Baz'])
+    writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"])
+
+    return response
+
+
 
                 
                 
