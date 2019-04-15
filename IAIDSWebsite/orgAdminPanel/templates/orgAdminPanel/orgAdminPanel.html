@@ -410,17 +410,34 @@
     // Edit Event 
 
     $('#events').on("click", "#editEvent", function () {
-
-        var data = eventsTable.row($(this).parents('tr')).data();
-        $("#edit_name").val(data[1]);
-        $("#edit_location").val(data[3]);
-        $("#edit_startdate").val(data[2]);
-        $("#edit_id").val(data[0]);
+        var date2 = eventsTable.row($(this).parents('tr')).data();
+        $.ajax({
+            method: "POST",
+            url: '/orgAdminPanel/getEvent/',
+            data: { 'id': date2[0], csrfmiddlewaretoken: '{{ csrf_token }}'},
+            success: getEventSuccess,
+            error: getEventError,
+        })
+        $("#edit_id").val(date2[0]);
         var index = eventsTable.row($(this).parents('tr')).index();
         $("#edit_tableRow").val(index);
         var popup2 = new Foundation.Reveal($('#editRowEvent'));
         popup2.open();
     });
+    function getEventSuccess(data, textStatus, jqXHR){
+        $("#edit_name").val(data['name']);
+        $("#edit_location").val(data['location']);
+        $("#edit_startdate").val(data['startdate']);
+        $("#edit_enddate").val(data['enddate']);
+        $("#edit_starttime").val(data['starttime']);
+        $("#edit_endtime").val(data['endtime']);
+        $("#edit_description").val(data['description']);
+    }
+    function getEventError(jqXHR, textStatus, errorThrown){
+        console.log(jqXHR)
+        console.log(textStatus)
+        console.log(errorThrown)
+    }
     $(function () {
         $(".datepicker").datepicker();
     });
