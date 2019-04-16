@@ -10,36 +10,59 @@ from .forms import profileEditForm
 from django.contrib.auth.models import User
 
 # Create your views here.
+
+
+def toggle_is_org_owner(request):
+    user_obj = request.GET.get('user', 0)
+
+    if user_obj.org_owner_status == True:
+        user_obj.org_owner_status = False
+    else:
+        user_obj.org_owner_status = True
+    return render(request, 'profileEditor/profileManage.html', {'orgOwnerStatus': user_obj.org_owner_status})
+
+
 def profileManage(request):
-    user_id = request.GET.get('user','')
+    user_id = request.GET.get('user', '')
     if user_id == '':
         instance = request.user
     else:
         instance = models.MyUser.objects.get(id=user_id)
     messages.add_message(request, messages.INFO, 'Hello world.')
-    return render(request, 'profileEditor/profileManage.html', {'profile':instance})
+    return render(request, 'profileEditor/profileManage.html', {'profile': instance})
 
-def profileImage(request,file_name):
+
+def profileEvents(request):
+    user_id = request.GET.get('user', '')
+    if user_id == '':
+        instance = request.user
+    else:
+        instance = models.MyUser.objects.get(id=user_id)
+    return render(request, 'profileEditor/profileEvents.html', {'profile': instance})
+
+
+def profileImage(request, file_name):
     image = settings.MEDIA_ROOT+'/profileEditor/'+file_name
     with open(image, "rb") as f:
         response = HttpResponse(f.read(), content_type="image/jpeg")
-    response['X-Sendfile'] = smart_str(settings.MEDIA_ROOT+'/profileEditor/'+file_name)
+    response['X-Sendfile'] = smart_str(settings.MEDIA_ROOT +
+                                       '/profileEditor/'+file_name)
     return response
+
 
 def edit(request):
     curr_email = request.user.email
     curr_user = models.MyUser.objects.get(email=curr_email)
     form = profileEditForm(request.POST, request.FILES,
-                                 instance=curr_user)
+                           instance=curr_user)
     if request.method == 'POST':
         form = profileEditForm(request.POST, request.FILES,
-                                 instance=curr_user)
+                               instance=curr_user)
         if form.is_valid():
             curr_user = form.save()
-            return redirect('profileManage')  
+            return redirect('profileManage')
 
     else:
-        form = profileEditForm(instance = request.user)
-    
-    return render(request, 'profileEditor/profileEdit.html', {'form': form})
+        form = profileEditForm(instance=request.user)
 
+    return render(request, 'profileEditor/profileEdit.html', {'form': form})
