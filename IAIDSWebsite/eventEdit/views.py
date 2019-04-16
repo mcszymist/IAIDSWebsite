@@ -10,6 +10,7 @@ def signUpJob(request):
     id = request.POST.get('id', '')
     instance = Job.objects.get(id=id)
     instance.userID.add(request.user)
+    instance.personel += 1 
     instance.save()
     return HttpResponse(json.dumps({'id': id}), content_type="application/json")
 
@@ -17,6 +18,7 @@ def signOutJob(request):
     id = request.POST.get('id', '')
     instance = Job.objects.get(id=id)
     instance.userID.remove(request.user)
+    instance.personel -= 1 
     instance.save()
     return HttpResponse(json.dumps({'id': id}), content_type="application/json")
 
@@ -69,7 +71,7 @@ class JobFormView(FormView):
             obj = Event.objects.get(id=self.request.session["event_id"])
             info = form.cleaned_data
             #print(info)
-            job = Job(eventID = obj, name = info['name'],description=info['description'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'])
+            job = Job(eventID = obj, name = info['name'],description=info['description'],personelMax = info['personelMax'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             job.save()
             
             data = {

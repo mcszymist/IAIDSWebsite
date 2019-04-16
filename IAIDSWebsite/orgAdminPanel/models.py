@@ -56,4 +56,5 @@ class Job(models.Model):
     description = models.TextField(default='Please Fill')
     def amountPersonalNeeded(self):
         return self.personelMax - self.personel
+    
 
