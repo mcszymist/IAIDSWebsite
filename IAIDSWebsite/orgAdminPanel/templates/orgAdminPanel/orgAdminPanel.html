@@ -24,6 +24,16 @@
             <h1 class="textWithBar">Organization Profile</h1>
         </div>
     </div>
+    <!-- <div class="row">
+        <div class="columns large-12">
+            {% if user == profile %}
+            <a href="{% url 'events' %}">Calendar</a> / <a href="#">Inbox</a> / <a href="{% url 'edit' %}">Edit
+                Profile</a>
+            {% else %}
+            <a href="#">Message user</a> / <a href="#" id="red-text">Delete organization</a>
+            {% endif %}
+        </div>
+    </div> -->
     <div class="row">
         <div class="small-centered columns eventFilterBackground">
             <div id="tabs">
@@ -51,8 +61,8 @@
                                 <td>{{event.startdate}}</td>
                                 <td>{{event.location}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
-                                <button id="signEvent" class="button tiny"><i class="fi-list"></i></button>
-                                <button id="deleteEvent" class="button tiny alert"><i class="fi-x"></i></button>
+                                    <button id="signEvent" class="button tiny"><i class="fi-list"></i></button>
+                                    <button id="deleteEvent" class="button tiny alert"><i class="fi-x"></i></button>
                                 </td>
 
                             </tr>
@@ -364,7 +374,7 @@
             console.log(errorThrown)
         }
     })
-    
+
 
     var eventsTable = $('#events').DataTable({
         bInfo: false,
@@ -418,7 +428,7 @@
         $.ajax({
             method: "POST",
             url: '/orgAdminPanel/getEvent/',
-            data: { 'id': date2[0], csrfmiddlewaretoken: '{{ csrf_token }}'},
+            data: { 'id': date2[0], csrfmiddlewaretoken: '{{ csrf_token }}' },
             success: getEventSuccess,
             error: getEventError,
         })
@@ -428,7 +438,7 @@
         var popup2 = new Foundation.Reveal($('#editRowEvent'));
         popup2.open();
     });
-    function getEventSuccess(data, textStatus, jqXHR){
+    function getEventSuccess(data, textStatus, jqXHR) {
         $("#edit_name").val(data['name']);
         $("#edit_location").val(data['location']);
         $("#edit_startdate").val(data['startdate']);
@@ -437,7 +447,7 @@
         $("#edit_endtime").val(data['endtime']);
         $("#edit_description").val(data['description']);
     }
-    function getEventError(jqXHR, textStatus, errorThrown){
+    function getEventError(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR)
         console.log(textStatus)
         console.log(errorThrown)
@@ -459,7 +469,7 @@
         dynamic: false,
         dropdown: true,
         scrollbar: true,
-        change: function(time) {
+        change: function (time) {
             // the input field
             var element = $(this);
             // get access to this Timepicker instance
@@ -558,7 +568,7 @@
         }
 
     });
-    
+
     var reportsTable = $('#report').DataTable({
         bInfo: false,
         autoWidth: false,
@@ -573,7 +583,7 @@
             {
                 text: 'Download CSV',
                 action: function (e, dt, node, config) {
-                    location.href='reportCSV/'
+                    location.href = 'reportCSV/'
                 }
             }
         ]
