@@ -52,7 +52,7 @@
                                 <td>{{event.location}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
                                 <button id="signEvent" class="button tiny"><i class="fi-list"></i></button>
-                                <button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button>
+                                <button id="deleteEvent" class="button tiny alert"><i class="fi-x"></i></button>
                                 </td>
 
                             </tr>
@@ -88,7 +88,7 @@
                                 <td>{{user.userID}}</td>
                                 <td>{{user.privledge}}</td>
                                 <td><button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button><button
-                                        id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                                        id="deleteEvent" class="button tiny alert"><i class="fi-x"></i></button></td>
 
                             </tr>
                             {% endfor %}
@@ -120,7 +120,7 @@
                                 {% for val in values %}
                                 <td>{{val}}</td>
                                 {% endfor %}
-                                <td><button id="deleteEvent" class="button tiny alert"><i class="fi-trash"></i></button></td>
+                                <td><button id="deleteEvent" class="button tiny alert"><i class="fi-x"></i></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -144,7 +144,7 @@
         <div class="large-6 column">
         </div>
         <div class="large-3 columns">
-            <button id="deleteOrgButton" class="button alert" style="float: right;">Delete Organization <i class="fi-trash"></i></button>
+            <button id="deleteOrgButton" class="button alert" style="float: right;">Delete Organization <i class="fi-x"></i></button>
         </div>
     </div>
     <!-- For events Table -->
@@ -279,7 +279,7 @@
                 event,
                 date,
                 location,
-                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-x\"></i></button></td>"
             ]).draw(false);
             $myForm[0].reset(); // reset form data
         }
@@ -353,7 +353,7 @@
             eventsTable.row.add([
                 userID,
                 privledge,
-                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button></td>"
+                "<td><button id=\"editEvent\" class=\"button tiny\"><i class=\"fi-pencil\"></i></button><button id=\"deleteEvent\" class=\"button tiny alert\"><i class=\"fi-x\"></i></button></td>"
             ]).draw(false);
             $myUserForm[0].reset(); // reset form data
         }
