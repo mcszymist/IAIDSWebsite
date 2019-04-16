@@ -112,7 +112,11 @@
                             <br>
                             {{job.starttime}} - {{job.endtime}}
                         </td>
-                        <td><button id="signUpJob" class="button tiny"><i class="fi-plus"></i> <b>SignUp</b>
+                            {% if job.amountPersonalNeeded == 0%}
+                                <td><button id="nothen" class="button tiny disabled"> <b>Full</b>
+                            {% else %}
+                                <td><button id="signUpJob" class="button tiny"><i class="fi-plus"></i> <b>SignUp</b>
+                            {% endif %}
                                 {% if allUsers == user %}
                             </button><button id="deleteJob" class="button tiny alert"><i class="fi-trash"></i></button>
                             {% endif %}
@@ -321,8 +325,9 @@
 
         })
         let ind = table.row($(this).parents('tr')).index();
-        table.cell(ind, 4).data("<button id=\"signOutJob\" class=\"button alert tiny\"><i class=\"fi-minus\"></i> <b>SignOut</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>").draw();
         table.cell(ind, 2).data(Number(data[2])-Number(1)).draw();
+        table.cell(ind, 4).data("<button id=\"signOutJob\" class=\"button alert tiny\"><i class=\"fi-minus\"></i> <b>SignOut</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>").draw();
+        
     });
     $('#jobs').on("click", "#signOutJob", function () {
         var data = table.row($(this).parents('tr')).data();
