@@ -29,6 +29,17 @@ body {
     color: red;
 }
 
+.allAuthFormWrapper {
+    p {
+        label {
+            text-align: right;
+            clear: both;
+            float: left;
+            margin-right: 10px;
+        }
+    }
+}
+
 // .footer {
 //     font-size: 20px;
 //     color: white;
