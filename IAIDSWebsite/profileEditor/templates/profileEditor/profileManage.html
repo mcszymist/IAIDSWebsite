@@ -45,8 +45,20 @@
                                 </span>
                                 <input class="switch-input" id="tinySwitch" type="checkbox" name="tinySwitch">
                                 <label class="switch-paddle" for="tinySwitch">
-                                    <span class="show-for-sr">Download Kittens</span>
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
                                 </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#tinySwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -83,7 +95,26 @@
                     <div class="card">
                         <div class="card-divider" style="font-size: 1em;">ServSafe Food Handler</div>
                         <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
-                                to certificate website</a></div>
+                                to certificate website</a>
+                            <div class="switch tiny float-right">
+                                <input class="switch-input" id="foodHandlerSwitch" type="checkbox" name="foodHandlerSwitch">
+                                <label class="switch-paddle" for="foodHandlerSwitch">
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
+                                </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#foodHandlerSwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,7 +123,26 @@
                     <div class="card">
                         <div class="card-divider" style="font-size: 1em;">CDL Class A</div>
                         <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.fmcsa.dot.gov/registration/commercial-drivers-license">Link
-                                to certificate website</a></div>
+                                to certificate website</a>
+                            <div class="switch tiny float-right">
+                                <input class="switch-input" id="CDLClassASwitch" type="checkbox" name="CDLClassASwitch">
+                                <label class="switch-paddle" for="CDLClassASwitch">
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
+                                </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#CDLClassASwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,7 +153,26 @@
                     <div class="card">
                         <div class="card-divider" style="font-size: 1em;">Driver's License</div>
                         <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.servsafe.com/ServSafe-Food-Handler">Link
-                                to certificate website</a></div>
+                                to certificate website</a>
+                            <div class="switch tiny float-right">
+                                <input class="switch-input" id="driversLicenseSwitch" type="checkbox" name="driversLicenseSwitch">
+                                <label class="switch-paddle" for="driversLicenseSwitch">
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
+                                </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#driversLicenseSwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,7 +181,26 @@
                     <div class="card">
                         <div class="card-divider" style="font-size: 1em;">CDL Class B</div>
                         <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.fmcsa.dot.gov/registration/commercial-drivers-license">Link
-                                to certificate website</a></div>
+                                to certificate website</a>
+                            <div class="switch tiny float-right">
+                                <input class="switch-input" id="CDLClassBSwitch" type="checkbox" name="CDLClassBSwitch">
+                                <label class="switch-paddle" for="CDLClassBSwitch">
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
+                                </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#CDLClassBSwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,7 +211,26 @@
                     <div class="card">
                         <div class="card-divider" style="font-size: 1em;">TAPS Card</div>
                         <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.alaskacharr.com/tap.html">Link
-                                to certificate website</a></div>
+                                to certificate website</a>
+                            <div class="switch tiny float-right">
+                                <input class="switch-input" id="TAPSCardSwitch" type="checkbox" name="TAPSCardSwitch">
+                                <label class="switch-paddle" for="TAPSCardSwitch">
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
+                                </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#TAPSCardSwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -132,7 +239,26 @@
                     <div class="card">
                         <div class="card-divider" style="font-size: 1em;">CDL Class C</div>
                         <div class="card-section">Valid thru: March 28, 2020<br> <a href="https://www.fmcsa.dot.gov/registration/commercial-drivers-license">Link
-                                to certificate website</a></div>
+                                to certificate website</a>
+                            <div class="switch tiny float-right">
+                                <input class="switch-input" id="CDLClassCSwitch" type="checkbox" name="CDLClassCSwitch">
+                                <label class="switch-paddle" for="CDLClassCSwitch">
+                                    <span class="show-for-sr">Toggles the true or false value of if current user is an
+                                        organization owner</span>
+                                </label>
+                                <script>
+                                    var switchStatus = false;
+                                    $("#CDLClassCSwitch").on('change', function () {
+                                        $.get()
+                                        switchStatus = $(this).is(':checked');
+                                        alert(switchStatus);
+                                        // '{{ profile.toggle_is_org_owner }}'
+                                        // alert('{{profile.is_org_owner}}')
+                                    })
+                                    document.getElementById('switchStatus').innerHTML = switchStatus.toString();
+                                </script>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
