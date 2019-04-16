@@ -18,6 +18,7 @@ def start(request):
     eventForm = EventForm()
     eventEditForm = EventForm(auto_id="edit_%s")
     userForm = UserForm(auto_id="user_%s")
+    global report
     report = getReport(obj)
 
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers, 'report':report})
@@ -197,43 +198,16 @@ def event_csv(request, eventId):
                 data[str(user)] = user
     return response
 
-def report_csv(request, eventId):
+def report_csv(request):
      #duplicate code to download a csv
      #set the date and time format
-    date_format = "%H:%M:%S"
-    data = {}
-    all_event = Event.objects.all().filter(orgID=obj)
-    for event in all_event:
-        all_jobs = Job.objects.all().filter(eventID=event)
-        for job in all_jobs:
-            time1 = job.starttime.replace(microsecond = 0)
-            time2 = job.endtime.replace(microsecond = 0)
-            dtTime1 = datetime.strptime(str(time1) ,date_format)
-            dtTime2 = datetime.strptime(str(time2) ,date_format)
-            #calculate hours
-            diff = dtTime2 - dtTime1
-            hours = (diff.seconds/60)/60
-           
-
-            for user in job.userID.all():
-                values = []
-                values.append(str(user.first_name) + " " + str(user.last_name))
-                values.append(str(user))
-                values.append(hours)
-                if(str(user) in data.keys()):      
-                    newValue = data[str(user)]
-                    newValue[2] += hours
-                    data[str(user)] = newValue
-                else:
-                    data[str(user)] = values
-
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="report.csv"'
     writer = csv.writer(response)
     writer.writerow(['NAME', 'EMAIL', '', "HOURS"])
-    for users in data:
-        writer.writerow([users[0], users[1], '', users[2]])
-      
+    if report:
+        for key, values in report.items():
+            writer.writerow([values[0], values[1], " ", values[2]])
     return response
 
 
