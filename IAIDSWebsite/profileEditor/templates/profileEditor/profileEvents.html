@@ -1,0 +1,106 @@
+{% extends "main_template.html" %}
+{% block headerInclude %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'events/css/datatables.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'source/css/output.css' %}" />
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'events/css/filter.css' %}" /> -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+<script type="text/javascript" src="{% static 'events/js/datatables.min.js' %}">
+</script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js">
+</script>
+{% endblock %}
+{% block middleColumn%}
+
+<div class="spaced-row">
+
+    <div class="row">
+        <div class="large-12 column text-center eventFilterBackground">
+            <h1 class="textWithBar">Jobs Registurred For</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column large-12">
+            <table id="jobs" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Job Title</th>
+                        <th>Date/Time</th>
+                        <th>Reject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for job in allSignOutJobs %}
+                    <tr>
+                        <td>{{job.id}}</td>
+                        <td>{{job.name}}</td>
+                        <td>{{job.startdate}}
+                            {% if job.startdate != job.enddate %}
+                            - {{job.enddate}}
+                            {% endif %}
+                            <br>
+                            {{job.starttime}} - {{job.endtime}}
+                        </td>
+                        <td><button id="signOutJob" class="button alert tiny"><i class="fi-minus"></i> <b>SignOut</b>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>id</th>
+                        <th>Job Title</th>
+                        <th>Date/Time</th>
+                        <th>Reject</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $('#jobs').on("click", "#signOutJob", function () {
+            var data = table.row($(this).parents('tr')).data();
+            // Ajax request
+            $.ajax({
+                method: "POST",                     // Post request
+                url: "/eventEdit/signOutJob/",  //url
+                dataType: "json",                   //data being set
+                data: { id: data[0], csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+                success: function (result) {
+                },
+                error: function (result) { },
+
+            })
+            let ind = table.row($(this).parents('tr')).index();
+
+        });
+       
+    var table = $('#jobs').DataTable({
+        bInfo: false,
+        autoWidth: false,
+        dom: 'Bfrtlp',
+        "columnDefs": [
+            {
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }
+        ],
+        columns: [
+            { "width": "0%" },
+            { "width": "35%" },
+            { "width": "60%" },
+            { "width": "5%" }
+        ]
+    });
+   }
+
+</script>
+{% endblock %}
+
+{% block sideBar %}
+<!--TODO Add code here-->
+{% endblock %}
