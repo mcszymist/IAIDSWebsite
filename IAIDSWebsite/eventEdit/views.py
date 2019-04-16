@@ -10,6 +10,7 @@ def signUpJob(request):
     id = request.POST.get('id', '')
     instance = Job.objects.get(id=id)
     instance.userID.add(request.user)
+    instance.personel += 1 
     instance.save()
     return HttpResponse(json.dumps({'id': id}), content_type="application/json")
 
@@ -17,6 +18,7 @@ def signOutJob(request):
     id = request.POST.get('id', '')
     instance = Job.objects.get(id=id)
     instance.userID.remove(request.user)
+    instance.personel -= 1 
     instance.save()
     return HttpResponse(json.dumps({'id': id}), content_type="application/json")
 

@@ -103,7 +103,7 @@
                     <tr>
                         <td>{{job.id}}</td>
                         <td>{{job.name}}</td>
-                        <td>{{job.personel}}/{{job.personelMax}}</td>
+                        <td>{{job.amountPersonalNeeded}}</td>
                         
                         <td>{{job.startdate}}
                             {% if job.startdate != job.enddate %}
@@ -123,8 +123,14 @@
                     <tr>
                         <td>{{job.id}}</td>
                         <td>{{job.name}}</td>
-                        <td>{{job.userID.all.count}}/{{job.personelMax}}</td>
-                        <td>{{job.startdate}} - {{job.enddate}}</td>
+                        <td>{{job.amountPersonalNeeded}}</td>
+                        <td>{{job.startdate}}
+                            {% if job.startdate != job.enddate %}
+                            - {{job.enddate}}
+                            {% endif %}
+                            <br>
+                            {{job.starttime}} - {{job.endtime}}
+                        </td>
                         <td><button id="signOutJob" class="button alert tiny"><i class="fi-minus"></i> <b>SignOut</b>
                                 {% if allUsers == user %}
                             </button><button id="deleteJob" class="button tiny alert"><i class="fi-trash"></i></button>
@@ -316,6 +322,7 @@
         })
         let ind = table.row($(this).parents('tr')).index();
         table.cell(ind, 4).data("<button id=\"signOutJob\" class=\"button alert tiny\"><i class=\"fi-minus\"></i> <b>SignOut</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>").draw();
+        table.cell(ind, 2).data(Number(data[2])-Number(1)).draw();
     });
     $('#jobs').on("click", "#signOutJob", function () {
         var data = table.row($(this).parents('tr')).data();
@@ -332,6 +339,7 @@
         })
         let ind = table.row($(this).parents('tr')).index();
         table.cell(ind, 4).data("<button id=\"signUpJob\" class=\"button tiny\"><i class=\"fi-plus\"></i> <b>SignUp</b></button><button id=\"deleteJob\" class=\"button tiny alert\"><i class=\"fi-trash\"></i></button>").draw();
+        table.cell(ind, 2).data(Number(data[2])+Number(1)).draw();
     });
     {% if allUsers == user %}
     var table = $('#jobs').DataTable({
