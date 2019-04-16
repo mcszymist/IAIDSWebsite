@@ -6,29 +6,31 @@
 {% block middleColumn %}
 <div class="spaced-row">
   <div class="row">
-    <div class="small-0 medium-3 large-3 columns" style="background-color:transparent;">
+    <div class="large-3 columns" style="background-color:transparent;">
     </div>
-    <div class="small-12 medium-6 large-6 columns" style="display:flex; justify-content:center;">
+    <div class="large-6 columns" style="display:flex; justify-content:center;">
       <div class="card">
         <div class="card-divider">
           <p>Returning users</p>
         </div>
         <div class="card-section">
-          <form method="post">
+          <form method="post" id>
             {% csrf_token %}
-            {{ form.as_p }}
-              <div class="forgotPassword">
-                <a href="{% url 'account_reset_password' %}">
-                  Forgot password or username?
-                </a>
-              </div>
+            <div class="allAuthFormWrapper">
+              {{ form.as_p }}
+            </div>
+            <div class="forgotPassword">
+              <a href="{% url 'account_reset_password' %}">
+                Forgot password or username?
+              </a>
+            </div>
             </p>
             <button type="submit" class="button large expanded"><b>Sign in</b></button>
           </form>
         </div>
       </div>
     </div>
-    <div class="large-6 columns">
+    <div class="large-3 columns">
     </div>
   </div>
 </div>
