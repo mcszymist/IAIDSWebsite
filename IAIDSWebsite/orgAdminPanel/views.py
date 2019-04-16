@@ -18,6 +18,7 @@ def start(request):
     eventForm = EventForm()
     eventEditForm = EventForm(auto_id="edit_%s")
     userForm = UserForm(auto_id="user_%s")
+    global report
     report = getReport(obj)
 
     return render(request, 'orgAdminPanel/orgAdminPanel.html', {'eventEditForm': eventEditForm,'form': eventForm,'userForm': userForm,'allEvents': allEvents,'allUsers': allUsers, 'report':report})
@@ -196,6 +197,19 @@ def event_csv(request, eventId):
                 writer.writerow([user.first_name, user.last_name, user])
                 data[str(user)] = user
     return response
+
+def report_csv(request):
+     #duplicate code to download a csv
+     #set the date and time format
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="report.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['NAME', 'EMAIL', '', "HOURS"])
+    if report:
+        for key, values in report.items():
+            writer.writerow([values[0], values[1], " ", values[2]])
+    return response
+
 
 
           

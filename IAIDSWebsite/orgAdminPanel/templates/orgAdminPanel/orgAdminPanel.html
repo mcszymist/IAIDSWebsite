@@ -558,6 +558,7 @@
         }
 
     });
+    
     var reportsTable = $('#report').DataTable({
         bInfo: false,
         autoWidth: false,
@@ -572,8 +573,7 @@
             {
                 text: 'Download CSV',
                 action: function (e, dt, node, config) {
-                    var popup = new Foundation.Reveal($('#addRowUser'));
-                    popup.open();
+                    location.href='reportCSV/'
                 }
             }
         ]

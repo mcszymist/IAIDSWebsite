@@ -13,4 +13,5 @@ urlpatterns = [
     path('deleteUser/', views.DeleteUser, name='DeleteUser'),
     path('getEvent/',views.getEvent, name='getEvent'),
     path('eventCSV/<eventId>',views.event_csv, name='event_csv'), 
+    path('reportCSV/',views.report_csv, name='report_csv'),
 ]
