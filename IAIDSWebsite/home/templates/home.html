@@ -15,8 +15,8 @@
           or signing in.</h5>
         {% else %}
         <h1>Hi, {{ user.first_name }}!</h1><br>
-        <h5>Get started by browsing upcoming events and joining as a volunteer. <br><br> Feel free to visit the <a href="#">FAQ
-            page</a>.</h5>
+        <h5>Get started by browsing upcoming events and joining as a volunteer. <br><br> Feel free to visit the <a href="#">Q&A
+            page</a> for additional inquiries.</h5>
         {% endif %}
       </div>
     </div>
@@ -73,57 +73,57 @@
     {% else %}
     {% if event %}
     <div class="large-8 columns">
-        <div class="card">
-          <div class="card-divider">
-            Suggested Event
+      <div class="card">
+        <div class="card-divider">
+          Suggested Event
+        </div>
+        <div class="card-section">
+          <div class="row">
+            <div class="large-6 columns">
+              <img class="thumbnail" src="static/images/cupcakes.jpg">
+            </div>
+            <div class="large-6 columns">
+              <div class="suggestedEventsAttributes">
+                <i class="fi-marker"></i> {{event.0}}<br><br>
+                <i class="fi-clock"></i> {{event.1}} <br><br>
+                <i class="fi-clock"></i> {{event.2}} <br><br>
+                <i class="fi-torso"></i> IN PERSON<br><br>
+                <i class="fi-torsos-all"></i> BRING YOUR FRIENDS <br><br>
+              </div>
+            </div>
           </div>
-          <div class="card-section">
-            <div class="row">
-              <div class="large-6 columns">
-                <img class="thumbnail" src="static/images/cupcakes.jpg">
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="suggestedEventsTitle">
+                Whats this event?
               </div>
-              <div class="large-6 columns">
-                <div class="suggestedEventsAttributes">
-                  <i class="fi-marker"></i> {{event.0}}<br><br>
-                  <i class="fi-clock"></i> {{event.1}} <br><br>
-                  <i class="fi-clock"></i> {{event.2}} <br><br>
-                  <i class="fi-torso"></i> IN PERSON<br><br>
-                  <i class="fi-torsos-all"></i> BRING YOUR FRIENDS <br><br>
-                </div>
+              <div class="suggestedEventsDescription">
+                {{event.3}}
               </div>
             </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <div class="suggestedEventsTitle">
-                  Whats this event?
-                </div>
-                <div class="suggestedEventsDescription">
-                  {{event.3}}
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="large-12 columns">
-                <a class="button">Add to calendar</a>
-                <a class="button">Share</a>
-                <a class="button">Like</a>
-                <a class="button alert float-right">Report</a>
-              </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <a class="button">Add to calendar</a>
+              <a class="button">Share</a>
+              <a class="button">Like</a>
+              <a class="button alert float-right">Report</a>
             </div>
           </div>
         </div>
       </div>
-      {% else %}
-      <div class="large-8 columns">
-          <div class="card">
-            <div class="card-divider">
-              There are no Events
-            </div>
-          </div>
+    </div>
+    {% else %}
+    <div class="large-8 columns">
+      <div class="card">
+        <div class="card-divider">
+          There are no Events
+        </div>
       </div>
-      
+    </div>
+
     {% endif %}
-    {% endif %} 
+    {% endif %}
     {% else %}
 
     <div class="column large-4">
@@ -276,7 +276,7 @@
                   </button>
                   <!-- <button class="button float-right" type="button">See more >></button> -->
                 </div>
-                <li><a href="#" data-open="event1">{{event.id}}{{event.name}}</a></li>
+                <li><a href="#" data-open="event1">{{event.name}}</a></li>
                 {% endfor %}
                 {% else %}
                 <div class="noUpcomingEvents">
