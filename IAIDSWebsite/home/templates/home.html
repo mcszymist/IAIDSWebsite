@@ -28,10 +28,11 @@
   </div>
   <div class="row">
     {% if user.is_authenticated %}
+    {% if your_event %}
     <div class="large-8 columns">
       <div class="card">
         <div class="card-divider">
-          Suggested events
+          Your Upcoming Event
         </div>
         <div class="card-section">
           <div class="row">
@@ -40,8 +41,9 @@
             </div>
             <div class="large-6 columns">
               <div class="suggestedEventsAttributes">
-                <i class="fi-marker"></i> 123 Big Street Apartment 2<br><br>
-                <i class="fi-clock"></i> ALL DAY <br><br>
+                <i class="fi-marker"></i> {{your_event.0}}<br><br>
+                <i class="fi-clock"></i> {{your_event.1}} <br><br>
+                <i class="fi-clock"></i> {{your_event.2}} <br><br>
                 <i class="fi-torso"></i> IN PERSON<br><br>
                 <i class="fi-torsos-all"></i> BRING YOUR FRIENDS <br><br>
               </div>
@@ -49,17 +51,11 @@
           </div>
           <div class="row">
             <div class="large-12 columns">
-
               <div class="suggestedEventsTitle">
-                Bake Sale Needing Baked Goods by TONIGHT
+                Whats this event?
               </div>
               <div class="suggestedEventsDescription">
-                Lorem ipsum dolor sit amet, sea facer fabulas erroribus an, ut sit dicit ancillae. Pri
-                quod primis
-                cu, ut quaeque evertitur neglegentur mea. Vix quidam comprehensam no. Per vitae utinam
-                assueverit ea,
-                cum id ipsum nostrum antiopam. Quo eu wisi erant, qui inani affert ei, eam cu nisl
-                aeterno convenire.
+                {{your_event.3}}
               </div>
             </div>
           </div>
@@ -74,7 +70,60 @@
         </div>
       </div>
     </div>
-
+    {% else %}
+    {% if event %}
+    <div class="large-8 columns">
+        <div class="card">
+          <div class="card-divider">
+            Suggested Event
+          </div>
+          <div class="card-section">
+            <div class="row">
+              <div class="large-6 columns">
+                <img class="thumbnail" src="static/images/cupcakes.jpg">
+              </div>
+              <div class="large-6 columns">
+                <div class="suggestedEventsAttributes">
+                  <i class="fi-marker"></i> {{event.0}}<br><br>
+                  <i class="fi-clock"></i> {{event.1}} <br><br>
+                  <i class="fi-clock"></i> {{event.2}} <br><br>
+                  <i class="fi-torso"></i> IN PERSON<br><br>
+                  <i class="fi-torsos-all"></i> BRING YOUR FRIENDS <br><br>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <div class="suggestedEventsTitle">
+                  Whats this event?
+                </div>
+                <div class="suggestedEventsDescription">
+                  {{event.3}}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-12 columns">
+                <a class="button">Add to calendar</a>
+                <a class="button">Share</a>
+                <a class="button">Like</a>
+                <a class="button alert float-right">Report</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="large-8 columns">
+          <div class="card">
+            <div class="card-divider">
+              There are no Events
+            </div>
+          </div>
+      </div>
+      
+    {% endif %}
+    {% endif %} 
     {% else %}
 
     <div class="column large-4">
