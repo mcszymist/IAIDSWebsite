@@ -10,7 +10,13 @@
           <form method="post"></form>
           <div class="card-section">
             <form method="post">
-              {% csrf_token %} {{ form.as_p }}
+              {% csrf_token %}
+			  {% for field in form %}
+					{{field.label_tag }} {{ field }}
+			  {% endfor %}
+			  {% block js %}
+				{{ form.media }}
+			  {% endblock %}
               <button type="submit" class="button large expanded">
                 <b>Sign me up!</b>
               </button>
@@ -22,25 +28,28 @@
         <!-- These are only examples. They should be dynamically(?) loaded according to user input -->
         <!-- source: https://foundation.zurb.com/sites/docs/callout.html -->
         <div class="callout warning" data-closable>
-          <h5>Missing fields</h5>
-          <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          <a href="#">It's dangerous to go alone, take this.</a>
+          <h5>Errors</h5>
+          {% for field in form %}
+			<div class="fieldWrapper">
+				{{ field.errors }}
+			</div>
+		   {% endfor %}
           <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="callout alert" data-closable>
-          <h5>Password low security</h5>
-          <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          <a href="#">It's dangerous to go alone, take this.</a>
+        <div class="callout warning" data-closable>
+          <h5>Password Requirements</h5>
+          <p>Must be at least 8 characters long.</p>
           <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="callout alert" data-closable>
-          <h5>Re-entered password does not match</h5>
-          <p>It has an easy to override visual style, and is appropriately subdued.</p>
-          <a href="#">It's dangerous to go alone, take this.</a>
+        <div class="callout warning" data-closable>
+          <h5>Password Recommendations</h5>
+          <p>Have at least one number and one symbol.
+			 Use more than one word if using words.
+		  </p>
           <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
             <span aria-hidden="true">&times;</span>
           </button>
