@@ -2,7 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import MyUser
-from zxcvbn_password.fields import PasswordField, PasswordConfirmationField
+from .fields import PasswordField, PasswordConfirmationField
 
 class SignUpForm(UserCreationForm):
     password1 = PasswordField(label="Password")
