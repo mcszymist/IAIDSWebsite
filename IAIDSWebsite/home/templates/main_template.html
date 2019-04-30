@@ -60,13 +60,10 @@
                                 <li><a href="#" class="button-badge">
                                         {{ user.first_name }}
                                         <!-- if user has messages in the inbox: not yet implemented -->
-                                        {% if True %}
-                                        <span class="badge alert">5</span>
-                                        {% else %}
-                                        {% endif %}
+                                        
                                     </a>
                                     <ul class="vertical menu" data-accordion-menu>
-                                        <li><a href="#">Your inbox</a></li>
+                                        
                                         <li><a href="{% url 'profileManage' %}">Your profile</a></li>
                                         <!-- if organization count != 0 -->
                                         <li><a href="{% url 'yourOrganizations'%}">Your organizations</a>
