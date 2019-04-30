@@ -8,7 +8,12 @@
             <div class="columns large-8 userProfileAboutMe">
                 <div class="card">
                     <div class="card-divider">
-                        <h5 class="author-title">{{ form.first_name }} {{ form.last_name }}</h5>
+                        <h7 class="author-title">
+							{{ form.first_name.label_tag }} {{ form.first_name }}
+						</h7>
+						<h7 class="author-title">
+							{{form.last_name.label_tag}} {{ form.last_name }}
+						</h7>
                     </div>
                     <div class="card-section">
                         <div class="row">
@@ -33,8 +38,21 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+					<div class="card-footer">
+					<div class="row align-center">
+						<div class="columns">
+							<button type="submit" class="button" style="background-color:green;">
+								 Submit</i>
+						</div>
+						<div class="columns">
+							<a href="{% url 'profileManage' %}" class="button" id="inbox" style="background-color:red;">
+								Discard</i>
+							</a>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
             <div class="columns large-4 userProfileJobDoughnutChart">
                 <canvas id="myChart" width="400" height="400"></canvas>
                 <script>
@@ -61,15 +79,6 @@
         <div class="row">
             <div class="columns large-8">
 
-            </div>
-            <div class="columns large-2">
-                <button type="submit" class="button" style="background-color:green;">
-                    Submit changes</i>
-            </div>
-            <div class="columns large-2">
-                <a href="{% url 'profileManage' %}" class="button" id="inbox" style="background-color:red;">
-                    Discard</i>
-                </a>
             </div>
         </div>
     </div>

@@ -350,6 +350,9 @@ h6, .h6 {
     font-size: 1.25rem; }
   h6, .h6 {
     font-size: 1rem; } }
+  h7, .h7 {
+	  font-size: 1.25rem;
+	  padding-right: 1rem; } }
 
 a {
   line-height: inherit;
@@ -759,7 +762,7 @@ legend {
     margin: 0;
     margin-left: -0.1875rem;
     padding: 0 0.1875rem; }
-
+	
 select {
   height: 2.4375rem;
   margin: 0 0 1rem;
@@ -970,6 +973,10 @@ select {
     color: #fefefe; }
   .button.tiny {
     font-size: 0.6rem; }
+  .button.left {
+    float: left !important }
+  .button.right {
+    float: right !important }
   .button.small {
     font-size: 0.75rem; }
   .button.large {
@@ -3161,6 +3168,22 @@ a.button:hover, a.button:focus {
   padding: 1rem;
   background: #e6e6e6; }
   .card-divider > :last-child {
+    margin-bottom: 0; }
+	
+.card-footer {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
+  padding: 1rem;
+  background: #0056a7;
+  padding-left: 2rem;
+  padding-top: 2rem;  }
+  .card-footer > :last-child {
     margin-bottom: 0; }
 
 .card-section {
