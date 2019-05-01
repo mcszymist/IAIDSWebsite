@@ -5,7 +5,7 @@
 <form method="post">
     <div class="spaced-row">
         <div class="row">
-            <div class="columns large-8 userProfileAboutMe">
+            <div class="columns large-12 userProfileAboutMe">
                 <div class="card">
                     <div class="card-divider">
                         <h7 class="author-title">
@@ -21,6 +21,7 @@
                                 <img class="cover" src="{% static 'profileEditor/images/thispersondoesnotexist.jpg' %}"
                                     onerror="this.onerror=null;" this.src="{% static 'profileEditor/images/default_profile.jpg' %}">
                                 {{form.profile_pic}}
+                                <!--
                                 <div class="progress" role="progressbar" tabindex="0" aria-valuenow="75" aria-valuemin="0"
                                     aria-valuemax="100">
                                     <div class="progress-meter" style="width:75%">
@@ -29,6 +30,7 @@
                                         data-position="bottom">What's
                                         this?</span>
                                 </div>
+                                -->
                             </div>
                             <div class="columns large-8">
                                 <form method="post">
@@ -53,6 +55,7 @@
 					</div>
 				</div>
 			</div>
+            <!--
             <div class="columns large-4 userProfileJobDoughnutChart">
                 <canvas id="myChart" width="400" height="400"></canvas>
                 <script>
@@ -75,6 +78,7 @@
                     });
                 </script>
             </div>
+            -->
         </div>
         <div class="row">
             <div class="columns large-8">
