@@ -43,3 +43,5 @@ service-identity==16.0.0
 # six==1.11.0
 # ssh-import-id<=5.7
 # Twisted>=17.9.0
+django-zxcvbn-password==2.0.3
+django-allauth==0.39.1
