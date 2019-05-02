@@ -13,12 +13,11 @@ from django.contrib.auth.models import User
 
 
 def toggle_is_org_owner(request):
-    user_obj = request.GET.get('user', 0)
-
-    if user_obj.org_owner_status == True:
-        user_obj.org_owner_status = False
+    if request.user.org_owner_status == True:
+        request.user.user_obj.org_owner_status = False
     else:
-        user_obj.org_owner_status = True
+        request.user.user_obj.org_owner_status = True
+    request.user.save()
     return render(request, 'profileEditor/profileManage.html', {'orgOwnerStatus': user_obj.org_owner_status})
 
 
@@ -27,7 +26,7 @@ def profileManage(request):
     if user_id == '':
         instance = request.user
     else:
-        instance = models.MyUser.objects.get(id=user_id)
+        instance = models.MyUser.objects.get_object_or_404(id=user_id)
     messages.add_message(request, messages.INFO, 'Hello world.')
     return render(request, 'profileEditor/profileManage.html', {'profile': instance})
 
@@ -37,7 +36,7 @@ def profileEvents(request):
     if user_id == '':
         instance = request.user
     else:
-        instance = models.MyUser.objects.get(id=user_id)
+        instance = models.MyUser.objects.get_object_or_404(id=user_id)
     return render(request, 'profileEditor/profileEvents.html', {'profile': instance})
 
 
@@ -52,7 +51,7 @@ def profileImage(request, file_name):
 
 def edit(request):
     curr_email = request.user.email
-    curr_user = models.MyUser.objects.get(email=curr_email)
+    curr_user = models.MyUser.objects.get_object_or_404(email=curr_email)
     form = profileEditForm(request.POST, request.FILES,
                            instance=curr_user)
     if request.method == 'POST':

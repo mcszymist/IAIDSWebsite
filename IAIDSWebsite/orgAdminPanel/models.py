@@ -6,15 +6,14 @@ from datetime import datetime
 
 class Organization(models.Model):
     name = models.CharField(max_length = 100)
-    description = models.TextField(default='Please Fill')
+    description = models.TextField(default='What is your organization about?')
     def __str__(self):
         return '%s' % (self.name)
 
 class Event(models.Model):
     orgID = models.ForeignKey(Organization, on_delete=models.CASCADE, null=True)
     name = models.CharField(max_length = 100)
-    page = models.TextField(default='Please Fill')
-    description = models.TextField(default='Please Fill')
+    description = models.TextField(default='What is this event about?')
     location = models.CharField(default="", max_length=100)
     startdate = models.DateField(default=datetime.today)
     enddate = models.DateField(default=datetime.today)
@@ -53,7 +52,7 @@ class Job(models.Model):
     enddate = models.DateField(default=datetime.today)
     starttime = models.TimeField(default=datetime.time(datetime.now()))
     endtime = models.TimeField(default=datetime.time(datetime.now()))
-    description = models.TextField(default='Please Fill')
+    description = models.TextField(default='What is this job about?')
     def amountPersonalNeeded(self):
         return self.personelMax - self.personel
     
