@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.utils.encoding import smart_str
 from django.http import HttpResponse
+from django.http import JsonResponse
 from IAIDSWebsite import settings
 from createAccount import models
 from django.contrib import messages
@@ -13,12 +14,16 @@ from django.contrib.auth.models import User
 
 
 def toggle_is_org_owner(request):
-    if request.user.org_owner_status == True:
-        request.user.user_obj.org_owner_status = False
+    if request.user.is_org_owner == True:
+        request.user.is_org_owner = False
     else:
-        request.user.user_obj.org_owner_status = True
+        request.user.is_org_owner = True
     request.user.save()
-    return render(request, 'profileEditor/profileManage.html', {'orgOwnerStatus': user_obj.org_owner_status})
+    data = {
+        'owner':request.user.is_org_owner,
+        'message': "Successfully submitted form data.",
+    }
+    return JsonResponse(data)
 
 
 def profileManage(request):
@@ -51,7 +56,7 @@ def profileImage(request, file_name):
 
 def edit(request):
     curr_email = request.user.email
-    curr_user = models.MyUser.objects.get_object_or_404(email=curr_email)
+    curr_user = models.MyUser.objects.get(email=curr_email)
     form = profileEditForm(request.POST, request.FILES,
                            instance=curr_user)
     if request.method == 'POST':

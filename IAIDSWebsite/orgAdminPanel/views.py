@@ -1,5 +1,5 @@
 from django.views.decorators.cache import never_cache
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event, Organization, OrganizationUsers, MyUser, Job
 from django.views.generic import FormView
 from .forms import EventForm, UserForm

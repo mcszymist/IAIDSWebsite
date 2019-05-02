@@ -46,7 +46,11 @@
                                 <span class="switch-text">
                                     Organization administrator
                                 </span>
-                                <input class="switch-input" id="tinySwitch" type="checkbox" name="tinySwitch">
+                                {% if profile.is_org_owner == True %}
+                                    <input class="switch-input" id="tinySwitch" type="checkbox" name="tinySwitch" checked>
+                                {% else %}
+                                    <input class="switch-input" id="tinySwitch" type="checkbox" name="tinySwitch">
+                                {% endif %}
                                 <label class="switch-paddle" for="tinySwitch">
                                     <span class="show-for-sr">Toggles the true or false value of if current user is an
                                         organization administrator</span>
@@ -56,12 +60,15 @@
                                     $("#tinySwitch").on('change', function () {
                                         $.get()
                                         switchStatus = $(this).is(':checked');
-                                        alert(switchStatus);
-                                        if(switchStatus){
-                                            //ajax
-                                        }else{
-                                            //ajax
-                                        }
+                                        $.ajax({
+                                            method: "POST",                     // Post request
+                                            url: "/profile/ownerToggle",  //url
+                                            dataType: "json",                   //data being set
+                                            data: { csrfmiddlewaretoken: '{{ csrf_token }}' },  //json data format must add csrfmiddlewaretoken: '{{ csrf_token }}' for the request
+                                            success: function (result) {
+                                            },
+                                            error: function (result) { },
+                                        })
                                     })
                                     document.getElementById('switchStatus').innerHTML = switchStatus.toString();
                                 </script>
