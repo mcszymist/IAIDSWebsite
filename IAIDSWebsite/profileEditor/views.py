@@ -31,7 +31,7 @@ def profileManage(request):
     if user_id == '':
         instance = request.user
     else:
-        instance = models.MyUser.objects.get_object_or_404(id=user_id)
+        instance = get_object_or_404(models.MyUser, id=user_id)
     messages.add_message(request, messages.INFO, 'Hello world.')
     return render(request, 'profileEditor/profileManage.html', {'profile': instance})
 
@@ -41,7 +41,7 @@ def profileEvents(request):
     if user_id == '':
         instance = request.user
     else:
-        instance = models.MyUser.objects.get_object_or_404(id=user_id)
+        instance = get_object_or_404(models.MyUser, id=user_id)
     return render(request, 'profileEditor/profileEvents.html', {'profile': instance})
 
 

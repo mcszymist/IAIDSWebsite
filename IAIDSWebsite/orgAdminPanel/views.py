@@ -11,7 +11,7 @@ import csv
 @never_cache
 def start(request):
     org_id = request.GET.get('org')
-    obj = Organization.objects.get_object_or_404(id=org_id)
+    obj = get_object_or_404(Organization, id=org_id)
     request.session["org_id"] = org_id
     allEvents = Event.objects.all().filter(orgID=obj)
     allUsers = OrganizationUsers.objects.all().filter(orgID=obj)
@@ -31,7 +31,7 @@ def eventFoamPost(request):
         form = EventForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            obj = Organization.objects.get_object_or_404(id=request.session["org_id"])
+            obj = get_object_or_404(Organization, id=request.session["org_id"])
             info = form.cleaned_data
             org = Event(orgID = obj, name = info['name'],description=info['description'],location = info['location'],startdate = info['startdate'],enddate = info['enddate'],starttime = info['starttime'],endtime = info['endtime'])
             org.save()
@@ -57,8 +57,8 @@ def userFoamPost(request):
             # redirect to a new URL:
             
             info = form.cleaned_data
-            obj = Organization.objects.get_object_or_404(id=request.session["org_id"])
-            user = MyUser.objects.get_object_or_404(email=info['userID'])
+            obj = get_object_or_404(Organization, id=request.session["org_id"])
+            user = get_object_or_404(MyUser, email=info['userID'])
             #print(info)
             org = OrganizationUsers(orgID = obj,userID = user,privledge = info['privledge'])
             org.save()
@@ -84,7 +84,7 @@ def eventEditFormPost(request):
             # redirect to a new URL:
             
             info = form.cleaned_data
-            event = Event.objects.get_object_or_404(id=request.POST['edit_id'])
+            event = get_object_or_404(Event, id=request.POST['edit_id'])
             event.name = info['name']
             event.description=info['description']
             event.location = info['location']
@@ -116,7 +116,7 @@ def DeleteEvent(request):
 
 def DeleteUser(request):
     id = request.POST.get('id', '')
-    instance = OrganizationUsers.objects.get_object_or_404(orgID=id)
+    instance = get_object_or_404(OrganizationUsers, orgID=id)
     instance.delete()
     data = {
                 'id':id,
@@ -129,14 +129,14 @@ def Back(request):
 
 def DeleteOrganization(request):
     id = request.GET.get('id', '')
-    instance = Organization.objects.get_object_or_404(id=id)
+    instance = get_object_or_404(Organization, id=id)
     instance.delete()
     return redirect("/yourOrganizations/")
     
 def getEvent(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        event = Event.objects.get_object_or_404(id=request.POST["id"])
+        event = get_object_or_404(Event, id=request.POST["id"])
         data = {
             'org': event.orgID.name,
             'name': event.name,
