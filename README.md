@@ -21,6 +21,14 @@ startupScript.sh
 ```
  command to run the server.
 
+## Refreahing the DB
+
+If the database gets curropted were you have to start from scratch just run
+```
+cd IAIDSWebsite
+refreshDB.sh
+```
+
 ## Vagrant GUI Trigger
 Cool tip: If you don't want a gui interface for vagrant, just edit the **Vagrantfile** and set v.gui = false, or vice versa. It will trigger the gui interface to be on or off. It will be located here: 
 
@@ -63,4 +71,7 @@ You will be able to run the script like this:
  or
 ``` 
 ./startupScript.sh
+```
+pip3 install -r ./requirements.txt
+```
 ```
