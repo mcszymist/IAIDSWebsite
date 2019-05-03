@@ -50,40 +50,8 @@
             </div>
             Host: {{event.orgID}}
         </div>
-        {% if allUsers == user %}
-        <div class="column large-1">
-            <button id="editEvent" class="button tiny"><i class="fi-pencil"></i></button>
-        </div>
-        {% endif %}
         <div class="column large-7">
-
-            <div class="row" id="textEdit" style="display:none">
-                <div class="column large-12">
-                    <form onSubmit="updateHTML(this);">
-                        <textarea id="basic-example">
-                            {{event.page}}???
-                        </textarea>
-                        <button name="submitbtn"></button>
-                    </form>
-                </div>
-            </div>
-            <div class="row eventFilterBackground" id="textDisplay">
-                <div class="column large-12">
-                    <div id="textArea">
-                        {{event.page}}????
-                    </div>
-                </div>
-            </div>
-            <div class="row" id="textEdit" style="display:none">
-                <div class="column large-12">
-                    <form onSubmit="updateHTML(this);">
-                        <textarea id="basic-example">
-                                {{event.page}}???
-                            </textarea>
-                        <button name="submitbtn"></button>
-                    </form>
-                </div>
-            </div>
+            {{event.description}}
         </div>
     </div>
     <div class="row">
